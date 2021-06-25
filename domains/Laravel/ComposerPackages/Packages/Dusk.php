@@ -1,0 +1,34 @@
+<?php
+
+namespace Domains\Laravel\ComposerPackages\Packages;
+
+use Domains\Laravel\ComposerPackages\FirstPartyPackage;
+use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
+use Domains\ProjectTemplateCustomization\PostDownload\ClosurePostInstallTaskGroup;
+use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+
+class Dusk extends FirstPartyPackage implements ProvidesInstallationInstructions
+{
+    const REPOSITORY_KEY = 'dusk';
+
+    function description(): string
+    {
+        return 'An expressive, easy-to-use browser automation and testing API.';
+    }
+
+    public function isDevDependency(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @see https://laravel.com/docs/dusk#installation
+     */
+    public function installationInstructions(string $artisan): PostDownloadTaskGroup
+    {
+        return new ClosurePostInstallTaskGroup(
+            'Setup Laravel Dusk',
+            fn () => ["$artisan dusk:install"],
+        );
+    }
+}
