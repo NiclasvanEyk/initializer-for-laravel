@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        \App\AppServiceProvider::class,
         /*
          * Domain Service Providers...
          */
