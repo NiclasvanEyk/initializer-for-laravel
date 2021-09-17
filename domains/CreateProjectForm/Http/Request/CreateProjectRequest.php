@@ -46,7 +46,6 @@ use Illuminate\Validation\Rules\RequiredIf;
  * @property-read bool $usesEnvoy
  *
  * @property-read bool $usesDusk
- * @property-read bool $usesSelenium
  * @property-read bool $usesPest
  *
  * @property-read bool $usesPaddle

@@ -40,10 +40,6 @@ class SailServiceResolver
             $services[] = new Mailhog();
         }
 
-        if ($form->testing->usesSelenium) {
-            $services[] = new Selenium();
-        }
-
         if ($form->storage->usesMinIO) {
             $services[] = new MinIO();
         }
