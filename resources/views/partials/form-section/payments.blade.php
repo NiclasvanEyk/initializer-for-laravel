@@ -42,11 +42,15 @@
             flush
         ></x-first-party-package.option>
 
-        <x-first-party-package.option
-            :id="$mollieParameter"
-            :checked="$usesMollie"
-            :package="$mollie"
-            flush
-        ></x-first-party-package.option>
+{{-- laravel/cashier-mollie conflicts with laravel/cashier, so we'll        --}}
+{{-- disable it for now. Not sure how ready this package is, as it is also  --}}
+{{-- not listed on the official documentation.                              --}}
+{{--                                                                        --}}
+{{--        <x-first-party-package.option--}}
+{{--            :id="$mollieParameter"--}}
+{{--            :checked="$usesMollie"--}}
+{{--            :package="$mollie"--}}
+{{--            flush--}}
+{{--        ></x-first-party-package.option>--}}
     </x-form-control.group>
 </x-form-section>

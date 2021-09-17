@@ -1,4 +1,3 @@
-
 <x-layout.default>
     <x-validation.errors :errors="$errors"></x-validation.errors>
 
