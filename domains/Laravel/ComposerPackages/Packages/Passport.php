@@ -26,6 +26,11 @@ class Passport extends FirstPartyPackage implements ProvidesInstallationInstruct
             fn () => [
                 "$artisan migrate",
                 "$artisan passport:install",
+                // Yes, all of these slashes are needed:
+                // - 1x to escape it in the php string
+                // - 1x to escape it in the shell command string
+                // - 1x to escape it in the regex itself
+                'sed "s/use HasApiTokens/use \\\\\\\\Laravel\\\\\\\\Passport\\\\\\\\HasApiTokens, HasApiTokens/g" app/Models/User.php | tee app/Models/User.php > /dev/null'
             ],
         );
     }

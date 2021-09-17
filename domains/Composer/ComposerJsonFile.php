@@ -12,24 +12,11 @@ use Illuminate\Support\Arr;
  */
 class ComposerJsonFile
 {
-    private function __construct(
-        private string $pathToFile,
-        private array $contents
-    ) { }
+    private function __construct(private array $contents) { }
 
-    public static function open(string $path): static
+    public static function fromString(string $rawContents): self
     {
-        if (!is_file($path)) {
-            throw new FileNotFoundException($path);
-        }
-
-        $rawContents = file_get_contents($path);
-
-        if ($rawContents === false) {
-            throw new FileNotFoundException($path);
-        }
-
-        return new static($path, json_decode(
+        return new static(json_decode(
             $rawContents,
             associative: true,
             flags: JSON_THROW_ON_ERROR
@@ -47,22 +34,6 @@ class ComposerJsonFile
             $this->contents,
             JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );
-    }
-
-    public function path(): string
-    {
-        return $this->pathToFile;
-    }
-
-    public function flush(?string $path = null): static
-    {
-        $contents = $this->prettyContents();
-
-        if (!file_put_contents($path ?? $this->pathToFile, $contents)) {
-            throw new FlushException($path ?? $this->pathToFile);
-        }
-
-        return $this;
     }
 
     public function require (string $package, string $version): static

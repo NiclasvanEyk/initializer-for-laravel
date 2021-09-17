@@ -2,57 +2,45 @@
 
 namespace Domains\ProjectTemplate;
 
-use Domains\Composer\ComposerJsonFile;
-use Domains\Support\FileSystem\Path;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\File;
-use Laravel\Installer\Console\NewCommand;
-use Symfony\Component\Console\Output\OutputInterface;
+use Domains\Packagist\Models\Package;
+use Domains\Packagist\PackagistApiClient;
+use Illuminate\Support\Facades\Http;
+use PhpZip\ZipFile;
 
 class LaravelDownloader
 {
-    const TEMPLATE_PROJECT_NAME = 'initializer-template';
+    public function __construct(
+        private PackagistApiClient $packagistApiClient,
+    ) { }
 
-    public function __construct(private string $baseDirectory) { }
-
-    private function templatePath(string ...$path) : string
+    /**
+     * @return Package[]
+     */
+    public function laravelReleases(): array
     {
-        return Path::join(
-            $this->baseDirectory,
-            self::TEMPLATE_PROJECT_NAME,
-            ...$path,
+        return $this->packagistApiClient->packageReleases(
+            'laravel',
+            'laravel',
         );
     }
 
-    public function download(?OutputInterface $outputBuffer = null): void
+    public function latestRelease(): Package
     {
-        $name = self::TEMPLATE_PROJECT_NAME;
-        chdir($this->baseDirectory);
+        return $this->laravelReleases()[0];
+    }
 
-        $exitCode = Artisan::call(NewCommand::class, [
-            '--force' => true,
-            'name' => $name,
-        ], $outputBuffer);
+    public function downloadLatest(): DownloadedLaravelRelease
+    {
+        return $this->download($this->latestRelease());
+    }
 
-        if ($exitCode !== 0) {
-            throw new \Exception("Download exited with code '$exitCode'!");
-        }
+    public function download(Package $package): DownloadedLaravelRelease
+    {
+        $response = Http::get($package->dist->url)->body();
 
-        $composerJson = ComposerJsonFile::open(
-            $this->templatePath('composer.json')
+        return new DownloadedLaravelRelease(
+            package: $package,
+            archive: (new ZipFile())->openFromString($response),
         );
-
-        // All of these get automatically installed, but are not needed by us.
-        // Maybe it will be better in the future to just clone it from GH, but
-        // for now, this works fine.
-        File::deleteDirectory($this->templatePath('vendor'));
-        File::delete([
-            $this->templatePath('.env'),
-            $this->templatePath('README.md'),
-            $this->templatePath('composer.json'),
-            $this->templatePath('composer.lock'),
-        ]);
-
-        (new TemplateStorage())->store($this->templatePath(), $composerJson);
     }
 }

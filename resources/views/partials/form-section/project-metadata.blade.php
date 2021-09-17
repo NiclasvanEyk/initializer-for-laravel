@@ -14,10 +14,10 @@
         <x-icons.info />
     </x-slot>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-4">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-4 gap-x-4">
         <x-metadata.package-name-input></x-metadata.package-name-input>
 
-        <div>
+        <div class="col-span-3">
             <label for="{{$php}}" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                 PHP Version
             </label>
@@ -33,6 +33,22 @@
                 <option value="7.4">7.4</option>
                 <option value="8.0" selected>8.0 (latest)</option>
             </select>
+        </div>
+
+        <div class="col-span-3">
+            <label for="laravelVersion" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+                Laravel Version
+            </label>
+
+            <span id="laravelVersion"
+                class="mt-1 block w-full shadow-sm sm:text-sm rounded
+                    py-2 px-4 border border-gray-300 dark:bg-gray-900 dark:text-gray-100
+                "
+            >
+                <x-link href="https://github.com/laravel/laravel/releases">
+                    {{ $currentLaravelVersion }}
+                </x-link>
+            </span>
         </div>
     </div>
 

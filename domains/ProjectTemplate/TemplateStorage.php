@@ -2,39 +2,91 @@
 
 namespace Domains\ProjectTemplate;
 
-use Domains\Composer\ComposerJsonFile;
+use Domains\Support\FileSystem\Path;
 use Illuminate\Support\Facades\File;
 use League\Flysystem\Adapter\Local;
+use PhpZip\ZipFile;
 
 /**
  * Physical storage layer for the template on the local filesystem.
  */
 class TemplateStorage
 {
+    const TEMPLATE_FILE_NAME = 'template.zip';
+    const VERSION_FILE_NAME = 'version';
+    const CURRENT_SYMLINK_NAME = 'current';
+
     private Local $filesystem;
 
-    public function __construct() {
-        $this->filesystem = new Local(storage_path('app'));
+    public function __construct(private LaravelDownloader $laravelDownloader) {
+        $this->filesystem = new Local(storage_path('app/laravel-releases'));
     }
 
     public function exists(): bool
     {
-        return $this->filesystem->has(TemplateCreator::COMPOSER_FILE_NAME)
-            && $this->filesystem->has(TemplateCreator::TEMPLATE_FILE_NAME);
+        return is_file($this->pathToCurrentVersion());
     }
 
-    public function path(): string
+    public function currentArchive(): ZipFile
     {
-        return (string) $this->filesystem->getPathPrefix();
+        return (new ZipFile())->openFile($this->pathToCurrentArchive());
     }
 
-    public function store(
-        string $path,
-        ComposerJsonFile $composerJson,
-    ) {
-        File::deleteDirectory($this->path());
-        File::ensureDirectoryExists($this->path());
+    public function currentVersion(): string
+    {
+        if (!$this->exists()) {
+            return 'unknown';
+        }
 
-        (new TemplateCreator($path, $this->filesystem, $composerJson))->write();
+        return file_get_contents($this->pathToCurrentVersion());
+    }
+
+    public function updateCurrentRelease(): void
+    {
+        $release = $this->laravelDownloader->downloadLatest();
+
+        $this->store($release);
+        $this->setCurrentRelease($release);
+    }
+
+    private function setCurrentRelease(DownloadedLaravelRelease $release): void
+    {
+        dump($this->pathToCurrent());
+        File::delete($this->pathToCurrent());
+        File::link($this->pathTo($release), $this->pathToCurrent());
+    }
+
+    private function pathTo(DownloadedLaravelRelease $release): string
+    {
+        return $this->filesystem->applyPathPrefix($release->package->version);
+    }
+
+    private function pathToCurrent(): string
+    {
+        return $this->filesystem->applyPathPrefix(self::CURRENT_SYMLINK_NAME);
+    }
+
+    private function pathToCurrentArchive(): string
+    {
+        return $this->filesystem->applyPathPrefix(self::TEMPLATE_FILE_NAME);
+    }
+
+    private function pathToCurrentVersion(): string
+    {
+        return Path::join($this->pathToCurrent(), self::VERSION_FILE_NAME);
+    }
+
+    public function store(DownloadedLaravelRelease $release): void {
+        File::deleteDirectory($this->pathTo($release));
+        File::ensureDirectoryExists($this->pathTo($release));
+        $releaseFolder = new Local($this->pathTo($release));
+
+        $release->archive->saveAsFile(
+            $releaseFolder->applyPathPrefix(self::TEMPLATE_FILE_NAME),
+        );
+        File::put(
+            $releaseFolder->applyPathPrefix(self::VERSION_FILE_NAME),
+            $release->package->version,
+        );
     }
 }

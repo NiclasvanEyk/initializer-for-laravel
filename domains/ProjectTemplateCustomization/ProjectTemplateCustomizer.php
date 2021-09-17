@@ -4,12 +4,12 @@ namespace Domains\ProjectTemplateCustomization;
 
 use Domains\Composer\ComposerJsonFile;
 use Domains\CreateProjectForm\CreateProjectForm;
+use Domains\ProjectTemplate\TemplateStorage;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\CacheConfigurer;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\ComposerJsonGenerator;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\DatabaseConfigurer;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\InitializationScriptGenerator;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\ReadmeGenerator;
-use Domains\ProjectTemplate\TemplateRepository;
 use PhpZip\ZipFile;
 
 /**
@@ -18,7 +18,7 @@ use PhpZip\ZipFile;
 class ProjectTemplateCustomizer
 {
     public function __construct(
-        private TemplateRepository            $template,
+        private TemplateStorage               $template,
         private ReadmeGenerator               $readmeGenerator,
         private ComposerJsonGenerator         $composerJsonGenerator,
         private InitializationScriptGenerator $installScriptGenerator,
@@ -28,10 +28,10 @@ class ProjectTemplateCustomizer
 
     public function build(CreateProjectForm $form): ZipFile
     {
-        $this->template->ensureExists();
-
-        $archive = $this->template->archive();
-        $composerJson = $this->template->composerJson();
+        $archive = $this->template->currentArchive();
+        $composerJson = ComposerJsonFile::fromString(
+            $archive->getEntryContents('composer.json'),
+        );
 
         $this->addReadme($archive, $form);
         $this->addComposerJson($archive, $form, $composerJson);

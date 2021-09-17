@@ -32,7 +32,7 @@
 
 {{-- See https://getcomposer.org/doc/04-schema.md#name --}}
 <div
-    class="col-span-1 grid grid-cols-3"
+    class="col-span-6 grid grid-cols-3"
     style="grid-template-columns: auto 2em auto;"
 >
     <div>

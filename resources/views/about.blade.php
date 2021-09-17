@@ -8,9 +8,14 @@
             the same result as following the process described in Laravel's
             <x-link href="https://laravel.com/docs/installation">
                 Getting Started
-            </x-link> documentation would produce, but it is much more clear,
-            what you are getting out of the box and you are getting saner
-            defaults.
+            </x-link> documentation would produce, just with a few more
+            packages, to make sure the default Sail services work. For example
+            while a new application includes a <code>docker-compose</code>
+            service for Meilisearch and Selenium, the necessary packages to
+            connect to the Meilisearch instance or run Laravel Dusk tests
+            using the built-in `sail dusk` command are missing. Initializer for
+            Laravel always makes sure that the correct packages and Sail
+            services are installed where it makes sense.
         </p>
 
         <p>
@@ -28,10 +33,6 @@
                 Spring Initialzr Project
             </x-link>, which makes it very easy to set up new applications using
             the <x-link href="https://spring.io">Spring Framework</x-link>.
-        </p>
-
-        <p>
-            A huge chunk of work
         </p>
     </article>
 </x-layout.default>
