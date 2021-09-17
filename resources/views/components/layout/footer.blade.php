@@ -6,6 +6,9 @@
         Not directly affiliated or related to Laravel.
     </span>
 
-    <x-link href="https://github.com/NiclasvanEyk/initializr-for-laravel/issues/new"
-    >Found a bug?</x-link>
+    <x-link
+        href="https://github.com/NiclasvanEyk/initializr-for-laravel/issues/new"
+    >
+        Found a bug?
+    </x-link>
 </footer>

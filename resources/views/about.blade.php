@@ -4,12 +4,13 @@
 
         <p>
             Initializer for Laravel takes a visual, beginner-friendly approach
-            to setting up a new Laravel project. By default it produces the same
-            result as following the process described in Laravel's
+            to setting up a new Laravel project. By default it produces nearly
+            the same result as following the process described in Laravel's
             <x-link href="https://laravel.com/docs/installation">
                 Getting Started
             </x-link> documentation would produce, but it is much more clear,
-            what you are getting out of the box.
+            what you are getting out of the box and you are getting saner
+            defaults.
         </p>
 
         <p>

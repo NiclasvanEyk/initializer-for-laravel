@@ -58,6 +58,8 @@
     <div class="flex-1"></div>
 
     <nav class="mr-4 flex flex-row items-center dark:text-gray-500 space-x-4">
+        <x-sponsor-button />
+
         @if(\Route::currentRouteName() === 'root')
             <x-nav.link route="about">
                 About

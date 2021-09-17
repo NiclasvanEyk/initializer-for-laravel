@@ -15,6 +15,6 @@ class ScoutDriverOption
 
     public static function default()
     {
-        return self::NONE;
+        return self::MEILISEARCH;
     }
 }

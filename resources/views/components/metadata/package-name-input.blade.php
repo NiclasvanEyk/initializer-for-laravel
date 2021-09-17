@@ -3,10 +3,10 @@
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel as Label;
 
     $vendorParameter = P::VENDOR;
-    $vendor = old($vendorParameter);
+    $vendor = old($vendorParameter, request($vendorParameter));
 
     $projectParameter = P::PROJECT;
-    $project = old($projectParameter);
+    $project = old($projectParameter, request($projectParameter));
 
     $inputClasses = "
         mt-1 block w-full shadow-sm sm:text-sm
