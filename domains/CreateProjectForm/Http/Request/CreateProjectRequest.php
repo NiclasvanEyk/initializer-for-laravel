@@ -21,38 +21,6 @@ use Illuminate\Validation\Rules\RequiredIf;
 
 /**
  * Values that are needed to create a {@link CreateProjectForm}.
- *
- * @property-read string $vendor The package vendor name
- * @property-read string $project The name of the project
- * @property-read string $php The minimum PHP version required by the project
- * @property-read string|null $description A short description for the project
- *
- * @property-read string $starter Which starter kit should be used
- * @property-read bool $usesFortify
- * @property-read bool $usesPassport
- * @property-read bool $usesSocialite
- *
- * @property-read string $database One of the sail supported databases
- *
- * @property-read string $cacheDriver Which cache to use
- *
- * @property-read string $queueDriver Which queue to use
- * @property-read bool $usesHorizon
- *
- * @property-read bool $usesScout
- * @property-read string $scoutDriver
- *
- * @property-read bool $usesTelescope
- * @property-read bool $usesMailhog
- * @property-read bool $usesEnvoy
- *
- * @property-read bool $usesDusk
- * @property-read bool $usesPest
- *
- * @property-read bool $usesPaddle
- * @property-read bool $usesStripe
- *
- * @property-read bool $usesMinIO
  */
 class CreateProjectRequest extends FormRequest
 {
@@ -132,7 +100,7 @@ class CreateProjectRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return CreateProjectRequestParameterLabel::$map;
     }
