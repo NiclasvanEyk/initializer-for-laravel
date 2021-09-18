@@ -5,6 +5,7 @@ namespace Domains\ProjectTemplate;
 use Domains\Packagist\Models\Package;
 use Domains\Packagist\PackagistApiClient;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use PhpZip\ZipFile;
 
 class LaravelDownloader
@@ -38,9 +39,15 @@ class LaravelDownloader
     {
         $response = Http::get($package->dist->url)->body();
 
-        return new DownloadedLaravelRelease(
+        Log::info("Downloading $package->version...");
+
+        $release = new DownloadedLaravelRelease(
             package: $package,
             archive: (new ZipFile())->openFromString($response),
         );
+
+        Log::info("$package->version successfully downloaded!");
+
+        return $release;
     }
 }

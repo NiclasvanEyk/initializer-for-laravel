@@ -4,6 +4,7 @@ namespace Domains\ProjectTemplate;
 
 use Domains\Support\FileSystem\Path;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use League\Flysystem\Adapter\Local;
 use PhpZip\ZipFile;
 
@@ -53,6 +54,7 @@ class TemplateStorage
     {
         File::delete($this->pathToCurrent());
         File::link($this->pathTo($release), $this->pathToCurrent());
+        Log::info("Current template version was set to {$release->package->version}!");
     }
 
     private function pathTo(DownloadedLaravelRelease $release): string
