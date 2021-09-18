@@ -27,8 +27,8 @@
 
         @include('partials.form-section.payments')
 
-        <div class="prose max-w-none">
-            <h2>Almost there</h2>
+        <div class="prose dark:prose-light max-w-none">
+            <h2 class="!text-xl">Almost there</h2>
 
             <p>
                 When you submit this form by pressing the red "Generate" button,
@@ -48,15 +48,15 @@
             </p>
         </div>
 
-        <div class="pb-3 flex flex-row w-full justify-end">
+        <div class="pb-3 flex flex-row w-full items-center justify-center">
             <button
                 type="submit"
                 class="font-bold text-xl inline-flex flex-row items-center
-                       justify-center py-4 sm:py-2 px-6 border border-transparent
+                       justify-center py-3 px-4 border border-transparent
                        shadow-sm text-sm font-medium rounded-md text-white
-                       bg-red-600 hover:bg-red-700 w-full sm:w-auto
+                       bg-red-600 hover:bg-red-700 w-full sm:w-1/3
                        focus:outline-none focus:ring-2 focus:ring-offset-2
-                       focus:ring-red-500"
+                       focus:ring-red-500 transition"
             >
                 <x-icons.download />
 
