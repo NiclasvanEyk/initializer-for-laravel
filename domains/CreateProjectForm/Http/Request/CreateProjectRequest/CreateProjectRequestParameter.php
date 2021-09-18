@@ -63,6 +63,7 @@ class CreateProjectRequestParameter
     const USES_PADDLE = self::USES_PREFIX . 'paddle';
     const USES_STRIPE = self::USES_PREFIX . 'stripe';
     const USES_MOLLIE = self::USES_PREFIX . 'mollie';
+    const CASHIER_DRIVER = 'cashier-driver';
 
     /** @see Storage */
     const USES_MINIO = self::USES_PREFIX . 'minio';

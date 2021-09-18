@@ -51,7 +51,6 @@ class TemplateStorage
 
     private function setCurrentRelease(DownloadedLaravelRelease $release): void
     {
-        dump($this->pathToCurrent());
         File::delete($this->pathToCurrent());
         File::link($this->pathTo($release), $this->pathToCurrent());
     }

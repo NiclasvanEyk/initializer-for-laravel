@@ -1,56 +1,80 @@
 @php
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\ComposerPackages\Packages;
+    use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
+
+    $driverParameter = P::CASHIER_DRIVER;
+    $driver = old($driverParameter, request($driverParameter, CashierDriverOption::default()));
+    $model = Str::studly($driverParameter);
 
     $paddle = new Packages\CashierPaddle();
-    $paddleParameter = P::USES_PADDLE;
-    $usesPaddle = old($paddleParameter, request()->has($paddleParameter));
+    $paddleOption = CashierDriverOption::PADDLE;
 
     $stripe = new Packages\CashierStripe();
-    $stripeParameter = P::USES_STRIPE;
-    $usesStripe = old($stripeParameter, request()->has($stripeParameter));
+    $stripeOption = CashierDriverOption::STRIPE;
 
     $mollie = new Packages\CashierMollie();
-    $mollieParameter = P::USES_MOLLIE;
-    $usesMollie = old($mollieParameter, request()->has($mollieParameter));
+    $mollieOption = CashierDriverOption::MOLLIE;
 @endphp
 
 <x-form-section name="Payment & Billing">
     <x-slot name="description">
-        Laravel
-        If you want to give your users the ability to execute full-text search
-        queries, which go beyond what a simple <code>where</code> SQL clause
-        could achieve, this section might be for you.
+        <p>
+            Dealing with money, credit cards or billing is always scary.
+            Luckily Laravel Cashier provides first-party integrations for the
+            popular payment processing platforms
+            <x-link href="https://stripe.com">Stripe</x-link>,
+            <x-link href="https://paddle.com">Paddle</x-link> and
+            <x-link href="https://mollie.com">Mollie</x-link>.
+        </p>
+
+        <p>
+            Simply choose an implementation and configure your credentials.
+            We'll automatically add billing capabilities to your user model.
+        </p>
     </x-slot>
 
     <x-slot name="icon">
         <x-icons.credit-card />
     </x-slot>
 
-    <x-form-control.group heading="Cashier">
-        <x-first-party-package.option
-            :id="$paddleParameter"
-            :checked="$usesPaddle"
-            :package="$paddle"
-            flush
-        ></x-first-party-package.option>
+    <x-form-control.group
+        heading="Cashier"
+        x-data="{'{{ $model }}': '{{ $driver }}'}"
+    >
+        <x-radio-option-none
+            :model="$model"
+            :name="$driverParameter"
+        />
 
-        <x-first-party-package.option
-            :id="$stripeParameter"
-            :checked="$usesStripe"
-            :package="$stripe"
-            flush
-        ></x-first-party-package.option>
+        <x-radio-option
+            :id="$stripeOption"
+            :label="$stripe->name()"
+            :href="$stripe->href()"
+            :model="$model"
+            :name="$driverParameter"
+        >
+            {{ $stripe->description() }}
+        </x-radio-option>
 
-{{-- laravel/cashier-mollie conflicts with laravel/cashier, so we'll        --}}
-{{-- disable it for now. Not sure how ready this package is, as it is also  --}}
-{{-- not listed on the official documentation.                              --}}
-{{--                                                                        --}}
-{{--        <x-first-party-package.option--}}
-{{--            :id="$mollieParameter"--}}
-{{--            :checked="$usesMollie"--}}
-{{--            :package="$mollie"--}}
-{{--            flush--}}
-{{--        ></x-first-party-package.option>--}}
+        <x-radio-option
+            :id="$paddleOption"
+            :label="$paddle->name()"
+            :href="$paddle->href()"
+            :model="$model"
+            :name="$driverParameter"
+        >
+            {{ $paddle->description() }}
+        </x-radio-option>
+
+        <x-radio-option
+            :id="$mollieOption"
+            :label="$mollie->name()"
+            :href="$mollie->href()"
+            :model="$model"
+            :name="$driverParameter"
+        >
+            {{ $mollie->description() }}
+        </x-radio-option>
     </x-form-control.group>
 </x-form-section>

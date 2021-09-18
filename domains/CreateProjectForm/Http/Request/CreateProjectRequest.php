@@ -9,6 +9,7 @@ use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectReq
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel;
 use Domains\CreateProjectForm\Validation\Rules\ValidBreezeFrontendOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidCacheOption;
+use Domains\CreateProjectForm\Validation\Rules\ValidCashierDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidDatabaseOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidJetstreamFrontendOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidPhpVersionOption;
@@ -120,9 +121,11 @@ class CreateProjectRequest extends FormRequest
             P::USES_PEST => ['sometimes'],
 
             /** @see Payment */
-            P::USES_PADDLE => ['sometimes'],
-            P::USES_STRIPE => ['sometimes'],
-            P::USES_MOLLIE => ['sometimes'],
+            P::CASHIER_DRIVER => [
+                'sometimes',
+                'string',
+                new ValidCashierDriverOption(),
+            ],
 
             /** @see Storage */
             P::USES_MINIO => ['sometimes'],

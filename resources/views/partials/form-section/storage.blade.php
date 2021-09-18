@@ -21,9 +21,23 @@
 
 <x-form-section name="Storage">
     <x-slot name="description">
-        If you want to give your users the ability to execute full-text search
-        queries, which go beyond what a simple <code>where</code> SQL clause
-        could achieve, this section might be for you.
+        <p>
+            Laravel integrates with the
+            <x-link href="https://flysystem.thephpleague.com">Flysystem</x-link>
+            library to abstract away any filesystem, like your storage folder,
+            remote FTP filesystems or ones provided by a cloud provider like
+            Amazon or DigitalOcean.
+        </p>
+
+        <p>
+            Some filesystems are not as popular, so they are not supported out
+            of the box. Choose the ones you need from the options below. To
+            simulate a
+            <x-link href="https://laravel.com/docs/filesystem#amazon-s3-compatible-filesystems">S3-like</x-link>
+            filesystem, you can choose to include the MinIO sail service, which
+            is api compatible with S3, but runs locally so you don't need to
+            configure cloud storage for your local development needs.
+        </p>
     </x-slot>
 
     <x-slot name="icon">

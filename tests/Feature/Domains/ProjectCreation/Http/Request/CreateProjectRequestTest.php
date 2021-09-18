@@ -6,15 +6,14 @@ use Domains\CreateProjectForm\Http\Request\{
     CreateProjectRequest,
     CreateProjectRequest\CreateProjectRequestParameter as P,
 };
-use Domains\CreateProjectForm\Sections\{
-    Cache\CacheOption,
+use Domains\CreateProjectForm\Sections\{Cache\CacheOption,
     Cache\RedisCacheDriver,
+    Cashier\CashierDriverOption,
     Database\DatabaseOption,
     Metadata\PhpVersion,
     Queue\QueueDriverOption,
     Scout\MeiliSearchScoutDriver,
-    Scout\ScoutDriverOption,
-};
+    Scout\ScoutDriverOption};
 use Domains\Laravel\Sail\MySQLDatabase;
 use Domains\Laravel\StarterKit\{Breeze, BreezeFrontend, StarterKit};
 use Tests\TestCase;
@@ -72,9 +71,7 @@ class CreateProjectRequestTest extends TestCase
                 P::USES_PEST => true,
 
                 /** @see Payment */
-                P::USES_PADDLE => true,
-                P::USES_STRIPE => true,
-                P::USES_MOLLIE => true,
+                P::CASHIER_DRIVER => CashierDriverOption::STRIPE,
 
                 /** @see Storage */
                 P::USES_MINIO => true,

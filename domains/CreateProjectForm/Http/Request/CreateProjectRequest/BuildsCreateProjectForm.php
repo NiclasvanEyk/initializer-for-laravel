@@ -79,9 +79,7 @@ trait BuildsCreateProjectForm
                 usesPest: $this->has(P::USES_PEST),
             ),
             new Payment(
-                usesPaddle: $this->has(P::USES_PADDLE),
-                usesStripe: $this->has(P::USES_STRIPE),
-                usesMollie: $this->has(P::USES_MOLLIE),
+                driver: Payment::fromOption($this->get(P::CASHIER_DRIVER)),
             ),
             new Storage(
                 usesMinIO: $this->has(P::USES_MINIO),

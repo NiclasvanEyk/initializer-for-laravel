@@ -8,6 +8,7 @@ use Domains\CreateProjectForm\Sections\Authentication;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\DynamoDBCacheDBDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
+use Domains\CreateProjectForm\Sections\Cashier\CashierPaddleDriver;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
@@ -167,16 +168,8 @@ class ComposerPackagesToInstallResolver
     {
         $packages = [];
 
-        if ($payment->usesPaddle) {
-            $packages[] = new CashierPaddle();
-        }
-
-        if ($payment->usesStripe) {
-            $packages[] = new CashierStripe();
-        }
-
-        if ($payment->usesMollie) {
-            $packages[] = new CashierMollie();
+        if ($payment->driver !== null) {
+            $packages[] = $payment->driver->package();
         }
 
         return $packages;

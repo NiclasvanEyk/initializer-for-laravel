@@ -14,7 +14,7 @@
             <a href="#{{$id}}">{{ $icon }}</a> {{ $name }}
         </h2>
 
-        <section class="mt-1 text-gray-600 dark:text-gray-400">
+        <section class="mt-1 text-gray-600 dark:text-gray-400 space-y-2">
             {{ $description }}
         </section>
     </div>

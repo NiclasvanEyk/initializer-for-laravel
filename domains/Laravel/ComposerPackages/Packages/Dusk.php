@@ -13,7 +13,8 @@ class Dusk extends FirstPartyPackage implements ProvidesInstallationInstructions
 
     function description(): string
     {
-        return 'An expressive, easy-to-use browser automation and testing API.';
+        return 'An expressive, easy-to-use browser automation and testing API.'
+            . ' Includes a Sail service for Selenium.';
     }
 
     public function isDevDependency(): bool

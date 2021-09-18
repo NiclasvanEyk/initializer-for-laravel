@@ -3,8 +3,12 @@
 namespace Domains\Laravel\ComposerPackages\Packages;
 
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
+use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
+use Domains\ProjectTemplateCustomization\PostDownload\ClosurePostInstallTaskGroup;
+use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+use Domains\SourceCodeManipulation\SedCommand\AddTrait;
 
-class CashierMollie extends FirstPartyPackage
+class CashierMollie extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
     const REPOSITORY_KEY = 'cashier-mollie';
 
@@ -27,5 +31,13 @@ class CashierMollie extends FirstPartyPackage
     public function href(): string
     {
         return 'https://github.com/laravel/cashier-mollie';
+    }
+
+    public function installationInstructions(string $artisan): PostDownloadTaskGroup
+    {
+        return new ClosurePostInstallTaskGroup(
+            'Add Billable Trait to User model',
+            fn () => [AddTrait::toUserModel('\\Laravel\\Cashier\\Billable')],
+        );
     }
 }
