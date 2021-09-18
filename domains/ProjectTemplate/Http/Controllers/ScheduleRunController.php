@@ -19,6 +19,6 @@ class ScheduleRunController
 
         abort_if($exitCode !== 0, 500);
 
-        return response()->noContent();
+        return response(null, 200);
     }
 }
