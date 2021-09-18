@@ -22,11 +22,11 @@
 <x-form-section name="Storage">
     <x-slot name="description">
         <p>
-            Laravel integrates with the
+            Laravel integrates uses
             <x-link href="https://flysystem.thephpleague.com">Flysystem</x-link>
-            library to abstract away any filesystem, like your storage folder,
-            remote FTP filesystems or ones provided by a cloud provider like
-            Amazon or DigitalOcean.
+            to abstract away any filesystem, like your storage folder,
+            remote FTP servers or cloud storage like Amazon S3 or DigitalOcean
+            Spaces.
         </p>
 
         <p>

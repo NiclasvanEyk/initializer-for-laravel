@@ -37,7 +37,7 @@
         &nbsp;
     </div>
 
-    <p>
+    <p class="text-gray-600 dark:text-gray-400">
         Depending on which starter kit you choose, it might make sense to
         install additional packages. If you are unsure whether you need them or
         not, have a look at the

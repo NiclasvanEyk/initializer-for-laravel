@@ -8,7 +8,7 @@
 ])
 
 <label {{ $attributes->merge([
-    'class' => 'flex items-start p-3 overflow-hidden transition group' . (
+    'class' => 'flex items-start p-3 w-full overflow-hidden transition group' . (
         $flush ? '' : ' rounded border'
     ),
     'for' => $id,
@@ -19,7 +19,7 @@
     <div class="flex items-center h-5"> {{ $input }} </div>
     <div id="{{$id}}-label" class="ml-3 select-none w-full font-medium">
         <div
-            class="flex flex-row items-center w-full font-semibold dark:text-gray-100"
+            class="flex flex-row items-center w-full font-semibold dark:text-gray-100 mb-1 sm:mb-0"
             x-bind:class="{{$activeCondition}} && 'text-gray-900 dark:text-gray-300'"
         >
             @if($href !== null)
