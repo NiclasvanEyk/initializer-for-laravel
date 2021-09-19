@@ -2,17 +2,17 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.0
+            context: ./docker/8.0
             dockerfile: Dockerfile
             args:
-                WWWGROUP: '${WWWGROUP}'
+                WWWGROUP: '${WWWGROUP:-1000}'
         image: sail-8.0/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
             - '8000:80'
         environment:
-            WWWUSER: '${WWWUSER}'
+            WWWUSER: '${WWWUSER:-1000}'
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-"off"}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-"client_host=host.docker.internal"}'
