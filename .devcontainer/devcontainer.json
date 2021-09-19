@@ -18,11 +18,12 @@
 		"onecentlin.laravel5-snippets",
 		"onecentlin.laravel-blade",
 		"emallin.phpunit",
-		"editorconfig.editorconfig"
+		"editorconfig.editorconfig",
+		"bmewburn.vscode-intelephense-client"
 	],
 	"remoteUser": "sail",
-	"forwardPorts": [8000],
-	// "runServices": [],
-	"postCreateCommand": "npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template && npm run dev",
+	"forwardPorts": [8000, 80],
+	"runServices": ["laravel.test"],
+	"postCreateCommand": "code disable-extension vscode.php-language-features && npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template && npm run dev",
 	// "shutdownAction": "none",
 }
