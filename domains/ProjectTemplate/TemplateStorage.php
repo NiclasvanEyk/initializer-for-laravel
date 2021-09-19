@@ -39,7 +39,13 @@ class TemplateStorage
             return 'unknown';
         }
 
-        return file_get_contents($this->pathToCurrentVersion());
+        $currentVersion = file_get_contents($this->pathToCurrentVersion());
+
+        if ($currentVersion === false) {
+            return 'unknown';
+        }
+
+        return $currentVersion;
     }
 
     public function updateCurrentRelease(): void

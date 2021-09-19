@@ -11,7 +11,7 @@ class HttpKernel extends Kernel
      *
      * These middleware are run during every request to your application.
      *
-     * @var array
+     * @var array<class-string>
      */
     protected $middleware = [
         \Fruitcake\Cors\HandleCors::class,
@@ -24,7 +24,7 @@ class HttpKernel extends Kernel
     /**
      * The application's route middleware groups.
      *
-     * @var array
+     * @var array<string, array<int, class-string|string>>
      */
     protected $middlewareGroups = [
         'web' => [
@@ -46,7 +46,7 @@ class HttpKernel extends Kernel
      *
      * These middleware may be assigned to groups or used individually.
      *
-     * @var array
+     * @var array<string, class-string>
      */
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,

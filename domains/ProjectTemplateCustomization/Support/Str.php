@@ -7,8 +7,8 @@ class Str
     public static function indentLines(
         string $lines,
         int $level = 1,
-        $tabSize = 4,
-        $eol = PHP_EOL,
+        int $tabSize = 4,
+        string $eol = PHP_EOL,
     ): string {
         $indent = str_repeat(' ', $level * $tabSize);
 

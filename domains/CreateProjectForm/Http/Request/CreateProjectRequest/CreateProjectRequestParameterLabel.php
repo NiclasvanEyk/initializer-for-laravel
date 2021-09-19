@@ -14,7 +14,7 @@ class CreateProjectRequestParameterLabel
     const DESCRIPTION = 'Description';
 
     /**
-     * @var array<Parameter::*, CreateProjectParameterLabel::*>
+     * @var array<string, string>
      */
     public static array $map = [
         Parameter::VENDOR => self::VENDOR,

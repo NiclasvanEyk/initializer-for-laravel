@@ -24,6 +24,7 @@ class SetupPackages implements PostDownloadTaskGroup
         return "Setup composer dependencies";
     }
 
+    /** @return array<PostDownloadTaskGroup> */
     public function tasks(): array
     {
         return $this->dependencies

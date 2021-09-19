@@ -12,7 +12,7 @@ class DatabaseOption
     public const MARIA_DB = 'mariadb';
     public const MY_SQL = 'mysql';
 
-    public static function default()
+    public static function default(): string
     {
         return self::MY_SQL;
     }

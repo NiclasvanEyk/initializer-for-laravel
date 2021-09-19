@@ -14,7 +14,7 @@ class UpdateTemplateCommand extends Command
     public function handle(
         LaravelDownloader $downloader,
         TemplateStorage $templateStorage,
-    ) {
+    ): void {
         $latestRelease = $downloader->latestRelease();
 
         if ($templateStorage->currentVersion() === $latestRelease->version) {

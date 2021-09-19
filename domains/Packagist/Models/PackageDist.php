@@ -13,6 +13,9 @@ class PackageDist
         public string $reference,
     ) { }
 
+    /**
+     * @param array<string, mixed> $dist
+     */
     public static function fromRequest(array $dist): self
     {
         return new self(

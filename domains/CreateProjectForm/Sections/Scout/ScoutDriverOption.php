@@ -13,7 +13,7 @@ class ScoutDriverOption
     const ALGOLIA = 'algolia';
     const CUSTOM = 'custom';
 
-    public static function default()
+    public static function default(): string
     {
         return self::MEILISEARCH;
     }

@@ -3,7 +3,6 @@
 namespace Domains\CreateProjectForm\Http\Request;
 
 use Domains\Composer\PackageName;
-use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\BuildsCreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel;
@@ -17,7 +16,6 @@ use Domains\CreateProjectForm\Validation\Rules\ValidQueueDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidScoutDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidStarterKitOption;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\RequiredIf;
 
 /**
  * Values that are needed to create a {@link CreateProjectForm}.
@@ -26,6 +24,9 @@ class CreateProjectRequest extends FormRequest
 {
     use BuildsCreateProjectForm;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function rules(): array
     {
         return [
@@ -100,6 +101,9 @@ class CreateProjectRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function attributes(): array
     {
         return CreateProjectRequestParameterLabel::$map;

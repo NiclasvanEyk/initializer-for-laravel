@@ -14,7 +14,7 @@ abstract class FirstPartyPackage extends ComposerDependency
     }
 
     function packageId(): string
-    {
+        // @phpstan-ignore-next-line
         $package = defined('static::REPOSITORY_KEY')
             ? static::REPOSITORY_KEY
             : $this->packageName();

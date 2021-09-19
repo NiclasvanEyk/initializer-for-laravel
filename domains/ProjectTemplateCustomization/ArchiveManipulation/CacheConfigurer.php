@@ -12,6 +12,7 @@ use PhpZip\ZipFile;
 
 class CacheConfigurer
 {
+    /** @var array<string, string> */
     private array $cacheToServiceMap = [
         CacheOption::REDIS => 'redis',
         CacheAlias::MEMCACHED => 'memcached',
