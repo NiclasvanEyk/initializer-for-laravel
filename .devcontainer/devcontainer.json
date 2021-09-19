@@ -21,6 +21,6 @@
 	"remoteUser": "sail",
 	"forwardPorts": [8000],
 	// "runServices": [],
-	"postCreateCommand": "npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template",
+	"postCreateCommand": "npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template && npm run dev",
 	// "shutdownAction": "none",
 }
