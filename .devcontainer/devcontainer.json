@@ -4,6 +4,10 @@
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
+	"remoteEnv": {
+		"WWWGROUP": "1000",
+		"WWWUSER": "1000"
+	},
 	"service": "laravel.test",
 	"workspaceFolder": "/var/www/html",
 	"settings": {},
@@ -15,8 +19,8 @@
 		"onecentlin.laravel-blade"
 	],
 	"remoteUser": "sail",
-	// "forwardPorts": [],
+	"forwardPorts": [8000],
 	// "runServices": [],
-	"postCreateCommand": "cp .env.example .env && php artisan key:generate",
+	"postCreateCommand": "npm ci && composer install && cp .env.example .env && php artisan key:generate",
 	// "shutdownAction": "none",
 }
