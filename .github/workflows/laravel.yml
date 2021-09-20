@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     container: docker:20-dind
     steps:
-    - name: Normalize Container
-      run: apk update && apk upgrade && apk add php8 composer && ln -s /usr/bin/php8 /usr/bin/php
+    - name: Install PHP8
+      run: apk update && apk upgrade && apk add php8 && ln -s /usr/bin/php8 /usr/bin/php
+    - name: Install Composer
+      run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
     - uses: actions/checkout@v2
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
