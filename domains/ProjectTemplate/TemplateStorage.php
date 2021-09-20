@@ -39,7 +39,13 @@ class TemplateStorage
             return 'unknown';
         }
 
-        return file_get_contents($this->pathToCurrentVersion());
+        $currentVersion = file_get_contents($this->pathToCurrentVersion());
+
+        if ($currentVersion === false) {
+            return 'unknown';
+        }
+
+        return $currentVersion;
     }
 
     public function updateCurrentRelease(): void
@@ -69,7 +75,7 @@ class TemplateStorage
 
     private function pathToCurrentArchive(): string
     {
-        return $this->filesystem->applyPathPrefix(self::TEMPLATE_FILE_NAME);
+        return Path::join($this->pathToCurrent(), self::TEMPLATE_FILE_NAME);
     }
 
     private function pathToCurrentVersion(): string

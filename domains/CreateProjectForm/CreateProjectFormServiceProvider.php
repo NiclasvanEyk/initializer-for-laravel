@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
 
 class CreateProjectFormServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         Route::middleware('web')->group(function () {
             Routes::register();
@@ -20,7 +20,7 @@ class CreateProjectFormServiceProvider extends ServiceProvider
         $this->loadStarterKitComponents();
     }
 
-    private function loadStarterKitComponents()
+    private function loadStarterKitComponents(): void
     {
         $this->loadViewsFrom(
             __DIR__ . '/resources/views/starter-kit',

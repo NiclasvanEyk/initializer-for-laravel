@@ -17,7 +17,7 @@ class Payment
     /**
      * @param string|null $option
      * @psalm-param CashierDriverOption::* $option
-     * @return static|null
+     * @return CashierDriver|null
      */
     public static function fromOption(?string $option): ?CashierDriver
     {

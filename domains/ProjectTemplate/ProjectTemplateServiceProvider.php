@@ -12,7 +12,7 @@ use Laravel\Installer\Console\NewCommand;
 
 class ProjectTemplateServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->commands([
             UpdateTemplateCommand::class,

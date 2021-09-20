@@ -2,13 +2,13 @@
 
 namespace Domains\ProjectTemplateCustomization\Resolver;
 
+use Domains\Composer\ComposerDependency;
 use Domains\Composer\InlineComposerDependency;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Authentication;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\DynamoDBCacheDBDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
-use Domains\CreateProjectForm\Sections\Cashier\CashierPaddleDriver;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
@@ -19,9 +19,6 @@ use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
 use Domains\CreateProjectForm\Sections\Search;
 use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
-use Domains\Laravel\ComposerPackages\Packages\CashierMollie;
-use Domains\Laravel\ComposerPackages\Packages\CashierPaddle;
-use Domains\Laravel\ComposerPackages\Packages\CashierStripe;
 use Domains\Laravel\ComposerPackages\Packages\Dusk;
 use Domains\Laravel\ComposerPackages\Packages\Envoy;
 use Domains\Laravel\ComposerPackages\Packages\Fortify;
@@ -58,6 +55,7 @@ class ComposerPackagesToInstallResolver
         ]))->unique()->values();
     }
 
+    /** @return array<ComposerDependency> */
     public function forAuthentication(Authentication $authentication): array
     {
         $packages = [];
@@ -83,6 +81,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forCache(Cache $cache): array
     {
         if ($cache->driver === null) return [];
@@ -96,6 +95,7 @@ class ComposerPackagesToInstallResolver
         };
     }
 
+    /** @return array<ComposerDependency> */
     public function forQueue(Queue $queue): array
     {
         $packages = [];
@@ -115,6 +115,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forSearch(Search $search): array
     {
         if ($search->driver === null) {
@@ -133,6 +134,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forDevelopmentTools(
         DevelopmentTools $developmentTools,
     ): array {
@@ -149,6 +151,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forTesting(Testing $testing): array
     {
         $packages = [];
@@ -164,6 +167,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forPayment(Payment $payment): array
     {
         $packages = [];
@@ -175,6 +179,7 @@ class ComposerPackagesToInstallResolver
         return $packages;
     }
 
+    /** @return array<ComposerDependency> */
     public function forStorage(Storage $storage): array
     {
         $packages = [];

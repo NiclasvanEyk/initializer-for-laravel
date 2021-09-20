@@ -10,6 +10,9 @@ use ReflectionClassConstant as Constant;
  */
 trait EmulatesEnum
 {
+    /**
+     * @return array<string>
+     */
     public static function values(): array
     {
         $reflected = new ReflectionClass(self::class);

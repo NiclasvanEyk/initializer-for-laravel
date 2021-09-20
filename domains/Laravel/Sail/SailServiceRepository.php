@@ -4,6 +4,9 @@ namespace Domains\Laravel\Sail;
 
 class SailServiceRepository
 {
+    /**
+     * @var array<string, class-string>
+     */
     public static array $serviceMap = [
         Mailhog::REPOSITORY_KEY => Mailhog::class,
         MariaDatabase::REPOSITORY_KEY => MariaDatabase::class,
@@ -16,7 +19,7 @@ class SailServiceRepository
         Selenium::REPOSITORY_KEY => Selenium::class,
     ];
 
-    public function resolve(string $id, $default = null): ?SailConfigurationOption
+    public function resolve(string $id, ?string $default = null): ?SailConfigurationOption
     {
         $fqn = self::$serviceMap[$id] ?? $default;
 

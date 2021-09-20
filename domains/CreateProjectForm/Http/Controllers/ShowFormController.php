@@ -3,11 +3,12 @@
 namespace Domains\CreateProjectForm\Http\Controllers;
 
 use Domains\ProjectTemplate\TemplateStorage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 
 class ShowFormController
 {
-    public function __invoke(TemplateStorage $templateStorage)
+    public function __invoke(TemplateStorage $templateStorage): View
     {
         $currentLaravelVersion = $templateStorage->currentVersion();
 

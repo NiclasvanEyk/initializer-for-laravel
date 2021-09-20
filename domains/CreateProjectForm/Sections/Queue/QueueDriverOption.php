@@ -13,7 +13,7 @@ class QueueDriverOption
     const BEANSTALKD = 'beanstalkd';
     const SQS = 'sqs';
 
-    public static function default()
+    public static function default(): string
     {
         return self::NONE;
     }

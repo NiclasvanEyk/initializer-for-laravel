@@ -51,6 +51,9 @@ class Renderer
         return "- $text";
     }
 
+    /**
+     * @param array<string> $items
+     */
     public function list(iterable $items): string
     {
         return collect($items)

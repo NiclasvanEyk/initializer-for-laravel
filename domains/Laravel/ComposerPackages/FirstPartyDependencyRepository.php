@@ -19,6 +19,9 @@ use function collect;
 
 class FirstPartyDependencyRepository
 {
+    /**
+     * @var array<string, class-string>
+     */
     public static array $dependencyMap = [
         Breeze::REPOSITORY_KEY => Breeze::class,
         CashierPaddle::REPOSITORY_KEY => CashierPaddle::class,

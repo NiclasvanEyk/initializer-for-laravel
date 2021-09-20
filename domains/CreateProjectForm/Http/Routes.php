@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 class Routes
 {
-    public static function register()
+    public static function register(): void
     {
         Route::name('root')->get('/', ShowFormController::class);
         Route::name('about')->get('about', function () {
@@ -23,7 +23,7 @@ class Routes
             ->post('permalink', PermalinkController::class);
 
         RateLimiter::for('create-project', function (Request $request) {
-            return Limit::perMinute(20)->by($request->ip());
+            return Limit::perMinute(20)->by($request->ip() ?? 'unknown');
         });
 
         Route::name('create-project')

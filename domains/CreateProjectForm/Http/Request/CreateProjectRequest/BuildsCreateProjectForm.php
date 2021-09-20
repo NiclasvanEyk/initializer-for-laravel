@@ -38,7 +38,7 @@ trait BuildsCreateProjectForm
             new Metadata(
                 vendorName: $this->vendor,
                 projectName: $this->project,
-                description: $this?->description ?? '',
+                description: $this->description ?? '',
                 phpVersion: $this->php,
             ),
             new Authentication(
@@ -51,7 +51,7 @@ trait BuildsCreateProjectForm
                 database: $sailServiceRepository->resolve(
                     $this->database,
                     Database\DatabaseOption::default(),
-                ),
+                ) ?? throw new \Exception("Database $this->database could not be resolved"),
             ),
             new Cache(
                 driver: Cache::driverForOption(

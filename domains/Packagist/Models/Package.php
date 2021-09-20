@@ -13,6 +13,9 @@ class Package
         public PackageDist $dist,
     ) { }
 
+    /**
+     * @param array<string, mixed> $package
+     */
     public static function fromResponse(array $package): self
     {
         return new self(

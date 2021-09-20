@@ -13,7 +13,7 @@ class CacheOption
     public const DYNAMO_DB = 'dynamodb';
     public const NONE = 'none';
 
-    public static function default()
+    public static function default(): string
     {
         return self::REDIS;
     }

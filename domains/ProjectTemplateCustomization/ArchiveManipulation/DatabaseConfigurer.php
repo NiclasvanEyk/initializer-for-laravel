@@ -15,6 +15,9 @@ use PhpZip\ZipFile;
  */
 class DatabaseConfigurer
 {
+    /**
+     * @var array<class-string, string>
+     */
     private array $databaseToServiceMap = [
         PostgresDatabase::class => 'pgsql',
         MySQLDatabase::class => 'mysql',

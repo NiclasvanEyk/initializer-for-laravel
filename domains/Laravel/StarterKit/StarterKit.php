@@ -20,7 +20,7 @@ abstract class StarterKit
 
     abstract function composerPackage(): ?ComposerDependency;
 
-    public static function fromRequest(CreateProjectRequest $request): static
+    public static function fromRequest(CreateProjectRequest $request): Laravel|Breeze|Jetstream
     {
         return match($request->starter) {
             StarterKit::LARAVEL => new Laravel(),
