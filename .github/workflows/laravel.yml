@@ -12,7 +12,7 @@ jobs:
     container: docker:20-dind
     steps:
     - name: Normalize Container
-      run: apk update && apk upgrade && apk add php8
+      run: apk update && apk upgrade && apk add php8 && ln -s /usr/bin/php8 /usr/bin/php
     - uses: actions/checkout@v2
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
