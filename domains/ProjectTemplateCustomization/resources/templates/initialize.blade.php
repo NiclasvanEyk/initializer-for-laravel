@@ -17,6 +17,8 @@ echo '';
 </x-shell::banner>
 echo '';
 
+ls -alh;
+
 read -n 1 -s -r -p "Press any key to continue";
 
 echo '';
