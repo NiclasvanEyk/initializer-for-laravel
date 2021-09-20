@@ -27,7 +27,7 @@ jobs:
     - name: Fetch Template
       run: php artisan initializer:update-template
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      run: vendor/bin/phpunit
+      run: vendor/bin/phpunit --testsuite Integration
     
 
   laravel-tests:
