@@ -36,6 +36,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
             ->join(',');
         $phpContainerVersion = Str::of($this->phpVersion)->remove('.');
         $bashCommand = join(' && ', [
+            'ls -alh',
             'composer install',
             "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
             "php artisan key:generate --ansi",
