@@ -6,14 +6,17 @@ use Domains\CreateProjectForm\Http\Request\{
     CreateProjectRequest,
     CreateProjectRequest\CreateProjectRequestParameter as P,
 };
-use Domains\CreateProjectForm\Sections\{Cache\CacheOption,
+use Domains\CreateProjectForm\Sections\{
+    Cache\CacheOption,
     Cache\RedisCacheDriver,
     Cashier\CashierDriverOption,
+    Cashier\CashierStripeDriver,
     Database\DatabaseOption,
     Metadata\PhpVersion,
     Queue\QueueDriverOption,
     Scout\MeiliSearchScoutDriver,
-    Scout\ScoutDriverOption};
+    Scout\ScoutDriverOption
+};
 use Domains\Laravel\Sail\MySQLDatabase;
 use Domains\Laravel\StarterKit\{Breeze, BreezeFrontend, StarterKit};
 use Tests\TestCase;
@@ -54,7 +57,6 @@ class CreateProjectRequestTest extends TestCase
                 P::CACHE_DRIVER => CacheOption::default(),
 
                 /** @see Search */
-                P::USES_SCOUT => true,
                 P::SCOUT_DRIVER => ScoutDriverOption::default(),
 
                 /** @see Queue */
@@ -112,7 +114,7 @@ class CreateProjectRequestTest extends TestCase
         $this->assertTrue($queue->usesHorizon);
 
         $search = $form->search;
-        $this->assertTrue($search->usesScout);
+        $this->assertTrue($search->driver instanceof MeiliSearchScoutDriver);
         $this->assertInstanceOf(
             MeiliSearchScoutDriver::class,
             $search->driver,
@@ -125,12 +127,10 @@ class CreateProjectRequestTest extends TestCase
 
         $testing = $form->testing;
         $this->assertTrue($testing->usesPest);
-        $this->assertTrue($testing->usesSelenium);
         $this->assertTrue($testing->usesDusk);
 
         $payment = $form->payment;
-        $this->assertTrue($payment->usesStripe);
-        $this->assertTrue($payment->usesPaddle);
+        $this->assertTrue($payment->driver instanceof CashierStripeDriver);
 
         $storage = $form->storage;
         $this->assertTrue($storage->usesMinIO);

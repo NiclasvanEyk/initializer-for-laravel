@@ -13,7 +13,6 @@
     ));
 
     $scout = new Scout();
-    $scoutParameter = P::USES_SCOUT;
 
     $customDriver = ScoutDriverOption::CUSTOM;
 

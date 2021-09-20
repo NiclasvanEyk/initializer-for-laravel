@@ -2,8 +2,9 @@
 
 namespace Tests\Feature\Domains\ProjectCreation\ArchiveManipulation;
 
+use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\ArchiveManipulation\ReadmeGenerator;
-use Domains\ProjectTemplateCustomization\ProjectMetadata;
+use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 
 /**
@@ -22,25 +23,33 @@ class ReadmeGeneratorTest extends TestCase
     /** @test */
     public function it_renders_a_meaningful_title(): void
     {
+        $form = CreateProjectFormFixtures::allOptionsEnabled(
+            metadata: new Metadata(
+                vendorName: 'foo',
+                projectName: 'bar',
+            ),
+        );
+
         $this->assertStringContainsString(
             '# foo/bar',
-            $this->generator->render(new ProjectBlueprint(new ProjectMetadata(
-                'foo',
-                'bar',
-            )))
+            $this->generator->render($form),
         );
     }
 
     /** @test */
     public function it_outputs_the_project_description(): void
     {
+        $form = CreateProjectFormFixtures::allOptionsEnabled(
+            metadata: new Metadata(
+                vendorName: 'foo',
+                projectName: 'bar',
+                description: 'This is a super descriptive text!'
+            ),
+        );
+
         $this->assertStringContainsString(
             'This is a super descriptive text!',
-            $this->generator->render(new ProjectBlueprint(new ProjectMetadata(
-                'foo',
-                'bar',
-                'This is a super descriptive text!'
-            )))
+            $this->generator->render($form),
         );
     }
 }

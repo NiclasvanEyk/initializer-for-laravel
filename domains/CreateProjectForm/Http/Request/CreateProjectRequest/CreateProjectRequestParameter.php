@@ -43,7 +43,6 @@ class CreateProjectRequestParameter
     const CACHE_DRIVER = 'cache-driver';
 
     /** @see Search */
-    const USES_SCOUT = self::USES_PREFIX . 'scout';
     const SCOUT_DRIVER = 'scout-driver';
 
     /** @see Queue */

@@ -75,7 +75,7 @@ trait BuildsCreateProjectForm
                 usesEnvoy: $this->has(P::USES_ENVOY),
             ),
             new Testing(
-                usesDusk: $this->has(P::USES_DUSK, true),
+                usesDusk: $this->has(P::USES_DUSK),
                 usesPest: $this->has(P::USES_PEST),
             ),
             new Payment(
