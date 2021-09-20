@@ -9,34 +9,58 @@ use Symfony\Component\Process\Process;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 
+/**
+ * @group Docker
+ */
 class ActualTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Storage::fake();
+    }
+
     /** @test */
     public function it_can_be_installed()
     {
-        Storage::fake();
-        $baseDirectory = Storage::path('');
+        $cwd = Storage::path('');
+        $customizer = resolve(ProjectTemplateCustomizer::class);
 
-        $form = CreateProjectFormFixtures::allOptionsEnabled(
-            metadata: new Metadata("test", "test"),
+        $archive = $customizer->build(
+            CreateProjectFormFixtures::allOptionsEnabled(
+                metadata: new Metadata("test", "test"),
+            ),
         );
 
-        $archive = resolve(ProjectTemplateCustomizer::class)->build($form);
-        $archive->extractTo($baseDirectory);
+        $archive->extractTo($cwd);
+        $this->initialize($cwd);
 
+        // TODO: Assertions
+    }
+
+    protected function tearDown(): void
+    {
+        Process::fromShellCommandline(
+            'docker-compose down',
+            Storage::path(''),
+        );
+
+        parent::tearDown();
+    }
+
+    private function initialize(string $cwd): void
+    {
         $process = new Process(
             command: ["./initialize"],
-            cwd: $baseDirectory,
+            cwd: $cwd,
             timeout: 600, // 10 minutes should be enough
         );
+        $process->setInput('yes');
         $process->enableOutput();
 
-        $process->start(function ($type, $buffer) {
-            echo $buffer;
-        });
-        $exitCode = $process->wait(function ($type, $buffer) {
-            echo $buffer;
-        });
+        $process->start();
+        $exitCode = $process->wait();
 
         $this->assertEquals(0, $exitCode);
     }

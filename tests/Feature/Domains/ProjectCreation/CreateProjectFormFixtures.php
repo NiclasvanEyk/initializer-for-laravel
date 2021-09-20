@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Domains\ProjectCreation;
 
-use Dflydev\DotAccessData\Data;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Authentication;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
+use Domains\CreateProjectForm\Sections\Cashier\CashierStripeDriver;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
 use Domains\CreateProjectForm\Sections\Metadata;
@@ -104,11 +104,7 @@ class CreateProjectFormFixtures
 
     public static function payment(): Payment
     {
-        return new Payment(
-            usesPaddle: true,
-            usesStripe: true,
-            usesMollie: true,
-        );
+        return new Payment(driver: new CashierStripeDriver);
     }
 
     public static function storage(): Storage
