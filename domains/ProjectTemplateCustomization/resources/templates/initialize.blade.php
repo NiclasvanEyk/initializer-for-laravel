@@ -4,6 +4,7 @@
     /** @var \Domains\ProjectTemplateCustomization\PostDownload\PostInitializationLink[] $links */
 @endphp
 set -e;
+set -x;
 
 echo '';
 <x-shell::banner title="Initializer for Laravel">
@@ -28,7 +29,7 @@ echo '';
 <x-shell::banner :title="$group->title()" />
 echo '';
 @foreach($group->tasks() as $task)
-echo {!! escapeshellcmd(is_string($task) ? $task : $task->shell()) !!}
+{{--echo {!! escapeshellcmd(is_string($task) ? $task : $task->shell()) !!}--}}
 {!! is_string($task) ? $task : $task->shell() !!};
 @endforeach
 
