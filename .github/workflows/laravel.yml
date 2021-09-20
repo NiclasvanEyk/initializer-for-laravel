@@ -8,7 +8,8 @@ on:
 
 jobs:
   docker-tests:
-    runs-on: docker
+    runs-on: ubuntu-latest
+    container: docker
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
