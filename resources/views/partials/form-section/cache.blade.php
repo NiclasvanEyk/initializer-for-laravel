@@ -47,50 +47,48 @@
         href="https://laravel.com/docs/cache#configuration"
         x-data="{'{{ $model }}': '{{ $default }}'}"
     >
-        <div class="divide-y">
-            <x-radio-option-none
-                :model="$model"
-                :name="$cacheParameter"
-            />
+        <x-radio-option-none
+            :model="$model"
+            :name="$cacheParameter"
+        />
 
-            <x-radio-option
-                :id="$redis->id() . '-cache'"
-                :value="$redis->id()"
-                :label="$redis->name()"
-                :href="$redis->href()"
-                :model="$model"
-                :name="$cacheParameter"
-            >
-                {{ $redis->description() }}
+        <x-radio-option
+            :id="$redis->id() . '-cache'"
+            :value="$redis->id()"
+            :label="$redis->name()"
+            :href="$redis->href()"
+            :model="$model"
+            :name="$cacheParameter"
+        >
+            {{ $redis->description() }}
 
-                <x-slot name="tags">
-                    <x-tags.sail />
-                </x-slot>
-            </x-radio-option>
+            <x-slot name="tags">
+                <x-tags.sail />
+            </x-slot>
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$memcached->id()"
-                :label="$memcached->name()"
-                :href="$memcached->href()"
-                :model="$model"
-                :name="$cacheParameter"
-            >
-                {{ $memcached->description() }}
+        <x-radio-option
+            :id="$memcached->id()"
+            :label="$memcached->name()"
+            :href="$memcached->href()"
+            :model="$model"
+            :name="$cacheParameter"
+        >
+            {{ $memcached->description() }}
 
-                <x-slot name="tags">
-                    <x-tags.sail />
-                </x-slot>
-            </x-radio-option>
+            <x-slot name="tags">
+                <x-tags.sail />
+            </x-slot>
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$dynamo->id()"
-                :label="$dynamo->name()"
-                :href="$dynamo->href()"
-                :model="$model"
-                :name="$cacheParameter"
-            >
-                {{ $dynamo->description() }}
-            </x-radio-option>
-        </div>
+        <x-radio-option
+            :id="$dynamo->id()"
+            :label="$dynamo->name()"
+            :href="$dynamo->href()"
+            :model="$model"
+            :name="$cacheParameter"
+        >
+            {{ $dynamo->description() }}
+        </x-radio-option>
     </x-form-control.group>
 </x-form-section>

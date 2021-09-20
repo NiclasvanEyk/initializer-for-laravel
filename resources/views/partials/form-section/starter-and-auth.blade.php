@@ -51,36 +51,34 @@
         heading="Additional Authentication Packages"
         href="https://laravel.com/docs/authentication#ecosystem-overview"
     >
-        <div class="divide-y">
-            <x-first-party-package.option
-                :id="$fortifyParameter"
-                :package="$fortify"
-                :checked="$usesFortify"
-                flush
-            />
+        <x-first-party-package.option
+            :id="$fortifyParameter"
+            :package="$fortify"
+            :checked="$usesFortify"
+            flush
+        />
 
-            <x-first-party-package.option
-                :id="$sanctum->id()"
-                :package="$sanctum"
-                :checked="true"
-                :hasValue="false"
-                :readonly="true"
-                flush
-            />
+        <x-first-party-package.option
+            :id="$sanctum->id()"
+            :package="$sanctum"
+            :checked="true"
+            :hasValue="false"
+            :readonly="true"
+            flush
+        />
 
-            <x-first-party-package.option
-                :id="$passportParameter"
-                :package="$passport"
-                :checked="$usesPassport"
-                flush
-            />
+        <x-first-party-package.option
+            :id="$passportParameter"
+            :package="$passport"
+            :checked="$usesPassport"
+            flush
+        />
 
-            <x-first-party-package.option
-                :id="$socialiteParameter"
-                :package="$socialite"
-                :checked="$usesSocialite"
-                flush
-            />
-        </div>
+        <x-first-party-package.option
+            :id="$socialiteParameter"
+            :package="$socialite"
+            :checked="$usesSocialite"
+            flush
+        />
     </x-form-control.group>
 </x-form-section>

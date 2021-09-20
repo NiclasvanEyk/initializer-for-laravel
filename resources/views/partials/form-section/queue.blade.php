@@ -52,47 +52,45 @@
         href="https://laravel.com/docs/queues#introduction"
         x-data="{'{{ $model }}': '{{ $default }}'}"
     >
-        <div class="divide-y">
-            <x-radio-option-none
-                :model="$model"
-                :name="$queueParameter"
-            />
+        <x-radio-option-none
+            :model="$model"
+            :name="$queueParameter"
+        />
 
-            <x-radio-option
-                :id="$redis->id() . '-queue'"
-                :value="$redis->id()"
-                :label="$redis->name()"
-                :href="$redis->href()"
-                :model="$model"
-                :name="$queueParameter"
-            >
-                {{ $redis->description() }}
+        <x-radio-option
+            :id="$redis->id() . '-queue'"
+            :value="$redis->id()"
+            :label="$redis->name()"
+            :href="$redis->href()"
+            :model="$model"
+            :name="$queueParameter"
+        >
+            {{ $redis->description() }}
 
-                <x-slot name="tags">
-                    <x-tags.sail />
-                </x-slot>
-            </x-radio-option>
+            <x-slot name="tags">
+                <x-tags.sail />
+            </x-slot>
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$beanstalkd->id()"
-                :label="$beanstalkd->name()"
-                :href="$beanstalkd->href()"
-                :model="$model"
-                :name="$queueParameter"
-            >
-                {{ $beanstalkd->description() }}
-            </x-radio-option>
+        <x-radio-option
+            :id="$beanstalkd->id()"
+            :label="$beanstalkd->name()"
+            :href="$beanstalkd->href()"
+            :model="$model"
+            :name="$queueParameter"
+        >
+            {{ $beanstalkd->description() }}
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$sqs->id()"
-                :label="$sqs->name()"
-                :href="$sqs->href()"
-                :model="$model"
-                :name="$queueParameter"
-            >
-                {{ $sqs->description() }}
-            </x-radio-option>
-        </div>
+        <x-radio-option
+            :id="$sqs->id()"
+            :label="$sqs->name()"
+            :href="$sqs->href()"
+            :model="$model"
+            :name="$queueParameter"
+        >
+            {{ $sqs->description() }}
+        </x-radio-option>
     </x-form-control.group>
 
     <x-first-party-package.option

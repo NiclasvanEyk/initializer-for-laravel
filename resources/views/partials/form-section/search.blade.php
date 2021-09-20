@@ -51,45 +51,43 @@
         href="https://laravel.com/docs/scout#driver-prerequisites"
         x-data="{scoutDriver: '{{ $default }}'}"
     >
-        <div class="divide-y">
-            <x-radio-option-none
-                name="{{ $scoutDriverParameter }}"
-                model="scoutDriver"
-            />
+        <x-radio-option-none
+            name="{{ $scoutDriverParameter }}"
+            model="scoutDriver"
+        />
 
-            <x-radio-option
-                :id="$customDriver"
-                model="scoutDriver"
-                name="{{ $scoutDriverParameter }}"
-                label="Custom"
-                href="https://laravel.com/docs/scout#custom-engines"
-            >
-                You are installing or building your own driver implementation.
-            </x-radio-option>
+        <x-radio-option
+            :id="$customDriver"
+            model="scoutDriver"
+            name="{{ $scoutDriverParameter }}"
+            label="Custom"
+            href="https://laravel.com/docs/scout#custom-engines"
+        >
+            You are installing or building your own driver implementation.
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$meiliSearchDriver"
-                model="scoutDriver"
-                name="{{ $scoutDriverParameter }}"
-                label="{{ $meiliSearch->name() }}"
-                href="{{ $meiliSearch->href() }}"
-            >
-                {{ $meiliSearch->description() }}
+        <x-radio-option
+            :id="$meiliSearchDriver"
+            model="scoutDriver"
+            name="{{ $scoutDriverParameter }}"
+            label="{{ $meiliSearch->name() }}"
+            href="{{ $meiliSearch->href() }}"
+        >
+            {{ $meiliSearch->description() }}
 
-                <x-slot name="tags">
-                    <x-tags.sail />
-                </x-slot>
-            </x-radio-option>
+            <x-slot name="tags">
+                <x-tags.sail />
+            </x-slot>
+        </x-radio-option>
 
-            <x-radio-option
-                :id="$algoliaSearchDriver"
-                model="scoutDriver"
-                name="{{ $scoutDriverParameter }}"
-                label="{{ $algolia->name() }}"
-                href="{{ $algolia->href() }}"
-            >
-                {{ $algolia->description() }}
-            </x-radio-option>
-        </div>
+        <x-radio-option
+            :id="$algoliaSearchDriver"
+            model="scoutDriver"
+            name="{{ $scoutDriverParameter }}"
+            label="{{ $algolia->name() }}"
+            href="{{ $algolia->href() }}"
+        >
+            {{ $algolia->description() }}
+        </x-radio-option>
     </x-form-control.group>
 </x-form-section>
