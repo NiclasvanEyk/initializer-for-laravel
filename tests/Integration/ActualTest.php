@@ -64,6 +64,7 @@ class ActualTest extends TestCase
 
         if ($exitCode !== 0) {
             echo $process->getOutput();
+            echo $process->getErrorOutput();
         }
 
         $this->assertEquals(0, $exitCode);
