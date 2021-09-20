@@ -64,7 +64,7 @@
                     dark:bg-black dark:text-gray-100
                     focus:ring-red-500 focus:border-red-500
                     sm:text-sm border-gray-300 rounded-md"
-                placeholder="{{\Illuminate\Foundation\Inspiring::quote()}}"
+                placeholder="A brief description for your project"
             ></textarea>
         </div>
     </div>
