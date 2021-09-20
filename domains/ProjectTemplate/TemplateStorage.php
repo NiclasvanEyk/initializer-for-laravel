@@ -3,9 +3,11 @@
 namespace Domains\ProjectTemplate;
 
 use Domains\Support\FileSystem\Path;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use League\Flysystem\Adapter\Local;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use PhpZip\ZipFile;
 
 /**
@@ -13,87 +15,90 @@ use PhpZip\ZipFile;
  */
 class TemplateStorage
 {
-    const TEMPLATE_FILE_NAME = 'template.zip';
+    const ARCHIVE_FILE_NAME = 'template.zip';
     const VERSION_FILE_NAME = 'version';
     const CURRENT_SYMLINK_NAME = 'current';
 
-    private Local $filesystem;
-
-    public function __construct(private LaravelDownloader $laravelDownloader) {
-        $this->filesystem = new Local(storage_path('app/laravel-releases'));
-    }
+    /** @codeCoverageIgnore */
+    public function __construct(private FilesystemAdapter $filesystem) { }
 
     public function exists(): bool
     {
-        return is_file($this->pathToCurrentVersion());
+        return $this->currentVersion() !== 'unknown';
     }
 
     public function currentArchive(): ZipFile
     {
-        return (new ZipFile())->openFile($this->pathToCurrentArchive());
+        return (new ZipFile())->openFromStream(
+            $this->filesystem->readStream(
+                $this->current(self::ARCHIVE_FILE_NAME)
+            )
+        );
+    }
+
+    /** @codeCoverageIgnore */
+    private function current(string $path = ''): string
+    {
+        if ($path === '') {
+            return self::CURRENT_SYMLINK_NAME;
+        }
+
+        return Path::join(self::CURRENT_SYMLINK_NAME, $path);
     }
 
     public function currentVersion(): string
     {
-        if (!$this->exists()) {
-            return 'unknown';
-        }
+        $currentVersion = false;
 
-        $currentVersion = file_get_contents($this->pathToCurrentVersion());
+        try {
+            $currentVersion = $this->filesystem->get(
+                $this->current(self::VERSION_FILE_NAME)
+            );
+        } catch (FileNotFoundException) { }
 
-        if ($currentVersion === false) {
+        if (!is_string($currentVersion)) {
             return 'unknown';
         }
 
         return $currentVersion;
     }
 
-    public function updateCurrentRelease(): void
+    public function updateCurrentRelease(DownloadedLaravelRelease $release): void
     {
-        $release = $this->laravelDownloader->downloadLatest();
-
         $this->store($release);
         $this->setCurrentRelease($release);
     }
 
+    /** @codeCoverageIgnore */
     private function setCurrentRelease(DownloadedLaravelRelease $release): void
     {
-        File::delete($this->pathToCurrent());
-        File::link($this->pathTo($release), $this->pathToCurrent());
-        Log::info("Current template version was set to {$release->package->version}!");
-    }
+        $version = $release->package->version;
+        $this->filesystem->delete($this->current());
 
-    private function pathTo(DownloadedLaravelRelease $release): string
-    {
-        return $this->filesystem->applyPathPrefix($release->package->version);
-    }
+        /** @var Local $local */
+        $local = $this->filesystem->getDriver()->getAdapter();
 
-    private function pathToCurrent(): string
-    {
-        return $this->filesystem->applyPathPrefix(self::CURRENT_SYMLINK_NAME);
-    }
-
-    private function pathToCurrentArchive(): string
-    {
-        return Path::join($this->pathToCurrent(), self::TEMPLATE_FILE_NAME);
-    }
-
-    private function pathToCurrentVersion(): string
-    {
-        return Path::join($this->pathToCurrent(), self::VERSION_FILE_NAME);
-    }
-
-    public function store(DownloadedLaravelRelease $release): void {
-        File::deleteDirectory($this->pathTo($release));
-        File::ensureDirectoryExists($this->pathTo($release));
-        $releaseFolder = new Local($this->pathTo($release));
-
-        $release->archive->saveAsFile(
-            $releaseFolder->applyPathPrefix(self::TEMPLATE_FILE_NAME),
+        File::copyDirectory(
+            $local->applyPathPrefix($version),
+            $local->applyPathPrefix($this->current())
         );
-        File::put(
-            $releaseFolder->applyPathPrefix(self::VERSION_FILE_NAME),
-            $release->package->version,
-        );
+        Log::info("Current template version was set to $version!");
+    }
+
+    /** @codeCoverageIgnore */
+    private function store(DownloadedLaravelRelease $release): void {
+        $version = $release->package->version;
+
+        $this->filesystem->deleteDirectory($version);
+        $this->filesystem->makeDirectory($version);
+
+        $archivePath = Path::join($version, self::ARCHIVE_FILE_NAME);
+        $versionPath = Path::join($version, self::VERSION_FILE_NAME);
+
+        /** @var Local $local */
+        $local = $this->filesystem->getDriver()->getAdapter();
+        $release->archive->saveAsFile($local->applyPathPrefix($archivePath));
+
+        $this->filesystem->put($versionPath, $version);
     }
 }

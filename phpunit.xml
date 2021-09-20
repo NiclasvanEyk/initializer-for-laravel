@@ -18,6 +18,7 @@
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./domains</directory>
         </include>
     </coverage>
     <php>

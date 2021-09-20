@@ -35,6 +35,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'laravel-releases' => [
+            'driver' => 'local',
+            'root' => storage_path('app/laravel-releases'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Artisan;
  * support cron jobs.
  *
  * Instead, we (mis-)use the health-check, to trigger the schedule:run command.
+ *
+ * @codeCoverageIgnore
  */
 class ScheduleRunController
 {

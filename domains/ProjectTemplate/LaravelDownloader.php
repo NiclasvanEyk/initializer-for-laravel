@@ -33,11 +33,6 @@ class LaravelDownloader
         return $this->laravelReleases()[0];
     }
 
-    public function downloadLatest(): DownloadedLaravelRelease
-    {
-        return $this->download($this->latestRelease());
-    }
-
     public function download(Package $package): DownloadedLaravelRelease
     {
         $response = Http::get($package->dist->url)->body();
@@ -58,6 +53,7 @@ class LaravelDownloader
         return $release;
     }
 
+    /** @codeCoverageIgnore */
     private function normalizedArchive(ZipFile $downloadedArchive): ZipFile
     {
         $temp = (new Local(Path::join(

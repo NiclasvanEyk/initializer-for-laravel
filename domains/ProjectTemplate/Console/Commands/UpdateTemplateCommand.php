@@ -24,7 +24,8 @@ class UpdateTemplateCommand extends Command
 
         $this->info("Downloading $latestRelease->version...");
 
-        $templateStorage->updateCurrentRelease();
+        $downloadedRelease = $downloader->download($latestRelease);
+        $templateStorage->updateCurrentRelease($downloadedRelease);
 
         $this->info("Finished downloading $latestRelease->version!");
     }

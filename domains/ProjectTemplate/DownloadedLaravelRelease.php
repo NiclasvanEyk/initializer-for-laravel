@@ -5,7 +5,10 @@ namespace Domains\ProjectTemplate;
 use Domains\Packagist\Models\Package;
 use PhpZip\ZipFile;
 
-/** @psalm-immutable  */
+/**
+ * @psalm-immutable
+ * @codeCoverageIgnore
+ */
 class DownloadedLaravelRelease
 {
     public function __construct(
