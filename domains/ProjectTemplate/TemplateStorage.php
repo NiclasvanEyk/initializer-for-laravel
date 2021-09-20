@@ -75,7 +75,7 @@ class TemplateStorage
 
     private function pathToCurrentArchive(): string
     {
-        return $this->filesystem->applyPathPrefix(self::TEMPLATE_FILE_NAME);
+        return Path::join($this->pathToCurrent(), self::TEMPLATE_FILE_NAME);
     }
 
     private function pathToCurrentVersion(): string
