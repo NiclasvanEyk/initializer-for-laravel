@@ -17,9 +17,12 @@
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">./app</directory>
             <directory suffix=".php">./domains</directory>
         </include>
+        <exclude>
+            <!-- These are mostly data classes -->
+            <directory suffix=".php">./domains/Laravel</directory>
+        </exclude>
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>

@@ -20,7 +20,7 @@ class LaravelDownloaderTest extends TestCase
 
     /**
      * @test
-     * @covers ::latestRelease
+     * @covers ::laravelReleases
      */
     public function it_can_fetch_all_release_information(): void
     {
@@ -32,7 +32,6 @@ class LaravelDownloaderTest extends TestCase
     /**
      * @test
      * @covers ::latestRelease
-     * @covers ::latestReleases
      */
     public function it_can_fetch_the_latest_release_information(): void
     {

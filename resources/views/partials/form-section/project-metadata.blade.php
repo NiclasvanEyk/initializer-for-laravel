@@ -1,7 +1,11 @@
 @php
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
+    use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
 
     $php = P::PHP;
+    $phpVersion = request(P::PHP, PhpVersion::v8_0);
+    $allPhpVersions = PhpVersion::values();
+    $latestPhpVersion = PhpVersion::latest();
     $description = P::DESCRIPTION;
 @endphp
 
@@ -29,9 +33,15 @@
                        dark:bg-black dark:text-gray-100
                        focus:ring-red-500 focus:border-red-500 border-gray-300"
             >
-
-                <option value="7.4">7.4</option>
-                <option value="8.0" selected>8.0 (latest)</option>
+                @foreach($allPhpVersions as $version)
+                    <option
+                        value="{{ $version }}"
+                        @if($version === $phpVersion) selected @endif
+                    >
+                        {{ $version }}
+                        @if($version === $latestPhpVersion)(latest)@endif
+                    </option>
+                @endforeach
             </select>
         </div>
 

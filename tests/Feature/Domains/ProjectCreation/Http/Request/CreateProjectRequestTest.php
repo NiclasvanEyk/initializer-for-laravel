@@ -21,9 +21,6 @@ use Domains\Laravel\Sail\MySQLDatabase;
 use Domains\Laravel\StarterKit\{Breeze, BreezeFrontend, StarterKit};
 use Tests\TestCase;
 
-/**
- * @covers \Domains\CreateProjectForm\Http\Request\CreateProjectRequest
- */
 class CreateProjectRequestTest extends TestCase
 {
     /** @test */

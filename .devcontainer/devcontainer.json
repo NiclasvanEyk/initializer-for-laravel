@@ -24,6 +24,6 @@
 	"remoteUser": "sail",
 	"forwardPorts": [8000, 80],
 	"runServices": ["laravel.test"],
-	"postCreateCommand": "code disable-extension vscode.php-language-features && npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template && npm run dev",
+	"postCreateCommand": "npm install --no-save && composer install && cp .env.example .env && php artisan key:generate && php artisan initializer:update-template && npm run dev",
 	// "shutdownAction": "none",
 }
