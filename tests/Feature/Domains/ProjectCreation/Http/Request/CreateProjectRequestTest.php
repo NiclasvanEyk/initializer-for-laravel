@@ -19,6 +19,8 @@ use Domains\CreateProjectForm\Sections\{
 };
 use Domains\Laravel\Sail\MySQLDatabase;
 use Domains\Laravel\StarterKit\{Breeze, BreezeFrontend, StarterKit};
+use Illuminate\Support\Facades\Validator;
+use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 
 class CreateProjectRequestTest extends TestCase
@@ -26,59 +28,12 @@ class CreateProjectRequestTest extends TestCase
     /** @test */
     public function it_creates_a_complete_project_form(): void
     {
-        file_put_contents('composer.json', preg_replace('/,\s*(\n|\n\r|\r\n)\s*"\.\/install\.sh"\s*$/m', '', file_get_contents('composer.json')));
-
         $request = CreateProjectRequest::create(
             '/create-project',
-            parameters: [
-                /** @see Metadata */
-                P::VENDOR => 'foo',
-                P::PROJECT => 'bar',
-                P::PHP => PhpVersion::v8_0,
-                P::DESCRIPTION => '',
-
-                /** @see Authentication */
-                P::STARTER => StarterKit::BREEZE,
-                // Does not make sense here, we use breeze
-//            P::USES_JETSTREAM_TEAMS => '',
-//            P::JETSTREAM_FRONTEND => '',
-                P::BREEZE_FRONTEND => BreezeFrontend::BLADE,
-                P::USES_FORTIFY => true,
-                P::USES_PASSPORT => true,
-                P::USES_SOCIALITE => true,
-
-                /** @see Database */
-                P::DATABASE => DatabaseOption::default(),
-
-                /** @see Cache */
-                P::CACHE_DRIVER => CacheOption::default(),
-
-                /** @see Search */
-                P::SCOUT_DRIVER => ScoutDriverOption::default(),
-
-                /** @see Queue */
-                P::QUEUE_DRIVER => QueueDriverOption::default(),
-                P::USES_HORIZON => true,
-
-                /** @see DevelopmentTools */
-                P::USES_TELESCOPE => true,
-                P::USES_MAILHOG => true,
-                P::USES_ENVOY => true,
-
-                /** @see Testing */
-                P::USES_DUSK => true,
-                P::USES_PEST => true,
-
-                /** @see Payment */
-                P::CASHIER_DRIVER => CashierDriverOption::STRIPE,
-
-                /** @see Storage */
-                P::USES_MINIO => true,
-                P::USES_FLYSYSTEM_S3_DRIVER => true,
-                P::USES_FLYSYSTEM_SFTP_DRIVER => true,
-                P::USES_FLYSYSTEM_CACHED_ADAPTER => true,
-            ],
+            parameters: CreateProjectFormFixtures::allParameters(),
         );
+
+        Validator::validate($request->all(), $request->rules());
 
         $form = $request->buildForm();
 
