@@ -16,7 +16,7 @@ class ShowFormController
             $currentLaravelVersion = Str::substr($currentLaravelVersion, 1);
         }
 
-        return view('welcome', [
+        return view('pages.welcome', [
             'currentLaravelVersion' => $currentLaravelVersion,
         ]);
     }

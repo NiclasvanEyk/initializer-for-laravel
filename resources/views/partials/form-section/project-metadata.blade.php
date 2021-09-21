@@ -30,7 +30,7 @@
                 required
                 name="{{$php}}" id="{{$php}}"
                 class="mt-1 block w-full shadow-sm sm:text-sm rounded
-                       dark:bg-black dark:text-gray-100
+                       dark:bg-gray-900 dark:text-gray-100
                        focus:ring-red-500 focus:border-red-500 border-gray-300"
             >
                 @foreach($allPhpVersions as $version)
@@ -71,7 +71,7 @@
                 id="{{$description}}" name="{{$description}}"
                 rows="3"
                 class="shadow-sm mt-1 block w-full resize-none
-                    dark:bg-black dark:text-gray-100
+                    dark:bg-gray-900 dark:text-gray-100
                     focus:ring-red-500 focus:border-red-500
                     sm:text-sm border-gray-300 rounded-md"
                 placeholder="A brief description for your project"

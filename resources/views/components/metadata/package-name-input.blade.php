@@ -44,7 +44,7 @@
                pattern="{{\Domains\Composer\PackageName::VENDOR_REGEX}}"
                title="{{\Domains\Composer\PackageName::HUMAN_READABLE_DESCRIPTION}}"
                oninput="correctComposerNameOnInput(event)"
-               class="{{$inputClasses}} rounded-l-md dark:bg-black dark:text-gray-100"
+               class="{{$inputClasses}} rounded-l-md dark:bg-gray-900 dark:text-gray-100"
                @if(!$customVendorSpecified) autofocus @endif
         >
     </div>
@@ -68,7 +68,7 @@
             oninput="correctComposerNameOnInput(event)"
             value="{{ $project }}"
             title="{{\Domains\Composer\PackageName::HUMAN_READABLE_DESCRIPTION}}"
-            class="{{$inputClasses}} rounded-r-md dark:bg-black dark:text-gray-100"
+            class="{{$inputClasses}} rounded-r-md dark:bg-gray-900 dark:text-gray-100"
             @if($customVendorSpecified) autofocus @endif
         />
     </div>

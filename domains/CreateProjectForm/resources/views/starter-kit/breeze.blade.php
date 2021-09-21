@@ -7,14 +7,14 @@
     color="yellow"
     :model="$model"
 >
-    <p class="text-center mb-4">
+    <p class="mb-4 text-center">
         A simple and easy to customize starter for your application.
     </p>
-    <ul class="divide-y divide-gray-300 w-full">
-        <li class="p-2">Login / Logout</li>
-        <li class="p-2">Password management</li>
-        <li class="p-2">Publishable assets</li>
-        <li class="p-2 flex flex-row items-center">
+    <ul class="w-full divide-y divide-gray-300">
+        <li class="px-2 py-3 sm:p-2">Login / Logout</li>
+        <li class="px-2 py-3 sm:p-2">Password management</li>
+        <li class="px-2 py-3 sm:p-2">Publishable assets</li>
+        <li class="flex flex-row items-center px-2 py-3 sm:p-2">
             <x-inline-radio
                 id="{{$breezeFrontend}}-{{$blade}}" value="{{$blade}}"
                 name="{{$breezeFrontend}}"

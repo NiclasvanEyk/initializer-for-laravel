@@ -1,3 +1,6 @@
+const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
     mode: 'jit',
     purge: [
@@ -8,6 +11,14 @@ module.exports = {
     ],
     darkMode: 'media', // or 'media' or 'class'
     theme: {
+        colors: {
+            ...defaultTheme.colors,
+            gray: {
+                ...colors.gray,
+                800: 'rgba(23,25,35)',
+                900: '#12141c',
+            },
+        },
         extend: {
             // https://github.com/tailwindlabs/tailwindcss-typography/issues/69#issuecomment-752946920
             typography: (theme) => ({

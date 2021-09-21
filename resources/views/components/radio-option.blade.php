@@ -24,7 +24,7 @@ $value ??= $id;
 
 <label for="{{$id}}" id="{{$id}}-option"
        class="flex items-start p-3 transition wiggles-when-targeted"
-       x-bind:class="{{$model}} === '{{$value}}' ? '{{ $backgroundClasses }} ' : 'dark:bg-black'"
+       x-bind:class="{{$model}} === '{{$value}}' ? '{{ $backgroundClasses }} ' : 'dark:bg-gray-900'"
 >
     <div class="flex items-center h-5">
         <input type="radio" id="{{$id}}"

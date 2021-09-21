@@ -14,14 +14,10 @@ $logo = $database->logo();
 
 <label
     for="{{$id}}"
-    class="
-        flex-1 flex flex-col items-center justify-center
-        rounded-md shadow overflow-hidden
-        transition border
-    "
-    x-bind:class="database === '{{$id}}' ? 'dark:bg-opacity-30 dark:bg-indigo-900 bg-indigo-100 border-indigo-500 shadow-md' : 'bg-white dark:bg-black'"
+    class="flex flex-col items-center justify-center flex-1 overflow-hidden transition border rounded-md shadow "
+    x-bind:class="database === '{{$id}}' ? 'dark:bg-opacity-30 dark:bg-indigo-900 bg-indigo-100 border-indigo-500 shadow-md' : 'bg-white dark:bg-gray-900'"
 >
-    <header class="p-4 w-full flex flex-row dark:text-gray-100 justify-center items-center">
+    <header class="flex flex-row items-center justify-center w-full p-4 dark:text-gray-100">
         <a href="{{$href}}" target="_blank">
             <img
                 src="{{$logo->src}}" alt="{{$logo->alt}}"
@@ -32,20 +28,20 @@ $logo = $database->logo();
         <span class="ml-3 text-2xl">{{$heading}}</span>
     </header>
 
-    <div class="flex-1 flex flex-col items-center my-4 w-full px-4">
+    <div class="flex flex-col items-center flex-1 w-full px-4 my-4">
         <p class="text-center dark:text-gray-100">
             {{$description}}
         </p>
     </div>
 
     <div
-        class="p-4 w-full flex items-center justify-center transition"
-        x-bind:class="database === '{{$id}}' ? 'dark:bg-opacity-0 bg-indigo-200' : 'bg-gray-100 dark:bg-gray-900'"
+        class="flex items-center justify-center w-full p-4 transition"
+        x-bind:class="database === '{{$id}}' ? 'dark:bg-opacity-0 bg-indigo-200' : 'bg-gray-100 dark:bg-gray-800'"
     >
         <input
             type="radio" id="{{$id}}" name="{{ $model }}" value="{{$id}}"
             x-model="{{ $model }}"
-            class="focus:ring-indigo-500 text-indigo-600 transition"
+            class="text-indigo-600 transition focus:ring-indigo-500"
         />
     </div>
 </label>

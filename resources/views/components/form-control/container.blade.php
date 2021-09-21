@@ -14,7 +14,7 @@
     'for' => $id,
     'x-bind:class' => "$activeCondition
         ? 'bg-red-100 dark:bg-red-800 dark:bg-opacity-30 bg-opacity-50'
-        : 'bg-white dark:bg-black'",
+        : 'bg-white dark:bg-gray-900'",
 ]) }}>
     <div class="flex items-center h-5"> {{ $input }} </div>
     <div id="{{$id}}-label" class="ml-3 select-none w-full font-medium">

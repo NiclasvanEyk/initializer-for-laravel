@@ -16,7 +16,7 @@ class Routes
     {
         Route::name('root')->get('/', ShowFormController::class);
         Route::name('about')->get('about', function () {
-            return view('about');
+            return view('pages.about');
         });
 
         Route::name('permalink')
