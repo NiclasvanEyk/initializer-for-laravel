@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="{{ config('app.name') }}" />
+    <meta property="og:description" content="A quickstart generator for Laravel projects." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url('/') }}" />
     <meta property="og:image" content="{{ url('/img/og/initializer-for-laravel.png') }}" />
