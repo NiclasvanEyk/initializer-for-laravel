@@ -1,6 +1,16 @@
 <x-layout.default>
-    <article class="prose dark:prose-light mx-auto mb-10 flex-1">
+    <article
+        class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-light"
+        style="max-width: min(65ch, 100%);"
+    >
         <h1>About</h1>
+
+        <nav class="flex flex-row items-center justify-between py-4">
+            <x-link href="https://github.com/NiclasvanEyk/initializer-for-laravel">GitHub</x-link>
+            <x-link href="https://github.com/NiclasvanEyk/initializer-for-laravel/issues/new">Report a Bug</x-link>
+            <x-link href="https://github.com/NiclasvanEyk/initializer-for-laravel/discussions">Feature Requests</x-link>
+            <x-link href="https://github.com/sponsors/NiclasvanEyk?frequency=one-time">Donate</x-link>
+        </nav>
 
         <p>
             Initializer for Laravel takes a visual, approach to setting up a new
@@ -51,7 +61,7 @@
             Laravel application:
         </p>
 
-        <pre><code>curl -s "https://laravel.build/example-app" | bash</code></pre>
+        <pre>curl -s "https://laravel.build/example-app" | bash</pre>
 
         <p>
             This downloads and executes a script from the Laravel servers, which

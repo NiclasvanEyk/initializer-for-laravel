@@ -31,8 +31,6 @@
         <x-layout.header />
 
         {{ $slot }}
-
-        <x-layout.footer />
     </div>
 </div>
 </body>

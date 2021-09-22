@@ -30,7 +30,7 @@
 
     <fieldset
         role="radiogroup"
-        class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4"
+        class="flex flex-col justify-between space-y-4 md:flex-row md:space-y-0 md:space-x-4"
         x-data="{ {{ $model }}: '{{ $default }}' }"
     >
         <x-database-option :database="$mysql" :model="$model" />

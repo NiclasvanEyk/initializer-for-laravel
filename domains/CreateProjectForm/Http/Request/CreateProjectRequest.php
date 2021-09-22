@@ -98,6 +98,9 @@ class CreateProjectRequest extends FormRequest
 
             /** @see Storage */
             P::USES_MINIO => ['sometimes'],
+            P::USES_FLYSYSTEM_CACHED_ADAPTER => ['sometimes'],
+            P::USES_FLYSYSTEM_SFTP_DRIVER => ['sometimes'],
+            P::USES_FLYSYSTEM_S3_DRIVER => ['sometimes'],
         ];
     }
 

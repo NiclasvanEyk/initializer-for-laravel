@@ -4,17 +4,17 @@
 
     $fortify = new Packages\Fortify();
     $fortifyParameter = P::USES_FORTIFY;
-    $usesFortify = old($fortifyParameter, request()->has($fortifyParameter));
+    $usesFortify = checkbox_checked($fortifyParameter);
 
     $sanctum = new Packages\Sanctum();
 
     $passport = new Packages\Passport();
     $passportParameter = P::USES_PASSPORT;
-    $usesPassport = old($passportParameter, request()->has($passportParameter));
+    $usesPassport = checkbox_checked($passportParameter);
 
     $socialite = new Packages\Socialite();
     $socialiteParameter = P::USES_SOCIALITE;
-    $usesSocialite = old($socialiteParameter, request()->has($socialiteParameter));
+    $usesSocialite = checkbox_checked($socialiteParameter);
 @endphp
 
 <x-form-section name="Starter Kit & Authentication">

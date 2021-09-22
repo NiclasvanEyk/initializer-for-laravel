@@ -28,7 +28,7 @@ class Jetstream extends Component
             false,
             new JetstreamFrontend(JetstreamFrontend::LIVEWIRE),
         );
-        $this->jetstreamTeamsChecked = request()->has(P::USES_JETSTREAM_TEAMS);
+        $this->jetstreamTeamsChecked = checkbox_checked(P::USES_JETSTREAM_TEAMS);
         $this->jetstreamFrontendChosen = request(
             P::JETSTREAM_FRONTEND,
             JetstreamFrontend::LIVEWIRE,

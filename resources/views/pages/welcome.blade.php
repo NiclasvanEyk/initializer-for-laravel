@@ -49,26 +49,14 @@
             </p>
         </div>
 
-        <div class="flex flex-row items-center justify-center w-full space-x-6">
-        <button
-                type="submit"
-                class="inline-flex flex-row items-center justify-center w-full px-4 py-3 text-xl font-bold text-white transition bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 sm:w-1/3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-                <x-icons.download />
+        <div class="flex flex-col items-center justify-center w-full space-y-6 sm:space-x-6 sm:space-y-0 sm:flex-row">
+            <x-button.big type="submit">
+                <x-icons.download /> Generate
+            </x-button.big>
 
-                Generate
-            </button>
-
-            <button
-                type="submit"
-                class="inline-flex flex-row items-center justify-center w-full px-4 py-3 text-xl font-bold text-white transition bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 sm:w-1/3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-                <x-icons.template />
-
-                Share
-            </button>
+            <x-button.big type="button" secondary onclick="Initializer.share('create-project-form')">
+                <x-icons.template /> Share
+            </x-button.big>
         </div>
-
-        <div></div>
     </form>
 </x-layout.default>

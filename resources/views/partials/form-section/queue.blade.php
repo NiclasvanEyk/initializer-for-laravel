@@ -6,13 +6,13 @@
 
     $queueParameter = P::QUEUE_DRIVER;
     $horizonParameter = P::USES_HORIZON;
-    $usesHorizon = old($horizonParameter, request()->has($horizonParameter));
+    $usesHorizon = checkbox_checked($horizonParameter);
 
     $model = \Str::studly($queueParameter);
-    $default = request(
+    $default = old($queueParameter, request(
         $queueParameter,
         \Domains\CreateProjectForm\Sections\Queue\QueueDriverOption::NONE,
-    );
+    ));
 
     $redis = new Sail\Redis();
     $beanstalkd = new Queue\BeanstalkdQueueDriver();
@@ -95,6 +95,7 @@
 
     <x-first-party-package.option
         :id="$horizonParameter"
+        :checked="$usesHorizon"
         :package="$horizon"
     ></x-first-party-package.option>
 </x-form-section>

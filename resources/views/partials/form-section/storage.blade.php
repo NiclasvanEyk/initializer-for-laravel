@@ -4,19 +4,19 @@
 
     $minIO = new \Domains\Laravel\Sail\MinIO();
     $minIOParameter = P::USES_MINIO;
-    $usesMinIO = old($minIOParameter, request()->has($minIOParameter));
+    $usesMinIO = checkbox_checked($minIOParameter);
 
     $s3Driver = new Flysystem\S3Driver();
     $s3Parameter = P::USES_FLYSYSTEM_S3_DRIVER;
-    $usesS3Driver = old($s3Parameter, request()->has($s3Parameter));
+    $usesS3Driver = checkbox_checked($s3Parameter);
 
     $cachedAdapter = new Flysystem\CachedAdapter();
     $cachedParameter = P::USES_FLYSYSTEM_CACHED_ADAPTER;
-    $usesCachedAdapter = old($cachedParameter, request()->has($cachedParameter));
+    $usesCachedAdapter = checkbox_checked($cachedParameter);
 
     $sftpDriver = new Flysystem\SftpDriver();
     $sftpParameter = P::USES_FLYSYSTEM_SFTP_DRIVER;
-    $usesSftpDriver = old($sftpParameter, request()->has($sftpParameter));
+    $usesSftpDriver = checkbox_checked($sftpParameter);
 @endphp
 
 <x-form-section name="Storage">

@@ -2,18 +2,17 @@
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\ComposerPackages\Packages;
 
-
     $mailhog = new \Domains\Laravel\Sail\Mailhog();
     $mailhogParameter = P::USES_MAILHOG;
-    $usesMailhog = old(P::USES_MAILHOG, request(P::USES_MAILHOG), true);
+    $usesMailhog = checkbox_checked(P::USES_MAILHOG, default: true);
 
     $telescope = new Packages\Telescope();
     $telescopeParameter = P::USES_TELESCOPE;
-    $usesTelescope = old($telescopeParameter, request()->has($telescopeParameter));
+    $usesTelescope = checkbox_checked($telescopeParameter);
 
     $envoy = new Packages\Envoy();
     $envoyParameter = P::USES_ENVOY;
-    $usesEnvoy = old($envoyParameter, request($envoyParameter, false));
+    $usesEnvoy = checkbox_checked($envoyParameter);
 @endphp
 
 <x-form-section name="Development Tools">

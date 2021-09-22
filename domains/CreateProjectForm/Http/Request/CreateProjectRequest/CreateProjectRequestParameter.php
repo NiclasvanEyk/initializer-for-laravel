@@ -40,13 +40,13 @@ class CreateProjectRequestParameter
     const DATABASE = 'database';
 
     /** @see Cache */
-    const CACHE_DRIVER = 'cache-driver';
+    const CACHE_DRIVER = 'cache';
 
     /** @see Search */
-    const SCOUT_DRIVER = 'scout-driver';
+    const SCOUT_DRIVER = 'scout';
 
     /** @see Queue */
-    const QUEUE_DRIVER = 'queue-driver';
+    const QUEUE_DRIVER = 'queue';
     const USES_HORIZON = self::USES_PREFIX . 'horizon';
 
     /** @see DevelopmentTools */
@@ -59,11 +59,11 @@ class CreateProjectRequestParameter
     const USES_PEST = self::USES_PREFIX . 'pest';
 
     /** @see Payment */
-    const CASHIER_DRIVER = 'cashier-driver';
+    const CASHIER_DRIVER = 'cashier';
 
     /** @see Storage */
     const USES_MINIO = self::USES_PREFIX . 'minio';
-    const USES_FLYSYSTEM_S3_DRIVER = self::USES_PREFIX . 'flysystem-s3-driver';
-    const USES_FLYSYSTEM_SFTP_DRIVER = self::USES_PREFIX . 'flysystem-sftp-driver';
-    const USES_FLYSYSTEM_CACHED_ADAPTER = self::USES_PREFIX . 'flysystem-cached-adapter';
+    const USES_FLYSYSTEM_S3_DRIVER = self::USES_PREFIX . 'flysystem-s3';
+    const USES_FLYSYSTEM_SFTP_DRIVER = self::USES_PREFIX . 'flysystem-sftp';
+    const USES_FLYSYSTEM_CACHED_ADAPTER = self::USES_PREFIX . 'flysystem-cached';
 }

@@ -5,11 +5,11 @@
 
     $dusk = new Dusk();
     $duskParameter = P::USES_DUSK;
-    $usesDusk = old($duskParameter, request()->has($duskParameter));
+    $usesDusk = checkbox_checked($duskParameter);
 
     $pest = new \Domains\Laravel\RelatedPackages\Community\Pest();
     $pestParameter = P::USES_PEST;
-    $usesPest = old($pestParameter, request()->has($pestParameter));
+    $usesPest = checkbox_checked($pestParameter);
 @endphp
 
 <x-form-section name="Testing">
