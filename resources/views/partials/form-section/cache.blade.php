@@ -2,13 +2,11 @@
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\Sail;
     use \Domains\CreateProjectForm\Sections\Cache;
+    use \Domains\CreateProjectForm\Sections\Cache\CacheOption;
 
     $cacheParameter = P::CACHE_DRIVER;
     $model = \Str::studly($cacheParameter);
-    $default = request(
-        $cacheParameter,
-        \Domains\CreateProjectForm\Sections\Cache\CacheOption::default(),
-    );
+    $default = option_selected($cacheParameter, CacheOption::default());
 
     $redis = new Sail\Redis();
     $memcached = new Sail\Memcached();

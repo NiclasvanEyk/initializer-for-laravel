@@ -1,6 +1,6 @@
 export const computeSharingUrl = ({ checkBoxes, keyValuePairs }) => {
     const query = [
-        'no-defaults',
+        'preset',
         ...keyValuePairs.map(([key, value]) => `${key}=${value}`),
         ...checkBoxes.map(([key, value]) => key),
     ].join('&');

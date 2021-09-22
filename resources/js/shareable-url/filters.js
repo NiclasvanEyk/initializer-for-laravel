@@ -23,3 +23,6 @@ const ignoredKeys = ['project', 'description']
 export const filterIgnoredKeys = ([key, value]) => !ignoredKeys.includes(key)
 
 export const filterUncheckedBoxes = ([key, value]) => value !== 'off'
+export const filterEmptyValues = ([key, value]) => value !== ''
+    && value !== undefined
+    && !(typeof value === 'string' && value.toLocaleLowerCase() === 'none')

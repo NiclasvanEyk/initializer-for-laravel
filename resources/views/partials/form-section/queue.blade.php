@@ -3,16 +3,14 @@
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\Sail;
     use Domains\CreateProjectForm\Sections\Queue;
+    use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
 
     $queueParameter = P::QUEUE_DRIVER;
     $horizonParameter = P::USES_HORIZON;
     $usesHorizon = checkbox_checked($horizonParameter);
 
     $model = \Str::studly($queueParameter);
-    $default = old($queueParameter, request(
-        $queueParameter,
-        \Domains\CreateProjectForm\Sections\Queue\QueueDriverOption::NONE,
-    ));
+    $default = option_selected($queueParameter, QueueDriverOption::NONE);
 
     $redis = new Sail\Redis();
     $beanstalkd = new Queue\BeanstalkdQueueDriver();

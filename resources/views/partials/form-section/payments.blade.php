@@ -4,7 +4,7 @@
     use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
 
     $driverParameter = P::CASHIER_DRIVER;
-    $driver = old($driverParameter, request($driverParameter, CashierDriverOption::default()));
+    $driver = option_selected($driverParameter, CashierDriverOption::default());
     $model = Str::studly($driverParameter);
 
     $paddle = new Packages\CashierPaddle();

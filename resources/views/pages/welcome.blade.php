@@ -9,7 +9,9 @@
     >
         @include('partials.form-section.project-metadata')
 
-        @include('partials.form-section.starter-and-auth')
+        @include('partials.form-section.starter-kit')
+
+        @include('partials.form-section.authentication')
 
         @include('partials.form-section.database')
 

@@ -1,4 +1,4 @@
-import { filterIgnoredKeys, filterStarterParameter, filterUncheckedBoxes } from './filters'
+import { filterEmptyValues, filterIgnoredKeys, filterStarterParameter, filterUncheckedBoxes } from './filters'
 
 export const extractFormValues = formId => {
     const form = document.getElementById(formId)
@@ -19,10 +19,12 @@ export const extractFormValues = formId => {
         checkBoxes: checkBoxes
             .filter(filterUncheckedBoxes)
             .filter(filterIgnoredKeys)
+            .filter(filterEmptyValues)
             .filter(filterStarterParameter(keyValuePairs['starter'])),
         keyValuePairs: keyValuePairs
             .filter(filterUncheckedBoxes)
             .filter(filterIgnoredKeys)
+            .filter(filterEmptyValues)
             .filter(filterStarterParameter(keyValuePairs['starter'])),
     }
 }

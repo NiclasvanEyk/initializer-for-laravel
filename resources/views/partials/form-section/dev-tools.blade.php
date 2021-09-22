@@ -49,7 +49,6 @@
         :name="$mailhogParameter"
         :checked="$usesMailhog"
         :option="$mailhog"
-        :checked="true"
     />
     <x-first-party-package.option
         :id="$envoyParameter"

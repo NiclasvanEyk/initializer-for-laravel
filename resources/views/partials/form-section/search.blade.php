@@ -6,11 +6,7 @@
     use Domains\Laravel\Sail\MeiliSearch;
 
     $scoutDriverParameter = P::SCOUT_DRIVER;
-
-    $default = old($scoutDriverParameter, request(
-        $scoutDriverParameter,
-        ScoutDriverOption::default(),
-    ));
+    $default = option_selected($scoutDriverParameter, ScoutDriverOption::default());
 
     $scout = new Scout();
 
