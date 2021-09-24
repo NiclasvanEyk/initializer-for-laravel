@@ -1,7 +1,5 @@
 # 🚀 Initializer for Laravel
 
-![https://laravel.initializer.dev](./public/img/og/initializer-for-laravel.png)
-
 Initializer for Laravel takes a visual, approach to setting up a new Laravel project. Fill out the form, choose the components you like and hit the red "Generate" button at the bottom to download a zip archive containing your fresh application. Once you've extracted the archive, execute `./initialize` in your terminal and the script will install all components into your application. 
 
 ## Features
