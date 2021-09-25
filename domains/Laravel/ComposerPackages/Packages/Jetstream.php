@@ -5,8 +5,8 @@ namespace Domains\Laravel\ComposerPackages\Packages;
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\Laravel\StarterKit\JetstreamFrontend;
-use Domains\ProjectTemplateCustomization\PostDownload\ClosurePostInstallTaskGroup;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\ClosurePostInstallTaskGroup;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class Jetstream extends FirstPartyPackage implements ProvidesInstallationInstructions
 {

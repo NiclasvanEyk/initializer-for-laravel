@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload;
 
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Illuminate\Support\Collection;

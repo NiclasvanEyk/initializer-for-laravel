@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload;
 
 /**
  * A single step that is part of a {@link PostDownloadTaskGroup}

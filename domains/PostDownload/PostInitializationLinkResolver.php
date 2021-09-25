@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\Laravel\ComposerPackages\Packages\Horizon;

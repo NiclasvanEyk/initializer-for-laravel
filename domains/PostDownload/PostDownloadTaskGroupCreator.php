@@ -1,9 +1,8 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
-use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
 use Domains\ProjectTemplateCustomization\Resolver\SailServiceResolver;
 
@@ -32,7 +31,7 @@ class PostDownloadTaskGroupCreator
                 $form->metadata->phpVersion,
             ),
             new StartSail($sail),
-            new RequireComposerDependencies($dependencies, $composer),
+//            new RequireComposerDependencies($dependencies, $composer),
             ...(new SetupPackages($artisan, $dependencies))->tasks(),
             new MigrateDatabase($artisan),
             new SetupFrontend($npm),

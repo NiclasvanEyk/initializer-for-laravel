@@ -2,8 +2,9 @@
 
 namespace Domains\Composer;
 
+use Composer\Config;
+use Composer\Factory;
 use Composer\IO\NullIO;
-use Composer\Package\BasePackage;
 use Composer\Package\Version\VersionSelector;
 use Composer\Repository\CompositeRepository;
 use Composer\Repository\PlatformRepository;
@@ -13,10 +14,11 @@ use Illuminate\Support\Collection;
 
 class PackageVersionToInstallResolver
 {
-    private ?VersionSelector $versionSelector;
+    private ?VersionSelector $versionSelector = null;
 
     /**
-     * @param ComposerDependency[]|Collection $packages
+     * @param Collection|ComposerDependency[] $packages
+     * @return Collection|PackageWithResolvedVersion[]
      */
     public function resolve(Collection $packages): Collection
     {
@@ -29,13 +31,13 @@ class PackageVersionToInstallResolver
             );
             $version = $versionSelector->findRecommendedRequireVersion($candidate);
 
-            return [$candidate, $version];
+            return new PackageWithResolvedVersion($package, $version);
         });
     }
 
     private function versionSelector(): VersionSelector
     {
-        if ($this->versionSelector !== null) {
+        if ($this->versionSelector === null) {
             $this->versionSelector = new VersionSelector(
                 $this->repositorySet(),
                 new PlatformRepository(),
@@ -55,9 +57,18 @@ class PackageVersionToInstallResolver
 
     private function repos(): CompositeRepository
     {
+        // Composer needs this to work correctly, but it is sometimes not
+        // available in containers.
+        if (!getenv('HOME')) {
+            putenv('HOME=' . storage_path('app'));
+        }
+
         return new CompositeRepository(array_merge(
             array(new PlatformRepository),
-            RepositoryFactory::defaultRepos(new NullIO())
+            RepositoryFactory::defaultRepos(
+                new NullIO(),
+                Factory::createConfig(new NullIO(), storage_path('app')),
+            ),
         ));
     }
 }

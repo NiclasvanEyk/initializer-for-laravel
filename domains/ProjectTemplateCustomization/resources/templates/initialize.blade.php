@@ -1,7 +1,7 @@
 #!/bin/sh
 @php
-    /** @var \Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup[] $groups */
-    /** @var \Domains\ProjectTemplateCustomization\PostDownload\PostInitializationLink[] $links */
+    /** @var \Domains\PostDownload\PostDownloadTaskGroup[] $groups */
+    /** @var \Domains\PostDownload\PostInitializationLink[] $links */
 @endphp
 set -e;
 

@@ -4,9 +4,9 @@ namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
 
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\Markdown\Renderer;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTask;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroupCreator;
+use Domains\PostDownload\PostDownloadTask;
+use Domains\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\PostDownloadTaskGroupCreator;
 use Domains\ProjectTemplateCustomization\Support\Str;
 use Illuminate\Contracts\View\Factory;
 
