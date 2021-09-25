@@ -23,11 +23,7 @@ class Jetstream extends Component
 
     public function __construct(public string $model)
     {
-        $this->jetstream = new JetstreamPackage(
-            false,
-            false,
-            new JetstreamFrontend(JetstreamFrontend::LIVEWIRE),
-        );
+        $this->jetstream = new JetstreamPackage();
         $this->jetstreamTeamsChecked = checkbox_checked(P::USES_JETSTREAM_TEAMS);
         $this->jetstreamFrontendChosen = request(
             P::JETSTREAM_FRONTEND,
