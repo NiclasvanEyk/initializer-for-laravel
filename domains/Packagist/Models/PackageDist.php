@@ -11,10 +11,11 @@ class PackageDist
         public string $type,
         public string $url,
         public string $reference,
-    ) { }
+    ) {
+    }
 
     /**
-     * @param array<string, mixed> $dist
+     * @param  array<string, mixed>  $dist
      */
     public static function fromRequest(array $dist): self
     {

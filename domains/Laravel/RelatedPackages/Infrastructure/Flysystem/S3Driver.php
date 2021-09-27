@@ -6,23 +6,22 @@ use Domains\Composer\ComposerDependency;
 
 class S3Driver extends ComposerDependency
 {
-
-    function id(): string
+    public function id(): string
     {
-        return "flysystem-aws";
+        return 'flysystem-aws';
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
-        return "league/flysystem-aws-s3-v3";
+        return 'league/flysystem-aws-s3-v3';
     }
 
-    function name(): string
+    public function name(): string
     {
-        return "Amazon Simple Storage Service (S3)";
+        return 'Amazon Simple Storage Service (S3)';
     }
 
-    function description(): string
+    public function description(): string
     {
         // Was inlined to be able to use links.
         return '';
@@ -30,7 +29,7 @@ class S3Driver extends ComposerDependency
 
     public function href(): ?string
     {
-        return "https://aws.amazon.com/s3";
+        return 'https://aws.amazon.com/s3';
     }
 
     public function needsToBeInstalledWithAllDependencies(): bool
@@ -40,6 +39,6 @@ class S3Driver extends ComposerDependency
 
     public function versionConstraint(): ?string
     {
-        return "^1.0.0";
+        return '^1.0.0';
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Domains\Laravel\Sail;
-
 
 use Domains\CreateProjectForm\Sections\Cache\CacheOption as CacheAlias;
 
@@ -10,17 +8,17 @@ class Memcached extends SailConfigurationOption
 {
     const REPOSITORY_KEY = CacheAlias::MEMCACHED;
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Memcached';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'High-performance, distributed memory object caching system.';
     }

@@ -15,6 +15,6 @@ if (! function_exists('option_selected')) {
         $fallback = request()->has('preset') ? 'none' : $default;
         $default = request()->has($parameter) ? request($parameter) : $fallback;
 
-        return old($parameter,  $default);
+        return old($parameter, $default);
     }
 }

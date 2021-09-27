@@ -40,10 +40,10 @@ class Renderer
     public function codeBlock(string $text, string $language): string
     {
         return "```$language"
-            . PHP_EOL
-            . $text
-            . PHP_EOL
-            . '```';
+            .PHP_EOL
+            .$text
+            .PHP_EOL
+            .'```';
     }
 
     public function listItem(string $text): string
@@ -52,7 +52,7 @@ class Renderer
     }
 
     /**
-     * @param array<string> $items
+     * @param  array<string>  $items
      */
     public function list(iterable $items): string
     {

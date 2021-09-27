@@ -9,11 +9,12 @@ class PackagistApiClient
 {
     public function __construct(
         private string $baseUrl = 'https://repo.packagist.org/p2',
-    ) { }
+    ) {
+    }
 
     /**
-     * @param string $vendor
-     * @param string $package
+     * @param  string  $vendor
+     * @param  string  $package
      * @return Package[]
      */
     public function packageReleases(string $vendor, string $package): array

@@ -6,10 +6,15 @@ use Domains\CreateProjectForm\Components\Logo;
 
 interface DatabaseOption
 {
-    function id(): string;
-    function sailId(): string;
-    function name(): string;
-    function description(): string;
-    function href(): string;
-    function logo(): Logo;
+    public function id(): string;
+
+    public function sailId(): string;
+
+    public function name(): string;
+
+    public function description(): string;
+
+    public function href(): string;
+
+    public function logo(): Logo;
 }

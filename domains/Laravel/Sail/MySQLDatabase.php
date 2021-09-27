@@ -9,17 +9,17 @@ class MySQLDatabase extends SailConfigurationOption implements DatabaseOption
 {
     const REPOSITORY_KEY = DatabaseOptionAlias::MY_SQL;
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'MySQL';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'The default database for Laravel applications.';
     }
@@ -29,7 +29,7 @@ class MySQLDatabase extends SailConfigurationOption implements DatabaseOption
         return 'https://www.mysql.com';
     }
 
-    function logo(): Logo
+    public function logo(): Logo
     {
         return new Logo(
             '/img/logos/database/mysql.svg',
@@ -37,7 +37,7 @@ class MySQLDatabase extends SailConfigurationOption implements DatabaseOption
         );
     }
 
-    function sailId(): string
+    public function sailId(): string
     {
         return 'mysql';
     }

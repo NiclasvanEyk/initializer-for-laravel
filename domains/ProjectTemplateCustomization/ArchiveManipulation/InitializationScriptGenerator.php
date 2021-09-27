@@ -10,10 +10,11 @@ use Illuminate\Contracts\View\Factory;
 class InitializationScriptGenerator
 {
     public function __construct(
-        private Factory                        $view,
-        private PostDownloadTaskGroupCreator   $postDownloadTaskGroupCreator,
+        private Factory $view,
+        private PostDownloadTaskGroupCreator $postDownloadTaskGroupCreator,
         private PostInitializationLinkResolver $postInitializationLinkResolver,
-    ) { }
+    ) {
+    }
 
     public function render(CreateProjectForm $form): string
     {

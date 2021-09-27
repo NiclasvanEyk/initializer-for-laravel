@@ -11,7 +11,9 @@ class JetstreamFrontend
     const LIVEWIRE = 'livewire';
     const INERTIA = 'inertia';
 
-    public function __construct(public string $name) { }
+    public function __construct(public string $name)
+    {
+    }
 
     public function __toString(): string
     {

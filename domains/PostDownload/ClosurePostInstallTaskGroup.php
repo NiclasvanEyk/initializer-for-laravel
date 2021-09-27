@@ -5,13 +5,14 @@ namespace Domains\PostDownload;
 class ClosurePostInstallTaskGroup implements PostDownloadTaskGroup
 {
     /**
-     * @param string $theTitle
-     * @param callable $theTasks
+     * @param  string  $theTitle
+     * @param  callable  $theTasks
      */
     public function __construct(
         private string $theTitle,
         private $theTasks,
-    ) { }
+    ) {
+    }
 
     public function title(): string
     {

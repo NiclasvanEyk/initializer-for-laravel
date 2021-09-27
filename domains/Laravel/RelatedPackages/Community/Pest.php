@@ -11,22 +11,22 @@ class Pest extends ComposerDependency
         return true;
     }
 
-    function id(): string
+    public function id(): string
     {
         return $this->packageId();
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return 'pestphp/pest-plugin-laravel';
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Pest';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'A Testing Framework with a focus on simplicity.';
     }

@@ -6,17 +6,17 @@ class Selenium extends SailConfigurationOption
 {
     const REPOSITORY_KEY = 'selenium';
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Selenium';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'Automated browser tests.';
     }

@@ -71,7 +71,7 @@ class ComposerJsonFileTest extends TestCase
         $this->assertEquals([
             'name' => 'niclasvaneyk/initializr-for-laravel',
             'type' => 'project',
-            "require" => [
+            'require' => [
                 'php' => '^8.0',
                 'laravel/framework' => '^8.0',
             ],

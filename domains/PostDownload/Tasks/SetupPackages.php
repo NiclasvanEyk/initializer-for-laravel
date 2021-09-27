@@ -12,17 +12,18 @@ use Illuminate\Support\Collection;
 class SetupPackages implements PostDownloadTaskGroup
 {
     /**
-     * @param string $artisan
-     * @param ProvidesInstallationInstructions[]|Collection $dependencies
+     * @param  string  $artisan
+     * @param  ProvidesInstallationInstructions[]|Collection  $dependencies
      */
     public function __construct(
         private string $artisan,
         private Collection $dependencies,
-    ) { }
+    ) {
+    }
 
     public function title(): string
     {
-        return "Setup composer dependencies";
+        return 'Setup composer dependencies';
     }
 
     /** @return array<PostDownloadTaskGroup> */
@@ -30,8 +31,7 @@ class SetupPackages implements PostDownloadTaskGroup
     {
         return $this->dependencies
             ->filter(fn ($p) => $p instanceof ProvidesInstallationInstructions)
-            ->map(fn (ProvidesInstallationInstructions $instructions) =>
-                $instructions->installationInstructions($this->artisan)
+            ->map(fn (ProvidesInstallationInstructions $instructions) => $instructions->installationInstructions($this->artisan)
             )
             ->all();
     }

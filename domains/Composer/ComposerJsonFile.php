@@ -13,9 +13,11 @@ use Illuminate\Support\Arr;
 final class ComposerJsonFile
 {
     /**
-     * @param array<string, mixed> $contents
+     * @param  array<string, mixed>  $contents
      */
-    private function __construct(private array $contents) { }
+    private function __construct(private array $contents)
+    {
+    }
 
     public static function fromString(string $rawContents): self
     {
@@ -40,13 +42,13 @@ final class ComposerJsonFile
         );
 
         if ($encoded === false) {
-            throw new \Exception('Error while encoding composer.json: ' . json_last_error_msg());
+            throw new \Exception('Error while encoding composer.json: '.json_last_error_msg());
         }
 
         return $encoded;
     }
 
-    public function require (string $package, string $version): static
+    public function require(string $package, string $version): static
     {
         Arr::set($this->contents, "require.$package", $version);
 

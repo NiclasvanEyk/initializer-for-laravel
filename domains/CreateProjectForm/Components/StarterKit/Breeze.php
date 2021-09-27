@@ -19,7 +19,8 @@ class Breeze extends Component
     public string $vue = BreezeFrontend::VUE;
     public string $activeAlpineCondition;
 
-    public function __construct(public string $model) {
+    public function __construct(public string $model)
+    {
         $this->breeze = new BreezePackage(
             new BreezeFrontend(BreezeFrontend::BLADE),
             false,

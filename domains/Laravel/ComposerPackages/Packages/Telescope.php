@@ -11,12 +11,12 @@ class Telescope extends FirstPartyPackage implements ProvidesInstallationInstruc
 {
     const REPOSITORY_KEY = 'telescope';
 
-    function description(): string
+    public function description(): string
     {
         return 'A beautiful dashboard that provides insight into the requests'
-            . ' coming into your application, exceptions, log entries,'
-            . ' database queries, queued jobs, mail, notifications,'
-            . ' cache operations, scheduled tasks, variable dumps, and more.';
+            .' coming into your application, exceptions, log entries,'
+            .' database queries, queued jobs, mail, notifications,'
+            .' cache operations, scheduled tasks, variable dumps, and more.';
     }
 
     public function isDevDependency(): bool

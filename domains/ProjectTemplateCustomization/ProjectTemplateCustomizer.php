@@ -18,13 +18,14 @@ use PhpZip\ZipFile;
 class ProjectTemplateCustomizer
 {
     public function __construct(
-        private TemplateStorage               $template,
-        private ReadmeGenerator               $readmeGenerator,
-        private ComposerJsonGenerator         $composerJsonGenerator,
+        private TemplateStorage $template,
+        private ReadmeGenerator $readmeGenerator,
+        private ComposerJsonGenerator $composerJsonGenerator,
         private InitializationScriptGenerator $installScriptGenerator,
-        private DatabaseConfigurer            $databaseConfigurer,
-        private CacheConfigurer               $cacheConfigurer,
-    ) { }
+        private DatabaseConfigurer $databaseConfigurer,
+        private CacheConfigurer $cacheConfigurer,
+    ) {
+    }
 
     public function build(CreateProjectForm $form): ZipFile
     {

@@ -6,11 +6,13 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 
 class SetupFrontend implements PostDownloadTaskGroup
 {
-    public function __construct(private string $npm) { }
+    public function __construct(private string $npm)
+    {
+    }
 
     public function title(): string
     {
-        return "Setup frontend";
+        return 'Setup frontend';
     }
 
     public function tasks(): array

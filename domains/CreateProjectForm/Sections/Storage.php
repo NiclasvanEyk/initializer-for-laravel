@@ -9,5 +9,6 @@ class Storage
         public bool $usesSftp,
         public bool $usesCachedAdapter,
         public bool $usesS3,
-    ) { }
+    ) {
+    }
 }

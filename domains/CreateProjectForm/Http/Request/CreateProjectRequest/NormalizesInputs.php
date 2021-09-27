@@ -9,5 +9,4 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 trait NormalizesInputs
 {
-
 }

@@ -11,7 +11,8 @@ class Cache
 {
     public function __construct(
         public ?CacheDriver $driver,
-    ) { }
+    ) {
+    }
 
     public static function driverForOption(string $option): ?CacheDriver
     {

@@ -11,10 +11,10 @@ class Scout extends FirstPartyPackage implements ProvidesInstallationInstruction
 {
     const REPOSITORY_KEY = 'scout';
 
-    function description(): string
+    public function description(): string
     {
         return 'A simple, driver based solution for adding full-text search to '
-            . 'your Eloquent models.';
+            .'your Eloquent models.';
     }
 
     /**

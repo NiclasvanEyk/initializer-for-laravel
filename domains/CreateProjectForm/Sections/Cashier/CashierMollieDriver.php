@@ -7,7 +7,7 @@ use Domains\Laravel\ComposerPackages\Packages\CashierMollie;
 
 class CashierMollieDriver extends CashierDriver
 {
-    function package(): FirstPartyPackage
+    public function package(): FirstPartyPackage
     {
         return new CashierMollie();
     }

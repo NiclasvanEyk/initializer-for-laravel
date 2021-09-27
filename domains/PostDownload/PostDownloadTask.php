@@ -3,7 +3,7 @@
 namespace Domains\PostDownload;
 
 /**
- * A single step that is part of a {@link PostDownloadTaskGroup}
+ * A single step that is part of a {@link PostDownloadTaskGroup}.
  */
 interface PostDownloadTask
 {

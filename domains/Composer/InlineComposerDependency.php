@@ -10,24 +10,25 @@ class InlineComposerDependency extends ComposerDependency
         private string $description = '',
         private string $href = '',
         private bool $isDevDependency = false,
-    ) { }
+    ) {
+    }
 
-    function id(): string
+    public function id(): string
     {
         return $this->id;
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return $this->id;
     }
 
-    function name(): string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function description(): string
+    public function description(): string
     {
         return $this->description;
     }

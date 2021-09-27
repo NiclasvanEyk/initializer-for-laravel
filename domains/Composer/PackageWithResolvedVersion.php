@@ -8,5 +8,6 @@ class PackageWithResolvedVersion
     public function __construct(
         public ComposerDependency $package,
         public string $version,
-    ) { }
+    ) {
+    }
 }

@@ -6,5 +6,5 @@ use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 
 abstract class CashierDriver
 {
-    abstract function package(): FirstPartyPackage;
+    abstract public function package(): FirstPartyPackage;
 }

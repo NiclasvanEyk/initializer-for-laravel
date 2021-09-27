@@ -24,9 +24,11 @@ class ReadmeGenerator
         private Renderer $markdown,
         private InitializationScriptGenerator $initializationScriptGenerator,
         private PostInitializationLinkResolver $postInitializationLinkResolver,
-    ) { }
+    ) {
+    }
 
-    public function render(CreateProjectForm $form): string {
+    public function render(CreateProjectForm $form): string
+    {
         $meta = $form->metadata;
 
         return $this->view->make($this->template, [
@@ -43,7 +45,7 @@ class ReadmeGenerator
     }
 
     /**
-     * @param PostDownloadTaskGroup[] $taskGroups
+     * @param  PostDownloadTaskGroup[]  $taskGroups
      */
     private function renderTodos(array $taskGroups): string
     {
@@ -62,11 +64,12 @@ class ReadmeGenerator
                     Str::indentLines($todoBody, tabSize: 2),
                 ]);
             })
-            ->join(PHP_EOL . PHP_EOL);
+            ->join(PHP_EOL.PHP_EOL);
     }
 
     /** @param PostDownloadTask[]|string[] $tasks */
-    private function renderGroupSubTasks(array $tasks): string {
+    private function renderGroupSubTasks(array $tasks): string
+    {
         return count($tasks) === 1
             ? $this->markdown->codeBlock($this->unwrapTask($tasks[0]), 'shell')
             : collect($tasks)
@@ -80,6 +83,6 @@ class ReadmeGenerator
 
     private function unwrapTask(PostDownloadTask|string $task): string
     {
-        return (is_string($task) ? $task : $task->shell());
+        return is_string($task) ? $task : $task->shell();
     }
 }

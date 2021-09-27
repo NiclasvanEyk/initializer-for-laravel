@@ -30,7 +30,7 @@ class ActualTest extends TestCase
 
         $archive = $customizer->build(
             CreateProjectFormFixtures::allOptionsEnabled(
-                metadata: new Metadata("test", "test"),
+                metadata: new Metadata('test', 'test'),
             ),
         );
 
@@ -39,23 +39,23 @@ class ActualTest extends TestCase
 
         // Jetstream
         $this->assertStringContainsString(
-            "Register",
+            'Register',
             Http::get('localhost')->body(),
-            "Jetstream does not seem to have been installed",
+            'Jetstream does not seem to have been installed',
         );
 
         // Mailhog
         $this->assertEquals(
             200,
             Http::get('localhost:8025')->status(),
-            "Mailhog does not seem to have been installed",
+            'Mailhog does not seem to have been installed',
         );
 
         // Meilisearch
         $this->assertEquals(
             200,
             Http::get('localhost:7700')->status(),
-            "MeiliSearch does not seem to have been installed",
+            'MeiliSearch does not seem to have been installed',
         );
     }
 
@@ -72,7 +72,7 @@ class ActualTest extends TestCase
     private function initialize(string $cwd): void
     {
         $process = new Process(
-            command: ["./initialize"],
+            command: ['./initialize'],
             cwd: $cwd,
             timeout: 1000,
         );

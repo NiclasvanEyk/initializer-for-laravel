@@ -10,22 +10,22 @@ use Domains\CreateProjectForm\Sections\Scout\AlgoliaScoutDriver;
  */
 class AlgoliaSearch extends ComposerDependency
 {
-    function id(): string
+    public function id(): string
     {
         return 'algolia';
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return 'algolia/algoliasearch-client-php';
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Algolia';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'Powerful, hosted search API to create fast and relevant search & discovery.';
     }

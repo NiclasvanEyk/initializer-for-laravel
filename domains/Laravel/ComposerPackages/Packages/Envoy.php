@@ -8,10 +8,10 @@ class Envoy extends FirstPartyPackage
 {
     const REPOSITORY_KEY = 'envoy';
 
-    function description(): string
+    public function description(): string
     {
         return 'A tool for executing common tasks you run on your remote '
-            . 'servers for deployment, Artisan commands, and more.';
+            .'servers for deployment, Artisan commands, and more.';
     }
 
     public function isDevDependency(): bool

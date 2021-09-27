@@ -22,12 +22,12 @@ class Jetstream extends FirstPartyPackage implements ProvidesInstallationInstruc
 
     const REPOSITORY_KEY = 'jetstream';
 
-    function description(): string
+    public function description(): string
     {
         return 'A polished and feature-rich implementation for your '
-            . 'application\'s login, registration, email verification, '
-            . 'two-factor authentication, session management, API, and '
-            . 'optional team management features.';
+            .'application\'s login, registration, email verification, '
+            .'two-factor authentication, session management, API, and '
+            .'optional team management features.';
     }
 
     public function href(): string
@@ -38,16 +38,16 @@ class Jetstream extends FirstPartyPackage implements ProvidesInstallationInstruc
     public function installationInstructions(string $artisan): PostDownloadTaskGroup
     {
         return new ClosurePostInstallTaskGroup(
-            "Install Laravel Jetstream",
+            'Install Laravel Jetstream',
             function () use ($artisan) {
                 $command = "$artisan jetstream:install";
 
                 if ($this->usesTeams) {
-                    $command .= " --teams";
+                    $command .= ' --teams';
                 }
 
                 if ($this->usesPest) {
-                    $command .= " --pest";
+                    $command .= ' --pest';
                 }
 
                 $command .= " $this->frontend";

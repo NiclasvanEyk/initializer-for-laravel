@@ -3,11 +3,11 @@
 namespace Domains\ProjectTemplate;
 
 use Domains\Support\FileSystem\Path;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use League\Flysystem\Adapter\Local;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use PhpZip\ZipFile;
 
 /**
@@ -20,7 +20,9 @@ class TemplateStorage
     const CURRENT_SYMLINK_NAME = 'current';
 
     /** @codeCoverageIgnore */
-    public function __construct(private FilesystemAdapter $filesystem) { }
+    public function __construct(private FilesystemAdapter $filesystem)
+    {
+    }
 
     public function exists(): bool
     {
@@ -54,9 +56,10 @@ class TemplateStorage
             $currentVersion = $this->filesystem->get(
                 $this->current(self::VERSION_FILE_NAME)
             );
-        } catch (FileNotFoundException) { }
+        } catch (FileNotFoundException) {
+        }
 
-        if (!is_string($currentVersion)) {
+        if (! is_string($currentVersion)) {
             return 'unknown';
         }
 
@@ -86,7 +89,8 @@ class TemplateStorage
     }
 
     /** @codeCoverageIgnore */
-    private function store(DownloadedLaravelRelease $release): void {
+    private function store(DownloadedLaravelRelease $release): void
+    {
         $version = $release->package->version;
 
         $this->filesystem->deleteDirectory($version);

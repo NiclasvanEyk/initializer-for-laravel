@@ -44,7 +44,7 @@ class CacheConfigurer
         $exampleEnvContents = $archive->getEntryContents('.env.example');
 
         $archive->addFromString('.env.example', Str::replaceFirst(
-            "REDIS_HOST=127.0.0.1",
+            'REDIS_HOST=127.0.0.1',
             "REDIS_HOST=$service",
             $exampleEnvContents,
         ));
@@ -56,7 +56,7 @@ class CacheConfigurer
         $exampleEnvContents = $archive->getEntryContents('.env.example');
 
         $archive->addFromString('.env.example', Str::replaceFirst(
-            "MEMCACHED_HOST=127.0.0.1",
+            'MEMCACHED_HOST=127.0.0.1',
             "MEMCACHED_HOST=$service",
             $exampleEnvContents,
         ));

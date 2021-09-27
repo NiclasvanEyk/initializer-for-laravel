@@ -9,17 +9,17 @@ class PostgresDatabase extends SailConfigurationOption implements DatabaseOption
 {
     const REPOSITORY_KEY = DatabaseOptionAlias::POSTGRES;
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'PostgreSQL';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'Extensible and open-source database.';
     }
@@ -29,7 +29,7 @@ class PostgresDatabase extends SailConfigurationOption implements DatabaseOption
         return 'https://www.postgresql.org';
     }
 
-    function logo(): Logo
+    public function logo(): Logo
     {
         return new Logo(
             '/img/logos/database/postgres.svg',
@@ -37,7 +37,7 @@ class PostgresDatabase extends SailConfigurationOption implements DatabaseOption
         );
     }
 
-    function sailId(): string
+    public function sailId(): string
     {
         return 'pgsql';
     }

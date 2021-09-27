@@ -16,7 +16,8 @@ class ComposerJsonGenerator
     public function __construct(
         private ComposerPackagesToInstallResolver $packagesToInstallResolver,
         private PackageVersionToInstallResolver $versionToInstallResolver,
-    ) { }
+    ) {
+    }
 
     public function render(
         CreateProjectForm $form,
@@ -76,5 +77,4 @@ class ComposerJsonGenerator
             ->removeScript('post-root-package-install')
             ->removeScript('post-create-project-cmd');
     }
-
 }

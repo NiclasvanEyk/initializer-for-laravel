@@ -3,7 +3,6 @@
 namespace Domains\CreateProjectForm\Components\StarterKit;
 
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
-
 use Domains\Laravel\ComposerPackages\Packages\Jetstream as JetstreamPackage;
 use Domains\Laravel\StarterKit\JetstreamFrontend;
 use Domains\Laravel\StarterKit\StarterKit;

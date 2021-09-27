@@ -16,13 +16,15 @@ abstract class StarterKit
     const BREEZE = 'breeze';
     const JETSTREAM = 'jetstream';
 
-    public function __construct(public string $name) { }
+    public function __construct(public string $name)
+    {
+    }
 
-    abstract function composerPackage(): ?ComposerDependency;
+    abstract public function composerPackage(): ?ComposerDependency;
 
     public static function fromRequest(CreateProjectRequest $request): Laravel|Breeze|Jetstream
     {
-        return match($request->starter) {
+        return match ($request->starter) {
             StarterKit::LARAVEL => new Laravel(),
             StarterKit::BREEZE => new Breeze(
                 frontend: new BreezeFrontend(

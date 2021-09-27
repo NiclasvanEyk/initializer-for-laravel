@@ -13,11 +13,12 @@ class Queue
     public function __construct(
         public ?QueueDriver $driver,
         public bool $usesHorizon,
-    ) { }
+    ) {
+    }
 
     public static function driverForOption(string $option): ?QueueDriver
     {
-        return match($option) {
+        return match ($option) {
             QueueDriverOption::REDIS => new RedisQueueDriver(),
             QueueDriverOption::BEANSTALKD => new BeanstalkdQueueDriver(),
             QueueDriverOption::SQS => new SqsQueueDriver(),

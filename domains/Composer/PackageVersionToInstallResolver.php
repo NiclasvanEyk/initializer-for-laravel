@@ -18,7 +18,7 @@ class PackageVersionToInstallResolver
     private ?VersionSelector $versionSelector = null;
 
     /**
-     * @param Collection|ComposerDependency[] $packages
+     * @param  Collection|ComposerDependency[]  $packages
      * @return Collection|PackageWithResolvedVersion[]
      */
     public function resolve(Collection $packages): Collection
@@ -32,7 +32,7 @@ class PackageVersionToInstallResolver
             );
 
             if ($candidate === false) {
-                throw new Exception("Could find an installation candidate for package!", [
+                throw new Exception('Could find an installation candidate for package!', [
                     'package' => $package->packageId(),
                 ]);
             }
@@ -67,12 +67,12 @@ class PackageVersionToInstallResolver
     {
         // Composer needs this to work correctly, but it is sometimes not
         // available in containers.
-        if (!getenv('HOME')) {
-            putenv('HOME=' . storage_path('app'));
+        if (! getenv('HOME')) {
+            putenv('HOME='.storage_path('app'));
         }
 
         return new CompositeRepository(array_merge(
-            array(new PlatformRepository),
+            [new PlatformRepository],
             RepositoryFactory::defaultRepos(
                 new NullIO(),
                 Factory::createConfig(new NullIO(), storage_path('app')),

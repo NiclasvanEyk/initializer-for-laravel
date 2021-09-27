@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Domains\Laravel\ComposerPackages\Packages;
-
 
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
@@ -13,10 +11,10 @@ class Horizon extends FirstPartyPackage implements ProvidesInstallationInstructi
 {
     const REPOSITORY_KEY = 'horizon';
 
-    function description(): string
+    public function description(): string
     {
         return 'A beautiful dashboard and code-driven configuration for your '
-            . 'Laravel powered Redis queues.';
+            .'Laravel powered Redis queues.';
     }
 
     public function isDevDependency(): bool

@@ -23,7 +23,7 @@ class CreateProjectFormServiceProvider extends ServiceProvider
     private function loadStarterKitComponents(): void
     {
         $this->loadViewsFrom(
-            __DIR__ . '/resources/views/starter-kit',
+            __DIR__.'/resources/views/starter-kit',
             'starter-kit'
         );
 

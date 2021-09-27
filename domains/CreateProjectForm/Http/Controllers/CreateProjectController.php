@@ -10,14 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateProjectController
 {
     public function __invoke(
-        CreateProjectRequest      $request,
+        CreateProjectRequest $request,
         ProjectTemplateCustomizer $builder,
     ): Response {
         $form = $request->buildForm();
         $name = $form->metadata->projectName;
         $archive = $builder->build($form);
 
-        Log::info("Initialized project!", [
+        Log::info('Initialized project!', [
             'starter' => $form->authentication->starterKit->name,
             'database' => $form->database->database->id(),
         ]);

@@ -9,7 +9,7 @@ class ComposerJsonFixtures
     public static function thisProject(): ComposerJsonFile
     {
         return ComposerJsonFile::fromString(
-            file_get_contents(__DIR__ . '/../../../../composer.json'),
+            file_get_contents(__DIR__.'/../../../../composer.json'),
         );
     }
 }

@@ -14,18 +14,18 @@ abstract class SailConfigurationOption
     /**
      * A unique identifier for the option.
      */
-    abstract function id(): string;
+    abstract public function id(): string;
 
     /**
      * The human-readable name for the option.
      */
-    abstract function name(): string;
+    abstract public function name(): string;
 
     /**
      * An optional description of what the option does or what it can be
      * useful for.
      */
-    abstract function description(): string;
+    abstract public function description(): string;
 
     /**
      * An optional link to the documentation or the website of the option.

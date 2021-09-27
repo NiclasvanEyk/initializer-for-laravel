@@ -50,7 +50,7 @@ class DatabaseConfigurer
         $contents = $archive->getEntryContents('.env.example');
 
         $archive->addFromString('.env.example', Str::replaceFirst(
-            "DB_CONNECTION=mysql",
+            'DB_CONNECTION=mysql',
             "DB_CONNECTION=$service",
             $contents,
         ));

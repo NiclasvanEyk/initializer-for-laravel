@@ -7,11 +7,13 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 
 class StartSail implements PostDownloadTaskGroup, PostDownloadTask
 {
-    public function __construct(private string $sail) { }
+    public function __construct(private string $sail)
+    {
+    }
 
     public function title(): string
     {
-        return "Start Laravel Sail";
+        return 'Start Laravel Sail';
     }
 
     public function tasks(): array

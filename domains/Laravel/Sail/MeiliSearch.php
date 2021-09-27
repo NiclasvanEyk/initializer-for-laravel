@@ -6,17 +6,17 @@ class MeiliSearch extends SailConfigurationOption
 {
     const REPOSITORY_KEY = 'meilisearch';
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'MeiliSearch';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'Simple and easy to use search-engine.';
     }

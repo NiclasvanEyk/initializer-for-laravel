@@ -11,6 +11,6 @@ class PostInitializationLink
         string $href = '',
         public string $base = 'http://localhost',
     ) {
-        $this->href = $this->base . $href;
+        $this->href = $this->base.$href;
     }
 }

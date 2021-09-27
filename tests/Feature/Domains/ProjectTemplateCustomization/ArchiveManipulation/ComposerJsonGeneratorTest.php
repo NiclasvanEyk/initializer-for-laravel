@@ -36,17 +36,17 @@ class ComposerJsonGeneratorTest extends TestCase
         $this->assertStringContainsString(
             '"name": "test/test-project",',
             $contents,
-            "it should have synced the vendor and project names!"
+            'it should have synced the vendor and project names!'
         );
         $this->assertStringContainsString(
             '"description": "foo-bar",',
             $contents,
-            "it should have synced the description!"
+            'it should have synced the description!'
         );
         $this->assertStringContainsString(
             '"php": "^8.0",',
             $contents,
-            "it should have synced the php version!"
+            'it should have synced the php version!'
         );
     }
 
@@ -80,8 +80,8 @@ class ComposerJsonGeneratorTest extends TestCase
         $contents = $this->generator()->render($form, $composerJson);
 
         $unnecessaryScripts = [
-            "post-root-package-install",
-            "post-create-project-cmd",
+            'post-root-package-install',
+            'post-create-project-cmd',
         ];
         foreach ($unnecessaryScripts as $script) {
             $this->assertStringNotContainsString($script, $contents);

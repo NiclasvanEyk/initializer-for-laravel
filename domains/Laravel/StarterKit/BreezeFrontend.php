@@ -12,7 +12,9 @@ class BreezeFrontend
     const REACT = 'react';
     const VUE = 'vue';
 
-    public function __construct(public string $name) { }
+    public function __construct(public string $name)
+    {
+    }
 
     public function __toString(): string
     {

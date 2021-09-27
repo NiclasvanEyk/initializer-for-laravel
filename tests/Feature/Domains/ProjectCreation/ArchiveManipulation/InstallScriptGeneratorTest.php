@@ -24,6 +24,6 @@ class InstallScriptGeneratorTest extends TestCase
             CreateProjectFormFixtures::allOptionsEnabled(),
         );
 
-        $this->assertStringContainsString("passport:install", $result);
+        $this->assertStringContainsString('passport:install', $result);
     }
 }
