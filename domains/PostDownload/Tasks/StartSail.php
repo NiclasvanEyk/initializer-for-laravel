@@ -18,6 +18,6 @@ class StartSail implements PostDownloadTaskGroup, PostDownloadTask
 
     public function shell(): string
     {
-        return "{$this->sail} up -d";
+        return "$this->sail up -d";
     }
 }
