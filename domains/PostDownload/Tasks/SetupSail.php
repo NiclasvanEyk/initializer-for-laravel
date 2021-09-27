@@ -59,10 +59,10 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
     {
         return join(' && ', [
             'ls -alh',
-            'composer install --ignore-platform-reqs',
-            "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
-            "php artisan key:generate --ansi",
-            "php artisan sail:install --with={$this->sailServices()}",
+//            'composer install --ignore-platform-reqs',
+//            "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
+//            "php artisan key:generate --ansi",
+//            "php artisan sail:install --with={$this->sailServices()}",
         ]);
     }
 }
