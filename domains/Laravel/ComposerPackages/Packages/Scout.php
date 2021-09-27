@@ -25,7 +25,7 @@ class Scout extends FirstPartyPackage implements ProvidesInstallationInstruction
         return new ClosurePostInstallTaskGroup(
             'Setup Laravel Scout',
             fn () => [
-                "$artisan vendor:publish --provider=\"Laravel\Scout\ScoutServiceProvider\"",
+                "$artisan --no-interaction vendor:publish --provider=\"Laravel\Scout\ScoutServiceProvider\"",
             ],
         );
     }
