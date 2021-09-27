@@ -74,7 +74,7 @@ class ActualTest extends TestCase
         $process = new Process(
             command: ["./initialize"],
             cwd: $cwd,
-            timeout: 600, // 10 minutes should be enough
+            timeout: 1000,
         );
         $process->enableOutput();
 
