@@ -19,6 +19,7 @@ echo '';
 echo '';
 
 if [[ $* == *--no-interaction* ]]
+then
     read -n 1 -s -r -p "Press any key to continue";
     echo '';
 fi
