@@ -16,12 +16,12 @@ echo '';
 <x-shell::banner-line>\033[1mPlease make sure that Docker is running!\033[0m</x-shell::banner-line>
 </x-shell::banner>
 
-if [[ $* == *--no-interaction* ]]
+if [ -t 1 ];
 then
     echo '';
-else
-    echo '';
     read -n 1 -s -r -p "Press any key to continue";
+    echo '';
+else
     echo '';
 fi
 
