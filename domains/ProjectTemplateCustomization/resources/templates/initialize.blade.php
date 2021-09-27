@@ -24,6 +24,8 @@ then
     echo '';
 fi
 
+ls -alh;
+
 @foreach($groups as $group)
 echo '';
 <x-shell::banner :title="$group->title()" />
