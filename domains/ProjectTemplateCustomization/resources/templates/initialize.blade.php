@@ -18,9 +18,10 @@ echo '';
 </x-shell::banner>
 echo '';
 
+export COMPOSE_INTERACTIVE_NO_CLI=1;
+
 if [[ $* == *--no-interaction* ]]
 then
-    export COMPOSE_INTERACTIVE_NO_CLI=1;
     read -n 1 -s -r -p "Press any key to continue";
     echo '';
 fi
