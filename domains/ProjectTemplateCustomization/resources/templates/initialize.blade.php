@@ -4,7 +4,6 @@
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
 @endphp
 set -e;
-set -x;
 
 echo '';
 <x-shell::banner title="Initializer for Laravel">
@@ -20,11 +19,10 @@ echo '';
 
 if [[ $* == *--no-interaction* ]]
 then
+else
     read -n 1 -s -r -p "Press any key to continue";
     echo '';
 fi
-
-ls -alh;
 
 @foreach($groups as $group)
 echo '';

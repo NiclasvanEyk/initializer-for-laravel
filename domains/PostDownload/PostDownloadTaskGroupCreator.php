@@ -23,9 +23,16 @@ class PostDownloadTaskGroupCreator
      */
     public function fromForm(CreateProjectForm $form): array
     {
+        // When testing we need to pass the -T flag to docker-compose,
+        // as it seemst that GH Actions does not support TTYs yet.
+        $testing = config('app.env') === 'testing';
         $sail = "./vendor/bin/sail";
-        $artisan = "$sail exec -T -u sail \"laravel.test\" php artisan";
-        $npm = "$sail exec -T \"laravel.test\" npm";
+        $artisan = $testing
+            ? "$sail exec -T -u sail \"laravel.test\" php artisan"
+            : "$sail artisan";
+        $npm = $testing
+            ? "$sail exec -T \"laravel.test\" npm"
+            : "$sail npm";
 
         $dependencies = $this->composerPackages->resolveFor($form);
 
