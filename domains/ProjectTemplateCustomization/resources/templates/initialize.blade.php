@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 @php
     /** @var \Domains\PostDownload\PostDownloadTaskGroup[] $groups */
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
