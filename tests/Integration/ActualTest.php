@@ -56,7 +56,6 @@ class ActualTest extends TestCase
             cwd: $cwd,
             timeout: 600, // 10 minutes should be enough
         );
-        $process->setTty(true);
         $process->enableOutput();
 
         $process->start();
