@@ -7,7 +7,7 @@ use Domains\Laravel\ComposerPackages\Packages\CashierPaddle;
 
 class CashierPaddleDriver extends CashierDriver
 {
-    function package(): FirstPartyPackage
+    public function package(): FirstPartyPackage
     {
         return new CashierPaddle();
     }

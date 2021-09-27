@@ -1,24 +1,22 @@
 <?php
 
-
 namespace Domains\Laravel\Sail;
-
 
 class Mailhog extends SailConfigurationOption
 {
     const REPOSITORY_KEY = 'mailhog';
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Mailhog';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'Intercept and preview your emails locally.';
     }

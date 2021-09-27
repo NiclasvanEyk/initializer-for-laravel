@@ -14,11 +14,12 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
     public function __construct(
         private Collection $sailServices,
         private string $phpVersion,
-    ) { }
+    ) {
+    }
 
     public function title(): string
     {
-        return "Install dependencies and set up Laravel Sail";
+        return 'Install dependencies and set up Laravel Sail';
     }
 
     public function tasks(): array
@@ -60,7 +61,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
         return join(' && ', [
             'composer install --ignore-platform-reqs',
             "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
-            "php artisan key:generate --ansi",
+            'php artisan key:generate --ansi',
             "php artisan sail:install --with={$this->sailServices()}",
         ]);
     }

@@ -11,10 +11,11 @@ class Package
         public string $name,
         public string $version,
         public PackageDist $dist,
-    ) { }
+    ) {
+    }
 
     /**
-     * @param array<string, mixed> $package
+     * @param  array<string, mixed>  $package
      */
     public static function fromResponse(array $package): self
     {

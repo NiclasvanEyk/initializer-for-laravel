@@ -6,22 +6,22 @@ use Domains\Composer\ComposerDependency;
 
 class AwsSdk extends ComposerDependency
 {
-    function id(): string
+    public function id(): string
     {
         return 'aws-sdk';
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return 'aws/aws-sdk-php';
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Amazon Web Services PHP SDK';
     }
 
-    function description(): string
+    public function description(): string
     {
         return '';
     }

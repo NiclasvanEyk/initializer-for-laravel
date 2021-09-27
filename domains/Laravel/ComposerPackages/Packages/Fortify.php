@@ -11,13 +11,13 @@ class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructi
 {
     const REPOSITORY_KEY = 'fortify';
 
-    function description(): string
+    public function description(): string
     {
         return 'A backend-only implementation for Laravel\'s authentication '
-             . 'features. Allows you to build your own custom '
-             . 'user interface for authentication, without reimplementing '
-             . 'all the backend functionality. Not needed if you chose Breeze '
-             . 'or Jetstream as your starter kit.';
+             .'features. Allows you to build your own custom '
+             .'user interface for authentication, without reimplementing '
+             .'all the backend functionality. Not needed if you chose Breeze '
+             .'or Jetstream as your starter kit.';
     }
 
     /**

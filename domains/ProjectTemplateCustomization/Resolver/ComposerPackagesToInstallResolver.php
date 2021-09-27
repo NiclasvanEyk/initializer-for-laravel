@@ -84,9 +84,11 @@ class ComposerPackagesToInstallResolver
     /** @return array<ComposerDependency> */
     public function forCache(Cache $cache): array
     {
-        if ($cache->driver === null) return [];
+        if ($cache->driver === null) {
+            return [];
+        }
 
-        return match($cache->driver::class) {
+        return match ($cache->driver::class) {
             RedisCacheDriver::class => [
                 new InlineComposerDependency('predis/predis'),
             ],
@@ -102,9 +104,9 @@ class ComposerPackagesToInstallResolver
 
         if ($queue->driver instanceof RedisQueueDriver) {
             $packages[] = new InlineComposerDependency('predis/predis');
-        } else if ($queue->driver instanceof SqsQueueDriver) {
+        } elseif ($queue->driver instanceof SqsQueueDriver) {
             $packages[] = new AwsSdk();
-        } else if ($queue->driver instanceof Queue\BeanstalkdQueueDriver) {
+        } elseif ($queue->driver instanceof Queue\BeanstalkdQueueDriver) {
             $packages[] = new InlineComposerDependency('pda/pheanstalk');
         }
 
@@ -127,7 +129,7 @@ class ComposerPackagesToInstallResolver
         if ($search->driver instanceof MeiliSearchScoutDriver) {
             $packages[] = new InlineComposerDependency('meilisearch/meilisearch-php');
             $packages[] = new InlineComposerDependency('http-interop/http-factory-guzzle');
-        } else if ($search->driver instanceof AlgoliaScoutDriver) {
+        } elseif ($search->driver instanceof AlgoliaScoutDriver) {
             $packages[] = new AlgoliaSearch();
         }
 

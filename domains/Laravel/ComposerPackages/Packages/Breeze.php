@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Domains\Laravel\ComposerPackages\Packages;
-
 
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
@@ -15,15 +13,16 @@ class Breeze extends FirstPartyPackage implements ProvidesInstallationInstructio
     public function __construct(
         private BreezeFrontend $frontend,
         private bool $usesPest = false,
-    ) { }
+    ) {
+    }
 
     const REPOSITORY_KEY = 'breeze';
 
-    function description(): string
+    public function description(): string
     {
         return 'A minimal, simple implementation of all of Laravel\'s '
-            . 'authentication features, including login, registration, '
-            . 'password reset, email verification, and password confirmation.';
+            .'authentication features, including login, registration, '
+            .'password reset, email verification, and password confirmation.';
     }
 
     public function href(): string
@@ -39,12 +38,12 @@ class Breeze extends FirstPartyPackage implements ProvidesInstallationInstructio
                 $install = "$artisan breeze:install";
 
                 if ($this->usesPest) {
-                    $install .= " --pest";
+                    $install .= ' --pest';
                 }
 
                 $install .= " $this->frontend";
 
                 return [$install];
-        });
+            });
     }
 }

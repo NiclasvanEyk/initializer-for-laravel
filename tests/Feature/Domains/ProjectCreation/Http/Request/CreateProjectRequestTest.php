@@ -2,23 +2,21 @@
 
 namespace Tests\Feature\Domains\ProjectCreation\Http\Request;
 
-use Domains\CreateProjectForm\Http\Request\{
-    CreateProjectRequest,
-    CreateProjectRequest\CreateProjectRequestParameter as P,
-};
-use Domains\CreateProjectForm\Sections\{
-    Cache\CacheOption,
-    Cache\RedisCacheDriver,
-    Cashier\CashierDriverOption,
-    Cashier\CashierStripeDriver,
-    Database\DatabaseOption,
-    Metadata\PhpVersion,
-    Queue\QueueDriverOption,
-    Scout\MeiliSearchScoutDriver,
-    Scout\ScoutDriverOption
-};
+use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
+use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
+use Domains\CreateProjectForm\Sections\Cache\CacheOption;
+use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
+use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
+use Domains\CreateProjectForm\Sections\Cashier\CashierStripeDriver;
+use Domains\CreateProjectForm\Sections\Database\DatabaseOption;
+use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
+use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
 use Domains\Laravel\Sail\MySQLDatabase;
-use Domains\Laravel\StarterKit\{Breeze, BreezeFrontend, StarterKit};
+use Domains\Laravel\StarterKit\Breeze;
+use Domains\Laravel\StarterKit\BreezeFrontend;
+use Domains\Laravel\StarterKit\StarterKit;
 use Illuminate\Support\Facades\Validator;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;

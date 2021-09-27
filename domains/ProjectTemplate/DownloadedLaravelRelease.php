@@ -14,5 +14,6 @@ class DownloadedLaravelRelease
     public function __construct(
         public Package $package,
         public ZipFile $archive,
-    ) { }
+    ) {
+    }
 }

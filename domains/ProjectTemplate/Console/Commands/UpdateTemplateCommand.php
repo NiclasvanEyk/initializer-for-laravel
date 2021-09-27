@@ -19,6 +19,7 @@ class UpdateTemplateCommand extends Command
 
         if ($templateStorage->currentVersion() === $latestRelease->version) {
             $this->info("$latestRelease->version is still the latest release!");
+
             return;
         }
 

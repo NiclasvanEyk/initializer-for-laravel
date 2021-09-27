@@ -7,7 +7,7 @@ use Domains\Laravel\ComposerPackages\Packages\CashierStripe;
 
 class CashierStripeDriver extends CashierDriver
 {
-    function package(): FirstPartyPackage
+    public function package(): FirstPartyPackage
     {
         return new CashierStripe();
     }

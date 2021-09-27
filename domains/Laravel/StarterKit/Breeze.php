@@ -13,7 +13,7 @@ class Breeze extends StarterKit
         parent::__construct(StarterKit::BREEZE);
     }
 
-    function composerPackage(): ?ComposerDependency
+    public function composerPackage(): ?ComposerDependency
     {
         return new \Domains\Laravel\ComposerPackages\Packages\Breeze(
             frontend: $this->frontend,

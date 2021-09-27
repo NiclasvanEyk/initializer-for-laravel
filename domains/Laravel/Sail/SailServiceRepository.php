@@ -31,7 +31,7 @@ class SailServiceRepository
     }
 
     /**
-     * @param string ...$ids
+     * @param  string  ...$ids
      * @return list<SailConfigurationOption>
      */
     public function resolveAll(string ...$ids): array

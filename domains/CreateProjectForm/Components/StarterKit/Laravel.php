@@ -10,7 +10,9 @@ class Laravel extends Component
     public string $id = StarterKit::LARAVEL;
     public string $heading = 'Laravel';
 
-    public function __construct(public string $model) { }
+    public function __construct(public string $model)
+    {
+    }
 
     public function render()
     {

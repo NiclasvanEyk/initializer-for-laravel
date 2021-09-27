@@ -14,7 +14,7 @@ class Str
 
         return \Illuminate\Support\Str::of($lines)
             ->explode($eol)
-            ->map(fn (string $line) => $indent . $line)
+            ->map(fn (string $line) => $indent.$line)
             ->join($eol);
     }
 }

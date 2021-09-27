@@ -11,10 +11,10 @@ class Dusk extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
     const REPOSITORY_KEY = 'dusk';
 
-    function description(): string
+    public function description(): string
     {
         return 'An expressive, easy-to-use browser automation and testing API.'
-            . ' Includes a Sail service for Selenium.';
+            .' Includes a Sail service for Selenium.';
     }
 
     public function isDevDependency(): bool

@@ -7,7 +7,7 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 interface ProvidesInstallationInstructions
 {
     /**
-     * @param string $artisan Path to the artisan binary
+     * @param  string  $artisan  Path to the artisan binary
      */
     public function installationInstructions(string $artisan): PostDownloadTaskGroup;
 }

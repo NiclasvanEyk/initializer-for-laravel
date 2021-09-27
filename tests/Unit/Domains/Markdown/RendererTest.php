@@ -80,9 +80,9 @@ class RendererTest extends TestCase
      */
     public function it_renders_code_blocks(): void
     {
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
         ```php
-        \$foo = "bar";
+        $foo = "bar";
         ```
         EXPECTED;
 
@@ -107,7 +107,7 @@ class RendererTest extends TestCase
      */
     public function it_renders_lists(): void
     {
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
         - one
         - two
         - three

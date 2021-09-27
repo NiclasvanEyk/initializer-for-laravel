@@ -12,7 +12,7 @@ class Laravel extends StarterKit
         parent::__construct(StarterKit::LARAVEL);
     }
 
-    function composerPackage(): ?ComposerDependency
+    public function composerPackage(): ?ComposerDependency
     {
         return null;
     }

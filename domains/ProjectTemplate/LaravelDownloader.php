@@ -15,7 +15,8 @@ class LaravelDownloader
 {
     public function __construct(
         private PackagistApiClient $packagistApiClient,
-    ) { }
+    ) {
+    }
 
     /**
      * @return Package[]

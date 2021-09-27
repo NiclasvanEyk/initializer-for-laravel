@@ -8,5 +8,6 @@ class DevelopmentTools
         public bool $usesTelescope,
         public bool $usesMailhog,
         public bool $usesEnvoy,
-    ) { }
+    ) {
+    }
 }

@@ -12,20 +12,20 @@ class CashierPaddle extends FirstPartyPackage implements ProvidesInstallationIns
 {
     const REPOSITORY_KEY = 'cashier-paddle';
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Paddle';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'An expressive, fluent interface to Paddle\'s subscription '
-            . 'billing services.';
+            .'billing services.';
     }
 
     public function href(): string

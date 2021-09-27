@@ -2,6 +2,7 @@
 
 namespace Domains\Laravel\ComposerPackages;
 
+use function collect;
 use Domains\Laravel\ComposerPackages\Packages\Breeze;
 use Domains\Laravel\ComposerPackages\Packages\CashierPaddle;
 use Domains\Laravel\ComposerPackages\Packages\CashierStripe;
@@ -15,7 +16,6 @@ use Domains\Laravel\ComposerPackages\Packages\Sanctum;
 use Domains\Laravel\ComposerPackages\Packages\Scout;
 use Domains\Laravel\ComposerPackages\Packages\Socialite;
 use Domains\Laravel\ComposerPackages\Packages\Telescope;
-use function collect;
 
 class FirstPartyDependencyRepository
 {
@@ -39,7 +39,7 @@ class FirstPartyDependencyRepository
     ];
 
     /**
-     * @param string ...$ids
+     * @param  string  ...$ids
      * @return list<FirstPartyPackage>
      */
     public function resolveAll(string ...$ids): array

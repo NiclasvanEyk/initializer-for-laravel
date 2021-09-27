@@ -10,12 +10,11 @@ class Jetstream extends StarterKit
         public JetstreamFrontend $frontend,
         public bool $usesPest,
         public bool $usesTeams,
-    )
-    {
+    ) {
         parent::__construct(StarterKit::JETSTREAM);
     }
 
-    function composerPackage(): ?ComposerDependency
+    public function composerPackage(): ?ComposerDependency
     {
         return new \Domains\Laravel\ComposerPackages\Packages\Jetstream(
             usesTeams: $this->usesTeams,

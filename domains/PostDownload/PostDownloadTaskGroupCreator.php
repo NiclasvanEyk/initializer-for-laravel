@@ -16,7 +16,8 @@ class PostDownloadTaskGroupCreator
     public function __construct(
         private ComposerPackagesToInstallResolver $composerPackages,
         private SailServiceResolver $sailServices,
-    ) { }
+    ) {
+    }
 
     /**
      * @return PostDownloadTaskGroup[]
@@ -26,7 +27,7 @@ class PostDownloadTaskGroupCreator
         // When testing we need to pass the -T flag to docker-compose,
         // as it seemst that GH Actions does not support TTYs yet.
         $testing = config('app.env') === 'testing';
-        $sail = "./vendor/bin/sail";
+        $sail = './vendor/bin/sail';
         $artisan = $testing
             ? "$sail exec -T -u sail \"laravel.test\" php artisan"
             : "$sail artisan";

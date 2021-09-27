@@ -12,25 +12,25 @@ class CashierStripe extends FirstPartyPackage implements ProvidesInstallationIns
 {
     const REPOSITORY_KEY = 'cashier-stripe';
 
-    function id(): string
+    public function id(): string
     {
         return self::REPOSITORY_KEY;
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return 'laravel/cashier';
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Stripe';
     }
 
-    function description(): string
+    public function description(): string
     {
         return 'An expressive, fluent interface to Stripe\'s subscription '
-            . 'billing services.';
+            .'billing services.';
     }
 
     public function href(): string

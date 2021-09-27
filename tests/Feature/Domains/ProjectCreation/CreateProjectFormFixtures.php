@@ -43,8 +43,8 @@ class CreateProjectFormFixtures
             /** @see Authentication */
             P::STARTER => StarterKit::BREEZE,
             // Does not make sense here, we use breeze
-//            P::USES_JETSTREAM_TEAMS => '',
-//            P::JETSTREAM_FRONTEND => '',
+            //            P::USES_JETSTREAM_TEAMS => '',
+            //            P::JETSTREAM_FRONTEND => '',
             P::BREEZE_FRONTEND => BreezeFrontend::BLADE,
             P::USES_FORTIFY => true,
             P::USES_PASSPORT => true,
@@ -84,18 +84,17 @@ class CreateProjectFormFixtures
     }
 
     public static function allOptionsEnabled(
-        ?Metadata         $metadata = null,
-        ?Authentication   $authentication = null,
-        ?Database         $database = null,
-        ?Cache            $cache = null,
-        ?Queue            $queue = null,
-        ?Search           $search = null,
+        ?Metadata $metadata = null,
+        ?Authentication $authentication = null,
+        ?Database $database = null,
+        ?Cache $cache = null,
+        ?Queue $queue = null,
+        ?Search $search = null,
         ?DevelopmentTools $developmentTools = null,
-        ?Testing          $testing = null,
-        ?Payment          $payment = null,
-        ?Storage          $storage = null,
-    ): CreateProjectForm
-    {
+        ?Testing $testing = null,
+        ?Payment $payment = null,
+        ?Storage $storage = null,
+    ): CreateProjectForm {
         return new CreateProjectForm(
             $metadata ?? self::metadata(),
             $authentication ?? self::authentication(),
@@ -113,9 +112,9 @@ class CreateProjectFormFixtures
     public static function metadata(): Metadata
     {
         return new Metadata(
-            vendorName: "foo",
-            projectName: "bar",
-            description: "", phpVersion: Metadata\PhpVersion::v8_0,
+            vendorName: 'foo',
+            projectName: 'bar',
+            description: '', phpVersion: Metadata\PhpVersion::v8_0,
         );
     }
 

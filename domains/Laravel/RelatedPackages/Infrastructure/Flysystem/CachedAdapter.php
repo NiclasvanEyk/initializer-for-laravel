@@ -6,22 +6,22 @@ use Domains\Composer\ComposerDependency;
 
 class CachedAdapter extends ComposerDependency
 {
-    function id(): string
+    public function id(): string
     {
         return 'flysystem-cached';
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         return 'league/flysystem-cached-adapter';
     }
 
-    function name(): string
+    public function name(): string
     {
         return 'Cached Adapter';
     }
 
-    function description(): string
+    public function description(): string
     {
         // Was inlined, to be able to use links
         return '';
@@ -34,8 +34,6 @@ class CachedAdapter extends ComposerDependency
 
     public function versionConstraint(): ?string
     {
-        return "~1.0";
+        return '~1.0';
     }
-
-
 }

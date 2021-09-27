@@ -24,7 +24,7 @@ class SailServiceResolver
 
         if ($form->cache->driver instanceof RedisCacheDriver) {
             $services[] = new Redis();
-        } else if ($form->cache->driver instanceof MemcacheDCacheDriver) {
+        } elseif ($form->cache->driver instanceof MemcacheDCacheDriver) {
             $services[] = new Memcached();
         }
 

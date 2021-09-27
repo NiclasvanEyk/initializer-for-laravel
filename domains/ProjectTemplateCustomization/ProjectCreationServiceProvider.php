@@ -11,7 +11,7 @@ class ProjectCreationServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/templates', 'template');
+        $this->loadViewsFrom(__DIR__.'/resources/templates', 'template');
 
         Blade::componentNamespace(
             Str::namespace(Banner::class),

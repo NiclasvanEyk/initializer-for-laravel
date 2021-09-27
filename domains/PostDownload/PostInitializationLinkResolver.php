@@ -16,7 +16,8 @@ class PostInitializationLinkResolver
     public function __construct(
         private SailServiceResolver $sailServiceResolver,
         private ComposerPackagesToInstallResolver $packagesToInstallResolver,
-    ) { }
+    ) {
+    }
 
     /**
      * @return PostInitializationLink[]

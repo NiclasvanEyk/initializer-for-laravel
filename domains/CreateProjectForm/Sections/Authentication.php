@@ -11,5 +11,6 @@ class Authentication
         public bool $usesFortify,
         public bool $usesPassport,
         public bool $usesSocialite,
-    ) { }
+    ) {
+    }
 }

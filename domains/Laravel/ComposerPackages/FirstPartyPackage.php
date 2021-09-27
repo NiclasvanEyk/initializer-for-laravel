@@ -2,18 +2,18 @@
 
 namespace Domains\Laravel\ComposerPackages;
 
+use function class_basename;
 use Domains\Composer\ComposerDependency;
 use Illuminate\Support\Str;
-use function class_basename;
 
 abstract class FirstPartyPackage extends ComposerDependency
 {
-    function id(): string
+    public function id(): string
     {
         return $this->packageId();
     }
 
-    function packageId(): string
+    public function packageId(): string
     {
         $package = defined('static::REPOSITORY_KEY')
             // @phpstan-ignore-next-line
@@ -23,12 +23,12 @@ abstract class FirstPartyPackage extends ComposerDependency
         return "laravel/$package";
     }
 
-    function packageName(): string
+    public function packageName(): string
     {
         return Str::lower(class_basename(static::class));
     }
 
-    function name(): string
+    public function name(): string
     {
         return Str::ucfirst($this->packageName());
     }
@@ -38,7 +38,8 @@ abstract class FirstPartyPackage extends ComposerDependency
         return self::laravelDocsHref($this->packageName());
     }
 
-    static function laravelDocsHref(string $path): string {
+    public static function laravelDocsHref(string $path): string
+    {
         return "https://laravel.com/docs/$path";
     }
 }
