@@ -4,6 +4,7 @@
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
 @endphp
 set -e;
+set -x;
 
 echo '';
 <x-shell::banner title="Initializer for Laravel">
