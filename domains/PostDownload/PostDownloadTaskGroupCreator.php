@@ -25,7 +25,7 @@ class PostDownloadTaskGroupCreator
     {
         $sail = "./vendor/bin/sail";
         $artisan = "$sail exec -T -u sail \"laravel.test\" php artisan";
-        $npm = "$sail exec -T -u sail \"laravel.test\" npm";
+        $npm = "$sail exec -T \"laravel.test\" npm";
 
         $dependencies = $this->composerPackages->resolveFor($form);
 
