@@ -19,7 +19,7 @@ class PostInitializationLinkResolver
     ) { }
 
     /**
-     * @return list<PostInitializationLink>
+     * @return PostInitializationLink[]
      */
     public function links(CreateProjectForm $form): array
     {

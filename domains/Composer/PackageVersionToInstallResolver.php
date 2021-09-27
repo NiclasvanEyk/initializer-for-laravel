@@ -10,6 +10,7 @@ use Composer\Repository\CompositeRepository;
 use Composer\Repository\PlatformRepository;
 use Composer\Repository\RepositoryFactory;
 use Composer\Repository\RepositorySet;
+use Exception;
 use Illuminate\Support\Collection;
 
 class PackageVersionToInstallResolver
@@ -29,6 +30,13 @@ class PackageVersionToInstallResolver
                 packageName: $package->packageId(),
                 targetPackageVersion: $package->versionConstraint(),
             );
+
+            if ($candidate === false) {
+                throw new Exception("Could find an installation candidate for package!", [
+                    'package' => $package->packageId(),
+                ]);
+            }
+
             $version = $versionSelector->findRecommendedRequireVersion($candidate);
 
             return new PackageWithResolvedVersion($package, $version);

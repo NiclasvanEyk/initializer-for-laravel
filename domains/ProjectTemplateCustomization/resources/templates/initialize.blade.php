@@ -31,8 +31,13 @@ echo {!! escapeshellcmd(is_string($task) ? $task : $task->shell()) !!}
 @endforeach
 
 @endforeach
-echo "Finished setup, removing {{ $initializationScript }}!";
+echo "Finished setup, removing {{ $initializationScript }} and TODOs in README.md!";
 rm "./{{ $initializationScript }}";
+
+# Remove TODO in readme
+TODOS_BEGIN=$(grep -Fn "Initializer for Laravel Todos START" README.md | cut -d ":" -f 1)
+TODOS_END=$(grep -Fn "Initializer for Laravel Todos END" README.md | cut -d ":" -f 1)
+sed $TODOS_BEGIN,${TODOS_END}d README.md | tee README.md > /dev/null
 
 echo '';
 <x-shell::banner title="Done!">

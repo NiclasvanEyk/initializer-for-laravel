@@ -1,6 +1,9 @@
 <?php
 
-namespace Domains\PostDownload;
+namespace Domains\PostDownload\Tasks;
+
+use Domains\PostDownload\PostDownloadTask;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class StartSail implements PostDownloadTaskGroup, PostDownloadTask
 {

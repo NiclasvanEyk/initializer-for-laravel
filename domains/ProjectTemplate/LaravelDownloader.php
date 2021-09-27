@@ -63,7 +63,7 @@ class LaravelDownloader
             Str::uuid(),
         )));
 
-        $downloadedArchive->extractTo($temp->getPathPrefix());
+        $downloadedArchive->extractTo($temp->getPathPrefix() ?? '/');
         $folderName = $downloadedArchive->getListFiles()[0];
 
         return (new ZipFile())->addDirRecursive(

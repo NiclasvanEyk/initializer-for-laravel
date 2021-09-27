@@ -3,6 +3,11 @@
 namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
+use Domains\PostDownload\Tasks\MigrateDatabase;
+use Domains\PostDownload\Tasks\SetupFrontend;
+use Domains\PostDownload\Tasks\SetupPackages;
+use Domains\PostDownload\Tasks\SetupSail;
+use Domains\PostDownload\Tasks\StartSail;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
 use Domains\ProjectTemplateCustomization\Resolver\SailServiceResolver;
 

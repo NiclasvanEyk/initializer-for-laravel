@@ -1,6 +1,8 @@
 <?php
 
-namespace Domains\PostDownload;
+namespace Domains\PostDownload\Tasks;
+
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class MigrateDatabase implements PostDownloadTaskGroup
 {

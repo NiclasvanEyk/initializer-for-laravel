@@ -7,6 +7,7 @@ use Domains\Markdown\Renderer;
 use Domains\PostDownload\PostDownloadTask;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroupCreator;
+use Domains\PostDownload\PostInitializationLinkResolver;
 use Domains\ProjectTemplateCustomization\Support\Str;
 use Illuminate\Contracts\View\Factory;
 
@@ -22,6 +23,7 @@ class ReadmeGenerator
         private PostDownloadTaskGroupCreator $postDownloadTaskGroupCreator,
         private Renderer $markdown,
         private InitializationScriptGenerator $initializationScriptGenerator,
+        private PostInitializationLinkResolver $postInitializationLinkResolver,
     ) { }
 
     public function render(CreateProjectForm $form): string {
@@ -33,6 +35,7 @@ class ReadmeGenerator
             'todos' => $this->renderTodos(
                 $this->postDownloadTaskGroupCreator->fromForm($form),
             ),
+            'links' => $this->postInitializationLinkResolver->links($form),
             'initializerUrl' => route('root'),
             'initializationScript' => $this->initializationScriptGenerator->scriptName(),
             'markdown' => $this->markdown,

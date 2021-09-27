@@ -1,10 +1,15 @@
-@php /** @var \Domains\Markdown\Renderer $markdown */ @endphp
+@php
+    /** @var \Domains\Markdown\Renderer $markdown */
+    /** @var \Domains\PostDownload\PostInitializationLink[] $links */
+@endphp
+
 {{ $markdown->h1($title) }}
 
 @if(!empty($description))
 {{$description}}
 
 @endif
+<!-- Initializer for Laravel Todos START  -->
 {{ $markdown->h2('TODO') }}
 
 This project was generated using
@@ -21,7 +26,7 @@ the project setup run the following in your terminal:
 {!! $todos !!}
 
 </details>
-
+<!-- Initializer for Laravel Todos END  -->
 {{ $markdown->h2('Local Development') }}
 
 This project uses
@@ -29,6 +34,12 @@ This project uses
 its local development stack. For more detailed usage instructions take a look at
 the
 {{ $markdown->link('official documentation','https://laravel.com/docs/sail') }}.
+
+{{ $markdown->h3('Links') }}
+
+@foreach($links as $link)
+{{ $markdown->listItem($markdown->bold($link->title) . ' ' . $link->href) }}
+@endforeach
 
 {{ $markdown->h3('Start the development server') }}
 

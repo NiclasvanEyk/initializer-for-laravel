@@ -1,9 +1,11 @@
 <?php
 
-namespace Domains\PostDownload;
+namespace Domains\PostDownload\Tasks;
 
 use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\SailConfigurationOption;
+use Domains\PostDownload\PostDownloadTask;
+use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
