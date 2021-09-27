@@ -52,11 +52,10 @@ class ActualTest extends TestCase
     private function initialize(string $cwd): void
     {
         $process = new Process(
-            command: ["./initialize"],
+            command: ["./initialize", "--no-interaction"],
             cwd: $cwd,
             timeout: 600, // 10 minutes should be enough
         );
-        $process->setInput('yes');
         $process->enableOutput();
 
         $process->start();

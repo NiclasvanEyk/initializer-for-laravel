@@ -18,9 +18,10 @@ echo '';
 </x-shell::banner>
 echo '';
 
-read -r -p "Press any key to continue";
-
-echo '';
+if [[ $* == *--no-interaction* ]]
+    read -n 1 -s -r -p "Press any key to continue";
+    echo '';
+fi
 
 @foreach($groups as $group)
 echo '';
