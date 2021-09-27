@@ -4,6 +4,7 @@ namespace Tests\Integration;
 
 use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\ProjectTemplateCustomizer;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
@@ -36,7 +37,26 @@ class ActualTest extends TestCase
         $archive->extractTo($cwd);
         $this->initialize($cwd);
 
-        // TODO: Assertions
+        // Jetstream
+        $this->assertStringContainsString(
+            "Register",
+            Http::get('localhost')->body(),
+            "Jetstream does not seem to have been installed",
+        );
+
+        // Mailhog
+        $this->assertEquals(
+            200,
+            Http::get('localhost:8025')->status(),
+            "Mailhog does not seem to have been installed",
+        );
+
+        // Meilisearch
+        $this->assertEquals(
+            200,
+            Http::get('localhost:7700')->status(),
+            "MeiliSearch does not seem to have been installed",
+        );
     }
 
     protected function tearDown(): void
@@ -56,7 +76,6 @@ class ActualTest extends TestCase
             cwd: $cwd,
             timeout: 600, // 10 minutes should be enough
         );
-        $process->setInput('yes');
         $process->enableOutput();
 
         $process->start();

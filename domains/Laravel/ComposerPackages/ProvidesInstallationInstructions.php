@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\ComposerPackages;
 
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 interface ProvidesInstallationInstructions
 {

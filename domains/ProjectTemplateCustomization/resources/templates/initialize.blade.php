@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 @php
-    /** @var \Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup[] $groups */
-    /** @var \Domains\ProjectTemplateCustomization\PostDownload\PostInitializationLink[] $links */
+    /** @var \Domains\PostDownload\PostDownloadTaskGroup[] $groups */
+    /** @var \Domains\PostDownload\PostInitializationLink[] $links */
 @endphp
 set -e;
 
@@ -15,11 +15,15 @@ echo '';
 <x-shell::banner-line/>
 <x-shell::banner-line>\033[1mPlease make sure that Docker is running!\033[0m</x-shell::banner-line>
 </x-shell::banner>
-echo '';
 
-read -n 1 -s -r -p "Press any key to continue";
-
-echo '';
+if [ -t 1 ];
+then
+    echo '';
+    read -n 1 -s -r -p "Press any key to continue";
+    echo '';
+else
+    echo '';
+fi
 
 @foreach($groups as $group)
 echo '';
@@ -31,8 +35,13 @@ echo {!! escapeshellcmd(is_string($task) ? $task : $task->shell()) !!}
 @endforeach
 
 @endforeach
-echo "Finished setup, removing {{ $initializationScript }}!";
+echo "Finished setup, removing {{ $initializationScript }} and TODOs in README.md!";
 rm "./{{ $initializationScript }}";
+
+# Remove TODO in readme
+TODOS_BEGIN=$(grep -Fn "Initializer for Laravel Todos START" README.md | cut -d ":" -f 1)
+TODOS_END=$(grep -Fn "Initializer for Laravel Todos END" README.md | cut -d ":" -f 1)
+sed $TODOS_BEGIN,${TODOS_END}d README.md | tee README.md > /dev/null
 
 echo '';
 <x-shell::banner title="Done!">

@@ -6,8 +6,8 @@ namespace Domains\Laravel\ComposerPackages\Packages;
 
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
-use Domains\ProjectTemplateCustomization\PostDownload\ClosurePostInstallTaskGroup;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\ClosurePostInstallTaskGroup;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class Horizon extends FirstPartyPackage implements ProvidesInstallationInstructions
 {

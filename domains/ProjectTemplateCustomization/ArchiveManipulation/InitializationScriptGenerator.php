@@ -3,8 +3,8 @@
 namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
 
 use Domains\CreateProjectForm\CreateProjectForm;
-use Domains\ProjectTemplateCustomization\PostDownload\PostInitializationLinkResolver;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroupCreator;
+use Domains\PostDownload\PostDownloadTaskGroupCreator;
+use Domains\PostDownload\PostInitializationLinkResolver;
 use Illuminate\Contracts\View\Factory;
 
 class InitializationScriptGenerator

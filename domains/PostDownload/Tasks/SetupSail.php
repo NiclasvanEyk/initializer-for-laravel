@@ -1,10 +1,11 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload\Tasks;
 
-use Dflydev\DotAccessData\Data;
 use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\SailConfigurationOption;
+use Domains\PostDownload\PostDownloadTask;
+use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -27,27 +28,40 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
 
     public function shell(): string
     {
-        $sailServices = $this->sailServices
+        return <<<SHELL
+        docker run --rm \
+            -v "$(pwd)":/opt \
+            -w /opt \
+            {$this->phpContainer()} \
+            bash -c "{$this->composerInstallCommand()}"
+        SHELL;
+    }
+
+    private function phpContainer(): string
+    {
+        $phpContainerVersion = Str::of($this->phpVersion)->remove('.');
+
+        return "laravelsail/php$phpContainerVersion-composer:latest";
+    }
+
+    private function sailServices(): string
+    {
+        return $this->sailServices
             ->map(function (SailConfigurationOption|DatabaseOption $option) {
                 return $option instanceof DatabaseOption
                     ? $option->sailId()
                     : $option->id();
             })
             ->join(',');
-        $phpContainerVersion = Str::of($this->phpVersion)->remove('.');
-        $bashCommand = join(' && ', [
-            'composer install',
+    }
+
+    private function composerInstallCommand(): string
+    {
+        return join(' && ', [
+            'composer install --ignore-platform-reqs',
             "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
             "php artisan key:generate --ansi",
-            "php artisan sail:install --with=$sailServices",
+            "php artisan sail:install --with={$this->sailServices()}",
         ]);
-
-        return <<<SHELL
-        docker run --rm \
-            -v "$(pwd)":/opt \
-            -w /opt \
-            laravelsail/php$phpContainerVersion-composer:latest \
-            bash -c "$bashCommand"
-        SHELL;
     }
 }

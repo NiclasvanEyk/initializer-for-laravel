@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\Laravel\ComposerPackages\Packages\Horizon;
@@ -19,7 +19,7 @@ class PostInitializationLinkResolver
     ) { }
 
     /**
-     * @return list<PostInitializationLink>
+     * @return PostInitializationLink[]
      */
     public function links(CreateProjectForm $form): array
     {

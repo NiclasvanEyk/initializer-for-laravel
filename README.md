@@ -5,8 +5,8 @@ Initializer for Laravel takes a visual, approach to setting up a new Laravel pro
 ## Features
 
 - Overview of all first-party and directly related components of the Laravel ecosystem
-- Create **sharable links** in order to re-use your configuration for your next project
-- **Automatic installation** - no need to manually execute e.g. `php artisan scout:install`
+- Create sharable links in order to re-use your configuration for your next project
+- Automatic installation - no need to manually execute e.g. `php artisan scout:install`
 
 ## Contributing
 

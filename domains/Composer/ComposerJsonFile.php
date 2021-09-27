@@ -40,7 +40,7 @@ final class ComposerJsonFile
         );
 
         if ($encoded === false) {
-            throw new \Exception('Error while encoding composer.json!');
+            throw new \Exception('Error while encoding composer.json: ' . json_last_error_msg());
         }
 
         return $encoded;
@@ -77,6 +77,13 @@ final class ComposerJsonFile
     public function setPhpVersion(string $version): static
     {
         Arr::set($this->contents, 'require.php', "^$version");
+
+        return $this;
+    }
+
+    public function removeScript(string $script): static
+    {
+        Arr::forget($this->contents, "scripts.$script");
 
         return $this;
     }

@@ -1,6 +1,9 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload\Tasks;
+
+use Domains\PostDownload\PostDownloadTask;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class StartSail implements PostDownloadTaskGroup, PostDownloadTask
 {
@@ -18,6 +21,6 @@ class StartSail implements PostDownloadTaskGroup, PostDownloadTask
 
     public function shell(): string
     {
-        return "{$this->sail} up -d";
+        return "$this->sail up -d";
     }
 }

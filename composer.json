@@ -1,7 +1,7 @@
 {
     "name": "niclasvaneyk/initializr-for-laravel",
     "type": "project",
-    "description": "",
+    "description": "A quickstart generator for Laravel projects.",
     "keywords": ["laravel"],
     "license": "MIT",
     "require": {

@@ -4,8 +4,8 @@ namespace Domains\Laravel\ComposerPackages\Packages;
 
 use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
-use Domains\ProjectTemplateCustomization\PostDownload\ClosurePostInstallTaskGroup;
-use Domains\ProjectTemplateCustomization\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\ClosurePostInstallTaskGroup;
+use Domains\PostDownload\PostDownloadTaskGroup;
 
 class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
@@ -28,7 +28,7 @@ class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructi
         return new ClosurePostInstallTaskGroup(
             'Setup Laravel Fortify',
             fn () => [
-                "$artisan vendor:publish --provider=\"Laravel\Fortify\FortifyServiceProvider\"",
+                "$artisan vendor:publish --no--interaction --provider=\"Laravel\Fortify\FortifyServiceProvider\"",
                 "$artisan migrate",
             ],
         );

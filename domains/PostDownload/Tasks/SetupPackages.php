@@ -1,8 +1,9 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\PostDownload;
+namespace Domains\PostDownload\Tasks;
 
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
+use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
 
 /**
