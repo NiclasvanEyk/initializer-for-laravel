@@ -24,8 +24,8 @@ class PostDownloadTaskGroupCreator
     public function fromForm(CreateProjectForm $form): array
     {
         $sail = "./vendor/bin/sail";
-        $artisan = "docker-compose exec -T -u sail \"laravel.test\" php artisan";
-        $npm = "docker-compose exec -T -u sail \"laravel.test\" npm";
+        $artisan = "$sail exec -T -u sail \"laravel.test\" php artisan";
+        $npm = "$sail exec -T -u sail \"laravel.test\" npm";
 
         $dependencies = $this->composerPackages->resolveFor($form);
 
