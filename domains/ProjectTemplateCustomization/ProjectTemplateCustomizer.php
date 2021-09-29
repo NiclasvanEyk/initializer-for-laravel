@@ -14,8 +14,8 @@ use PhpZip\ZipFile;
 class ProjectTemplateCustomizer
 {
     public function __construct(
-        private TemplateStorage               $template,
-        private ArchiveManipulatorResolver    $archiveManipulatorResolver,
+        private TemplateStorage $template,
+        private ArchiveManipulatorResolver $archiveManipulatorResolver,
     ) {
     }
 

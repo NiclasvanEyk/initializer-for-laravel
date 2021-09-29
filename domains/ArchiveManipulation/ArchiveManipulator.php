@@ -37,8 +37,8 @@ interface ArchiveManipulator
      * Mutate the contents of {@link archive} by utilizing
      * <pre>$archive->addFromString</pre> and similar methods.
      *
-     * @param ZipFile $archive
-     * @param CreateProjectForm $form
+     * @param  ZipFile  $archive
+     * @param  CreateProjectForm  $form
      */
     public function manipulate(ZipFile $archive, CreateProjectForm $form): void;
 }
