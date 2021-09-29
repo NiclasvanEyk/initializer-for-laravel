@@ -6,9 +6,6 @@ use Illuminate\Support\Arr;
 
 /**
  * Can be used to mutate the contents of a `composer.json` file.
- *
- * Make sure to call {@link ComposerJsonFile::flush()} to actually write the
- * changes to disk, otherwise it is only changed in memory!
  */
 final class ComposerJsonFile
 {

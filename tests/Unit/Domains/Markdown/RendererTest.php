@@ -2,19 +2,19 @@
 
 namespace Tests\Unit\Domains\Markdown;
 
-use Domains\Markdown\Renderer;
+use Domains\Readme\MarkdownRenderer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Domains\Markdown\Renderer
+ * @coversDefaultClass \Domains\Readme\MarkdownRenderer
  */
 class RendererTest extends TestCase
 {
-    private Renderer $renderer;
+    private MarkdownRenderer $renderer;
 
     protected function setUp(): void
     {
-        $this->renderer = new Renderer();
+        $this->renderer = new MarkdownRenderer();
     }
 
     /**

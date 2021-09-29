@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
+namespace Domains\ConfigAdjustment;
 
 use Domains\CreateProjectForm\Sections\Cache\CacheDriver;
 use Domains\CreateProjectForm\Sections\Cache\CacheOption;
@@ -10,7 +10,7 @@ use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
 use Illuminate\Support\Str;
 use PhpZip\ZipFile;
 
-class CacheConfigurer
+class CacheAdjuster
 {
     /** @var array<string, string> */
     private array $cacheToServiceMap = [
@@ -40,7 +40,7 @@ class CacheConfigurer
 
     private function adjustForRedis(ZipFile $archive): void
     {
-        $service = $this->cacheToServiceMap[CacheOption::REDIS];
+        $service = $this->cacheToServiceMap[CacheAlias::REDIS];
         $exampleEnvContents = $archive->getEntryContents('.env.example');
 
         $archive->addFromString('.env.example', Str::replaceFirst(

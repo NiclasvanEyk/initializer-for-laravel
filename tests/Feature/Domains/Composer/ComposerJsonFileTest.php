@@ -3,7 +3,6 @@
 namespace Tests\Feature\Domains\Composer;
 
 use Domains\Composer\ComposerJsonFile;
-use Domains\Composer\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;

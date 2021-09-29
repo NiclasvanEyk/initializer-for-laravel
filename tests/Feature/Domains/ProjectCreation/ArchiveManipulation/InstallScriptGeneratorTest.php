@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Domains\ProjectCreation\ArchiveManipulation;
 
-use Domains\ProjectTemplateCustomization\ArchiveManipulation\InitializationScriptGenerator;
+use Domains\InitializationScript\InitializationScriptGenerator;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\Support;
+namespace Domains\Readme\Support;
 
 class Str
 {

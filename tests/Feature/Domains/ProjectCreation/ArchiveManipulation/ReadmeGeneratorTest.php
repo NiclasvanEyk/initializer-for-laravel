@@ -3,12 +3,12 @@
 namespace Tests\Feature\Domains\ProjectCreation\ArchiveManipulation;
 
 use Domains\CreateProjectForm\Sections\Metadata;
-use Domains\ProjectTemplateCustomization\ArchiveManipulation\ReadmeGenerator;
+use Domains\Readme\ReadmeGenerator;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 
 /**
- * @covers \Domains\ProjectTemplateCustomization\ArchiveManipulation\ReadmeGenerator
+ * @covers \Domains\Readme\ReadmeGenerator
  */
 class ReadmeGeneratorTest extends TestCase
 {

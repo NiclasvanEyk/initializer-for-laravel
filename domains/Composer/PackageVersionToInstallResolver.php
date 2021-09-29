@@ -13,6 +13,15 @@ use Composer\Repository\RepositorySet;
 use Exception;
 use Illuminate\Support\Collection;
 
+/**
+ * Determines the current versions of composer packages should be installed.
+ *
+ * After source-diving Composer/Composer, it seems that the
+ * {@link VersionSelector} is used to determine the version when using
+ * `compsoser install` / `composer require`. This also enables constraining the
+ * version beforehand, e.g. if {@link ComposerDependency::versionConstraint()}
+ * is implemented.
+ */
 class PackageVersionToInstallResolver
 {
     private ?VersionSelector $versionSelector = null;

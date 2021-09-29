@@ -2,15 +2,15 @@
 
 namespace Tests\Feature\Domains\ProjectTemplateCustomization\ArchiveManipulation;
 
+use Domains\Composer\ProjectTemplateCustomization\ComposerJsonGenerator;
 use Domains\CreateProjectForm\Sections\Metadata;
-use Domains\ProjectTemplateCustomization\ArchiveManipulation\ComposerJsonGenerator;
 use Illuminate\Support\Arr;
 use Tests\Feature\Domains\Composer\ComposerJsonFixtures;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass \Domains\ProjectTemplateCustomization\ArchiveManipulation\ComposerJsonGenerator
+ * @coversDefaultClass \Domains\Composer\ProjectTemplateCustomization\ComposerJsonGenerator
  * @covers ComposerJsonGenerator::render()
  */
 class ComposerJsonGeneratorTest extends TestCase

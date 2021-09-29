@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
+namespace Domains\ConfigAdjustment;
 
 use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\MariaDatabase;
@@ -13,7 +13,7 @@ use PhpZip\ZipFile;
 /**
  * Adjusts project configuration according to the used database.
  */
-class DatabaseConfigurer
+class DatabaseAdjuster
 {
     /**
      * @var array<class-string, string>

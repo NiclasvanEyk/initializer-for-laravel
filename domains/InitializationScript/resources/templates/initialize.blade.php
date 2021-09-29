@@ -12,8 +12,6 @@ echo '';
 <x-shell::banner-line>chosen components into your fresh application. This might require</x-shell::banner-line>
 <x-shell::banner-line>downloading Docker containers or requiring packages via composer</x-shell::banner-line>
 <x-shell::banner-line>multiple times, so it can take a while to complete.</x-shell::banner-line>
-<x-shell::banner-line/>
-<x-shell::banner-line>\033[1mPlease make sure that Docker is running!\033[0m</x-shell::banner-line>
 </x-shell::banner>
 
 if [ -t 1 ];

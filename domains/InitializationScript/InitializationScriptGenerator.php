@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
+namespace Domains\InitializationScript;
 
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\PostDownload\PostDownloadTaskGroupCreator;

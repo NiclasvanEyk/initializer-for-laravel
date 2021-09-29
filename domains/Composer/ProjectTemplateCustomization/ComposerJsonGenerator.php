@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
+namespace Domains\Composer\ProjectTemplateCustomization;
 
 use Domains\Composer\ComposerJsonFile;
 use Domains\Composer\PackageVersionToInstallResolver;

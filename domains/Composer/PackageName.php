@@ -2,6 +2,9 @@
 
 namespace Domains\Composer;
 
+/**
+ * @see https://getcomposer.org/doc/04-schema.md#name
+ */
 class PackageName
 {
     /**

@@ -1,5 +1,5 @@
 @php
-    /** @var \Domains\Markdown\Renderer $markdown */
+    /** @var \Domains\Readme\MarkdownRenderer $markdown */
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
 @endphp
 

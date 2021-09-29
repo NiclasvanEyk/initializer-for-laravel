@@ -168,7 +168,10 @@ return [
          */
         \Domains\CreateProjectForm\CreateProjectFormServiceProvider::class,
         \Domains\ProjectTemplate\ProjectTemplateServiceProvider::class,
-        \Domains\ProjectTemplateCustomization\ProjectCreationServiceProvider::class,
+        \Domains\ConfigAdjustment\ConfigAdjustmentServiceProvider::class,
+        \Domains\InitializationScript\InitializationScriptServiceProvider::class,
+        \Domains\Readme\ReadmeServiceProvider::class,
+        \Domains\Composer\ComposerServiceProvider::class,
     ],
 
     /*

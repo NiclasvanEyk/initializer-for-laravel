@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\View\Components;
+namespace Domains\InitializationScript\View\Components;
 
 use Illuminate\View\Component;
 
@@ -13,11 +13,11 @@ class Banner extends Component
 
     public function render()
     {
-        return <<<'blade'
+        return <<<BLADE
         echo '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-        echo '┃ 🚀 \033[1m{{ $title }}\033[0m';
-        {{ $slot }}
+        echo '┃ 🚀 \033[1m{{ \$title }}\033[0m';
+        {{ \$slot }}
         echo '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-        blade;
+        BLADE;
     }
 }

@@ -1,15 +1,17 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\ArchiveManipulation;
+namespace Domains\Readme;
 
 use Domains\CreateProjectForm\CreateProjectForm;
-use Domains\Markdown\Renderer;
+use Domains\InitializationScript\InitializationScriptGenerator;
 use Domains\PostDownload\PostDownloadTask;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroupCreator;
 use Domains\PostDownload\PostInitializationLinkResolver;
-use Domains\ProjectTemplateCustomization\Support\Str;
+use Domains\Readme\Support\Str;
 use Illuminate\Contracts\View\Factory;
+use function collect;
+use function route;
 
 /**
  * Generates a nice README.md at the project root.
@@ -19,10 +21,10 @@ class ReadmeGenerator
     private string $template = 'template::README';
 
     public function __construct(
-        private Factory $view,
-        private PostDownloadTaskGroupCreator $postDownloadTaskGroupCreator,
-        private Renderer $markdown,
-        private InitializationScriptGenerator $initializationScriptGenerator,
+        private Factory                        $view,
+        private PostDownloadTaskGroupCreator   $postDownloadTaskGroupCreator,
+        private MarkdownRenderer               $markdown,
+        private InitializationScriptGenerator  $initializationScriptGenerator,
         private PostInitializationLinkResolver $postInitializationLinkResolver,
     ) {
     }

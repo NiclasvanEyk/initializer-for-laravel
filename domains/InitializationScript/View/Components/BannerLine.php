@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\ProjectTemplateCustomization\View\Components;
+namespace Domains\InitializationScript\View\Components;
 
 use Illuminate\View\Component;
 

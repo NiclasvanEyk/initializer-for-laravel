@@ -1,11 +1,13 @@
 <?php
 
-namespace Domains\Markdown;
+namespace Domains\Readme;
+
+use function collect;
 
 /**
  * A small utility to render small pieces of text in Markdown.
  */
-class Renderer
+class MarkdownRenderer
 {
     public function h1(string $text): string
     {
