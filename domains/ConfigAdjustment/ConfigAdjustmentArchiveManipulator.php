@@ -11,7 +11,8 @@ class ConfigAdjustmentArchiveManipulator implements ArchiveManipulator
     public function __construct(
         private CacheAdjuster $cache,
         private DatabaseAdjuster $database,
-    ) { }
+    ) {
+    }
 
     public function manipulate(ZipFile $archive, CreateProjectForm $form): void
     {
