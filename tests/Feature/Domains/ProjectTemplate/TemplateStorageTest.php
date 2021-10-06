@@ -18,11 +18,16 @@ class TemplateStorageTest extends TestCase
     private static DownloadedLaravelRelease $release862;
     private TemplateStorage $templateStorage;
 
-    public static function setUpBeforeClass(): void
+    private function release862(): DownloadedLaravelRelease
     {
-        self::createStaticApplication();
-        $downloader = (new LaravelDownloader(new PackagistApiClient()));
-        self::$release862 = $downloader->download(new Laravel862Package());
+        static $release86 = null;
+
+        if ($release86 === null) {
+            $downloader = $this->app->make(LaravelDownloader::class);
+            $release86 = $downloader->download(new Laravel862Package());
+        }
+
+        return $release86;
     }
 
     protected function setUp(): void
@@ -48,7 +53,7 @@ class TemplateStorageTest extends TestCase
      */
     public function it_does_exist_once_something_was_downloaded(): void
     {
-        $this->templateStorage->updateCurrentRelease(self::$release862);
+        $this->templateStorage->updateCurrentRelease($this->release862());
         $this->assertTrue($this->templateStorage->exists());
     }
 
@@ -68,7 +73,7 @@ class TemplateStorageTest extends TestCase
      */
     public function it_knows_the_latest_downloaded_version(): void
     {
-        $this->templateStorage->updateCurrentRelease(self::$release862);
+        $this->templateStorage->updateCurrentRelease($this->release862());
         $this->assertEquals('v8.6.2', $this->templateStorage->currentVersion());
     }
 
@@ -78,7 +83,7 @@ class TemplateStorageTest extends TestCase
      */
     public function it_can_return_the_latest_downloaded_archive(): void
     {
-        $this->templateStorage->updateCurrentRelease(self::$release862);
+        $this->templateStorage->updateCurrentRelease($this->release862());
         $downloaded = $this->templateStorage->currentArchive();
         $this->assertInstanceOf(ZipFile::class, $downloaded);
         $this->assertStringContainsString(

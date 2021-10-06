@@ -15,7 +15,7 @@ class PackagistApiClientTest extends TestCase
     /** @test */
     public function it_can_find_laravel(): void
     {
-        $client = new PackagistApiClient();
+        $client = $this->app->make(PackagistApiClient::class);
         $results = $client->packageReleases('laravel', 'laravel');
 
         $this->assertTrue(count($results) > 100);
