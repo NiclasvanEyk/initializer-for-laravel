@@ -5,7 +5,6 @@ namespace Domains\ProjectTemplate;
 use Domains\Packagist\Models\Package;
 use Domains\Packagist\PackagistApiClient;
 use Domains\Support\FileSystem\Path;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use League\Flysystem\Adapter\Local;
@@ -36,9 +35,9 @@ class LaravelDownloader
 
     public function download(Package $package): DownloadedLaravelRelease
     {
-        $response = Http::get($package->dist->url)->body();
-
         Log::info("Downloading $package->version from {$package->dist->url}...");
+
+        $response = $this->packagistApiClient->downloadPackageDist($package)->body();
 
         // The archives contain a folder called `laravel-laravel-somehash`,
         // so we need to extract and re-zip the contents of that folder

@@ -5,6 +5,7 @@ namespace Domains\ProjectTemplate\Console\Commands;
 use Domains\ProjectTemplate\LaravelDownloader;
 use Domains\ProjectTemplate\TemplateStorage;
 use Illuminate\Console\Command;
+use Log;
 
 class UpdateTemplateCommand extends Command
 {
@@ -18,16 +19,22 @@ class UpdateTemplateCommand extends Command
         $latestRelease = $downloader->latestRelease();
 
         if ($templateStorage->currentVersion() === $latestRelease->version) {
-            $this->info("$latestRelease->version is still the latest release!");
+            $this->logAndInfo("$latestRelease->version is still the latest release!");
 
             return;
         }
 
-        $this->info("Downloading $latestRelease->version...");
+        $this->logAndInfo("Downloading $latestRelease->version...");
 
         $downloadedRelease = $downloader->download($latestRelease);
         $templateStorage->updateCurrentRelease($downloadedRelease);
 
-        $this->info("Finished downloading $latestRelease->version!");
+        $this->logAndInfo("Finished downloading $latestRelease->version!");
+    }
+
+    private function logAndInfo(string $message): void
+    {
+        $this->info($message);
+        Log::info($message);
     }
 }

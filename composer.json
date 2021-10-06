@@ -1,5 +1,5 @@
 {
-    "name": "niclasvaneyk/initializr-for-laravel",
+    "name": "niclasvaneyk/initializer-for-laravel",
     "type": "project",
     "description": "A quickstart generator for Laravel projects.",
     "keywords": ["laravel"],
@@ -32,9 +32,7 @@
         "files": [ "app/helpers.php" ],
         "psr-4": {
             "App\\": "app/",
-            "Domains\\": "domains/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Domains\\": "domains/"
         }
     },
     "autoload-dev": {

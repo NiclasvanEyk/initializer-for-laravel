@@ -3,11 +3,15 @@
 namespace Domains\Packagist;
 
 use Domains\Packagist\Models\Package;
+use Illuminate\Http\Client\Factory as HttpClientFactory;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class PackagistApiClient
 {
     public function __construct(
+        private HttpClientFactory $httpClientFactory,
         private string $baseUrl = 'https://repo.packagist.org/p2',
     ) {
     }
@@ -19,10 +23,20 @@ class PackagistApiClient
      */
     public function packageReleases(string $vendor, string $package): array
     {
-        $response = Http::get("$this->baseUrl/$vendor/$package.json");
+        $response = $this->request()->get("$this->baseUrl/$vendor/$package.json");
 
         return collect($response->json("packages.$vendor/$package"))
             ->map(fn (array $package) => Package::fromResponse($package))
             ->all();
+    }
+
+    public function downloadPackageDist(Package $package): Response
+    {
+        return $this->request()->get($package->dist->url);
+    }
+
+    protected function request(): PendingRequest
+    {
+        return (new PendingRequest($this->httpClientFactory));
     }
 }

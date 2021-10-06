@@ -1,9 +1,11 @@
 <?php
 
-namespace Domains\ProjectTemplate\Http\Controllers;
+namespace Domains\Schedule\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
+use function abort_if;
+use function response;
 
 /**
  * This is a workaround, as DigitalOcean currently does not (easily and cheap)
