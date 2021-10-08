@@ -15,7 +15,6 @@ use Tests\TestCase;
  */
 class TemplateStorageTest extends TestCase
 {
-    private static DownloadedLaravelRelease $release862;
     private TemplateStorage $templateStorage;
 
     private function release862(): DownloadedLaravelRelease
