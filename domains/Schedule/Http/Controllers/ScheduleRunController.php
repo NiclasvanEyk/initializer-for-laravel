@@ -2,9 +2,9 @@
 
 namespace Domains\Schedule\Http\Controllers;
 
+use function abort_if;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
-use function abort_if;
 use function response;
 
 /**

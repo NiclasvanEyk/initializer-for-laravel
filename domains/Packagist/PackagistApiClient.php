@@ -37,6 +37,6 @@ class PackagistApiClient
 
     protected function request(): PendingRequest
     {
-        return (new PendingRequest($this->httpClientFactory));
+        return new PendingRequest($this->httpClientFactory);
     }
 }
