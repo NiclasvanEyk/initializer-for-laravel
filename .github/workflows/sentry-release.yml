@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SENTRY_ORG: "niclas-van-eyk"
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
