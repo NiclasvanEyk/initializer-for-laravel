@@ -1,0 +1,20 @@
+name: Sentry Release
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SENTRY_ORG: "niclas-van-eyk"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Sentry Release
+        uses: getsentry/action-release@v1.1.6
+        with:
+          environment: production
+          projects: initializer-for-laravel

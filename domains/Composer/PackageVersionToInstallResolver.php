@@ -2,7 +2,6 @@
 
 namespace Domains\Composer;
 
-use Composer\Config;
 use Composer\Factory;
 use Composer\IO\NullIO;
 use Composer\Package\Version\VersionSelector;
