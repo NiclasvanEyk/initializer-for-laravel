@@ -79,11 +79,11 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+      - name: DigitalOcean Deploy
+        run: doctl apps create-deployment ec11a9ce-8d66-4315-acf1-215e61be8402 --wait
+
       - name: Sentry Release
         uses: getsentry/action-release@v1.1.6
         with:
           environment: production
           projects: initializer-for-laravel
-
-      - name: DigitalOcean Deploy
-        run: doctl apps create-deployment initializer-for-laravel --wait
