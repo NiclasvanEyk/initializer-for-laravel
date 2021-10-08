@@ -9,8 +9,7 @@ class ExceptionHandler extends Handler
 {
     public function register()
     {
-        $this->reportable(function (Throwable $exception): void
-        {
+        $this->reportable(function (Throwable $exception): void {
             if (app()->bound('sentry') && $this->shouldReport($exception)) {
                 app('sentry')->captureException($exception);
             }
