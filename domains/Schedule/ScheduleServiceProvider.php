@@ -12,7 +12,7 @@ class ScheduleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        RateLimiter::for('schedule-endpoint', fn () => Limit::perHour(10));
+        RateLimiter::for('schedule-endpoint', fn () => Limit::perMinute(1));
 
         Route::middleware('throttle:schedule-endpoint')
             ->get('/schedule-run', ScheduleRunController::class);
