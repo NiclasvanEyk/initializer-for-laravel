@@ -31,7 +31,10 @@ class ProjectTemplateServiceProvider extends ServiceProvider
     private function setupSchedule(): void
     {
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
-            $schedule->command(UpdateTemplateCommand::class)->hourly();
+            $schedule
+                ->command(UpdateTemplateCommand::class)
+                ->hourly()
+                ->appendOutputTo(storage_path('update-template.log'));
         });
     }
 }
