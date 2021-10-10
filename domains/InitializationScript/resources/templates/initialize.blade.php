@@ -5,6 +5,11 @@
 @endphp
 set -e;
 
+if ! docker info > /dev/null 2>&1; then
+    echo -e "Docker is not running." >&2;
+    exit 1;
+fi
+
 echo '';
 <x-shell::banner title="Initializer for Laravel">
 <x-shell::banner-line />
