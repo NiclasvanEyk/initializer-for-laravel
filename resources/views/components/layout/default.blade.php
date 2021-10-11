@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="LtXTpnxyz3li3YHOVCUUgIM_pGUf9Da8QEk48LVqeck" />
 
     <x-head.opengraph-tags
         :url="url('/')"
