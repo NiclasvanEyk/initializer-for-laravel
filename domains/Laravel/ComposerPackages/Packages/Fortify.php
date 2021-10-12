@@ -28,7 +28,7 @@ class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructi
         return new ClosurePostInstallTaskGroup(
             'Setup Laravel Fortify',
             fn () => [
-                "$artisan vendor:publish --no--interaction --provider=\"Laravel\Fortify\FortifyServiceProvider\"",
+                "$artisan vendor:publish --no-interaction --provider=\"Laravel\Fortify\FortifyServiceProvider\"",
                 "$artisan migrate",
             ],
         );
