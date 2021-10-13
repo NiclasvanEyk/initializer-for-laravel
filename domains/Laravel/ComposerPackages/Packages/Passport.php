@@ -6,7 +6,7 @@ use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\ClosurePostInstallTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroup;
-use Domains\SourceCodeManipulation\SedCommand\AddTrait;
+use Domains\SourceCodeManipulation\Perl\AddTrait;
 
 class Passport extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
