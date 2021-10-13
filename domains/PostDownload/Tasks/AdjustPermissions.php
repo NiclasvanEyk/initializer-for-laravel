@@ -9,7 +9,7 @@ class AdjustPermissions implements PostDownloadTaskGroup, PostDownloadTask
 {
     public function title(): string
     {
-        return "Adjust Permissions";
+        return 'Adjust Permissions';
     }
 
     public function tasks(): array
@@ -29,5 +29,4 @@ class AdjustPermissions implements PostDownloadTaskGroup, PostDownloadTask
             fi
         SHELL;
     }
-
 }
