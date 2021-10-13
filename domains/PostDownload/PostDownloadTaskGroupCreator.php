@@ -3,6 +3,7 @@
 namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
+use Domains\PostDownload\Tasks\AdjustPermissions;
 use Domains\PostDownload\Tasks\MigrateDatabase;
 use Domains\PostDownload\Tasks\SetupFrontend;
 use Domains\PostDownload\Tasks\SetupPackages;
@@ -43,6 +44,7 @@ class PostDownloadTaskGroupCreator
                 $this->sailServices->resolveFor($form),
                 $form->metadata->phpVersion,
             ),
+            new AdjustPermissions(),
             // start the sail container
             new StartSail($sail),
             // run package:install for all that actually need them
