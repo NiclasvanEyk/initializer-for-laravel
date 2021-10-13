@@ -18,40 +18,40 @@ class DatabaseAdjuster
     /**
      * @var array<class-string, string>
      */
-    private array $databaseToServiceMap = [
+    private array $databaseToConnectionMap = [
         PostgresDatabase::class => 'pgsql',
         MySQLDatabase::class => 'mysql',
-        MariaDatabase::class => 'mariadb',
+        MariaDatabase::class => 'mysql',
     ];
 
     public function adjustDefaults(
         ZipFile $archive,
         SailConfigurationOption|DatabaseOption $database,
     ): void {
-        $service = $this->databaseToServiceMap[get_class($database)];
+        $connection = $this->databaseToConnectionMap[get_class($database)];
 
-        $this->adjustConfig($archive, $service);
-        $this->adjustExampleEnv($archive, $service);
+        $this->adjustConfig($archive, $connection);
+        $this->adjustExampleEnv($archive, $connection);
     }
 
-    private function adjustConfig(ZipFile $archive, string $service): void
+    private function adjustConfig(ZipFile $archive, string $connection): void
     {
         $contents = $archive->getEntryContents('config/database.php');
 
         $archive->addFromString('config/database.php', Str::replaceFirst(
             "'default' => env('DB_CONNECTION', 'mysql'),",
-            "'default' => env('DB_CONNECTION', '$service'),",
+            "'default' => env('DB_CONNECTION', '$connection'),",
             $contents,
         ));
     }
 
-    private function adjustExampleEnv(ZipFile $archive, string $service): void
+    private function adjustExampleEnv(ZipFile $archive, string $connection): void
     {
         $contents = $archive->getEntryContents('.env.example');
 
         $archive->addFromString('.env.example', Str::replaceFirst(
             'DB_CONNECTION=mysql',
-            "DB_CONNECTION=$service",
+            "DB_CONNECTION=$connection",
             $contents,
         ));
     }
