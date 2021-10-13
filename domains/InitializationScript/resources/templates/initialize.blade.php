@@ -42,9 +42,7 @@ echo "Finished setup, removing {{ $initializationScript }} and TODOs in README.m
 rm "./{{ $initializationScript }}";
 
 # Remove TODO in readme
-TODOS_BEGIN=$(grep -Fn "Initializer for Laravel Todos START" README.md | cut -d ":" -f 1)
-TODOS_END=$(grep -Fn "Initializer for Laravel Todos END" README.md | cut -d ":" -f 1)
-sed $TODOS_BEGIN,${TODOS_END}d README.md | tee README.md > /dev/null
+perl -0777 -pi -e 's/<!-- Initializer for Laravel Todos START  -->.*<!-- Initializer for Laravel Todos END  -->//gs' README.md
 
 echo '';
 <x-shell::banner title="Done!">
