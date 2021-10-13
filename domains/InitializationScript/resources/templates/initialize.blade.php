@@ -33,7 +33,7 @@ echo '';
 <x-shell::banner :title="$group->title()" />
 echo '';
 @foreach($group->tasks() as $task)
-echo {!! escapeshellcmd(is_string($task) ? $task : $task->shell()) !!}
+echo {!! escapeshellarg(is_string($task) ? $task : $task->shell()) !!}
 {!! is_string($task) ? $task : $task->shell() !!};
 @endforeach
 
@@ -52,7 +52,7 @@ echo '';
 <x-shell::banner-line />
 <x-shell::banner-line>Some helpful links:</x-shell::banner-line>
 @foreach($links as $link)
-<x-shell::banner-line>- \033[1m{{ $link->title }}\033[0m {{ $link->href }}</x-shell::banner-line>
+<x-shell::banner-line>- {{$link->title}} {{ $link->href }}</x-shell::banner-line>
 @endforeach
 </x-shell::banner>
 echo '';
