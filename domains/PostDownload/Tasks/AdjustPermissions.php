@@ -20,7 +20,7 @@ class AdjustPermissions implements PostDownloadTaskGroup, PostDownloadTask
     public function shell(): string
     {
         return <<<'SHELL'
-            if sudo -n true 2>/dev/null; then;
+            if sudo -n true 2>/dev/null; then
                 sudo chown -R $USER: .
             else
                 echo -e "Please provide your password so we can make some final adjustments to your application\'s permissions."
