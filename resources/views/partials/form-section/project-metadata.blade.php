@@ -6,7 +6,6 @@
     $phpVersion = request(P::PHP, PhpVersion::v8_0);
     $allPhpVersions = PhpVersion::values();
     $latestPhpVersion = PhpVersion::latest();
-    $previewPhpVersion = PhpVersion::preview();
     $description = P::DESCRIPTION;
 @endphp
 
@@ -41,7 +40,6 @@
                     >
                         {{ $version }}
                         @if($version === $latestPhpVersion)(latest)@endif
-                        @if($version === $previewPhpVersion)(preview)@endif
                     </option>
                 @endforeach
             </select>

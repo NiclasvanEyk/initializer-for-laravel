@@ -7,7 +7,6 @@ use Domains\Composer\PackageVersionToInstallResolver;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
-use Illuminate\Support\Collection;
 
 /**
  * Responsible for making adjustments to the <pre>composer.json</pre> file.
@@ -16,6 +15,7 @@ class ComposerJsonGenerator
 {
     public function __construct(
         private ComposerPackagesToInstallResolver $packagesToInstallResolver,
+        private PackageVersionToInstallResolver $versionToInstallResolver,
     ) {
     }
 
@@ -44,7 +44,9 @@ class ComposerJsonGenerator
         CreateProjectForm $form,
         ComposerJsonFile $composerJson
     ): ComposerJsonFile {
-        $packagesWithVersion = $this->resolvePackagesWithVersion($form);
+        $packagesWithVersion = $this->versionToInstallResolver->resolve(
+            $this->packagesToInstallResolver->resolveFor($form)
+        );
 
         foreach ($packagesWithVersion as $packageWithVersion) {
             if ($packageWithVersion->package->isDevDependency()) {
@@ -61,16 +63,6 @@ class ComposerJsonGenerator
         }
 
         return $composerJson;
-    }
-
-    protected function resolvePackagesWithVersion(
-        CreateProjectForm $form,
-    ): Collection {
-        $phpVersion = $form->metadata->phpVersion;
-        $versionResolver = new PackageVersionToInstallResolver($phpVersion);
-        $packages = $this->packagesToInstallResolver->resolveFor($form);
-
-        return $versionResolver->resolve($packages);
     }
 
     protected function removeUnnecessaryScripts(
