@@ -173,6 +173,7 @@ return [
         \Domains\Readme\ReadmeServiceProvider::class,
         \Domains\Composer\ComposerServiceProvider::class,
         \Domains\Schedule\ScheduleServiceProvider::class,
+        \Domains\DockerImages\DockerImagesServiceProvider::class,
     ],
 
     /*
