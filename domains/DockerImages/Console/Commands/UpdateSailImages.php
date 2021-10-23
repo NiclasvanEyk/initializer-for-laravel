@@ -39,7 +39,7 @@ class UpdateSailImages extends Command
     private function buildImageFor(string $runtime): void
     {
         $exitCode = 0;
-        passthru("docker build --quiet --build-arg WWWGROUP=0 -t {$this->tag($runtime)} .", $exitCode);
+        passthru("docker build --build-arg WWWGROUP=0 -t {$this->tag($runtime)} .", $exitCode);
 
         if ($exitCode !== 0) {
             throw new Exception("Failed running `docker build` for PHP $runtime!");
