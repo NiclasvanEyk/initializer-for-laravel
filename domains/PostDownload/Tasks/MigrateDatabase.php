@@ -17,6 +17,9 @@ class MigrateDatabase implements PostDownloadTaskGroup
 
     public function tasks(): array
     {
-        return ["$this->artisan migrate"];
+        return [
+            new WaitForDatabase($this->artisan),
+            "$this->artisan migrate",
+        ];
     }
 }
