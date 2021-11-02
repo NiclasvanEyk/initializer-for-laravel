@@ -13,7 +13,7 @@ class PostDownloadTaskRenderer
      */
     public function announce(PostDownloadTask|VerbosePostDownloadTask|string $task): string
     {
-        $description = match(true) {
+        $description = match (true) {
             $task instanceof VerbosePostDownloadTask => $task->shellDescription(),
             $task instanceof PostDownloadTask => $task->shell(),
             default => (string) $task,
