@@ -6,6 +6,7 @@ use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\ClosurePostInstallTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\Tasks\WaitForDatabase;
 
 class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
@@ -29,6 +30,7 @@ class Fortify extends FirstPartyPackage implements ProvidesInstallationInstructi
             'Setup Laravel Fortify',
             fn () => [
                 "$artisan vendor:publish --no-interaction --provider=\"Laravel\Fortify\FortifyServiceProvider\"",
+                new WaitForDatabase($artisan),
                 "$artisan migrate",
             ],
         );

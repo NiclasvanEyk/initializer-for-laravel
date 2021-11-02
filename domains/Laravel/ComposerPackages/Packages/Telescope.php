@@ -6,6 +6,7 @@ use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\ClosurePostInstallTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\Tasks\WaitForDatabase;
 
 class Telescope extends FirstPartyPackage implements ProvidesInstallationInstructions
 {
@@ -33,6 +34,7 @@ class Telescope extends FirstPartyPackage implements ProvidesInstallationInstruc
             'Setup Laravel Telescope',
             fn () => [
                 "$artisan telescope:install",
+                new WaitForDatabase($artisan),
                 "$artisan migrate",
             ],
         );

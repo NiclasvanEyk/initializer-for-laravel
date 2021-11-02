@@ -6,6 +6,7 @@ use Domains\Laravel\ComposerPackages\FirstPartyPackage;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\ClosurePostInstallTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\Tasks\WaitForDatabase;
 use Domains\SourceCodeManipulation\Perl\AddTrait;
 
 class Passport extends FirstPartyPackage implements ProvidesInstallationInstructions
@@ -23,6 +24,7 @@ class Passport extends FirstPartyPackage implements ProvidesInstallationInstruct
         return new ClosurePostInstallTaskGroup(
             'Install Laravel Passport',
             fn () => [
+                new WaitForDatabase($artisan),
                 "$artisan migrate",
                 "$artisan passport:install",
                 AddTrait::toUserModel('\\Laravel\\Passport\\HasApiTokens'),

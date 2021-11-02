@@ -2,6 +2,8 @@
 @php
     /** @var \Domains\PostDownload\PostDownloadTaskGroup[] $groups */
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
+    /** @var \Domains\PostDownload\PostDownloadTaskRenderer $taskRenderer */
+    /** @var string $initializationScript */
 @endphp
 set -e;
 
@@ -33,8 +35,8 @@ echo '';
 <x-shell::banner :title="$group->title()" />
 echo '';
 @foreach($group->tasks() as $task)
-echo {!! escapeshellarg(is_string($task) ? $task : $task->shell()) !!}
-{!! is_string($task) ? $task : $task->shell() !!};
+{!! $taskRenderer->announce($task) !!}
+{!! $taskRenderer->execute($task) !!}
 @endforeach
 
 @endforeach
