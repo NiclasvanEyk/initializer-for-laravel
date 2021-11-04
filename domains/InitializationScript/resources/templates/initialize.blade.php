@@ -2,10 +2,28 @@
 @php
     /** @var \Domains\PostDownload\PostDownloadTaskGroup[] $groups */
     /** @var \Domains\PostDownload\PostInitializationLink[] $links */
+    /** @var string $githubIssueLink */
     /** @var \Domains\PostDownload\PostDownloadTaskRenderer $taskRenderer */
     /** @var string $initializationScript */
 @endphp
 set -e;
+
+function onError()
+{
+    echo '';
+    echo -e '💥 <x-shell::bold>It looks like something went wrong</x-shell::bold> 💥';
+    echo '';
+    echo 'Feel free to open an issue on GitHub by clicking on the link below.';
+    echo 'Make sure to include helpful information such as:';
+    echo '- the error output above';
+    echo '- the configuration chosen before downloading the archive';
+    echo '- your local environment (operating system, etc.)';
+    echo '- other information that seems relevant to you';
+    echo '';
+    echo -e '<x-shell::bold>{{ $githubIssueLink }}</x-shell::bold>';
+    echo '';
+}
+trap onError EXIT;
 
 if ! docker info > /dev/null 2>&1; then
     echo -e "Docker is not running." >&2;
