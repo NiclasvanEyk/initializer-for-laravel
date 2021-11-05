@@ -26,7 +26,7 @@ class PostDownloadTaskGroupCreator
     public function fromForm(CreateProjectForm $form): array
     {
         // When testing we need to pass the -T flag to docker-compose,
-        // as it seemst that GH Actions does not support TTYs yet.
+        // as it seems that GH Actions does not support TTYs yet.
         $testing = config('app.env') === 'testing';
         $sail = './vendor/bin/sail';
         $artisan = $testing

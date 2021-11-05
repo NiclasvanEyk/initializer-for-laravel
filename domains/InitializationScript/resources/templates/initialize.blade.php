@@ -8,71 +8,33 @@
 @endphp
 set -e;
 
-function onError()
-{
-    echo '';
-    echo -e '💥 <x-shell::bold>It looks like something went wrong</x-shell::bold> 💥';
-    echo '';
-    echo 'Feel free to open an issue on GitHub by clicking on the link below.';
-    echo 'Make sure to include helpful information such as:';
-    echo '- the error output above';
-    echo '- the configuration chosen before downloading the archive';
-    echo '- your local environment (operating system, etc.)';
-    echo '- other information that seems relevant to you';
-    echo '';
-    echo -e '<x-shell::bold>{{ $githubIssueLink }}</x-shell::bold>';
-    echo '';
-}
-trap onError EXIT;
+{{-- Exit the script, when docker is not running. --}}
+<x-initialize::ensure-docker-is-running />
 
-if ! docker info > /dev/null 2>&1; then
-    echo -e "Docker is not running." >&2;
-    exit 1;
-fi
+{{--
+    Prompt nice error information, when an error happens.
+    This needs to be rendered _after_ ensuring docker is running, as otherwise
+    we prompt users to open a GitHub issue if docker is not running.
+--}}
+<x-initialize::error-handler :githubIssueLink="$githubIssueLink" />
 
-echo '';
-<x-shell::banner title="Initializer for Laravel">
-<x-shell::banner-line />
-<x-shell::banner-line>This script will complete the rest of the setup needed to install the</x-shell::banner-line>
-<x-shell::banner-line>chosen components into your fresh application. This might require</x-shell::banner-line>
-<x-shell::banner-line>downloading Docker containers or requiring packages via composer</x-shell::banner-line>
-<x-shell::banner-line>multiple times, so it can take a while to complete.</x-shell::banner-line>
-</x-shell::banner>
+<x-initialize::welcome-banner />
+<x-shell::confirm-execution />
 
-if [ -t 1 ];
-then
-    echo '';
-    read -n 1 -s -r -p "Press any key to continue";
-    echo '';
-else
-    echo '';
-fi
+{{--
+    This is the part where we actually execute all the steps like setting up
+    sail, installing Composer/NPM dependencies and executing all the
+    `php artisan foo:install` commands.
 
+    These need to be dynamically computed, since they depend on values from the
+    form. If you want to know how these get computed, have a look at the
+    PostDownloadTaskGroupCreator from the PostDownload domain.
+--}}
 @foreach($groups as $group)
 echo '';
-<x-shell::banner :title="$group->title()" />
-echo '';
-@foreach($group->tasks() as $task)
-{!! $taskRenderer->announce($task) !!}
-{!! $taskRenderer->execute($task) !!}
+<x-initialize::task-group :renderer="$taskRenderer" :group="$group" />
 @endforeach
 
-@endforeach
-echo "Finished setup, removing {{ $initializationScript }} and TODOs in README.md!";
-rm "./{{ $initializationScript }}";
+<x-initialize::cleanup :initializationScript="$initializationScript" />
 
-# Remove TODO in readme
-perl -0777 -pi -e 's/<!-- Initializer for Laravel Todos START  -->.*<!-- Initializer for Laravel Todos END  -->//gs' README.md
-
-echo '';
-<x-shell::banner title="Done!">
-<x-shell::banner-line />
-<x-shell::banner-line>You can now have a look at README.md, for further instructions, guides</x-shell::banner-line>
-<x-shell::banner-line>and links to the installed components.</x-shell::banner-line>
-<x-shell::banner-line />
-<x-shell::banner-line>Some helpful links:</x-shell::banner-line>
-@foreach($links as $link)
-<x-shell::banner-line>- {{$link->title}} {{ $link->href }}</x-shell::banner-line>
-@endforeach
-</x-shell::banner>
-echo '';
+<x-initialize::done-banner :links="$links" />

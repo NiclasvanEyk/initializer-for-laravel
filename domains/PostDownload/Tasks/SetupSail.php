@@ -6,10 +6,11 @@ use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\SailConfigurationOption;
 use Domains\PostDownload\PostDownloadTask;
 use Domains\PostDownload\PostDownloadTaskGroup;
+use Domains\PostDownload\VerbosePostDownloadTask;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
+class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
 {
     public function __construct(
         private Collection $sailServices,
@@ -25,6 +26,11 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask
     public function tasks(): array
     {
         return [$this];
+    }
+
+    public function shellDescription(): string
+    {
+        return "Running initial installation inside '{$this->phpContainer()}'";
     }
 
     public function shell(): string
