@@ -18,7 +18,7 @@ class ConfirmExecution extends Component
 {
     public function render(): string
     {
-        return <<<BLADE
+        return <<<'BLADE'
         if [ -t 1 ];
         then
             echo '';

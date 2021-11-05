@@ -5,8 +5,8 @@ namespace Domains\InitializationScript;
 use Carbon\Laravel\ServiceProvider;
 use Domains\ArchiveManipulation\RegistersArchiveManipulators;
 use Domains\CreateProjectForm\Support\Str;
-use Domains\InitializationScript\View\Components\Shell\Banner;
 use Domains\InitializationScript\View\Components\Initialize\WelcomeBanner;
+use Domains\InitializationScript\View\Components\Shell\Banner;
 use Illuminate\Support\Facades\Blade;
 
 class InitializationScriptServiceProvider extends ServiceProvider
