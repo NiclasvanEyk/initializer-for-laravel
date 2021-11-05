@@ -25,7 +25,7 @@ class InitializationScriptGenerator
             'groups' => $this->postDownloadTaskGroupCreator->fromForm($form),
             'links' => $this->postInitializationLinkResolver->links($form),
             'initializationScript' => $this->scriptName(),
-            'githubIssueLink' => "https://github.com/NiclasvanEyk/initializer-for-laravel/issues/new",
+            'githubIssueLink' => 'https://github.com/NiclasvanEyk/initializer-for-laravel/issues/new',
         ])->render();
     }
 

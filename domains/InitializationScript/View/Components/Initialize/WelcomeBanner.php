@@ -11,7 +11,7 @@ class WelcomeBanner extends Component
 {
     public function render(): string
     {
-        return <<<BLADE
+        return <<<'BLADE'
         echo '';
         <x-shell::banner title="Initializer for Laravel">
         <x-shell::banner-line />

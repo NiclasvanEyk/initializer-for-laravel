@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 class Cleanup extends Component
 {
     /**
-     * @param string $initializationScript The name of the initialization script.
+     * @param  string  $initializationScript  The name of the initialization script.
      */
     public function __construct(public string $initializationScript)
     {
