@@ -72,7 +72,7 @@ class ActualTest extends TestCase
     private function initialize(string $cwd): void
     {
         $process = new Process(
-            command: ['./initialize'],
+            command: ['/bin/bash', './initialize'],
             cwd: $cwd,
             timeout: 1000,
         );
