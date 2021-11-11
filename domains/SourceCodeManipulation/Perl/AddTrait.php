@@ -19,6 +19,11 @@ class AddTrait
         $trait = escapeshellcmd($trait);
         $class = pathinfo($file, PATHINFO_FILENAME);
 
-        return "perl -0777 -pi -e 's/(class $class.*{)/$1\\n    use $trait;/gms' $file";
+        return Perl::replace(
+            file: $file,
+            pattern: "(class $class.*{)",
+            replacement: "$1\\n    use $trait;",
+            flags: 'gms',
+        );
     }
 }

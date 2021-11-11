@@ -7,8 +7,8 @@ use Domains\Laravel\Sail\SailConfigurationOption;
 use Domains\PostDownload\PostDownloadTask;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\VerbosePostDownloadTask;
+use Domains\SourceCodeManipulation\Perl\Perl;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
 {
@@ -37,18 +37,17 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
     {
         return <<<SHELL
         docker run --rm \
+            -e WWWUSER=$(id -u) \
             -v "$(pwd)":/opt \
             -w /opt \
-            {$this->phpContainer()} \
+            "{$this->phpContainer()}" \
             bash -c "{$this->composerInstallCommand()}"
         SHELL;
     }
 
     private function phpContainer(): string
     {
-        $phpContainerVersion = Str::of($this->phpVersion)->remove('.');
-
-        return "laravelsail/php$phpContainerVersion-composer:latest";
+        return "initializerforlaravel/sail-php-$this->phpVersion:latest";
     }
 
     private function sailServices(): string
@@ -65,10 +64,24 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
     private function composerInstallCommand(): string
     {
         return join(' && ', [
-            'composer install --ignore-platform-reqs',
+            // These steps are mostly the same as laravel.build does
+            'composer install',
             "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
             'php artisan key:generate --ansi',
+            // We explicitly select only the chosen sail services
             "php artisan sail:install --with={$this->sailServices()}",
+            // We also adjust the runtime here based on the chosen PHP version
+            Perl::replace(
+                file: 'docker-compose.yml',
+                pattern: '\.\/vendor\/laravel\/sail\/runtimes\/\d\.\d',
+                replacement: ".\/vendor\/laravel\/sail\/runtimes\/$this->phpVersion",
+            ),
+            // and adjust the image name to match the PHP version
+            Perl::replace(
+                file: 'docker-compose.yml',
+                pattern: 'sail-\d\.\d\/app',
+                replacement: "sail-$this->phpVersion\/app",
+            ),
         ]);
     }
 }

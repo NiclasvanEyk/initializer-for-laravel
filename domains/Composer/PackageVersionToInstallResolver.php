@@ -4,6 +4,7 @@ namespace Domains\Composer;
 
 use Composer\Factory;
 use Composer\IO\NullIO;
+use Composer\Package\Package;
 use Composer\Package\Version\VersionSelector;
 use Composer\Repository\CompositeRepository;
 use Composer\Repository\PlatformRepository;
@@ -24,6 +25,10 @@ use Illuminate\Support\Collection;
 class PackageVersionToInstallResolver
 {
     private ?VersionSelector $versionSelector = null;
+
+    public function __construct(private string $phpVersion)
+    {
+    }
 
     /**
      * @param  Collection|ComposerDependency[]  $packages
@@ -56,7 +61,9 @@ class PackageVersionToInstallResolver
         if ($this->versionSelector === null) {
             $this->versionSelector = new VersionSelector(
                 $this->repositorySet(),
-                new PlatformRepository(),
+                new PlatformRepository([
+                    new Package('php', $this->phpVersion, $this->phpVersion),
+                ]),
             );
         }
 
