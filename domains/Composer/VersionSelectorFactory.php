@@ -42,8 +42,8 @@ class VersionSelectorFactory
         return new CompositeRepository(array_merge(
             [new PlatformRepository()],
             RepositoryFactory::defaultRepos(
-                new NullIO(),
-                Factory::createConfig(new NullIO(), storage_path('app')),
+                new LogIO(),
+                Factory::createConfig(new LogIO(), storage_path('app')),
             ),
         ));
     }
