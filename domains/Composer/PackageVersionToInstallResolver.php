@@ -30,6 +30,7 @@ class PackageVersionToInstallResolver
             $candidate = $this->versionSelector->findBestCandidate(
                 packageName: $package->packageId(),
                 targetPackageVersion: $package->versionConstraint(),
+                ignorePlatformReqs: true,
             );
 
             if ($candidate === false) {
