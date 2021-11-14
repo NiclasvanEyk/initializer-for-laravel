@@ -4,6 +4,7 @@ namespace Domains\Composer\ProjectTemplateCustomization;
 
 use Domains\Composer\ComposerJsonFile;
 use Domains\Composer\PackageVersionToInstallResolver;
+use Domains\Composer\VersionSelectorFactory;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
@@ -16,6 +17,7 @@ class ComposerJsonGenerator
 {
     public function __construct(
         private ComposerPackagesToInstallResolver $packagesToInstallResolver,
+        private VersionSelectorFactory $versionSelectorFactory,
     ) {
     }
 
@@ -42,7 +44,7 @@ class ComposerJsonGenerator
 
     protected function requirePackages(
         CreateProjectForm $form,
-        ComposerJsonFile $composerJson
+        ComposerJsonFile $composerJson,
     ): ComposerJsonFile {
         $packagesWithVersion = $this->resolvePackagesWithVersion($form);
 
@@ -67,7 +69,8 @@ class ComposerJsonGenerator
         CreateProjectForm $form,
     ): Collection {
         $phpVersion = $form->metadata->phpVersion;
-        $versionResolver = new PackageVersionToInstallResolver($phpVersion);
+        $selector = $this->versionSelectorFactory->build($phpVersion);
+        $versionResolver = new PackageVersionToInstallResolver($selector);
         $packages = $this->packagesToInstallResolver->resolveFor($form);
 
         return $versionResolver->resolve($packages);

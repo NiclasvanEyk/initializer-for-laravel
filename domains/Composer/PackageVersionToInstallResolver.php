@@ -2,15 +2,7 @@
 
 namespace Domains\Composer;
 
-use Composer\Factory;
-use Composer\IO\NullIO;
-use Composer\Package\Package;
 use Composer\Package\Version\VersionSelector;
-use Composer\Repository\CompositeRepository;
-use Composer\Repository\PlatformRepository;
-use Composer\Repository\RepositoryFactory;
-use Composer\Repository\RepositorySet;
-use Exception;
 use Illuminate\Support\Collection;
 
 /**
@@ -24,9 +16,7 @@ use Illuminate\Support\Collection;
  */
 class PackageVersionToInstallResolver
 {
-    private ?VersionSelector $versionSelector = null;
-
-    public function __construct(private string $phpVersion)
+    public function __construct(private VersionSelector $versionSelector)
     {
     }
 
@@ -36,62 +26,19 @@ class PackageVersionToInstallResolver
      */
     public function resolve(Collection $packages): Collection
     {
-        $versionSelector = $this->versionSelector();
-
-        return $packages->map(function (ComposerDependency $package) use ($versionSelector) {
-            $candidate = $versionSelector->findBestCandidate(
+        return $packages->map(function (ComposerDependency $package) {
+            $candidate = $this->versionSelector->findBestCandidate(
                 packageName: $package->packageId(),
                 targetPackageVersion: $package->versionConstraint(),
             );
 
             if ($candidate === false) {
-                throw new Exception('Could find an installation candidate for package!', [
-                    'package' => $package->packageId(),
-                ]);
+                throw new NoInstallationCandidateFoundException($package);
             }
 
-            $version = $versionSelector->findRecommendedRequireVersion($candidate);
+            $version = $this->versionSelector->findRecommendedRequireVersion($candidate);
 
             return new PackageWithResolvedVersion($package, $version);
         });
-    }
-
-    private function versionSelector(): VersionSelector
-    {
-        if ($this->versionSelector === null) {
-            $this->versionSelector = new VersionSelector(
-                $this->repositorySet(),
-                new PlatformRepository([
-                    new Package('php', $this->phpVersion, $this->phpVersion),
-                ]),
-            );
-        }
-
-        return $this->versionSelector;
-    }
-
-    private function repositorySet(): RepositorySet
-    {
-        $set = new RepositorySet();
-        $set->addRepository($this->repos());
-
-        return $set;
-    }
-
-    private function repos(): CompositeRepository
-    {
-        // Composer needs this to work correctly, but it is sometimes not
-        // available in containers.
-        if (! getenv('HOME')) {
-            putenv('HOME='.storage_path('app'));
-        }
-
-        return new CompositeRepository(array_merge(
-            [new PlatformRepository],
-            RepositoryFactory::defaultRepos(
-                new NullIO(),
-                Factory::createConfig(new NullIO(), storage_path('app')),
-            ),
-        ));
     }
 }
