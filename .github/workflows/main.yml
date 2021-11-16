@@ -3,6 +3,8 @@ name: Test & Release
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   unit-tests:
@@ -33,6 +35,8 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Fetch Template
       run: php artisan initializer:update-template
+    - name: Static analysis via PHPStan
+      run: vendor/bin/phpstan analyze --memory-limit 4G
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit --exclude-group Docker --coverage-clover coverage.xml
     - uses: codecov/codecov-action@v2.1.0
