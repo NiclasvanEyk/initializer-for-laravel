@@ -12,7 +12,7 @@ use Illuminate\View\Component;
 class DoneBanner extends Component
 {
     /**
-     * @param PostInitializationLink[] $links
+     * @param  PostInitializationLink[]  $links
      */
     public function __construct(public array $links)
     {

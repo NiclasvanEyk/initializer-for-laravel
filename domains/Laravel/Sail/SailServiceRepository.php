@@ -20,8 +20,8 @@ class SailServiceRepository
     ];
 
     /**
-     * @param string $id
-     * @param class-string<SailConfigurationOption>|null $default
+     * @param  string  $id
+     * @param  class-string<SailConfigurationOption>|null  $default
      */
     public function resolve(string $id, ?string $default = null): ?SailConfigurationOption
     {
