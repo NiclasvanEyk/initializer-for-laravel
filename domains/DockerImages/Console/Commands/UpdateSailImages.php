@@ -35,6 +35,7 @@ class UpdateSailImages extends Command
         chdir($pwd);
 
         $this->line('Finished updating runtime images!');
+
         return 0;
     }
 

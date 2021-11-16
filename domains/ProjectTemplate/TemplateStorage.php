@@ -3,13 +3,13 @@
 namespace Domains\ProjectTemplate;
 
 use Domains\Support\FileSystem\Path;
+use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use League\Flysystem\Adapter\Local;
 use PhpZip\ZipFile;
-use Exception;
 
 /**
  * Physical storage layer for the template on the local filesystem.
@@ -34,7 +34,7 @@ class TemplateStorage
     {
         $currentArchive = $this->filesystem->readStream(
             $this->current(self::ARCHIVE_FILE_NAME),
-        ) ?? throw new Exception("Current archive not available");
+        ) ?? throw new Exception('Current archive not available');
 
         return (new ZipFile())->openFromStream($currentArchive);
     }
