@@ -50,7 +50,6 @@ trait BuildsCreateProjectForm
             new Database(
                 database: $sailServiceRepository->resolve(
                     $this->database,
-                    Database\DatabaseOption::default(),
                 ) ?? throw new \Exception("Database $this->database could not be resolved"),
             ),
             new Cache(

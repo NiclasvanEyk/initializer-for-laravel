@@ -14,10 +14,14 @@ class UpdateSailImages extends Command
     /**
      * @throws Exception
      */
-    public function handle()
+    public function handle(): int
     {
         $runtimesPath = base_path('vendor/laravel/sail/runtimes');
         $pwd = getcwd();
+
+        if ($pwd === false) {
+            return 1;
+        }
 
         foreach (File::directories($runtimesPath) as $runtimePath) {
             $runtime = basename($runtimePath);
@@ -31,6 +35,7 @@ class UpdateSailImages extends Command
         chdir($pwd);
 
         $this->line('Finished updating runtime images!');
+        return 0;
     }
 
     /**

@@ -20,7 +20,7 @@ use Domains\Laravel\ComposerPackages\Packages\Telescope;
 class FirstPartyDependencyRepository
 {
     /**
-     * @var array<string, class-string>
+     * @var array<string, class-string<FirstPartyPackage>>
      */
     public static array $dependencyMap = [
         Breeze::REPOSITORY_KEY => Breeze::class,
