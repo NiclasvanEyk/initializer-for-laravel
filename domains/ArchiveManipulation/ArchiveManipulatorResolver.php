@@ -18,7 +18,8 @@ class ArchiveManipulatorResolver
     }
 
     /**
-     * Resolves all {@link ArchiveManipulator} implementations from the container.
+     * Resolves all {@link ArchiveManipulator} implementations from the
+     * container.
      *
      * @return ArchiveManipulator[]|Collection
      *
@@ -33,17 +34,9 @@ class ArchiveManipulatorResolver
     }
 
     private function ensureImplementsArchiveManipulatorInterface(
-        string $class,
+        mixed $class,
     ): void {
-        $implementedInterfaces = class_implements($class);
-
-        if ($implementedInterfaces === false) {
-            throw new Exception(
-                "Could not determine interfaces implemented by '$class'!",
-            );
-        }
-
-        if (! in_array(ArchiveManipulator::class, $implementedInterfaces)) {
+        if (! $class instanceof ArchiveManipulator) {
             throw new MissingArchiveManipulatorInterfaceException($class);
         }
     }
