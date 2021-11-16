@@ -2,6 +2,7 @@
 
 namespace Domains\InitializationScript\View\Components\Initialize;
 
+use Domains\PostDownload\PostInitializationLink;
 use Illuminate\View\Component;
 
 /**
@@ -10,6 +11,9 @@ use Illuminate\View\Component;
  */
 class DoneBanner extends Component
 {
+    /**
+     * @param  PostInitializationLink[]  $links
+     */
     public function __construct(public array $links)
     {
     }

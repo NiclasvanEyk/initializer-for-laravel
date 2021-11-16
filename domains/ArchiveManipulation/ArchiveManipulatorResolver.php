@@ -2,6 +2,7 @@
 
 namespace Domains\ArchiveManipulation;
 
+use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 
@@ -17,7 +18,8 @@ class ArchiveManipulatorResolver
     }
 
     /**
-     * Resolves all {@link ArchiveManipulator} implementations from the container.
+     * Resolves all {@link ArchiveManipulator} implementations from the
+     * container.
      *
      * @return ArchiveManipulator[]|Collection
      *
@@ -26,12 +28,16 @@ class ArchiveManipulatorResolver
     public function resolve(): Collection
     {
         return collect($this->container->tagged(ArchiveManipulator::class))
-            ->each(function ($manipulator) {
-                if (! class_implements($manipulator, ArchiveManipulator::class)) {
-                    throw new MissingArchiveManipulatorInterfaceException(
-                        $manipulator
-                    );
-                }
+            ->each(function ($class) {
+                $this->ensureImplementsArchiveManipulatorInterface($class);
             });
+    }
+
+    private function ensureImplementsArchiveManipulatorInterface(
+        mixed $class,
+    ): void {
+        if (! $class instanceof ArchiveManipulator) {
+            throw new MissingArchiveManipulatorInterfaceException($class);
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace Domains\Laravel\Sail;
 class SailServiceRepository
 {
     /**
-     * @var array<string, class-string>
+     * @var array<string, class-string<SailConfigurationOption>>
      */
     public static array $serviceMap = [
         Mailhog::REPOSITORY_KEY => Mailhog::class,
@@ -19,6 +19,10 @@ class SailServiceRepository
         Selenium::REPOSITORY_KEY => Selenium::class,
     ];
 
+    /**
+     * @param  string  $id
+     * @param  class-string<SailConfigurationOption>|null  $default
+     */
     public function resolve(string $id, ?string $default = null): ?SailConfigurationOption
     {
         $fqn = self::$serviceMap[$id] ?? $default;
@@ -36,6 +40,9 @@ class SailServiceRepository
      */
     public function resolveAll(string ...$ids): array
     {
-        return collect($ids)->map([$this, 'resolve'])->values()->all();
+        return collect($ids)
+        ->map(fn ($id) => $this->resolve($id))
+        ->values()
+        ->all();
     }
 }

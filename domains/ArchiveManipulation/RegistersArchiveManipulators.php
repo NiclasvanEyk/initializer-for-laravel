@@ -16,6 +16,9 @@ use Illuminate\Support\ServiceProvider;
  */
 trait RegistersArchiveManipulators
 {
+    /**
+     * @param  class-string|class-string[]  $manipulators
+     */
     public function registerArchiveManipulator(string|array $manipulators): void
     {
         $this->app->tag(Arr::wrap($manipulators), ArchiveManipulator::class);

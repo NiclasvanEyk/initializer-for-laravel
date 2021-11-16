@@ -3,6 +3,7 @@
 namespace Domains\ProjectTemplate;
 
 use Domains\Support\FileSystem\Path;
+use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
@@ -31,11 +32,11 @@ class TemplateStorage
 
     public function currentArchive(): ZipFile
     {
-        return (new ZipFile())->openFromStream(
-            $this->filesystem->readStream(
-                $this->current(self::ARCHIVE_FILE_NAME)
-            )
-        );
+        $currentArchive = $this->filesystem->readStream(
+            $this->current(self::ARCHIVE_FILE_NAME),
+        ) ?? throw new Exception('Current archive not available');
+
+        return (new ZipFile())->openFromStream($currentArchive);
     }
 
     /** @codeCoverageIgnore */
@@ -78,14 +79,17 @@ class TemplateStorage
         $version = $release->package->version;
         $this->filesystem->delete($this->current());
 
-        /** @var Local $local */
-        $local = $this->filesystem->getDriver()->getAdapter();
-
         File::copyDirectory(
-            $local->applyPathPrefix($version),
-            $local->applyPathPrefix($this->current())
+            $this->localFileSystem()->applyPathPrefix($version),
+            $this->localFileSystem()->applyPathPrefix($this->current())
         );
         Log::info("Current template version was set to $version!");
+    }
+
+    private function localFileSystem(): Local
+    {
+        // @phpstan-ignore-next-line
+        return $this->filesystem->getDriver()->getAdapter();
     }
 
     /** @codeCoverageIgnore */
@@ -99,9 +103,9 @@ class TemplateStorage
         $archivePath = Path::join($version, self::ARCHIVE_FILE_NAME);
         $versionPath = Path::join($version, self::VERSION_FILE_NAME);
 
-        /** @var Local $local */
-        $local = $this->filesystem->getDriver()->getAdapter();
-        $release->archive->saveAsFile($local->applyPathPrefix($archivePath));
+        $release->archive->saveAsFile(
+            $this->localFileSystem()->applyPathPrefix($archivePath),
+        );
 
         $this->filesystem->put($versionPath, $version);
     }
