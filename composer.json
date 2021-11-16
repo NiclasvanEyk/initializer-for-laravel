@@ -26,9 +26,7 @@
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "psalm/plugin-laravel": "^1.5",
-        "vimeo/psalm": "^4.11"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "files": [ "app/helpers.php" ],
