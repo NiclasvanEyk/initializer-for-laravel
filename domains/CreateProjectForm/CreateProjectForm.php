@@ -7,6 +7,7 @@ use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
 use Domains\CreateProjectForm\Sections\Metadata;
+use Domains\CreateProjectForm\Sections\Octane;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Search;
@@ -26,6 +27,7 @@ class CreateProjectForm
         public Testing $testing,
         public Payment $payment,
         public Storage $storage,
+        public Octane $octane,
     ) {
     }
 }

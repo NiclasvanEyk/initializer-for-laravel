@@ -12,6 +12,7 @@ use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Search;
 use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
+use Domains\CreateProjectForm\Sections\Octane;
 use Domains\Support\Enum\EmulatesEnum;
 
 /** {@link CreateProjectRequest} */
@@ -66,4 +67,7 @@ class CreateProjectRequestParameter
     const USES_FLYSYSTEM_S3_DRIVER = self::USES_PREFIX.'flysystem-s3';
     const USES_FLYSYSTEM_SFTP_DRIVER = self::USES_PREFIX.'flysystem-sftp';
     const USES_FLYSYSTEM_CACHED_ADAPTER = self::USES_PREFIX.'flysystem-cached';
+
+    /** @see Octane */
+    const OCTANE_DRIVER = 'octane';
 }
