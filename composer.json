@@ -5,14 +5,13 @@
     "keywords": ["laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "8.1",
         "ext-zip": "*",
         "composer/composer": "^2.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.12",
-        "laravel/installer": "^4.2",
+        "laravel/framework": "8.*",
         "laravel/tinker": "^2.5",
         "nelexa/zip": "^4.0",
         "sentry/sentry-laravel": "^2.8",
@@ -20,15 +19,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
-        "facade/ignition": "^2.16",
+        "facade/ignition": "^2.17",
         "fakerphp/faker": "^1.16",
-        "laravel/sail": "^1.12",
+        "laravel/sail": "1.*",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
-        "nunomaduro/larastan": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "psalm/plugin-laravel": "^1.5",
-        "vimeo/psalm": "^4.11"
+        "nunomaduro/larastan": "1.*",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "files": [ "app/helpers.php" ],

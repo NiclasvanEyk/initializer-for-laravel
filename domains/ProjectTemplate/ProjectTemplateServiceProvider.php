@@ -6,7 +6,6 @@ use Domains\ProjectTemplate\Console\Commands\UpdateTemplateCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Installer\Console\NewCommand;
 
 /**
  * @codeCoverageIgnore
@@ -15,10 +14,7 @@ class ProjectTemplateServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->commands([
-            UpdateTemplateCommand::class,
-            NewCommand::class,
-        ]);
+        $this->commands([UpdateTemplateCommand::class]);
 
         $this->app->singleton(
             TemplateStorage::class,
