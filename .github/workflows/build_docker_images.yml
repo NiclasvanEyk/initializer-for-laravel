@@ -14,9 +14,9 @@ jobs:
         with:
           username: initializerforlaravel
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      - uses: shivammathur/setup-php@2.16.0
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - uses: actions/checkout@v2
       - name: Validate composer.json and composer.lock
         run: composer validate --strict

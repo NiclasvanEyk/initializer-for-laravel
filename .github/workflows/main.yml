@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: shivammathur/setup-php@1c85db7f9e8bf1f70c2c9259c9e9ca9eaaab839a
+    - uses: shivammathur/setup-php@2.16.0
       with:
-        php-version: '8.0'
+        php-version: '8.1'
     - uses: actions/checkout@v2
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
