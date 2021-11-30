@@ -3,7 +3,7 @@
     use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
 
     $php = P::PHP;
-    $phpVersion = request(P::PHP, PhpVersion::v8_0);
+    $phpVersion = request(P::PHP, PhpVersion::latest());
     $allPhpVersions = PhpVersion::values();
     $latestPhpVersion = PhpVersion::latest();
     $previewPhpVersion = PhpVersion::preview();
