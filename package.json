@@ -19,6 +19,6 @@
     "devDependencies": {
         "autoprefixer": "^10.2.5",
         "laravel-mix": "^6.0.39",
-        "postcss": "^8.2.13"
+        "postcss": "^8.4.4"
     }
 }
