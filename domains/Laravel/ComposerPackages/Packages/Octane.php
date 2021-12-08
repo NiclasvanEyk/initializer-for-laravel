@@ -10,11 +10,10 @@ class Octane extends FirstPartyPackage implements ProvidesInstallationInstructio
 {
     public function description(): string
     {
-        return "Run your application as one long running process, instead of booting it up for every request.";
+        return 'Run your application as one long running process, instead of booting it up for every request.';
     }
 
     public function installationInstructions(string $artisan): PostDownloadTaskGroup
     {
-
     }
 }
