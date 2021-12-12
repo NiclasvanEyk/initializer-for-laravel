@@ -17,6 +17,7 @@ class Breeze extends Component
     public string $blade = BreezeFrontend::BLADE;
     public string $react = BreezeFrontend::REACT;
     public string $vue = BreezeFrontend::VUE;
+    public string $api = BreezeFrontend::API;
     public string $activeAlpineCondition;
 
     public function __construct(public string $model)

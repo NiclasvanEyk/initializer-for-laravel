@@ -3,6 +3,8 @@
 namespace Domains\PostDownload;
 
 use Domains\CreateProjectForm\CreateProjectForm;
+use Domains\Laravel\StarterKit\Breeze;
+use Domains\Laravel\StarterKit\BreezeFrontend;
 use Domains\PostDownload\Tasks\AdjustPermissions;
 use Domains\PostDownload\Tasks\MigrateDatabase;
 use Domains\PostDownload\Tasks\SetupFrontend;
@@ -38,7 +40,7 @@ class PostDownloadTaskGroupCreator
 
         $dependencies = $this->composerPackages->resolveFor($form);
 
-        return [
+        $tasks = [
             // Install all composer dependencies
             new SetupSail(
                 $this->sailServices->resolveFor($form),
@@ -51,8 +53,14 @@ class PostDownloadTaskGroupCreator
             ...(new SetupPackages($artisan, $dependencies))->tasks(),
             // migrate the db (might be unnecessary, but just to be sure)
             new MigrateDatabase($artisan),
-            // npm stuff
-            new SetupFrontend($npm),
         ];
+
+        $starterKit = $form->authentication->starterKit;
+        if (!($starterKit instanceof Breeze
+            && $starterKit->frontend->name === BreezeFrontend::API)) {
+            $tasks[] = new SetupFrontend($npm);
+        }
+
+        return $tasks;
     }
 }

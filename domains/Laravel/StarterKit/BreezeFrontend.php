@@ -11,6 +11,7 @@ class BreezeFrontend
     const BLADE = 'blade';
     const REACT = 'react';
     const VUE = 'vue';
+    const API = 'api';
 
     public function __construct(public string $name)
     {

@@ -31,6 +31,4 @@
         class="h-3 w-3 mr-1 border-gray-300 round transition {{$focusRing}}"
         x-bind:class="{!!$colored!!} ? '{{$textColor}}' : 'text-gray-300 opacity-20' "
         type="radio" @if($checked) checked @endif()
-    />
-    {{$slot}}
-</label>
+    />{{$slot}}</label>

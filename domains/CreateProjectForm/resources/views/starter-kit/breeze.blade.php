@@ -14,37 +14,40 @@
         <li class="px-2 py-3 sm:p-2">Login / Logout</li>
         <li class="px-2 py-3 sm:p-2">Password management</li>
         <li class="px-2 py-3 sm:p-2">Publishable assets</li>
-        <li class="flex flex-row items-center px-2 py-3 sm:p-2">
+        <li class="px-2 py-3 sm:p-2">
             <x-inline-radio
                 id="{{$breezeFrontend}}-{{$blade}}" value="{{$blade}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $blade"
                 colored="{{$activeAlpineCondition}}"
-                color="yellow" class="mr-1"
-            >
-                Blade
-            </x-inline-radio>,
-            <x-inline-radio
+                color="yellow" class="inline-flex"
+            >Blade</x-inline-radio>,<x-inline-radio
                 id="{{$breezeFrontend}}-{{$react}}" value="{{$react}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $react"
                 colored="{{$activeAlpineCondition}}"
-                color="yellow" class="mx-1"
-            >
-                React
-            </x-inline-radio>
+                color="yellow" class="mx-1 inline-flex"
+            >React</x-inline-radio>
             or
             <x-inline-radio
                 id="{{$breezeFrontend}}-{{$vue}}" value="{{$vue}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $vue"
                 colored="{{$activeAlpineCondition}}"
-                color="yellow" class="mx-1"
-            >
-                Vue
-            </x-inline-radio>
+                color="yellow" class="mx-1 inline-flex"
+            >Vue</x-inline-radio>
 
             frontend
+        </li>
+        <li class="px-2 py-3 sm:p-2">
+            Optional <x-inline-radio
+                id="{{$breezeFrontend}}-{{$api}}" value="{{$api}}"
+                name="{{$breezeFrontend}}"
+                :checked="$breezeFrontendChosen === $api"
+                colored="{{$activeAlpineCondition}}"
+                color="yellow" class="mx-1 inline-flex"
+            >API</x-inline-radio>
+            stack without any frontend scaffolding
         </li>
     </ul>
 </x-starter-kit::option>
