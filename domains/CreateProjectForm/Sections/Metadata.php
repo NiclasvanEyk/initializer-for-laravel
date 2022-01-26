@@ -17,7 +17,7 @@ class Metadata
         public string $vendorName,
         public string $projectName,
         public string $description = '',
-        public string $phpVersion = PhpVersion::v8_0,
+        public string $phpVersion = PhpVersion::v8_1,
     ) {
     }
 
