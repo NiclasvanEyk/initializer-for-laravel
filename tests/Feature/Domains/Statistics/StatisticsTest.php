@@ -50,8 +50,7 @@ class StatisticsTest extends TestCase
     /** @test */
     public function it_does_not_crash_the_whole_endpoint()
     {
-        $this->mock(StatisticsService::class, fn (MockInterface $mock) =>
-            $mock->shouldReceive('record')->andThrow(new Exception('Whoops!'))
+        $this->mock(StatisticsService::class, fn (MockInterface $mock) => $mock->shouldReceive('record')->andThrow(new Exception('Whoops!'))
         );
 
         $this->post(

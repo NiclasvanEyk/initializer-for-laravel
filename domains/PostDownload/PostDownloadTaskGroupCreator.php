@@ -56,7 +56,7 @@ class PostDownloadTaskGroupCreator
         ];
 
         $starterKit = $form->authentication->starterKit;
-        if (!($starterKit instanceof Breeze
+        if (! ($starterKit instanceof Breeze
             && $starterKit->frontend->name === BreezeFrontend::API)) {
             $tasks[] = new SetupFrontend($npm);
         }
