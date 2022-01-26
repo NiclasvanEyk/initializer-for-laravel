@@ -4,6 +4,7 @@ namespace Tests\Feature\Domains\Statistics;
 
 use Domains\ProjectTemplateCustomization\ProjectTemplateCustomizer;
 use Domains\Statistics\Statistics;
+use Domains\Statistics\StatisticsService;
 use Exception;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Mockery\MockInterface;

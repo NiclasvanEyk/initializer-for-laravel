@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Domains\Statistics;
+namespace Domains\Statistics;
 
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
@@ -8,7 +8,6 @@ use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
 use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
-use Domains\Statistics\Statistics;
 
 class StatisticsService
 {
