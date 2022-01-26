@@ -114,7 +114,7 @@ class CreateProjectFormFixtures
         return new Metadata(
             vendorName: 'foo',
             projectName: 'bar',
-            description: '', phpVersion: Metadata\PhpVersion::v8_0,
+            description: '', phpVersion: Metadata\PhpVersion::latest(),
         );
     }
 
