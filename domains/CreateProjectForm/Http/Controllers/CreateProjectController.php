@@ -4,9 +4,9 @@ namespace Domains\CreateProjectForm\Http\Controllers;
 
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 use Domains\ProjectTemplateCustomization\ProjectTemplateCustomizer;
+use Domains\Statistics\StatisticsService;
 use Illuminate\Foundation\Application;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Feature\Domains\Statistics\StatisticsService;
 
 class CreateProjectController
 {
