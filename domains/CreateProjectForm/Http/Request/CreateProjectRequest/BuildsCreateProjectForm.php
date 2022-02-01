@@ -11,6 +11,8 @@ use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
 use Domains\CreateProjectForm\Sections\Metadata;
+use Domains\CreateProjectForm\Sections\Octane;
+use Domains\CreateProjectForm\Sections\Octane\OctaneDriverOption;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
@@ -86,6 +88,9 @@ trait BuildsCreateProjectForm
                 usesCachedAdapter: $this->has(P::USES_FLYSYSTEM_CACHED_ADAPTER),
                 usesS3: $this->has(P::USES_FLYSYSTEM_S3_DRIVER),
             ),
+            new Octane(
+                driver: Octane::driverForOption($this->get(P::OCTANE_DRIVER, OctaneDriverOption::default()))
+            )
         );
     }
 
