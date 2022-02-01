@@ -13,7 +13,7 @@
     "dependencies": {
         "@tailwindcss/forms": "^0.3.4",
         "@tailwindcss/typography": "^0.4.1",
-        "alpinejs": "^3.5.1",
+        "alpinejs": "^3.8.1",
         "tailwindcss": "^2.2.16"
     },
     "devDependencies": {
