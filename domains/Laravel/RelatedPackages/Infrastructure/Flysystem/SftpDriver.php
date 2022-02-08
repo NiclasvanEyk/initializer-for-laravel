@@ -13,7 +13,7 @@ class SftpDriver extends ComposerDependency
 
     public function packageId(): string
     {
-        return 'league/flysystem-sftp';
+        return 'league/flysystem-sftp-v3';
     }
 
     public function name(): string
