@@ -21,16 +21,18 @@ class ArchiveManipulatorResolver
      * Resolves all {@link ArchiveManipulator} implementations from the
      * container.
      *
-     * @return ArchiveManipulator[]|Collection
+     * @return Collection<int, ArchiveManipulator>
      *
      * @throws MissingArchiveManipulatorInterfaceException
      */
     public function resolve(): Collection
     {
-        return collect($this->container->tagged(ArchiveManipulator::class))
-            ->each(function ($class) {
-                $this->ensureImplementsArchiveManipulatorInterface($class);
-            });
+        /** @var array<int, mixed> $manipulators */
+        $manipulators = $this->container->tagged(ArchiveManipulator::class);
+
+        return collect($manipulators)->each(function ($class) {
+            $this->ensureImplementsArchiveManipulatorInterface($class);
+        });
     }
 
     private function ensureImplementsArchiveManipulatorInterface(

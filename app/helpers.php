@@ -3,7 +3,7 @@
 if (! function_exists('checkbox_checked')) {
     function checkbox_checked(string $parameter, bool $default = false): bool
     {
-        $fallback = request()->has('preset') ? false : $default;
+        $fallback = !request()->has('preset') && $default;
 
         return old($parameter, request()->has($parameter) || $fallback);
     }
@@ -30,7 +30,7 @@ if (! function_exists('enum_option_selected')) {
     function enum_option_selected(string $parameter, BackedEnum $default): BackedEnum
     {
         $fallback = request()->has('preset')
-            ? $default::tryFrom('none')
+            ? $default::from('none')
             : $default;
 
         $value = request()->has($parameter)

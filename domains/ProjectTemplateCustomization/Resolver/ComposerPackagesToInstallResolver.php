@@ -53,6 +53,10 @@ use Illuminate\Support\Collection;
  */
 class ComposerPackagesToInstallResolver
 {
+    /**
+     * @param CreateProjectForm $form
+     * @return Collection<int, ComposerDependency>
+     */
     public function resolveFor(CreateProjectForm $form): Collection
     {
         return (new Collection([

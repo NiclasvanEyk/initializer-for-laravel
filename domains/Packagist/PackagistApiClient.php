@@ -24,8 +24,10 @@ class PackagistApiClient
     public function packageReleases(string $vendor, string $package): array
     {
         $response = $this->request()->get("$this->baseUrl/$vendor/$package.json");
+        /** @var array<int, array<string, mixed>> $packages */
+        $packages = $response->json("packages.$vendor/$package");
 
-        return collect($response->json("packages.$vendor/$package"))
+        return collect($packages)
             ->map(fn (array $package) => Package::fromResponse($package))
             ->all();
     }

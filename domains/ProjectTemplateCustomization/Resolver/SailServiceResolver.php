@@ -18,8 +18,12 @@ use Illuminate\Support\Collection;
 
 class SailServiceResolver
 {
+    /**
+     * @return Collection<int, SailConfigurationOption>
+     */
     public function resolveFor(CreateProjectForm $form): Collection
     {
+        /** @var array<int, SailConfigurationOption> $services */
         $services = [$form->database->database];
 
         if ($form->cache->driver instanceof RedisCacheDriver) {
@@ -46,6 +50,7 @@ class SailServiceResolver
 
         return (new Collection($services))
             // Redis might be in there multiple times
+            // @phpstan-ignore-next-line
             ->unique(function (SailConfigurationOption $service) {
                 return $service->id();
             })

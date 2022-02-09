@@ -22,8 +22,8 @@ class PackageVersionToInstallResolver
     }
 
     /**
-     * @param  Collection|ComposerDependency[]  $packages
-     * @return Collection|PackageWithResolvedVersion[]
+     * @param  Collection<int, ComposerDependency>  $packages
+     * @return Collection<int, PackageWithResolvedVersion>
      */
     public function resolve(Collection $packages): Collection
     {

@@ -16,7 +16,7 @@ class BroadcastingAdjuster
     ): void {
         $defaultBroadcastEntry = 'BROADCAST_DRIVER=log';
 
-        switch ($broadcasting?->channel) {
+        switch ($broadcasting->channel) {
             case Broadcasting\BroadcastingChannelOption::NONE:
             default:
                 break;

@@ -14,13 +14,14 @@ use Illuminate\Support\Collection;
 
 class NpmPackagesToInstallResolver
 {
-    /** @return Collection<NpmDependency> */
+    /** @return Collection<int, NpmDependency> */
     public function resolveFor(CreateProjectForm $form): Collection
     {
+        /** @var Collection<int, NpmDependency> $packages */
         $packages = new Collection();
         $starterKit = $form->authentication->starterKit;
 
-        if ($starterKit instanceof Breeze && $starterKit->frontend === BreezeFrontend::API) {
+        if ($starterKit instanceof Breeze && $starterKit->frontend->name === BreezeFrontend::API) {
             // We don't install packages for breeze with the api stack, since we
             // assume that no frontend scaffolding is present
             return $packages;

@@ -42,6 +42,7 @@ class SailServiceRepository
     {
         return collect($ids)
         ->map(fn ($id) => $this->resolve($id))
+        ->filter()
         ->values()
         ->all();
     }

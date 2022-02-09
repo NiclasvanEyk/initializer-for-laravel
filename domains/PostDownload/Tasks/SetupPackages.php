@@ -2,6 +2,7 @@
 
 namespace Domains\PostDownload\Tasks;
 
+use Domains\Composer\ComposerDependency;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
@@ -13,7 +14,7 @@ class SetupPackages implements PostDownloadTaskGroup
 {
     /**
      * @param  string  $artisan
-     * @param  ProvidesInstallationInstructions[]|Collection  $dependencies
+     * @param  Collection<int, ComposerDependency>  $dependencies
      */
     public function __construct(
         private string $artisan,

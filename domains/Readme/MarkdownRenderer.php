@@ -54,7 +54,7 @@ class MarkdownRenderer
     }
 
     /**
-     * @param  array<string>  $items
+     * @param  iterable<int,string>  $items
      */
     public function list(iterable $items): string
     {

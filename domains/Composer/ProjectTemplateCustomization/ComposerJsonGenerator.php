@@ -4,6 +4,7 @@ namespace Domains\Composer\ProjectTemplateCustomization;
 
 use Domains\Composer\ComposerJsonFile;
 use Domains\Composer\PackageVersionToInstallResolver;
+use Domains\Composer\PackageWithResolvedVersion;
 use Domains\Composer\VersionSelectorFactory;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Metadata;
@@ -65,6 +66,10 @@ class ComposerJsonGenerator
         return $composerJson;
     }
 
+    /**
+     * @param CreateProjectForm $form
+     * @return Collection<int, PackageWithResolvedVersion>
+     */
     protected function resolvePackagesWithVersion(
         CreateProjectForm $form,
     ): Collection {
