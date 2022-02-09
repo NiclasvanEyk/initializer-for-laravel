@@ -23,13 +23,13 @@ class CacheAdjuster
         switch ($cache::class) {
             case RedisCacheDriver::class:
                 $this->replaceEnvExample($archive, [
-                    'REDIS_HOST=127.0.0.1' => "REDIS_HOST=redis"
+                    'REDIS_HOST=127.0.0.1' => 'REDIS_HOST=redis',
                 ]);
                 break;
 
             case MemcacheDCacheDriver::class:
                 $this->replaceEnvExample($archive, [
-                    'MEMCACHED_HOST=127.0.0.1' => "MEMCACHED_HOST=memcached"
+                    'MEMCACHED_HOST=127.0.0.1' => 'MEMCACHED_HOST=memcached',
                 ]);
                 break;
         }
