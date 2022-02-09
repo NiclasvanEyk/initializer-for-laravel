@@ -14,7 +14,7 @@ jobs:
         with:
           username: initializerforlaravel
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: shivammathur/setup-php@ac7d3d7f84d81a029c20ab72d60264bdb7535831
+      - uses: shivammathur/setup-php@7854a0cae7fa7a5f3feac66d27bae2dc42d1067a
         with:
           php-version: '8.1'
       - uses: actions/checkout@v2
