@@ -23,8 +23,7 @@ class TemplateStorage
     public function __construct(
         private FilesystemAdapter $filesystem,
         public string $pathPrefix,
-    )
-    {
+    ) {
     }
 
     public function exists(): bool

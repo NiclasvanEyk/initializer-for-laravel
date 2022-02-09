@@ -8,5 +8,6 @@ class Broadcasting
 {
     public function __construct(
         public readonly ?BroadcastingChannelOption $channel,
-    ) { }
+    ) {
+    }
 }
