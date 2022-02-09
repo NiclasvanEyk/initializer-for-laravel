@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@ac7d3d7f84d81a029c20ab72d60264bdb7535831
       with:
-        php-version: '8.0'
+        php-version: '8.1'
     - uses: actions/checkout@v2
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: shivammathur/setup-php@ac7d3d7f84d81a029c20ab72d60264bdb7535831
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - uses: actions/checkout@v2
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"

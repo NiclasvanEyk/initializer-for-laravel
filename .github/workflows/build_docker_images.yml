@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: shivammathur/setup-php@ac7d3d7f84d81a029c20ab72d60264bdb7535831
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - uses: actions/checkout@v2
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
