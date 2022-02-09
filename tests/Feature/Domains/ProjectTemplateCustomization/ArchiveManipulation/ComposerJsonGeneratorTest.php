@@ -64,7 +64,7 @@ class ComposerJsonGeneratorTest extends TestCase
         $requires = Arr::get($parsed, 'require');
         $devRequires = Arr::get($parsed, 'require-dev');
 
-        $this->assertArrayHasKey('league/flysystem-sftp', $requires);
+        $this->assertArrayHasKey('doctrine/dbal', $requires);
         $this->assertArrayHasKey('laravel/telescope', $devRequires);
     }
 
