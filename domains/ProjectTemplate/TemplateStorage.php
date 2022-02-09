@@ -102,7 +102,6 @@ class TemplateStorage
         $archivePath = Path::join($version, self::ARCHIVE_FILE_NAME);
         $versionPath = Path::join($version, self::VERSION_FILE_NAME);
 
-        dump($this->prefix($archivePath));
         $release->archive->saveAsFile($this->prefix($archivePath));
 
         $this->filesystem->put($versionPath, $version);
