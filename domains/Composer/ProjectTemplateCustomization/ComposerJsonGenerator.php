@@ -67,7 +67,7 @@ class ComposerJsonGenerator
     }
 
     /**
-     * @param CreateProjectForm $form
+     * @param  CreateProjectForm  $form
      * @return Collection<int, PackageWithResolvedVersion>
      */
     protected function resolvePackagesWithVersion(
