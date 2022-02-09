@@ -35,6 +35,7 @@ class TemplateStorageTest extends TestCase
 
         Storage::fake('laravel-releases');
         $this->templateStorage = $this->app->make(TemplateStorage::class);
+        $this->templateStorage->pathPrefix = storage_path('framework/testing/disks/laravel-releases');
     }
 
     /**

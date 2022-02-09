@@ -22,7 +22,7 @@ class TemplateStorage
     /** @codeCoverageIgnore */
     public function __construct(
         private FilesystemAdapter $filesystem,
-        private readonly string $pathPrefix,
+        public string $pathPrefix,
     )
     {
     }
@@ -34,9 +34,8 @@ class TemplateStorage
 
     public function currentArchive(): ZipFile
     {
-        $currentArchive = $this->filesystem->readStream(
-            $this->current(self::ARCHIVE_FILE_NAME),
-        ) ?? throw new Exception('Current archive not available');
+        $path = $this->current(self::ARCHIVE_FILE_NAME);
+        $currentArchive = $this->filesystem->readStream($path) ?? throw new Exception("Current archive not available at '$path'!");
 
         return (new ZipFile())->openFromStream($currentArchive);
     }
@@ -104,6 +103,7 @@ class TemplateStorage
         $archivePath = Path::join($version, self::ARCHIVE_FILE_NAME);
         $versionPath = Path::join($version, self::VERSION_FILE_NAME);
 
+        dump($this->prefix($archivePath));
         $release->archive->saveAsFile($this->prefix($archivePath));
 
         $this->filesystem->put($versionPath, $version);
