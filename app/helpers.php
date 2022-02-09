@@ -23,8 +23,8 @@ if (! function_exists('enum_option_selected')) {
     /**
      * @template E of BackedEnum
      *
-     * @param string $parameter
-     * @param E $default
+     * @param  string  $parameter
+     * @param  E  $default
      * @return E
      */
     function enum_option_selected(string $parameter, BackedEnum $default): BackedEnum
