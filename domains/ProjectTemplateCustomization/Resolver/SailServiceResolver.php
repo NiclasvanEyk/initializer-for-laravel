@@ -36,7 +36,7 @@ class SailServiceResolver
             $services[] = new MeiliSearch();
         }
 
-        if ($form->developmentTools->usesMailhog) {
+        if ($form->mail->usesMailhog) {
             $services[] = new Mailhog();
         }
 

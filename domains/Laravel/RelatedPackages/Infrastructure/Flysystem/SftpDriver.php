@@ -34,6 +34,6 @@ class SftpDriver extends ComposerDependency
 
     public function versionConstraint(): ?string
     {
-        return '~1.0';
+        return '~3.0';
     }
 }

@@ -2,17 +2,13 @@
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\ComposerPackages\Packages;
 
-    $mailhog = new \Domains\Laravel\Sail\Mailhog();
-    $mailhogParameter = P::USES_MAILHOG;
-    $usesMailhog = checkbox_checked(P::USES_MAILHOG, default: true);
-
     $telescope = new Packages\Telescope();
     $telescopeParameter = P::USES_TELESCOPE;
     $usesTelescope = checkbox_checked($telescopeParameter);
 
     $envoy = new Packages\Envoy();
     $envoyParameter = P::USES_ENVOY;
-    $usesEnvoy = checkbox_checked($envoyParameter);
+    $usesEnvoy = checkbox_checked($envoyParameter)
 @endphp
 
 <x-form-section name="Development Tools">
@@ -22,9 +18,7 @@
            additional tools to make it a bit easier.
            <x-link :href="$telescope->href()">Laravel Telescope</x-link>
            provides a nice dashboard of all events, requests, jobs and
-           everything else happening in your application and
-           <x-link :href="$mailhog->href()">Mailhog</x-link> enables you to
-           preview your outgoing mails locally, instead of sending them.
+           everything else happening in your application.
        </p>
 
         <p>
@@ -44,11 +38,6 @@
         :id="$telescopeParameter"
         :checked="$usesTelescope"
         :package="$telescope"
-    />
-    <x-sail.option
-        :name="$mailhogParameter"
-        :checked="$usesMailhog"
-        :option="$mailhog"
     />
     <x-first-party-package.option
         :id="$envoyParameter"

@@ -6,11 +6,15 @@ use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\CreateProjectForm\Sections\Authentication;
+use Domains\CreateProjectForm\Sections\Broadcasting;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
+use Domains\CreateProjectForm\Sections\Mail;
+use Domains\CreateProjectForm\Sections\Mail\MailDriverOption;
 use Domains\CreateProjectForm\Sections\Metadata;
+use Domains\CreateProjectForm\Sections\Notifications;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
@@ -20,6 +24,7 @@ use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
 use Domains\Laravel\Sail\SailServiceRepository;
 use Domains\Laravel\StarterKit\StarterKit;
+use Exception;
 
 /**
  * Functionality for the {@link CreateProjectRequest} to build
@@ -35,55 +40,66 @@ trait BuildsCreateProjectForm
         $sailServiceRepository = $this->sailServiceRepository();
 
         return new CreateProjectForm(
-            new Metadata(
+            metadata: new Metadata(
                 vendorName: $this->vendor,
                 projectName: $this->project,
                 description: $this->description ?? '',
                 phpVersion: $this->php,
             ),
-            new Authentication(
+            authentication: new Authentication(
                 starterKit: StarterKit::fromRequest($this),
                 usesFortify: $this->has(P::USES_FORTIFY),
                 usesPassport: $this->has(P::USES_PASSPORT),
                 usesSocialite: $this->has(P::USES_SOCIALITE),
             ),
-            new Database(
+            database: new Database(
                 database: $sailServiceRepository->resolve(
                     $this->database,
-                ) ?? throw new \Exception("Database $this->database could not be resolved"),
+                ) ?? throw new Exception("Database $this->database could not be resolved"),
+                useDbal: $this->has(P::USES_DBAL)
             ),
-            new Cache(
+            cache: new Cache(
                 driver: Cache::driverForOption(
                     $this->get(P::CACHE_DRIVER, CacheOption::default()),
                 )
             ),
-            new Queue(
+            queue: new Queue(
                 driver: Queue::driverForOption(
                     $this->get(P::QUEUE_DRIVER, QueueDriverOption::default())
                 ),
                 usesHorizon: $this->has(P::USES_HORIZON),
             ),
-            new Search(
+            mail: new Mail(
+                driver: MailDriverOption::tryFrom($this->get(P::MAIL_DRIVER)) ?? MailDriverOption::default(),
+                usesMailhog: $this->has(P::USES_MAILHOG),
+            ),
+            notifications: new Notifications(
+                channels: $this->get(P::NOTIFICATION_CHANNELS, []),
+            ),
+            broadcasting: new Broadcasting(
+                channel: Broadcasting\BroadcastingChannelOption::tryFrom(
+                    $this->get(P::BROADCASTING_CHANNEL)
+                ) ?? Broadcasting\BroadcastingChannelOption::default(),
+            ),
+            search: new Search(
                 driver: Search::driverForOption(
                     $this->get(P::SCOUT_DRIVER, ScoutDriverOption::default()),
                 ),
             ),
-            new DevelopmentTools(
+            developmentTools: new DevelopmentTools(
                 usesTelescope: $this->has(P::USES_TELESCOPE),
-                usesMailhog: $this->has(P::USES_MAILHOG),
                 usesEnvoy: $this->has(P::USES_ENVOY),
             ),
-            new Testing(
+            testing: new Testing(
                 usesDusk: $this->has(P::USES_DUSK),
                 usesPest: $this->has(P::USES_PEST),
             ),
-            new Payment(
+            payment: new Payment(
                 driver: Payment::fromOption($this->get(P::CASHIER_DRIVER)),
             ),
-            new Storage(
+            storage: new Storage(
                 usesMinIO: $this->has(P::USES_MINIO),
                 usesSftp: $this->has(P::USES_FLYSYSTEM_SFTP_DRIVER),
-                usesCachedAdapter: $this->has(P::USES_FLYSYSTEM_CACHED_ADAPTER),
                 usesS3: $this->has(P::USES_FLYSYSTEM_S3_DRIVER),
             ),
         );

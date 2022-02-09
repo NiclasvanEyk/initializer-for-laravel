@@ -4,7 +4,7 @@ namespace Domains\Composer;
 
 use Composer\Factory;
 use Composer\IO\NullIO;
-use Composer\Package\Package;
+use Composer\Package\CompletePackage;
 use Composer\Package\Version\VersionSelector;
 use Composer\Repository\CompositeRepository;
 use Composer\Repository\PlatformRepository;
@@ -18,7 +18,7 @@ class VersionSelectorFactory
         return new VersionSelector(
             $this->repositorySet(),
             new PlatformRepository([
-                new Package('php', $phpVersion, $phpVersion),
+                new CompletePackage('php', $phpVersion, $phpVersion),
             ]),
         );
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Laravel\RelatedPackages\Community;
+namespace Domains\Laravel\RelatedPackages\Testing;
 
 use Domains\Composer\ComposerDependency;
 

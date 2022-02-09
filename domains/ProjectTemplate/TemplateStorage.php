@@ -8,7 +8,6 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use League\Flysystem\Adapter\Local;
 use PhpZip\ZipFile;
 
 /**
@@ -21,7 +20,10 @@ class TemplateStorage
     const CURRENT_SYMLINK_NAME = 'current';
 
     /** @codeCoverageIgnore */
-    public function __construct(private FilesystemAdapter $filesystem)
+    public function __construct(
+        private FilesystemAdapter $filesystem,
+        private readonly string $pathPrefix,
+    )
     {
     }
 
@@ -80,16 +82,15 @@ class TemplateStorage
         $this->filesystem->delete($this->current());
 
         File::copyDirectory(
-            $this->localFileSystem()->applyPathPrefix($version),
-            $this->localFileSystem()->applyPathPrefix($this->current())
+            $this->prefix($version),
+            $this->prefix($this->current())
         );
         Log::info("Current template version was set to $version!");
     }
 
-    private function localFileSystem(): Local
+    private function prefix(string $path): string
     {
-        // @phpstan-ignore-next-line
-        return $this->filesystem->getDriver()->getAdapter();
+        return Path::join($this->pathPrefix, $path);
     }
 
     /** @codeCoverageIgnore */
@@ -103,9 +104,7 @@ class TemplateStorage
         $archivePath = Path::join($version, self::ARCHIVE_FILE_NAME);
         $versionPath = Path::join($version, self::VERSION_FILE_NAME);
 
-        $release->archive->saveAsFile(
-            $this->localFileSystem()->applyPathPrefix($archivePath),
-        );
+        $release->archive->saveAsFile($this->prefix($archivePath));
 
         $this->filesystem->put($versionPath, $version);
     }

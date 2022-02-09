@@ -39,6 +39,6 @@ class S3Driver extends ComposerDependency
 
     public function versionConstraint(): ?string
     {
-        return '^1.0.0';
+        return '^3.0.0';
     }
 }

@@ -22,13 +22,10 @@ class ProjectTemplateCustomizer
     public function build(CreateProjectForm $form): ZipFile
     {
         $archive = $this->template->currentArchive();
-        $manipulators = $this->archiveManipulatorResolver->resolve();
 
-        $manipulators->each(
-            function (ArchiveManipulator $manipulator) use ($archive, $form) {
-                $manipulator->manipulate($archive, $form);
-            },
-        );
+        $this->archiveManipulatorResolver
+            ->resolve()
+            ->each(fn (ArchiveManipulator $am) => $am->manipulate($archive, $form));
 
         return $archive;
     }

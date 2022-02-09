@@ -22,6 +22,11 @@ class CashierMollie extends FirstPartyPackage implements ProvidesInstallationIns
         return 'Mollie';
     }
 
+    public function packageId(): string
+    {
+        return 'mollie/laravel-cashier-mollie';
+    }
+
     public function description(): string
     {
         return 'An expressive, fluent interface to subscriptions'
@@ -30,7 +35,7 @@ class CashierMollie extends FirstPartyPackage implements ProvidesInstallationIns
 
     public function href(): string
     {
-        return 'https://github.com/laravel/cashier-mollie';
+        return 'https://www.cashiermollie.com';
     }
 
     public function installationInstructions(string $artisan): PostDownloadTaskGroup

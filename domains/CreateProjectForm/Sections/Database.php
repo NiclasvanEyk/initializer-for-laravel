@@ -9,6 +9,7 @@ class Database
 {
     public function __construct(
         public SailDatabaseOption|SailConfigurationOption $database,
+        public bool $useDbal,
     ) {
     }
 }

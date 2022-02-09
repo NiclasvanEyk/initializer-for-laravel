@@ -18,3 +18,25 @@ if (! function_exists('option_selected')) {
         return old($parameter, $default);
     }
 }
+
+if (! function_exists('enum_option_selected')) {
+    /**
+     * @template E of BackedEnum
+     *
+     * @param string $parameter
+     * @param E $default
+     * @return E
+     */
+    function enum_option_selected(string $parameter, BackedEnum $default): BackedEnum
+    {
+        $fallback = request()->has('preset')
+            ? $default::tryFrom('none')
+            : $default;
+
+        $value = request()->has($parameter)
+            ? request($parameter)
+            : old($parameter);
+
+        return $fallback::tryFrom($value) ?? $fallback;
+    }
+}

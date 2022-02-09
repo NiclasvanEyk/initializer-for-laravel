@@ -10,16 +10,12 @@
     $s3Parameter = P::USES_FLYSYSTEM_S3_DRIVER;
     $usesS3Driver = checkbox_checked($s3Parameter);
 
-    $cachedAdapter = new Flysystem\CachedAdapter();
-    $cachedParameter = P::USES_FLYSYSTEM_CACHED_ADAPTER;
-    $usesCachedAdapter = checkbox_checked($cachedParameter);
-
     $sftpDriver = new Flysystem\SftpDriver();
     $sftpParameter = P::USES_FLYSYSTEM_SFTP_DRIVER;
-    $usesSftpDriver = checkbox_checked($sftpParameter);
+    $usesSftpDriver = checkbox_checked($sftpParameter)
 @endphp
 
-<x-form-section name="Storage">
+<x-form-section name="File Storage">
     <x-slot name="description">
         <p>
             Laravel integrates uses
@@ -51,18 +47,6 @@
         heading="{{ $sftpDriver->name() }}"
     >
          {!! $sftpDriver->description() !!}
-    </x-form-control.checkbox>
-
-    <x-form-control.checkbox
-        id="{{ $cachedAdapter->id() }}"
-        href="{{ $cachedAdapter->href() }}"
-        :checked="$usesCachedAdapter"
-        heading="{{ $cachedAdapter->name() }}"
-    >
-        Boosts performance of filesystem operations by caching meta-data.
-        For more information, consult the <x-link
-            href="https://flysystem.thephpleague.com/v1/docs/advanced/caching"
-        >Flysystem documentation</x-link>.
     </x-form-control.checkbox>
 
     <x-form-control.group heading="Cloud">

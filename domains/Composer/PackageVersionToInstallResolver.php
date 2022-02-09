@@ -2,6 +2,7 @@
 
 namespace Domains\Composer;
 
+use Composer\Filter\PlatformRequirementFilter\IgnoreAllPlatformRequirementFilter;
 use Composer\Package\Version\VersionSelector;
 use Illuminate\Support\Collection;
 
@@ -30,7 +31,7 @@ class PackageVersionToInstallResolver
             $candidate = $this->versionSelector->findBestCandidate(
                 packageName: $package->packageId(),
                 targetPackageVersion: $package->versionConstraint(),
-                ignorePlatformReqs: true,
+                platformRequirementFilter: new IgnoreAllPlatformRequirementFilter(),
             );
 
             if ($candidate === false) {

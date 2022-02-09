@@ -6,10 +6,17 @@ use Domains\Composer\ComposerDependency;
 use Domains\Composer\InlineComposerDependency;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Authentication;
+use Domains\CreateProjectForm\Sections\Broadcasting;
+use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\DynamoDBCacheDBDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
+use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
+use Domains\CreateProjectForm\Sections\Mail;
+use Domains\CreateProjectForm\Sections\Mail\MailDriverOption;
+use Domains\CreateProjectForm\Sections\Notifications;
+use Domains\CreateProjectForm\Sections\Notifications\NotificationChannelOptions as Channel;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\RedisQueueDriver;
@@ -27,10 +34,15 @@ use Domains\Laravel\ComposerPackages\Packages\Passport;
 use Domains\Laravel\ComposerPackages\Packages\Scout;
 use Domains\Laravel\ComposerPackages\Packages\Socialite;
 use Domains\Laravel\ComposerPackages\Packages\Telescope;
-use Domains\Laravel\RelatedPackages\Community\Pest;
+use Domains\Laravel\RelatedPackages\Broadcasting\Ably;
+use Domains\Laravel\RelatedPackages\Broadcasting\LaravelWebsockets;
+use Domains\Laravel\RelatedPackages\Broadcasting\Pusher;
+use Domains\Laravel\RelatedPackages\Database\DoctrineDbal;
+use Domains\Laravel\RelatedPackages\Mail\MailgunMailer;
+use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
+use Domains\Laravel\RelatedPackages\Testing\Pest;
 use Domains\Laravel\RelatedPackages\Infrastructure\AlgoliaSearch;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
-use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\CachedAdapter;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\S3Driver;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\SftpDriver;
 use Illuminate\Support\Collection;
@@ -45,6 +57,7 @@ class ComposerPackagesToInstallResolver
     {
         return (new Collection([
             ...$this->forAuthentication($form->authentication),
+            ...$this->forDatabase($form->database),
             ...$this->forCache($form->cache),
             ...$this->forQueue($form->queue),
             ...$this->forSearch($form->search),
@@ -52,6 +65,9 @@ class ComposerPackagesToInstallResolver
             ...$this->forTesting($form->testing),
             ...$this->forPayment($form->payment),
             ...$this->forStorage($form->storage),
+            ...$this->forNotifications($form->notifications),
+            ...$this->forMail($form->mail),
+            ...$this->forBroadcasting($form->broadcasting),
         ]))->unique()->values();
     }
 
@@ -79,6 +95,14 @@ class ComposerPackagesToInstallResolver
         }
 
         return $packages;
+    }
+
+    /** @return array<ComposerDependency> */
+    public function forDatabase(Database $database): array
+    {
+        return $database->useDbal
+            ? [new DoctrineDbal()]
+            : [];
     }
 
     /** @return array<ComposerDependency> */
@@ -194,10 +218,50 @@ class ComposerPackagesToInstallResolver
             $packages[] = new SftpDriver();
         }
 
-        if ($storage->usesCachedAdapter) {
-            $packages[] = new CachedAdapter();
-        }
-
         return $packages;
+    }
+
+    /** @return array<ComposerDependency> */
+    public function forNotifications(Notifications $notifications): array
+    {
+        return collect($notifications->channels)->flatMap(function (Channel $channel) {
+            return match ($channel) {
+                Channel::VONAGE => [],
+                Channel::SLACK => [],
+            };
+        })->all();
+    }
+
+    /** @return array<ComposerDependency> */
+    public function forMail(Mail $mail): array
+    {
+        $driverPackage = match($mail->driver) {
+            default => null,
+            MailDriverOption::MAILGUN => new MailgunMailer(),
+            MailDriverOption::POSTMARK => new PostmarkMailer(),
+            MailDriverOption::SES => new AwsSdk(),
+        };
+
+        return $driverPackage !== null ? [$driverPackage] : [];
+    }
+
+    /** @return array<ComposerDependency> */
+    public function forBroadcasting(Broadcasting $broadcasting): array
+    {
+        $channelPackages = match($broadcasting->channel) {
+            BroadcastingChannelOption::PUSHER => [new Pusher()],
+            BroadcastingChannelOption::ABLY => [new Ably()],
+            BroadcastingChannelOption::LARAVEL_WEBSOCKETS => [
+                new LaravelWebsockets(),
+                // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher
+                new Pusher(),
+            ],
+            // Soketi is an NPM package and is handled elsewhere
+            BroadcastingChannelOption::SOKETI,
+            BroadcastingChannelOption::NONE => [],
+            default => null,
+        };
+
+        return $channelPackages !== null ? $channelPackages : [];
     }
 }

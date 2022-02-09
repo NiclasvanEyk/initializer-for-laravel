@@ -13,6 +13,10 @@
         P::DATABASE,
         Domains\CreateProjectForm\Sections\Database\DatabaseOption::default(),
     ));
+
+    $dbalParameter = P::USES_DBAL;
+    $usesDbal = checkbox_checked($dbalParameter);
+    $dbal = new \Domains\Laravel\RelatedPackages\Database\DoctrineDbal()
 @endphp
 
 <x-form-section name="Database">
@@ -37,4 +41,20 @@
         <x-database-option :database="$mariaDb" :model="$model" />
         <x-database-option :database="$postgres" :model="$model" />
     </fieldset>
+
+    <p class="text-gray-600 dark:text-gray-400">
+        For some actions involving migrations it is required to install the
+        <code>doctrine/dbal</code> package. If you plan to e.g.
+        <x-link href="https://laravel.com/docs/migrations#modifying-columns">modify existing columns</x-link>
+        to make them nullable, make sure to include this package!
+    </p>
+
+    <x-form-control.checkbox
+        :id="$dbalParameter"
+        :heading="$dbal->name()"
+        :href="$dbal->href()"
+        :checked="$usesDbal"
+    >
+        {{ $dbal->description() }}
+    </x-form-control.checkbox>
 </x-form-section>

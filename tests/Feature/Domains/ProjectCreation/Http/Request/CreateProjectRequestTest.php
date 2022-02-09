@@ -63,6 +63,9 @@ class CreateProjectRequestTest extends TestCase
         $this->assertNull($queue->driver);
         $this->assertTrue($queue->usesHorizon);
 
+        $mail = $form->mail;
+        $this->assertTrue($mail->usesMailhog);
+
         $search = $form->search;
         $this->assertTrue($search->driver instanceof MeiliSearchScoutDriver);
         $this->assertInstanceOf(
@@ -71,7 +74,6 @@ class CreateProjectRequestTest extends TestCase
         );
 
         $devTools = $form->developmentTools;
-        $this->assertTrue($devTools->usesMailhog);
         $this->assertTrue($devTools->usesTelescope);
         $this->assertTrue($devTools->usesEnvoy);
 

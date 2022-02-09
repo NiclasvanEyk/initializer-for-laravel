@@ -12,12 +12,14 @@ use Domains\PostDownload\Tasks\SetupPackages;
 use Domains\PostDownload\Tasks\SetupSail;
 use Domains\PostDownload\Tasks\StartSail;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
+use Domains\ProjectTemplateCustomization\Resolver\NpmPackagesToInstallResolver;
 use Domains\ProjectTemplateCustomization\Resolver\SailServiceResolver;
 
 class PostDownloadTaskGroupCreator
 {
     public function __construct(
         private ComposerPackagesToInstallResolver $composerPackages,
+        private NpmPackagesToInstallResolver $npmPackages,
         private SailServiceResolver $sailServices,
     ) {
     }
@@ -58,7 +60,10 @@ class PostDownloadTaskGroupCreator
         $starterKit = $form->authentication->starterKit;
         if (! ($starterKit instanceof Breeze
             && $starterKit->frontend->name === BreezeFrontend::API)) {
-            $tasks[] = new SetupFrontend($npm);
+            $tasks[] = new SetupFrontend(
+                $npm,
+                $this->npmPackages->resolveFor($form),
+            );
         }
 
         return $tasks;

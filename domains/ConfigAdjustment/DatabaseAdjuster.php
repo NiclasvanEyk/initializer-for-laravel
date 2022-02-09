@@ -2,6 +2,7 @@
 
 namespace Domains\ConfigAdjustment;
 
+use Domains\ConfigAdjustment\Concerns\MakesArchiveAdjustments;
 use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\MariaDatabase;
 use Domains\Laravel\Sail\MySQLDatabase;
@@ -15,6 +16,8 @@ use PhpZip\ZipFile;
  */
 class DatabaseAdjuster
 {
+    use MakesArchiveAdjustments;
+
     /**
      * @var array<class-string, string>
      */

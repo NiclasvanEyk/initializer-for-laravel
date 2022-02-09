@@ -40,6 +40,11 @@ return [
             'root' => storage_path('app/laravel-releases'),
         ],
 
+        'temp' => [
+            'driver' => 'local',
+            'root' => sys_get_temp_dir() . '/initializer-for-laravel'
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -3,10 +3,13 @@
 namespace Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 
 use Domains\CreateProjectForm\Sections\Authentication;
+use Domains\CreateProjectForm\Sections\Broadcasting;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
+use Domains\CreateProjectForm\Sections\Mail;
 use Domains\CreateProjectForm\Sections\Metadata;
+use Domains\CreateProjectForm\Sections\Notifications;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Search;
@@ -61,9 +64,18 @@ class CreateProjectRequestParameter
     /** @see Payment */
     const CASHIER_DRIVER = 'cashier';
 
+    /** @see Notifications */
+    const NOTIFICATION_CHANNELS = 'notifications';
+
+    /** @see Broadcasting */
+    const BROADCASTING_CHANNEL = 'broadcasting';
+
+    /** @see Mail */
+    const MAIL_DRIVER = 'mail';
+
     /** @see Storage */
     const USES_MINIO = self::USES_PREFIX.'minio';
     const USES_FLYSYSTEM_S3_DRIVER = self::USES_PREFIX.'flysystem-s3';
     const USES_FLYSYSTEM_SFTP_DRIVER = self::USES_PREFIX.'flysystem-sftp';
-    const USES_FLYSYSTEM_CACHED_ADAPTER = self::USES_PREFIX.'flysystem-cached';
+    const USES_DBAL = self::USES_PREFIX.'dbal';
 }

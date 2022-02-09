@@ -9,13 +9,13 @@
     $horizonParameter = P::USES_HORIZON;
     $usesHorizon = checkbox_checked($horizonParameter);
 
-    $model = \Str::studly($queueParameter);
+    $model = Str::studly($queueParameter);
     $default = option_selected($queueParameter, QueueDriverOption::NONE);
 
     $redis = new Sail\Redis();
     $beanstalkd = new Queue\BeanstalkdQueueDriver();
     $sqs = new Queue\SqsQueueDriver();
-    $horizon = new Horizon();
+    $horizon = new Horizon()
 @endphp
 
 <x-form-section name="Queue">
@@ -90,6 +90,13 @@
             {{ $sqs->description() }}
         </x-radio-option>
     </x-form-control.group>
+
+    <p class="text-gray-600 dark:text-gray-400">
+        If you choose to use Redis for your queues, it makes sense to also
+        include Laravel Horizon. Horizon allows you to easily monitor key
+        metrics of your queue system such as job throughput, runtime, and job
+        failures.
+    </p>
 
     <x-first-party-package.option
         :id="$horizonParameter"

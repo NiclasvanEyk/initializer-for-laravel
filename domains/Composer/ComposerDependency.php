@@ -15,7 +15,7 @@ abstract class ComposerDependency
     abstract public function packageId(): string;
 
     /**
-     * The human readable name for the package.
+     * The human-readable name for the package.
      */
     abstract public function name(): string;
 

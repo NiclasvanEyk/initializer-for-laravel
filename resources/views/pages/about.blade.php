@@ -1,6 +1,6 @@
 <x-layout.default>
     <article
-        class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-light"
+        class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-invert"
         style="max-width: min(65ch, 100%);"
     >
         <h1>About</h1>

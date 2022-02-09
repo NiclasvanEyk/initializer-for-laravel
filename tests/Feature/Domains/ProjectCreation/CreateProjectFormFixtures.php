@@ -5,6 +5,7 @@ namespace Tests\Feature\Domains\ProjectCreation;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\CreateProjectForm\Sections\Authentication;
+use Domains\CreateProjectForm\Sections\Broadcasting;
 use Domains\CreateProjectForm\Sections\Cache;
 use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
@@ -13,8 +14,10 @@ use Domains\CreateProjectForm\Sections\Cashier\CashierStripeDriver;
 use Domains\CreateProjectForm\Sections\Database;
 use Domains\CreateProjectForm\Sections\Database\DatabaseOption;
 use Domains\CreateProjectForm\Sections\DevelopmentTools;
+use Domains\CreateProjectForm\Sections\Mail;
 use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
+use Domains\CreateProjectForm\Sections\Notifications;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
@@ -79,7 +82,6 @@ class CreateProjectFormFixtures
             P::USES_MINIO => true,
             P::USES_FLYSYSTEM_S3_DRIVER => true,
             P::USES_FLYSYSTEM_SFTP_DRIVER => true,
-            P::USES_FLYSYSTEM_CACHED_ADAPTER => true,
         ];
     }
 
@@ -94,18 +96,24 @@ class CreateProjectFormFixtures
         ?Testing $testing = null,
         ?Payment $payment = null,
         ?Storage $storage = null,
+        ?Notifications $notifications = null,
+        ?Broadcasting $broadcasting = null,
+        ?Mail $mail = null,
     ): CreateProjectForm {
         return new CreateProjectForm(
-            $metadata ?? self::metadata(),
-            $authentication ?? self::authentication(),
-            $database ?? self::database(),
-            $cache ?? self::cache(),
-            $queue ?? self::queue(),
-            $search ?? self::search(),
-            $developmentTools ?? self::developmentTools(),
-            $testing ?? self::testing(),
-            $payment ?? self::payment(),
-            $storage ?? self::storage(),
+            metadata: $metadata ?? self::metadata(),
+            authentication: $authentication ?? self::authentication(),
+            database: $database ?? self::database(),
+            cache: $cache ?? self::cache(),
+            queue: $queue ?? self::queue(),
+            search: $search ?? self::search(),
+            developmentTools: $developmentTools ?? self::developmentTools(),
+            testing: $testing ?? self::testing(),
+            payment: $payment ?? self::payment(),
+            storage: $storage ?? self::storage(),
+            notifications: $notifications ?? self::notifications(),
+            broadcasting: $broadcasting ?? self::broadcasting(),
+            mail: $mail ?? self::mail(),
         );
     }
 
@@ -130,7 +138,7 @@ class CreateProjectFormFixtures
 
     public static function database(): Database
     {
-        return new Database(database: new MySQLDatabase());
+        return new Database(database: new MySQLDatabase(), useDbal: true);
     }
 
     public static function cache(): Cache
@@ -152,7 +160,6 @@ class CreateProjectFormFixtures
     {
         return new DevelopmentTools(
             usesTelescope: true,
-            usesMailhog: true,
             usesEnvoy: true,
         );
     }
@@ -172,8 +179,22 @@ class CreateProjectFormFixtures
         return new Storage(
             usesMinIO: true,
             usesSftp: true,
-            usesCachedAdapter: true,
             usesS3: true,
         );
+    }
+
+    public static function notifications(): Notifications
+    {
+        return new Notifications(Notifications\NotificationChannelOptions::cases());
+    }
+
+    public static function mail(): Mail
+    {
+        return new Mail(driver: Mail\MailDriverOption::MAILGUN, usesMailhog: true);
+    }
+
+    public static function broadcasting(): Broadcasting
+    {
+        return new Broadcasting(Broadcasting\BroadcastingChannelOption::PUSHER);
     }
 }

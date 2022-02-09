@@ -6,6 +6,10 @@ use Domains\Composer\PackageName;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\BuildsCreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel;
+use Domains\CreateProjectForm\Sections\Broadcasting;
+use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
+use Domains\CreateProjectForm\Sections\Mail;
+use Domains\CreateProjectForm\Sections\Mail\MailDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidBreezeFrontendOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidCacheOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidCashierDriverOption;
@@ -16,6 +20,7 @@ use Domains\CreateProjectForm\Validation\Rules\ValidQueueDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidScoutDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidStarterKitOption;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 /**
  * Values that are needed to create a {@link CreateProjectForm}.
@@ -80,9 +85,15 @@ class CreateProjectRequest extends FormRequest
                 new ValidQueueDriverOption(),
             ],
 
+            /** @see Mail */
+            P::MAIL_DRIVER => ['sometimes', new Enum(MailDriverOption::class)],
+            P::USES_MAILHOG => ['sometimes'],
+
+            /** @see Broadcasting */
+            P::BROADCASTING_CHANNEL => ['sometimes', new Enum(BroadcastingChannelOption::class)],
+
             /** @see DevelopmentTools */
             P::USES_TELESCOPE => ['sometimes'],
-            P::USES_MAILHOG => ['sometimes'],
             P::USES_ENVOY => ['sometimes'],
 
             /** @see Testing */
@@ -98,7 +109,6 @@ class CreateProjectRequest extends FormRequest
 
             /** @see Storage */
             P::USES_MINIO => ['sometimes'],
-            P::USES_FLYSYSTEM_CACHED_ADAPTER => ['sometimes'],
             P::USES_FLYSYSTEM_SFTP_DRIVER => ['sometimes'],
             P::USES_FLYSYSTEM_S3_DRIVER => ['sometimes'],
         ];

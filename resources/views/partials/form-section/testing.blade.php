@@ -7,9 +7,9 @@
     $duskParameter = P::USES_DUSK;
     $usesDusk = checkbox_checked($duskParameter);
 
-    $pest = new \Domains\Laravel\RelatedPackages\Community\Pest();
+    $pest = new \Domains\Laravel\RelatedPackages\Testing\Pest();
     $pestParameter = P::USES_PEST;
-    $usesPest = checkbox_checked($pestParameter);
+    $usesPest = checkbox_checked($pestParameter)
 @endphp
 
 <x-form-section name="Testing">

@@ -5,9 +5,9 @@ namespace Domains\ProjectTemplate;
 use Domains\Packagist\Models\Package;
 use Domains\Packagist\PackagistApiClient;
 use Domains\Support\FileSystem\Path;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use League\Flysystem\Adapter\Local;
 use PhpZip\ZipFile;
 
 class LaravelDownloader
@@ -56,18 +56,19 @@ class LaravelDownloader
     /** @codeCoverageIgnore */
     private function normalizedArchive(ZipFile $downloadedArchive): ZipFile
     {
-        $temp = (new Local(Path::join(
+        $targetFolder = Path::join(
             sys_get_temp_dir(),
             'initializer-for-laravel',
             'downloaded-templates',
             Str::uuid(),
-        )));
+        );
+        File::ensureDirectoryExists($targetFolder);
 
-        $downloadedArchive->extractTo($temp->getPathPrefix() ?? '/');
+        $downloadedArchive->extractTo($targetFolder);
         $folderName = $downloadedArchive->getListFiles()[0];
 
         return (new ZipFile())->addDirRecursive(
-            $temp->applyPathPrefix($folderName)
+            Path::join($targetFolder, $folderName)
         );
     }
 }

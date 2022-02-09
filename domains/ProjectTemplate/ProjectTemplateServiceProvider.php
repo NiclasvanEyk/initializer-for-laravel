@@ -22,7 +22,10 @@ class ProjectTemplateServiceProvider extends ServiceProvider
 
         $this->app->singleton(
             TemplateStorage::class,
-            fn () => new TemplateStorage(Storage::disk('laravel-releases')),
+            fn () => new TemplateStorage(
+                Storage::disk('laravel-releases'),
+                config('filesystems.disks.laravel-releases.root')
+            ),
         );
 
         $this->setupSchedule();

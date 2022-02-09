@@ -2,21 +2,15 @@
 
 namespace Domains\ConfigAdjustment;
 
+use Domains\ConfigAdjustment\Concerns\MakesArchiveAdjustments;
 use Domains\CreateProjectForm\Sections\Cache\CacheDriver;
-use Domains\CreateProjectForm\Sections\Cache\CacheOption;
-use Domains\CreateProjectForm\Sections\Cache\CacheOption as CacheAlias;
 use Domains\CreateProjectForm\Sections\Cache\MemcacheDCacheDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
-use Illuminate\Support\Str;
 use PhpZip\ZipFile;
 
 class CacheAdjuster
 {
-    /** @var array<string, string> */
-    private array $cacheToServiceMap = [
-        CacheOption::REDIS => 'redis',
-        CacheAlias::MEMCACHED => 'memcached',
-    ];
+    use MakesArchiveAdjustments;
 
     public function adjustDefaults(
         ZipFile $archive,
@@ -28,37 +22,16 @@ class CacheAdjuster
 
         switch ($cache::class) {
             case RedisCacheDriver::class:
-                $this->adjustForRedis($archive);
+                $this->replaceEnvExample($archive, [
+                    'REDIS_HOST=127.0.0.1' => "REDIS_HOST=redis"
+                ]);
                 break;
 
             case MemcacheDCacheDriver::class:
-                $this->adjustForMemcached($archive);
+                $this->replaceEnvExample($archive, [
+                    'MEMCACHED_HOST=127.0.0.1' => "MEMCACHED_HOST=memcached"
+                ]);
                 break;
-            default:
         }
-    }
-
-    private function adjustForRedis(ZipFile $archive): void
-    {
-        $service = $this->cacheToServiceMap[CacheAlias::REDIS];
-        $exampleEnvContents = $archive->getEntryContents('.env.example');
-
-        $archive->addFromString('.env.example', Str::replaceFirst(
-            'REDIS_HOST=127.0.0.1',
-            "REDIS_HOST=$service",
-            $exampleEnvContents,
-        ));
-    }
-
-    private function adjustForMemcached(ZipFile $archive): void
-    {
-        $service = $this->cacheToServiceMap[CacheAlias::MEMCACHED];
-        $exampleEnvContents = $archive->getEntryContents('.env.example');
-
-        $archive->addFromString('.env.example', Str::replaceFirst(
-            'MEMCACHED_HOST=127.0.0.1',
-            "MEMCACHED_HOST=$service",
-            $exampleEnvContents,
-        ));
     }
 }

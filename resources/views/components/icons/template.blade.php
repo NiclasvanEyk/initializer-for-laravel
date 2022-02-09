@@ -1,5 +1,5 @@
 <svg
-    class="h-[1.5em] w-auto mr-2"
+    class="h-[1.15em] w-auto mr-2"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor">
