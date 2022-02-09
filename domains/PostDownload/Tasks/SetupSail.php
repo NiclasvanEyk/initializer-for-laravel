@@ -13,8 +13,8 @@ use Illuminate\Support\Collection;
 class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
 {
     /**
-     * @param Collection<int, SailConfigurationOption> $sailServices
-     * @param string $phpVersion
+     * @param  Collection<int, SailConfigurationOption>  $sailServices
+     * @param  string  $phpVersion
      */
     public function __construct(
         private Collection $sailServices,

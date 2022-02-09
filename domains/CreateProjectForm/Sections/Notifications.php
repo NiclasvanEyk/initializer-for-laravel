@@ -9,7 +9,9 @@ use Illuminate\Support\Collection;
 class Notifications
 {
     /**
-     * @param Channel[] $channels
+     * @param  Channel[]  $channels
      */
-    public function __construct(public readonly array $channels) { }
+    public function __construct(public readonly array $channels)
+    {
+    }
 }

@@ -13,11 +13,12 @@ class Mail
     public function __construct(
         public readonly ?MailDriverOption $driver,
         public readonly bool $usesMailhog,
-    ) { }
+    ) {
+    }
 
     public function package(): ?ComposerDependency
     {
-        return match($this->driver) {
+        return match ($this->driver) {
             default => null,
             MailDriverOption::MAILGUN => new MailgunMailer(),
             MailDriverOption::POSTMARK => new PostmarkMailer(),
