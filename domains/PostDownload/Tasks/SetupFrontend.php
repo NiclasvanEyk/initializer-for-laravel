@@ -9,8 +9,8 @@ use Illuminate\Support\Collection;
 class SetupFrontend implements PostDownloadTaskGroup
 {
     /**
-     * @param string $npm
-     * @param Collection<int, NpmDependency> $packagesToInstall
+     * @param  string  $npm
+     * @param  Collection<int, NpmDependency>  $packagesToInstall
      */
     public function __construct(
         private string $npm,
