@@ -26,23 +26,22 @@ class BroadcastingAdjuster
             // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher#pusher-configuration
             // See https://docs.soketi.app/getting-started/backend-configuration/laravel-broadcasting
                 $this->replaceEnvExample($archive, [
-                    "                'cluster' => env('PUSHER_APP_CLUSTER')," =>
-                    "                'cluster' => env('PUSHER_APP_CLUSTER')," . "\n" .
-                    "                'port' => 6001," . "\n",
-                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=pusher'
+                    "                'cluster' => env('PUSHER_APP_CLUSTER')," => "                'cluster' => env('PUSHER_APP_CLUSTER'),"."\n".
+                    "                'port' => 6001,"."\n",
+                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=pusher',
                 ]);
                 break;
 
             case Broadcasting\BroadcastingChannelOption::PUSHER:
                 $this->replaceEnvExample($archive, [
-                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=pusher'
+                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=pusher',
                 ]);
                 break;
 
             case Broadcasting\BroadcastingChannelOption::ABLY:
                 $this->replaceEnvExample($archive, [
                     'PUSHER_APP_ID=' => 'ABLY_KEY=\n\nPUSHER_APP_ID=',
-                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=ably'
+                    $defaultBroadcastEntry => 'BROADCAST_DRIVER=ably',
                 ]);
                 break;
         }
