@@ -38,13 +38,13 @@ use Domains\Laravel\RelatedPackages\Broadcasting\Ably;
 use Domains\Laravel\RelatedPackages\Broadcasting\LaravelWebsockets;
 use Domains\Laravel\RelatedPackages\Broadcasting\Pusher;
 use Domains\Laravel\RelatedPackages\Database\DoctrineDbal;
-use Domains\Laravel\RelatedPackages\Mail\MailgunMailer;
-use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
-use Domains\Laravel\RelatedPackages\Testing\Pest;
 use Domains\Laravel\RelatedPackages\Infrastructure\AlgoliaSearch;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\S3Driver;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\SftpDriver;
+use Domains\Laravel\RelatedPackages\Mail\MailgunMailer;
+use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
+use Domains\Laravel\RelatedPackages\Testing\Pest;
 use Illuminate\Support\Collection;
 
 /**
@@ -235,7 +235,7 @@ class ComposerPackagesToInstallResolver
     /** @return array<ComposerDependency> */
     public function forMail(Mail $mail): array
     {
-        $driverPackage = match($mail->driver) {
+        $driverPackage = match ($mail->driver) {
             default => null,
             MailDriverOption::MAILGUN => new MailgunMailer(),
             MailDriverOption::POSTMARK => new PostmarkMailer(),
@@ -248,7 +248,7 @@ class ComposerPackagesToInstallResolver
     /** @return array<ComposerDependency> */
     public function forBroadcasting(Broadcasting $broadcasting): array
     {
-        $channelPackages = match($broadcasting->channel) {
+        $channelPackages = match ($broadcasting->channel) {
             BroadcastingChannelOption::PUSHER => [new Pusher()],
             BroadcastingChannelOption::ABLY => [new Ably()],
             BroadcastingChannelOption::LARAVEL_WEBSOCKETS => [

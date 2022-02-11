@@ -42,7 +42,7 @@ return [
 
         'temp' => [
             'driver' => 'local',
-            'root' => sys_get_temp_dir() . '/initializer-for-laravel'
+            'root' => sys_get_temp_dir().'/initializer-for-laravel',
         ],
 
         'public' => [
