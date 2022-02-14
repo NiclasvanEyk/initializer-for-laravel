@@ -42,7 +42,7 @@ class SearchAdjuster
     private function setScoutDriver(ZipFile $archive, string $driver): void
     {
         $this->replaceEnvExample($archive, [
-            'MAIL_MAILER' => "SCOUT_DRIVER=$driver" . "\n\n" . 'MAIL_MAILER',
+            'MAIL_MAILER' => "SCOUT_DRIVER=$driver"."\n\n".'MAIL_MAILER',
         ]);
     }
 }
