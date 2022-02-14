@@ -50,19 +50,20 @@
             {{ $pusher->description() }}
         </x-radio-option>
 
-        <x-radio-option
-            :id="$laravelWebsockets->id()"
-            :label="$laravelWebsockets->name()"
-            :href="$laravelWebsockets->href()"
-            :model="$model"
-            :name="$driverParameter"
-        >
-            {{ $laravelWebsockets->description() }}
+{{--    Does not currently work with Laravel 9    --}}
+{{--        <x-radio-option--}}
+{{--            :id="$laravelWebsockets->id()"--}}
+{{--            :label="$laravelWebsockets->name()"--}}
+{{--            :href="$laravelWebsockets->href()"--}}
+{{--            :model="$model"--}}
+{{--            :name="$driverParameter"--}}
+{{--        >--}}
+{{--            {{ $laravelWebsockets->description() }}--}}
 
-            <x-slot name="tags">
-                <x-tags.community />
-            </x-slot>
-        </x-radio-option>
+{{--            <x-slot name="tags">--}}
+{{--                <x-tags.community />--}}
+{{--            </x-slot>--}}
+{{--        </x-radio-option>--}}
 
         <x-radio-option
             :id="$soketi->id()"
