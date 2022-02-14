@@ -33,7 +33,8 @@ use Domains\Laravel\StarterKit\StarterKit;
 
 class CreateProjectFormFixtures
 {
-    public static function allParameters()
+    /** array<string, string|int> */
+    public static function allParameters(): array
     {
         return [
             /** @see Metadata */
@@ -44,9 +45,6 @@ class CreateProjectFormFixtures
 
             /** @see Authentication */
             P::STARTER => StarterKit::BREEZE,
-            // Does not make sense here, we use breeze
-            //            P::USES_JETSTREAM_TEAMS => '',
-            //            P::JETSTREAM_FRONTEND => '',
             P::BREEZE_FRONTEND => BreezeFrontend::BLADE,
             P::USES_FORTIFY => true,
             P::USES_PASSPORT => true,
@@ -59,7 +57,7 @@ class CreateProjectFormFixtures
             P::CACHE_DRIVER => CacheOption::default(),
 
             /** @see Search */
-            P::SCOUT_DRIVER => ScoutDriver::default(),
+            P::SCOUT_DRIVER => ScoutDriver::default()->value,
 
             /** @see Queue */
             P::QUEUE_DRIVER => QueueDriverOption::default(),
