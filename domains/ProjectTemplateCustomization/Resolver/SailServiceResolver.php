@@ -6,14 +6,13 @@ use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Cache\MemcacheDCacheDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
 use Domains\CreateProjectForm\Sections\Queue\RedisQueueDriver;
-use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\Laravel\Sail\Mailhog;
 use Domains\Laravel\Sail\MeiliSearch;
 use Domains\Laravel\Sail\Memcached;
 use Domains\Laravel\Sail\MinIO;
 use Domains\Laravel\Sail\Redis;
 use Domains\Laravel\Sail\SailConfigurationOption;
-use Domains\Laravel\Sail\Selenium;
 use Illuminate\Support\Collection;
 
 class SailServiceResolver
@@ -36,7 +35,7 @@ class SailServiceResolver
             $services[] = new Redis();
         }
 
-        if ($form->search->driver instanceof MeiliSearchScoutDriver) {
+        if ($form->search->driver === ScoutDriver::MEILISEARCH) {
             $services[] = new MeiliSearch();
         }
 

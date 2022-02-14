@@ -1,24 +1,24 @@
 @php
-    use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
-    use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
-    use Domains\Laravel\ComposerPackages\Packages\Scout;
-    use Domains\Laravel\RelatedPackages\Infrastructure\AlgoliaSearch;
-    use Domains\Laravel\Sail\MeiliSearch;
+    use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;use Domains\Laravel\ComposerPackages\Packages\Scout;use Domains\Laravel\RelatedPackages\Search\Algolia;use Domains\Laravel\Sail\MeiliSearch;
 
     $scoutDriverParameter = P::SCOUT_DRIVER;
-    $default = option_selected($scoutDriverParameter, ScoutDriverOption::default());
+    $model = 'scoutDriver';
+    $default = enum_option_selected($scoutDriverParameter, ScoutDriver::default())->value;
 
     $scout = new Scout();
 
-    $customDriver = ScoutDriverOption::CUSTOM;
+    $customDriver = ScoutDriver::CUSTOM->value;
 
     $meiliSearch = new MeiliSearch();
-    $meiliSearchDriver = ScoutDriverOption::MEILISEARCH;
+    $meiliSearchDriver = ScoutDriver::MEILISEARCH->value;
 
-    $algolia = new AlgoliaSearch();
-    $algoliaSearchDriver = ScoutDriverOption::ALGOLIA;
+    $algolia = new Algolia();
+    $algoliaSearchDriver = ScoutDriver::ALGOLIA->value;
 
-    $customSearchDriver = ScoutDriverOption::CUSTOM;
+    $databaseSearchDriverId = "scout-driver-" . ScoutDriver::DATABASE->value;
+    $databaseSearchDriver = ScoutDriver::DATABASE->value;
+
+    $customSearchDriver = ScoutDriver::CUSTOM->value
 @endphp
 
 <x-form-section name="Search">
@@ -54,7 +54,7 @@
 
         <x-radio-option
             :id="$customDriver"
-            model="scoutDriver"
+            :model="$model"
             name="{{ $scoutDriverParameter }}"
             label="Custom"
             href="https://laravel.com/docs/scout#custom-engines"
@@ -63,8 +63,19 @@
         </x-radio-option>
 
         <x-radio-option
+            :id="$databaseSearchDriverId"
+            :value="$databaseSearchDriver"
+            :model="$model"
+            name="{{ $scoutDriverParameter }}"
+            label="Database"
+            href="https://laravel.com/docs/scout#database-engine"
+        >
+            Use the full-text capabilities of your database.
+        </x-radio-option>
+
+        <x-radio-option
             :id="$meiliSearchDriver"
-            model="scoutDriver"
+            :model="$model"
             name="{{ $scoutDriverParameter }}"
             label="{{ $meiliSearch->name() }}"
             href="{{ $meiliSearch->href() }}"
@@ -78,7 +89,7 @@
 
         <x-radio-option
             :id="$algoliaSearchDriver"
-            model="scoutDriver"
+            :model="$model"
             name="{{ $scoutDriverParameter }}"
             label="{{ $algolia->name() }}"
             href="{{ $algolia->href() }}"

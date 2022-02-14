@@ -7,7 +7,7 @@ use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectReq
 use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
-use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 
 class StatisticsService
 {
@@ -18,7 +18,7 @@ class StatisticsService
             'database' => $request->get(P::DATABASE),
             'cache' => $request->get(P::CACHE_DRIVER) ?? CacheOption::default(),
             'queue' => $request->get(P::QUEUE_DRIVER) ?? QueueDriverOption::default(),
-            'search' => $request->get(P::SCOUT_DRIVER) ?? ScoutDriverOption::default(),
+            'search' => $request->get(P::SCOUT_DRIVER) ?? ScoutDriver::default()->value,
             'cashier' => $request->get(P::CASHIER_DRIVER) ?? CashierDriverOption::default(),
         ]);
     }

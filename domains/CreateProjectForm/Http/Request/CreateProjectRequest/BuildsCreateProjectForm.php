@@ -18,7 +18,7 @@ use Domains\CreateProjectForm\Sections\Notifications;
 use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
-use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\CreateProjectForm\Sections\Search;
 use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
@@ -82,9 +82,9 @@ trait BuildsCreateProjectForm
                 ) ?? Broadcasting\BroadcastingChannelOption::default(),
             ),
             search: new Search(
-                driver: Search::driverForOption(
-                    $this->get(P::SCOUT_DRIVER, ScoutDriverOption::default()),
-                ),
+                driver: ScoutDriver::tryFrom(
+                    $this->get(P::SCOUT_DRIVER),
+                ) ?? ScoutDriver::default(),
             ),
             developmentTools: new DevelopmentTools(
                 usesTelescope: $this->has(P::USES_TELESCOPE),

@@ -12,6 +12,7 @@ class ConfigAdjustmentArchiveManipulator implements ArchiveManipulator
         private CacheAdjuster $cache,
         private DatabaseAdjuster $database,
         private BroadcastingAdjuster $broadcasting,
+        private SearchAdjuster $search,
     ) {
     }
 
@@ -20,5 +21,6 @@ class ConfigAdjustmentArchiveManipulator implements ArchiveManipulator
         $this->database->adjustDefaults($archive, $form->database->database);
         $this->cache->adjustDefaults($archive, $form->cache->driver);
         $this->broadcasting->adjustDefaults($archive, $form->broadcasting);
+        $this->search->adjustDefaults($archive, $form->search);
     }
 }

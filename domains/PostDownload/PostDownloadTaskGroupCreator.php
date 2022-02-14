@@ -45,8 +45,8 @@ class PostDownloadTaskGroupCreator
         $tasks = [
             // Install all composer dependencies
             new SetupSail(
-                $this->sailServices->resolveFor($form),
-                $form->metadata->phpVersion,
+                sailServices: $this->sailServices->resolveFor($form),
+                phpVersion: $form->metadata->phpVersion,
             ),
             new AdjustPermissions(),
             // start the sail container
@@ -57,15 +57,20 @@ class PostDownloadTaskGroupCreator
             new MigrateDatabase($artisan),
         ];
 
-        $starterKit = $form->authentication->starterKit;
-        if (! ($starterKit instanceof Breeze
-            && $starterKit->frontend->name === BreezeFrontend::API)) {
-            $tasks[] = new SetupFrontend(
-                $npm,
-                $this->npmPackages->resolveFor($form),
-            );
+        if ($this->hasFrontend($form)) {
+            $packages = $this->npmPackages->resolveFor($form);
+            $tasks[] = new SetupFrontend($npm, $packages);
         }
 
         return $tasks;
+    }
+
+    private function hasFrontend(CreateProjectForm $form): bool
+    {
+        $starterKit = $form->authentication->starterKit;
+        $usesBreezeApiStack = $starterKit instanceof Breeze
+            && $starterKit->frontend->name === BreezeFrontend::API;
+
+        return ! $usesBreezeApiStack;
     }
 }

@@ -22,8 +22,7 @@ use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
 use Domains\CreateProjectForm\Sections\Queue\RedisQueueDriver;
-use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
-use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\CreateProjectForm\Sections\Search;
 use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
@@ -60,7 +59,7 @@ class CreateProjectFormFixtures
             P::CACHE_DRIVER => CacheOption::default(),
 
             /** @see Search */
-            P::SCOUT_DRIVER => ScoutDriverOption::default(),
+            P::SCOUT_DRIVER => ScoutDriver::default(),
 
             /** @see Queue */
             P::QUEUE_DRIVER => QueueDriverOption::default(),
@@ -153,7 +152,7 @@ class CreateProjectFormFixtures
 
     public static function search(): Search
     {
-        return new Search(driver: new MeiliSearchScoutDriver());
+        return new Search(driver: ScoutDriver::MEILISEARCH);
     }
 
     public static function developmentTools(): DevelopmentTools

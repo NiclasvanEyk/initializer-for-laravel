@@ -21,8 +21,7 @@ use Domains\CreateProjectForm\Sections\Payment;
 use Domains\CreateProjectForm\Sections\Queue;
 use Domains\CreateProjectForm\Sections\Queue\RedisQueueDriver;
 use Domains\CreateProjectForm\Sections\Queue\SqsQueueDriver;
-use Domains\CreateProjectForm\Sections\Scout\AlgoliaScoutDriver;
-use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\CreateProjectForm\Sections\Search;
 use Domains\CreateProjectForm\Sections\Storage;
 use Domains\CreateProjectForm\Sections\Testing;
@@ -38,12 +37,12 @@ use Domains\Laravel\RelatedPackages\Broadcasting\Ably;
 use Domains\Laravel\RelatedPackages\Broadcasting\LaravelWebsockets;
 use Domains\Laravel\RelatedPackages\Broadcasting\Pusher;
 use Domains\Laravel\RelatedPackages\Database\DoctrineDbal;
-use Domains\Laravel\RelatedPackages\Infrastructure\AlgoliaSearch;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\S3Driver;
 use Domains\Laravel\RelatedPackages\Infrastructure\Flysystem\SftpDriver;
 use Domains\Laravel\RelatedPackages\Mail\MailgunMailer;
 use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
+use Domains\Laravel\RelatedPackages\Search\Algolia;
 use Domains\Laravel\RelatedPackages\Testing\Pest;
 use Illuminate\Support\Collection;
 
@@ -148,17 +147,17 @@ class ComposerPackagesToInstallResolver
     /** @return array<ComposerDependency> */
     public function forSearch(Search $search): array
     {
-        if ($search->driver === null) {
+        if ($search->driver === ScoutDriver::NONE) {
             return [];
         }
 
         $packages = [new Scout()];
 
-        if ($search->driver instanceof MeiliSearchScoutDriver) {
+        if ($search->driver === ScoutDriver::MEILISEARCH) {
             $packages[] = new InlineComposerDependency('meilisearch/meilisearch-php');
             $packages[] = new InlineComposerDependency('http-interop/http-factory-guzzle');
-        } elseif ($search->driver instanceof AlgoliaScoutDriver) {
-            $packages[] = new AlgoliaSearch();
+        } elseif ($search->driver === ScoutDriver::ALGOLIA) {
+            $packages[] = new Algolia();
         }
 
         return $packages;

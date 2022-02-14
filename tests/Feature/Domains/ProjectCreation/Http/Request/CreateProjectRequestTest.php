@@ -3,20 +3,13 @@
 namespace Tests\Feature\Domains\ProjectCreation\Http\Request;
 
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
-use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
-use Domains\CreateProjectForm\Sections\Cache\CacheOption;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
-use Domains\CreateProjectForm\Sections\Cashier\CashierDriverOption;
 use Domains\CreateProjectForm\Sections\Cashier\CashierStripeDriver;
-use Domains\CreateProjectForm\Sections\Database\DatabaseOption;
 use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
-use Domains\CreateProjectForm\Sections\Queue\QueueDriverOption;
-use Domains\CreateProjectForm\Sections\Scout\MeiliSearchScoutDriver;
-use Domains\CreateProjectForm\Sections\Scout\ScoutDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\Laravel\Sail\MySQLDatabase;
 use Domains\Laravel\StarterKit\Breeze;
 use Domains\Laravel\StarterKit\BreezeFrontend;
-use Domains\Laravel\StarterKit\StarterKit;
 use Illuminate\Support\Facades\Validator;
 use Tests\Feature\Domains\ProjectCreation\CreateProjectFormFixtures;
 use Tests\TestCase;
@@ -67,11 +60,7 @@ class CreateProjectRequestTest extends TestCase
         $this->assertTrue($mail->usesMailhog);
 
         $search = $form->search;
-        $this->assertTrue($search->driver instanceof MeiliSearchScoutDriver);
-        $this->assertInstanceOf(
-            MeiliSearchScoutDriver::class,
-            $search->driver,
-        );
+        $this->assertTrue($search->driver === ScoutDriver::MEILISEARCH);
 
         $devTools = $form->developmentTools;
         $this->assertTrue($devTools->usesTelescope);

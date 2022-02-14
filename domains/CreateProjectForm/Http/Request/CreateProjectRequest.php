@@ -10,6 +10,7 @@ use Domains\CreateProjectForm\Sections\Broadcasting;
 use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
 use Domains\CreateProjectForm\Sections\Mail;
 use Domains\CreateProjectForm\Sections\Mail\MailDriverOption;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 use Domains\CreateProjectForm\Validation\Rules\ValidBreezeFrontendOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidCacheOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidCashierDriverOption;
@@ -17,7 +18,6 @@ use Domains\CreateProjectForm\Validation\Rules\ValidDatabaseOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidJetstreamFrontendOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidPhpVersionOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidQueueDriverOption;
-use Domains\CreateProjectForm\Validation\Rules\ValidScoutDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidStarterKitOption;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
@@ -73,10 +73,7 @@ class CreateProjectRequest extends FormRequest
             P::CACHE_DRIVER => ['sometimes', 'string', new ValidCacheOption()],
 
             /** @see Search */
-            P::SCOUT_DRIVER => [
-                'sometimes',
-                new ValidScoutDriverOption(),
-            ],
+            P::SCOUT_DRIVER => ['sometimes', new Enum(ScoutDriver::class)],
 
             /** @see Queue */
             P::QUEUE_DRIVER => [

@@ -1,18 +1,15 @@
 <?php
 
-namespace Domains\Laravel\RelatedPackages\Infrastructure;
+namespace Domains\Laravel\RelatedPackages\Search;
 
 use Domains\Composer\ComposerDependency;
-use Domains\CreateProjectForm\Sections\Scout\AlgoliaScoutDriver;
+use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
 
-/**
- * @see AlgoliaScoutDriver
- */
-class AlgoliaSearch extends ComposerDependency
+class Algolia extends ComposerDependency
 {
     public function id(): string
     {
-        return 'algolia';
+        return ScoutDriver::ALGOLIA->value;
     }
 
     public function packageId(): string
