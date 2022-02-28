@@ -1,3 +1,4 @@
+@php /** @var \Domains\Statistics\StatisticsSummary $statistics */ @endphp
 <x-layout.default>
     <article
         class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-invert"
@@ -20,6 +21,12 @@
             archive, execute <code>./initialize</code> in your terminal and the
             script will install all components into your application.
         </p>
+
+        <p class="text-4xl mt-10 text-center tracking-tight font-extrabold text-gray-900 dark:text-gray-200 sm:text-5xl md:text-6xl mb-0">
+            <span class="text-red-500">{{ $statistics->total }}</span>
+            <span class="text-3xl align-middle">projects initialized 🚀</span>
+        </p>
+        <p class="text-xs text-center">Last checked: {{ $statistics->lastCheckedAt->shortRelativeToNowDiffForHumans() }}</p>
 
         {{--------------------------------------------------------------------}}
 
