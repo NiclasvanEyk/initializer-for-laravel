@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Cache;
 class StatisticsService
 {
     const TOTAL_PROJECTS_GENERATED_CACHE_KEY = 'total-number-of-projects-generated';
-    const LAST_CHECKED_AT_CACHE_KEY = self::TOTAL_PROJECTS_GENERATED_CACHE_KEY . ':last-checked-at';
+    const LAST_CHECKED_AT_CACHE_KEY = self::TOTAL_PROJECTS_GENERATED_CACHE_KEY.':last-checked-at';
 
     public function record(CreateProjectRequest $request): void
     {
@@ -42,12 +42,13 @@ class StatisticsService
         $tomorrow = DateInterval::createFromDateString('tomorrow');
 
         return rescue(
-            fn() => Cache::remember(
+            fn () => Cache::remember(
                 key: self::TOTAL_PROJECTS_GENERATED_CACHE_KEY,
                 ttl: $tomorrow,
                 callback: function () {
                     $this->markStatisticsAsComputed();
-                    return (string)Statistics::query()->count();
+
+                    return (string) Statistics::query()->count();
                 },
             ),
             '100+',
