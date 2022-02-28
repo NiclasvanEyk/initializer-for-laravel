@@ -9,5 +9,6 @@ class StatisticsSummary
     public function __construct(
         public readonly int $total,
         public readonly Carbon $lastCheckedAt,
-    ) { }
+    ) {
+    }
 }
