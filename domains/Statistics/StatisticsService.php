@@ -57,7 +57,7 @@ class StatisticsService
 
     private function markStatisticsAsComputed(): void
     {
-        Cache::set(self::LAST_CHECKED_AT_CACHE_KEY, now()->toString());
+        Cache::put(self::LAST_CHECKED_AT_CACHE_KEY, now()->toString());
     }
 
     private function lastCheckedAt(): Carbon
