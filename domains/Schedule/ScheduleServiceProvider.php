@@ -15,6 +15,7 @@ class ScheduleServiceProvider extends ServiceProvider
         RateLimiter::for('schedule-endpoint', fn () => Limit::perMinute(1));
 
         Route::middleware('throttle:schedule-endpoint')
-            ->get('/schedule-run', ScheduleRunController::class);
+            ->get('/schedule-run', ScheduleRunController::class)
+            ->name('schedule-run');
     }
 }
