@@ -7,8 +7,8 @@ use Domains\Core\View\Blocks\Block;
 class RadioGroup extends Block
 {
     /**
-     * @param string $id
-     * @param list<RadioGroupOption> $options
+     * @param  string  $id
+     * @param  list<RadioGroupOption>  $options
      */
     public function __construct(
         private readonly string $id,

@@ -9,5 +9,5 @@ abstract class FormSection
     /**
      * Builds the actual HTML for the form.
      */
-    abstract function view(): FormSectionView;
+    abstract public function view(): FormSectionView;
 }

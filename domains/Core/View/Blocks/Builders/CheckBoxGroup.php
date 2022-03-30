@@ -9,13 +9,11 @@ final class CheckBoxGroup
         private readonly string $heading,
         private readonly array $tags,
         private readonly array $options,
-    )
-    {
+    ) {
     }
 
     public function checkBox(): self
     {
-
     }
 
     public function build(): \Domains\Core\View\Blocks\Input\CheckBoxGroup

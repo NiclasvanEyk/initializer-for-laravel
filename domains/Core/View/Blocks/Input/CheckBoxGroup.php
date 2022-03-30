@@ -7,8 +7,8 @@ use Domains\Core\View\Blocks\Block;
 class CheckBoxGroup extends Block
 {
     /**
-     * @param string $id
-     * @param list<CheckBox> $options
+     * @param  string  $id
+     * @param  list<CheckBox>  $options
      */
     public function __construct(
         private readonly string $id,
