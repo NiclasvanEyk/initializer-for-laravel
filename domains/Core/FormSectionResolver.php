@@ -4,5 +4,4 @@ namespace Domains\Core;
 
 class FormSectionResolver
 {
-
 }
