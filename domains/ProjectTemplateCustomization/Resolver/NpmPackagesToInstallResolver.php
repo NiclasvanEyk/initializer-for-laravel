@@ -27,7 +27,7 @@ class NpmPackagesToInstallResolver
             return $packages;
         }
 
-        $packagesToAdd = match($form->broadcasting->channel) {
+        $packagesToAdd = match ($form->broadcasting->channel) {
             BroadcastingChannelOption::NONE => [],
             BroadcastingChannelOption::PUSHER,
             BroadcastingChannelOption::ABLY,
