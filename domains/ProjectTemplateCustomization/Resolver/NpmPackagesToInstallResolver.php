@@ -27,13 +27,16 @@ class NpmPackagesToInstallResolver
             return $packages;
         }
 
-        if ($form->broadcasting->channel !== null) {
-            $packages->add(new PusherJs());
-            $packages->add(new LaravelEcho());
-        }
+        $packagesToAdd = match($form->broadcasting->channel) {
+            BroadcastingChannelOption::NONE => [],
+            BroadcastingChannelOption::PUSHER,
+            BroadcastingChannelOption::ABLY,
+            BroadcastingChannelOption::LARAVEL_WEBSOCKETS => [new PusherJs(), new LaravelEcho()],
+            BroadcastingChannelOption::SOKETI => [new PusherJs(), new LaravelEcho(), new Soketi()],
+        };
 
-        if ($form->broadcasting->channel === BroadcastingChannelOption::SOKETI) {
-            $packages->add(new Soketi());
+        foreach ($packagesToAdd as $package) {
+            $packages->add($package);
         }
 
         return $packages;
