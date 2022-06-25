@@ -49,7 +49,6 @@ class SailServiceResolver
 
         return (new Collection($services))
             // Redis might be in there multiple times
-            // @phpstan-ignore-next-line
             ->unique(function (SailConfigurationOption $service) {
                 return $service->id();
             })
