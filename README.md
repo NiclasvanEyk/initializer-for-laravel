@@ -18,6 +18,6 @@ A [devcontainer.json](.devcontainer/devcontainer.json) configuration is prepared
 
 If you like supporting the project, consider [sponsoring](https://github.com/sponsors/NiclasvanEyk), as hosting websites costs money. 
 
-Alternatively you could also register for DigitalOcean using the link below. Everyone signing up trough that link gets 100$ in platform credit to play around with for 60 days. If you decide to spend 25$ on DigitalOcean, I get 25$ in platform credit, which is enough to host the site for 5 months.
+Alternatively you could also register for DigitalOcean using the link below. Everyone signing up trough that link gets 100\$ in platform credit to play around with for 60 days. If you decide to spend 25$ on DigitalOcean, I get 25\$ in platform credit, which is enough to host the site for 5 months.
 
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=40b8920547a9&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
