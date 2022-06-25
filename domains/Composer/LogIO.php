@@ -7,22 +7,22 @@ use Illuminate\Support\Facades\Log;
 
 class LogIO extends NullIO
 {
-    public function isVerbose()
+    public function isVerbose(): bool
     {
         return true;
     }
 
-    public function isVeryVerbose()
+    public function isVeryVerbose(): bool
     {
         return true;
     }
 
-    public function isDebug()
+    public function isDebug(): bool
     {
         return true;
     }
 
-    public function write($messages, $newline = true, $verbosity = self::NORMAL)
+    public function write($messages, $newline = true, $verbosity = self::NORMAL): void
     {
         if (is_array($messages)) {
             $messages = implode(PHP_EOL, $messages);
@@ -31,7 +31,7 @@ class LogIO extends NullIO
         Log::info($messages);
     }
 
-    public function writeError($messages, $newline = true, $verbosity = self::NORMAL)
+    public function writeError($messages, $newline = true, $verbosity = self::NORMAL): void
     {
         if (is_array($messages)) {
             $messages = implode(PHP_EOL, $messages);
