@@ -31,7 +31,7 @@ class SetupFrontend implements PostDownloadTaskGroup
 
         return [
             "$this->npm install $packages",
-            "$this->npm run dev",
+            "$this->npm run build",
         ];
     }
 }
