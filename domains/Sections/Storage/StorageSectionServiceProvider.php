@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
 
 class StorageSectionServiceProvider extends SectionServiceProvider implements ProvidesSailServices, ProvidesComposerDependencies
 {
-    public function sailServices(CreateProjectForm $form): Collection {
+    public function sailServices(CreateProjectForm $form): Collection
+    {
         $services = new Collection();
 
         if ($form->storage->usesMinIO) {

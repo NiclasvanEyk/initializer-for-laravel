@@ -24,7 +24,7 @@ class SailServiceResolver
     {
         /** @var array<int, SailConfigurationOption> $services */
         $services = [
-//            $form->database->database
+            //            $form->database->database
         ];
 
 //        if ($form->cache->driver instanceof RedisCacheDriver) {

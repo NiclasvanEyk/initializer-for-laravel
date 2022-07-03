@@ -23,7 +23,7 @@ abstract class DependencyResolverContainer
      * not appear in the regular auto-complete list, since this method will
      * likely only be called in platform code.
      *
-     * @param CreateProjectForm $form The values of the form.
+     * @param  CreateProjectForm  $form  The values of the form.
      * @return Collection<ToResolve>
      */
     public function __invoke(CreateProjectForm $form): Collection
@@ -40,7 +40,7 @@ abstract class DependencyResolverContainer
     /**
      * Registers a new way of resolving packages.
      *
-     * @param callable $resolver
+     * @param  callable  $resolver
      * @psalm-param callable(CreateProjectForm): Collection<int, ToResolve> $resolver
      */
     public function register(callable $resolver): self

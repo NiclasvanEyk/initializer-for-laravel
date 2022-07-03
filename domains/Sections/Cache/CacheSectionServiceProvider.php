@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
 
 class CacheSectionServiceProvider extends SectionServiceProvider implements ProvidesSailServices
 {
-    public function sailServices(CreateProjectForm $form): Collection {
+    public function sailServices(CreateProjectForm $form): Collection
+    {
         $services = new Collection();
 
         if ($form->cache->driver instanceof RedisCacheDriver) {
