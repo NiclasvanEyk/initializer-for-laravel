@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 interface ProvidesNpmDependencies
 {
     /**
-     * @param CreateProjectForm $form
+     * @param  CreateProjectForm  $form
      * @return Collection<int, NpmDependency>
      */
     public function npmDependencies(CreateProjectForm $form): Collection;

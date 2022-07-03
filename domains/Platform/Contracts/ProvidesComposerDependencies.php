@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 interface ProvidesComposerDependencies
 {
     /**
-     * @param CreateProjectForm $form
+     * @param  CreateProjectForm  $form
      * @return Collection<int, ComposerDependency>
      */
     public function composerDependencies(CreateProjectForm $form): Collection;

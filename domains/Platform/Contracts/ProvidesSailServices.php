@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 interface ProvidesSailServices
 {
     /**
-     * @param CreateProjectForm $form
+     * @param  CreateProjectForm  $form
      * @return Collection
      */
     public function sailServices(CreateProjectForm $form): Collection;

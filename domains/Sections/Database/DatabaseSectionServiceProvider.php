@@ -11,7 +11,8 @@ use Illuminate\Support\Collection;
 
 class DatabaseSectionServiceProvider extends SectionServiceProvider implements ProvidesSailServices, ProvidesComposerDependencies
 {
-    public function sailServices(CreateProjectForm $form): Collection {
+    public function sailServices(CreateProjectForm $form): Collection
+    {
         return new Collection($form->database->database);
     }
 
