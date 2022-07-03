@@ -60,16 +60,16 @@ class ComposerPackagesToInstallResolver
     {
         return (new Collection([
             ...$this->forAuthentication($form->authentication),
-            ...$this->forDatabase($form->database),
+//            ...$this->forDatabase($form->database),
             ...$this->forCache($form->cache),
             ...$this->forQueue($form->queue),
-            ...$this->forSearch($form->search),
+//            ...$this->forSearch($form->search),
             ...$this->forDevelopmentTools($form->developmentTools),
             ...$this->forTesting($form->testing),
             ...$this->forPayment($form->payment),
-            ...$this->forStorage($form->storage),
+//            ...$this->forStorage($form->storage),
             ...$this->forNotifications($form->notifications),
-            ...$this->forMail($form->mail),
+//            ...$this->forMail($form->mail),
             ...$this->forBroadcasting($form->broadcasting),
         ]))->unique()->values();
     }

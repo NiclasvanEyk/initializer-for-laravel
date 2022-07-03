@@ -23,29 +23,31 @@ class SailServiceResolver
     public function resolveFor(CreateProjectForm $form): Collection
     {
         /** @var array<int, SailConfigurationOption> $services */
-        $services = [$form->database->database];
+        $services = [
+//            $form->database->database
+        ];
 
-        if ($form->cache->driver instanceof RedisCacheDriver) {
-            $services[] = new Redis();
-        } elseif ($form->cache->driver instanceof MemcacheDCacheDriver) {
-            $services[] = new Memcached();
-        }
+//        if ($form->cache->driver instanceof RedisCacheDriver) {
+//            $services[] = new Redis();
+//        } elseif ($form->cache->driver instanceof MemcacheDCacheDriver) {
+//            $services[] = new Memcached();
+//        }
+//
+//        if ($form->queue->driver instanceof RedisQueueDriver) {
+//            $services[] = new Redis();
+//        }
 
-        if ($form->queue->driver instanceof RedisQueueDriver) {
-            $services[] = new Redis();
-        }
+//        if ($form->search->driver === ScoutDriver::MEILISEARCH) {
+//            $services[] = new MeiliSearch();
+//        }
 
-        if ($form->search->driver === ScoutDriver::MEILISEARCH) {
-            $services[] = new MeiliSearch();
-        }
+//        if ($form->mail->usesMailhog) {
+//            $services[] = new Mailhog();
+//        }
 
-        if ($form->mail->usesMailhog) {
-            $services[] = new Mailhog();
-        }
-
-        if ($form->storage->usesMinIO) {
-            $services[] = new MinIO();
-        }
+//        if ($form->storage->usesMinIO) {
+//            $services[] = new MinIO();
+//        }
 
         return (new Collection($services))
             // Redis might be in there multiple times
