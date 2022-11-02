@@ -10,6 +10,7 @@ class PhpVersion
 
     public const v8_0 = '8.0';
     public const v8_1 = '8.1';
+    public const v8_2 = '8.2';
 
     public static function latest(): string
     {
@@ -18,6 +19,6 @@ class PhpVersion
 
     public static function preview(): string
     {
-        return 'none';
+        return self::v8_2;
     }
 }
