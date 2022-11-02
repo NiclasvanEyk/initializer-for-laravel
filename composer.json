@@ -15,7 +15,7 @@
         "laravel/installer": "^4.2",
         "laravel/tinker": "^2.5",
         "nelexa/zip": "^4.0",
-        "sentry/sentry-laravel": "^2.8",
+        "sentry/sentry-laravel": "^3.0",
         "spatie/laravel-google-fonts": "^1.0"
     },
     "require-dev": {
