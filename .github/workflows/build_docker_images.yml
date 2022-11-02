@@ -5,7 +5,7 @@ on:
     - cron: '0 0 * * 0' # Weekly
 
 jobs:
-  unit-tests:
+  build-docker-images:
     runs-on: ubuntu-latest
 
     steps:
