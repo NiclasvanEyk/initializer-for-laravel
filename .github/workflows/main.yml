@@ -87,7 +87,7 @@ jobs:
         run: doctl apps create-deployment ec11a9ce-8d66-4315-acf1-215e61be8402 --wait
 
       - name: Sentry Release
-        uses: getsentry/action-release@v1.1.6
+        uses: getsentry/action-release@v1.2.1
         with:
           environment: production
           projects: initializer-for-laravel
