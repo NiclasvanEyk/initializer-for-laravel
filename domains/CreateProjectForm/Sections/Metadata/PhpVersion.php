@@ -14,11 +14,11 @@ class PhpVersion
 
     public static function latest(): string
     {
-        return self::v8_1;
+        return self::v8_2;
     }
 
-    public static function preview(): string
+    public static function preview(): ?string
     {
-        return self::v8_2;
+        return null;
     }
 }
