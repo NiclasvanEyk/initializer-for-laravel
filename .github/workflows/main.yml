@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: shivammathur/setup-php@1a18b2267f80291a81ca1d33e7c851fe09e7dfc4
+    - uses: shivammathur/setup-php@d30ad8b1843ace22e6698ab99bbafaa747b6bd0d
       with:
         php-version: '8.1'
     - uses: actions/checkout@v2
@@ -46,7 +46,7 @@ jobs:
 #  docker-tests:
 #    runs-on: ubuntu-latest
 #    steps:
-#      - uses: shivammathur/setup-php@1a18b2267f80291a81ca1d33e7c851fe09e7dfc4
+#      - uses: shivammathur/setup-php@d30ad8b1843ace22e6698ab99bbafaa747b6bd0d
 #        with:
 #          php-version: '8.1'
 #      - uses: actions/checkout@v2
