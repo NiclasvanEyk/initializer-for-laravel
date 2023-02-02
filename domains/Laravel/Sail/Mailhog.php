@@ -4,7 +4,7 @@ namespace Domains\Laravel\Sail;
 
 class Mailhog extends SailConfigurationOption
 {
-    const REPOSITORY_KEY = 'mailhog';
+    const REPOSITORY_KEY = 'mailpit';
 
     public function id(): string
     {
@@ -13,7 +13,7 @@ class Mailhog extends SailConfigurationOption
 
     public function name(): string
     {
-        return 'Mailhog';
+        return 'Mailpit';
     }
 
     public function description(): string

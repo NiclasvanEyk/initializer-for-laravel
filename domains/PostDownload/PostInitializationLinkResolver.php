@@ -31,7 +31,7 @@ class PostInitializationLinkResolver
 
         if ($services->contains(fn ($it) => $it instanceof Mailhog)) {
             $links[] = new PostInitializationLink(
-                title: 'Preview Emails via Mailhog',
+                title: 'Preview Emails via Mailpit',
                 base: 'http://localhost:8025',
             );
         }

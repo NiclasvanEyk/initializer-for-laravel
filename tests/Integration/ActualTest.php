@@ -44,11 +44,11 @@ class ActualTest extends TestCase
             'Jetstream does not seem to have been installed',
         );
 
-        // Mailhog
+        // Mailpit
         $this->assertEquals(
             200,
             Http::get('localhost:8025')->status(),
-            'Mailhog does not seem to have been installed',
+            'Mailpit does not seem to have been installed',
         );
 
         // Meilisearch
