@@ -83,7 +83,7 @@
     </x-form-control.group>
 
     <p class="text-gray-600 dark:text-gray-400">
-        <x-link href="https://github.com/mailhog/MailHog">Mailhog</x-link>
+        <x-link href="https://github.com/axllent/mailpit#readme">Mailpit</x-link>
         is included by default to ease local development. It intercepts
         mails sent by your application and displays them in a simple web
         interface.
