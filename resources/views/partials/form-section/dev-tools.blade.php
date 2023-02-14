@@ -9,6 +9,10 @@
     $envoy = new Packages\Envoy();
     $envoyParameter = P::USES_ENVOY;
     $usesEnvoy = checkbox_checked($envoyParameter)
+
+    $pennant = new Packages\Pennant();
+    $pennantParameter = P::USES_PENNANT;
+    $usesPennant = checkbox_checked($pennantParameter)
 @endphp
 
 <x-form-section name="Development Tools">
@@ -43,5 +47,10 @@
         :id="$envoyParameter"
         :checked="$usesEnvoy"
         :package="$envoy"
+    />
+    <x-first-party-package.option
+        :id="$pennantParameter"
+        :checked="$usesPennant"
+        :package="$pennant"
     />
 </x-form-section>
