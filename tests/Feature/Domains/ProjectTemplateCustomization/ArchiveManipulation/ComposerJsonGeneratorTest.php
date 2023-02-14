@@ -26,7 +26,7 @@ class ComposerJsonGeneratorTest extends TestCase
                 vendorName: 'test',
                 projectName: 'test-project',
                 description: 'foo-bar',
-                phpVersion: Metadata\PhpVersion::v8_0,
+                phpVersion: Metadata\PhpVersion::v8_2,
             ),
         );
         $composerJson = ComposerJsonFixtures::thisProject();

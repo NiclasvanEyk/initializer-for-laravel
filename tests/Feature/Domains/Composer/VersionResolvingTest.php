@@ -46,7 +46,7 @@ class VersionResolvingTest extends TestCase
     public function it_can_resolve_versions_of_known_packages(): void
     {
         $factory = new VersionSelectorFactory();
-        $versionSelector = $factory->build(PhpVersion::v8_0);
+        $versionSelector = $factory->build(PhpVersion::v8_2);
         $resolver = new PackageVersionToInstallResolver($versionSelector);
 
         $versions = $resolver->resolve(collect([new AwsSdk()]));

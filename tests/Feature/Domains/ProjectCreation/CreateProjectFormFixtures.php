@@ -40,7 +40,7 @@ class CreateProjectFormFixtures
             /** @see Metadata */
             P::VENDOR => 'foo',
             P::PROJECT => 'bar',
-            P::PHP => PhpVersion::v8_0,
+            P::PHP => PhpVersion::v8_2,
             P::DESCRIPTION => '',
 
             /** @see Authentication */

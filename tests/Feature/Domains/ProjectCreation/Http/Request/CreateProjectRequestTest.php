@@ -31,7 +31,7 @@ class CreateProjectRequestTest extends TestCase
         $metadata = $form->metadata;
         $this->assertEquals('foo', $metadata->vendorName);
         $this->assertEquals('bar', $metadata->projectName);
-        $this->assertEquals(PhpVersion::v8_0, $metadata->phpVersion);
+        $this->assertEquals(PhpVersion::v8_2, $metadata->phpVersion);
         $this->assertEquals('', $metadata->description);
         $this->assertEquals('foo/bar', $metadata->fullName());
 
