@@ -12,15 +12,15 @@ class Pennant extends FirstPartyPackage implements ProvidesInstallationInstructi
 {
     const REPOSITORY_KEY = 'pennant';
 
-    public function description(): string
+    public function description() : string
     {
         return 'A simple, lightweight library for managing feature flags.';
     }
 
-    public function installationInstructions(string $artisan): PostDownloadTaskGroup
+    public function installationInstructions(string $artisan) : PostDownloadTaskGroup
     {
         return new ClosurePostInstallTaskGroup(
-            'Install Laravel Passport',
+            'Install Laravel Pennant',
             fn () => [
                 new WaitForDatabase($artisan),
                 "$artisan migrate",

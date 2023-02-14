@@ -35,7 +35,7 @@ use Exception;
  */
 trait BuildsCreateProjectForm
 {
-    public function buildForm(): CreateProjectForm
+    public function buildForm() : CreateProjectForm
     {
         $sailServiceRepository = $this->sailServiceRepository();
 
@@ -54,23 +54,23 @@ trait BuildsCreateProjectForm
             ),
             database: new Database(
                 database: $sailServiceRepository->resolve(
-                    $this->database,
+                        $this->database,
                 ) ?? throw new Exception("Database $this->database could not be resolved"),
                 useDbal: $this->has(P::USES_DBAL)
             ),
             cache: new Cache(
                 driver: Cache::driverForOption(
-                    $this->get(P::CACHE_DRIVER, CacheOption::default()),
+                    $this->get(P::CACHE_DRIVER, CacheOption::default ()),
                 )
             ),
             queue: new Queue(
                 driver: Queue::driverForOption(
-                    $this->get(P::QUEUE_DRIVER, QueueDriverOption::default())
+                    $this->get(P::QUEUE_DRIVER, QueueDriverOption::default ())
                 ),
                 usesHorizon: $this->has(P::USES_HORIZON),
             ),
             mail: new Mail(
-                driver: MailDriverOption::tryFrom($this->get(P::MAIL_DRIVER)) ?? MailDriverOption::default(),
+                driver: MailDriverOption::tryFrom($this->get(P::MAIL_DRIVER)) ?? MailDriverOption::default (),
                 usesMailhog: $this->has(P::USES_MAILHOG),
             ),
             notifications: new Notifications(
@@ -79,16 +79,17 @@ trait BuildsCreateProjectForm
             broadcasting: new Broadcasting(
                 channel: Broadcasting\BroadcastingChannelOption::tryFrom(
                     $this->get(P::BROADCASTING_CHANNEL)
-                ) ?? Broadcasting\BroadcastingChannelOption::default(),
+                ) ?? Broadcasting\BroadcastingChannelOption::default (),
             ),
             search: new Search(
                 driver: ScoutDriver::tryFrom(
                     $this->get(P::SCOUT_DRIVER),
-                ) ?? ScoutDriver::default(),
+                ) ?? ScoutDriver::default (),
             ),
             developmentTools: new DevelopmentTools(
                 usesTelescope: $this->has(P::USES_TELESCOPE),
                 usesEnvoy: $this->has(P::USES_ENVOY),
+                usesPennant: $this->has(P::USES_PENNANT),
             ),
             testing: new Testing(
                 usesDusk: $this->has(P::USES_DUSK),
@@ -105,7 +106,7 @@ trait BuildsCreateProjectForm
         );
     }
 
-    private function sailServiceRepository(): SailServiceRepository
+    private function sailServiceRepository() : SailServiceRepository
     {
         return resolve(SailServiceRepository::class);
     }

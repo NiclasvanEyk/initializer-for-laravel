@@ -8,7 +8,7 @@
 
     $envoy = new Packages\Envoy();
     $envoyParameter = P::USES_ENVOY;
-    $usesEnvoy = checkbox_checked($envoyParameter)
+    $usesEnvoy = checkbox_checked($envoyParameter);
 
     $pennant = new Packages\Pennant();
     $pennantParameter = P::USES_PENNANT;

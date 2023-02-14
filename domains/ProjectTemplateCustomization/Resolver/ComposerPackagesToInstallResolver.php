@@ -30,6 +30,7 @@ use Domains\Laravel\ComposerPackages\Packages\Envoy;
 use Domains\Laravel\ComposerPackages\Packages\Fortify;
 use Domains\Laravel\ComposerPackages\Packages\Horizon;
 use Domains\Laravel\ComposerPackages\Packages\Passport;
+use Domains\Laravel\ComposerPackages\Packages\Pennant;
 use Domains\Laravel\ComposerPackages\Packages\Scout;
 use Domains\Laravel\ComposerPackages\Packages\Socialite;
 use Domains\Laravel\ComposerPackages\Packages\Telescope;
@@ -56,26 +57,26 @@ class ComposerPackagesToInstallResolver
      * @param  CreateProjectForm  $form
      * @return Collection<int, ComposerDependency>
      */
-    public function resolveFor(CreateProjectForm $form): Collection
+    public function resolveFor(CreateProjectForm $form) : Collection
     {
         return (new Collection([
-            ...$this->forAuthentication($form->authentication),
-            ...$this->forDatabase($form->database),
-            ...$this->forCache($form->cache),
-            ...$this->forQueue($form->queue),
-            ...$this->forSearch($form->search),
-            ...$this->forDevelopmentTools($form->developmentTools),
-            ...$this->forTesting($form->testing),
-            ...$this->forPayment($form->payment),
-            ...$this->forStorage($form->storage),
-            ...$this->forNotifications($form->notifications),
-            ...$this->forMail($form->mail),
-            ...$this->forBroadcasting($form->broadcasting),
-        ]))->unique()->values();
+                    ...$this->forAuthentication($form->authentication),
+                    ...$this->forDatabase($form->database),
+                    ...$this->forCache($form->cache),
+                    ...$this->forQueue($form->queue),
+                    ...$this->forSearch($form->search),
+                    ...$this->forDevelopmentTools($form->developmentTools),
+                    ...$this->forTesting($form->testing),
+                    ...$this->forPayment($form->payment),
+                    ...$this->forStorage($form->storage),
+                    ...$this->forNotifications($form->notifications),
+                    ...$this->forMail($form->mail),
+                    ...$this->forBroadcasting($form->broadcasting),
+                ]))->unique()->values();
     }
 
     /** @return array<ComposerDependency> */
-    public function forAuthentication(Authentication $authentication): array
+    public function forAuthentication(Authentication $authentication) : array
     {
         $packages = [];
 
@@ -101,7 +102,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forDatabase(Database $database): array
+    public function forDatabase(Database $database) : array
     {
         return $database->useDbal
             ? [new DoctrineDbal()]
@@ -109,7 +110,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forCache(Cache $cache): array
+    public function forCache(Cache $cache) : array
     {
         if ($cache->driver === null) {
             return [];
@@ -125,7 +126,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forQueue(Queue $queue): array
+    public function forQueue(Queue $queue) : array
     {
         $packages = [];
 
@@ -145,7 +146,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forSearch(Search $search): array
+    public function forSearch(Search $search) : array
     {
         if ($search->driver === ScoutDriver::NONE) {
             return [];
@@ -166,7 +167,8 @@ class ComposerPackagesToInstallResolver
     /** @return array<ComposerDependency> */
     public function forDevelopmentTools(
         DevelopmentTools $developmentTools,
-    ): array {
+    ) : array
+    {
         $packages = [];
 
         if ($developmentTools->usesEnvoy) {
@@ -177,11 +179,15 @@ class ComposerPackagesToInstallResolver
             $packages[] = new Telescope();
         }
 
+        if ($developmentTools->usesPennant) {
+            $packages[] = new Pennant();
+        }
+
         return $packages;
     }
 
     /** @return array<ComposerDependency> */
-    public function forTesting(Testing $testing): array
+    public function forTesting(Testing $testing) : array
     {
         $packages = [];
 
@@ -197,7 +203,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forPayment(Payment $payment): array
+    public function forPayment(Payment $payment) : array
     {
         $packages = [];
 
@@ -209,7 +215,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forStorage(Storage $storage): array
+    public function forStorage(Storage $storage) : array
     {
         $packages = [];
 
@@ -225,7 +231,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forNotifications(Notifications $notifications): array
+    public function forNotifications(Notifications $notifications) : array
     {
         return collect($notifications->channels)->flatMap(function (Channel $channel) {
             return match ($channel) {
@@ -236,7 +242,7 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forMail(Mail $mail): array
+    public function forMail(Mail $mail) : array
     {
         $driverPackage = match ($mail->driver) {
             default => null,
@@ -249,17 +255,17 @@ class ComposerPackagesToInstallResolver
     }
 
     /** @return array<ComposerDependency> */
-    public function forBroadcasting(Broadcasting $broadcasting): array
+    public function forBroadcasting(Broadcasting $broadcasting) : array
     {
         $channelPackages = match ($broadcasting->channel) {
             BroadcastingChannelOption::PUSHER => [new Pusher()],
             BroadcastingChannelOption::ABLY => [new Ably()],
             BroadcastingChannelOption::LARAVEL_WEBSOCKETS => [
                 new LaravelWebsockets(),
-                // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher
+                    // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher
                 new Pusher(),
             ],
-            // Soketi is an NPM package and is handled elsewhere
+                // Soketi is an NPM package and is handled elsewhere
             BroadcastingChannelOption::SOKETI,
             BroadcastingChannelOption::NONE => [],
             default => null,
