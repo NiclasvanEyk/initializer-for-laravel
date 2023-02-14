@@ -19,10 +19,10 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::syncMetaData
      */
-    public function it_syncs_metadata_fields(): void
+    public function it_syncs_metadata_fields() : void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled(
-            metadata: new Metadata(
+        metadata: new Metadata(
                 vendorName: 'test',
                 projectName: 'test-project',
                 description: 'foo-bar',
@@ -44,7 +44,7 @@ class ComposerJsonGeneratorTest extends TestCase
             'it should have synced the description!'
         );
         $this->assertStringContainsString(
-            '"php": "^8.0",',
+            '"php": "^8.2",',
             $contents,
             'it should have synced the php version!'
         );
@@ -54,7 +54,7 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::requirePackages
      */
-    public function it_resolves_package_versions(): void
+    public function it_resolves_package_versions() : void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled();
         $composerJson = ComposerJsonFixtures::thisProject();
@@ -72,7 +72,7 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::removeUnnecessaryScripts
      */
-    public function it_removes_unnecessary_scripts(): void
+    public function it_removes_unnecessary_scripts() : void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled();
         $composerJson = ComposerJsonFixtures::thisProject();
@@ -88,7 +88,7 @@ class ComposerJsonGeneratorTest extends TestCase
         }
     }
 
-    private function generator(): ComposerJsonGenerator
+    private function generator() : ComposerJsonGenerator
     {
         return resolve(ComposerJsonGenerator::class);
     }
