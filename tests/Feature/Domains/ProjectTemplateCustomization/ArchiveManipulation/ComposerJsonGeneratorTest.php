@@ -19,7 +19,7 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::syncMetaData
      */
-    public function it_syncs_metadata_fields() : void
+    public function it_syncs_metadata_fields(): void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled(
         metadata: new Metadata(
@@ -54,7 +54,7 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::requirePackages
      */
-    public function it_resolves_package_versions() : void
+    public function it_resolves_package_versions(): void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled();
         $composerJson = ComposerJsonFixtures::thisProject();
@@ -72,7 +72,7 @@ class ComposerJsonGeneratorTest extends TestCase
      * @test
      * @covers ::removeUnnecessaryScripts
      */
-    public function it_removes_unnecessary_scripts() : void
+    public function it_removes_unnecessary_scripts(): void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled();
         $composerJson = ComposerJsonFixtures::thisProject();
@@ -88,7 +88,7 @@ class ComposerJsonGeneratorTest extends TestCase
         }
     }
 
-    private function generator() : ComposerJsonGenerator
+    private function generator(): ComposerJsonGenerator
     {
         return resolve(ComposerJsonGenerator::class);
     }
