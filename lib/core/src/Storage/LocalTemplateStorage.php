@@ -16,12 +16,13 @@ class LocalTemplateStorage implements TemplateStorage
     const CURRENT_SYMLINK_NAME = 'current';
 
     public function __construct(public readonly string $base)
-    {}
+    {
+    }
 
     public function get(): ?ZipFile
     {
         $path = $this->pathToCurrent(self::ARCHIVE_FILE_NAME);
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return null;
         }
 
