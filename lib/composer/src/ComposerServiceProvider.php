@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
 use Domains\ArchiveManipulation\RegistersArchiveManipulators;
 use Domains\Composer\ProjectTemplateCustomization\ComposerJsonArchiveManipulator;

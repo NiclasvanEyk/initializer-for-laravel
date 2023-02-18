@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\NodeJs;
+namespace InitializerForLaravel\Npm;
 
 abstract class NpmDependency
 {

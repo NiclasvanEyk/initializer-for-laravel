@@ -2,9 +2,8 @@
 
 namespace Domains\Laravel\RelatedPackages\Broadcasting;
 
-use Domains\Composer\ComposerDependency;
 use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
-use Domains\NodeJs\NpmDependency;
+use InitializerForLaravel\Packagist\NpmDependency;
 
 class PusherJs extends NpmDependency
 {

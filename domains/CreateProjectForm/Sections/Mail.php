@@ -2,11 +2,11 @@
 
 namespace Domains\CreateProjectForm\Sections;
 
-use Domains\Composer\ComposerDependency;
 use Domains\CreateProjectForm\Sections\Mail\MailDriverOption;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
 use Domains\Laravel\RelatedPackages\Mail\MailgunMailer;
 use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Mail
 {

@@ -2,14 +2,14 @@
 
 namespace Domains\Composer\ProjectTemplateCustomization;
 
-use Domains\Composer\ComposerJsonFile;
-use Domains\Composer\PackageVersionToInstallResolver;
-use Domains\Composer\PackageWithResolvedVersion;
-use Domains\Composer\VersionSelectorFactory;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Composer\ComposerJsonFile;
+use InitializerForLaravel\Composer\PackageVersionToInstallResolver;
+use InitializerForLaravel\Composer\PackageWithResolvedVersion;
+use InitializerForLaravel\Composer\VersionSelectorFactory;
 
 /**
  * Responsible for making adjustments to the <pre>composer.json</pre> file.

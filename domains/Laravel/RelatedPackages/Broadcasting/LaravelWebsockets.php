@@ -2,11 +2,11 @@
 
 namespace Domains\Laravel\RelatedPackages\Broadcasting;
 
-use Domains\Composer\ComposerDependency;
 use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\ClosurePostInstallTaskGroup;
 use Domains\PostDownload\PostDownloadTaskGroup;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class LaravelWebsockets extends ComposerDependency implements ProvidesInstallationInstructions
 {

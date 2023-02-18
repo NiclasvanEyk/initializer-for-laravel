@@ -3,12 +3,12 @@
 namespace Tests\Feature\Domains\Composer;
 
 use Composer\Package\Version\VersionSelector;
-use Domains\Composer\InlineComposerDependency;
-use Domains\Composer\NoInstallationCandidateFoundException;
-use Domains\Composer\PackageVersionToInstallResolver;
-use Domains\Composer\VersionSelectorFactory;
 use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
+use InitializerForLaravel\Composer\InlineComposerDependency;
+use InitializerForLaravel\Composer\NoInstallationCandidateFoundException;
+use InitializerForLaravel\Composer\PackageVersionToInstallResolver;
+use InitializerForLaravel\Composer\VersionSelectorFactory;
 use Mockery\MockInterface;
 use Tests\TestCase;
 

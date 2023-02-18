@@ -4,29 +4,31 @@
     "description": "A quickstart generator for Laravel projects.",
     "keywords": ["laravel"],
     "license": "MIT",
+    "repositories": [
+        {"type": "path", "url": "./lib/core"}
+    ],
     "require": {
         "php": "^8.1",
         "ext-zip": "*",
-        "composer/composer": "^2.2",
-        "fideloper/proxy": "dev-master",
-        "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^9.0",
-        "laravel/installer": "^4.2",
-        "laravel/tinker": "^2.5",
+        "composer/composer": "^2.5",
+        "guzzlehttp/guzzle": "^7.5",
+        "initializer-for-laravel/core": "dev-feature/refactor-to-packages",
+        "laravel/framework": "^10.0",
+        "laravel/installer": "^4.4",
+        "laravel/tinker": "^2.8",
         "nelexa/zip": "^4.0",
-        "sentry/sentry-laravel": "^2.8",
-        "spatie/laravel-google-fonts": "^1.0"
+        "sentry/sentry-laravel": "^3.2",
+        "spatie/laravel-google-fonts": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
-        "spatie/laravel-ignition": "1.*",
-        "fakerphp/faker": "^1.16",
+        "spatie/laravel-ignition": "^2.0",
+        "fakerphp/faker": "^1.9",
         "laravel/sail": "^1.12",
         "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^6.0",
+        "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^10.0"
     },
     "autoload": {
         "files": [ "app/helpers.php" ],

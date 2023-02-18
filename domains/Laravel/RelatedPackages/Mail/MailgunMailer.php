@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\RelatedPackages\Mail;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class MailgunMailer extends ComposerDependency
 {

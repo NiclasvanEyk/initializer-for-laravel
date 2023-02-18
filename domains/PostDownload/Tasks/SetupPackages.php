@@ -2,10 +2,10 @@
 
 namespace Domains\PostDownload\Tasks;
 
-use Domains\Composer\ComposerDependency;
 use Domains\Laravel\ComposerPackages\ProvidesInstallationInstructions;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 /**
  * Runs package setup, e.g. <code>artisan breeze:install</code>.

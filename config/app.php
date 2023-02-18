@@ -1,5 +1,12 @@
 <?php
 
+use App\AppServiceProvider;
+use Domains\ConfigAdjustment\ConfigAdjustmentServiceProvider;
+use Domains\CreateProjectForm\CreateProjectFormServiceProvider;
+use Domains\InitializationScript\InitializationScriptServiceProvider;
+use Domains\Readme\ReadmeServiceProvider;
+use Domains\Schedule\ScheduleServiceProvider;
+
 return [
 
     /*
@@ -162,18 +169,17 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        \App\AppServiceProvider::class,
+        AppServiceProvider::class,
         /*
          * Domain Service Providers...
          */
-        \Domains\CreateProjectForm\CreateProjectFormServiceProvider::class,
-        \Domains\ProjectTemplate\ProjectTemplateServiceProvider::class,
-        \Domains\ConfigAdjustment\ConfigAdjustmentServiceProvider::class,
-        \Domains\InitializationScript\InitializationScriptServiceProvider::class,
-        \Domains\Readme\ReadmeServiceProvider::class,
-        \Domains\Composer\ComposerServiceProvider::class,
-        \Domains\Schedule\ScheduleServiceProvider::class,
-        \Domains\DockerImages\DockerImagesServiceProvider::class,
+        CreateProjectFormServiceProvider::class,
+//        \Domains\ProjectTemplate\ProjectTemplateServiceProvider::class,
+        ConfigAdjustmentServiceProvider::class,
+        InitializationScriptServiceProvider::class,
+        ReadmeServiceProvider::class,
+//        \InitializerForLaravel\Composer\ComposerServiceProvider::class,
+        ScheduleServiceProvider::class,
     ],
 
     /*

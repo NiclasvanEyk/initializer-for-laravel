@@ -2,9 +2,9 @@
 
 namespace Domains\PostDownload\Tasks;
 
-use Domains\NodeJs\NpmDependency;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Packagist\NpmDependency;
 
 class SetupFrontend implements PostDownloadTaskGroup
 {

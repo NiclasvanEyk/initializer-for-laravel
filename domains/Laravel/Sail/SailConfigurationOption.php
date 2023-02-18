@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\Sail;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 /**
  * Inspired by {@link ComposerDependency}.

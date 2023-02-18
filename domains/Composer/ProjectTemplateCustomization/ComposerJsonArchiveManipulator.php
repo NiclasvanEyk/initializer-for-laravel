@@ -3,8 +3,8 @@
 namespace Domains\Composer\ProjectTemplateCustomization;
 
 use Domains\ArchiveManipulation\ArchiveManipulator;
-use Domains\Composer\ComposerJsonFile;
 use Domains\CreateProjectForm\CreateProjectForm;
+use InitializerForLaravel\Composer\ComposerJsonFile;
 use PhpZip\ZipFile;
 
 class ComposerJsonArchiveManipulator implements ArchiveManipulator

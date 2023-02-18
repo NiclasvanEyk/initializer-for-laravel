@@ -2,8 +2,7 @@
 
 namespace Domains\Laravel\StarterKit;
 
-use Domains\Composer\ComposerDependency;
-use Domains\CreateProjectForm\CreateProjectForm;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Laravel extends StarterKit
 {

@@ -2,8 +2,6 @@
 
 namespace Domains\ProjectTemplateCustomization\Resolver;
 
-use Domains\Composer\ComposerDependency;
-use Domains\Composer\InlineComposerDependency;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Sections\Authentication;
 use Domains\CreateProjectForm\Sections\Broadcasting;
@@ -45,6 +43,8 @@ use Domains\Laravel\RelatedPackages\Mail\PostmarkMailer;
 use Domains\Laravel\RelatedPackages\Search\Algolia;
 use Domains\Laravel\RelatedPackages\Testing\Pest;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\InlineComposerDependency;
 
 /**
  * Derives the set of composer packages, that need to be installed for the given

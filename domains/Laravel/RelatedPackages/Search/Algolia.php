@@ -2,8 +2,8 @@
 
 namespace Domains\Laravel\RelatedPackages\Search;
 
-use Domains\Composer\ComposerDependency;
 use Domains\CreateProjectForm\Sections\Scout\ScoutDriver;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Algolia extends ComposerDependency
 {

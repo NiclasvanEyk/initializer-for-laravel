@@ -9,8 +9,8 @@ use Domains\Laravel\RelatedPackages\Broadcasting\PusherJs;
 use Domains\Laravel\RelatedPackages\Broadcasting\Soketi;
 use Domains\Laravel\StarterKit\Breeze;
 use Domains\Laravel\StarterKit\BreezeFrontend;
-use Domains\NodeJs\NpmDependency;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Packagist\NpmDependency;
 
 class NpmPackagesToInstallResolver
 {

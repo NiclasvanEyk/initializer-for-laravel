@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\RelatedPackages\Infrastructure;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class AwsSdk extends ComposerDependency
 {

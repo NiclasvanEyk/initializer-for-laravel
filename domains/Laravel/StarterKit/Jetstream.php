@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\StarterKit;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Jetstream extends StarterKit
 {

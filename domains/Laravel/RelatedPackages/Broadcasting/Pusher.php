@@ -2,8 +2,8 @@
 
 namespace Domains\Laravel\RelatedPackages\Broadcasting;
 
-use Domains\Composer\ComposerDependency;
 use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Pusher extends ComposerDependency
 {

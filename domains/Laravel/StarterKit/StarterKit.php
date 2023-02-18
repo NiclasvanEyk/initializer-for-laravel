@@ -2,11 +2,10 @@
 
 namespace Domains\Laravel\StarterKit;
 
-use Domains\Composer\ComposerDependency;
-use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\Support\Enum\EmulatesEnum;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 abstract class StarterKit
 {

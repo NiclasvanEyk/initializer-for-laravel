@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
 use Composer\Factory;
 use Composer\IO\NullIO;

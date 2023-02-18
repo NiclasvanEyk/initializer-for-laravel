@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
 abstract class ComposerDependency
 {

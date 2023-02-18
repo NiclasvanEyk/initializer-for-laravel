@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
 /**
  * @see https://getcomposer.org/doc/04-schema.md#name

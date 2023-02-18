@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Domains\Composer;
 
-use Domains\Composer\ComposerJsonFile;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
+use InitializerForLaravel\Composer\ComposerJsonFile;
 use Tests\TestCase;
 
-/** @covers \Domains\Composer\ComposerJsonFile */
+/** @covers \InitializerForLaravel\Composer\ComposerJsonFile */
 class ComposerJsonFileTest extends TestCase
 {
     private FilesystemAdapter $filesystem;

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Domains\Composer;
 
-use Domains\Composer\ComposerJsonFile;
+use InitializerForLaravel\Composer\ComposerJsonFile;
 
 class ComposerJsonFixtures
 {

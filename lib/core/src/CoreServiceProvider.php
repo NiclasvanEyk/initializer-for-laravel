@@ -12,11 +12,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             TemplateStorageContract::class,
-            function (): TemplateStorageContract {
-                return new LocalTemplateStorage(
-                    storage_path('laravel-releases')
-                );
-            }
+            fn () => new LocalTemplateStorage(storage_path('laravel-releases')),
         );
     }
 }

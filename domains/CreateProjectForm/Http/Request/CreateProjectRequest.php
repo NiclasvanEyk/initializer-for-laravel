@@ -2,7 +2,6 @@
 
 namespace Domains\CreateProjectForm\Http\Request;
 
-use Domains\Composer\PackageName;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\BuildsCreateProjectForm;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel;
@@ -21,6 +20,7 @@ use Domains\CreateProjectForm\Validation\Rules\ValidQueueDriverOption;
 use Domains\CreateProjectForm\Validation\Rules\ValidStarterKitOption;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
+use InitializerForLaravel\Composer\PackageName;
 
 /**
  * Values that are needed to create a {@link CreateProjectForm}.

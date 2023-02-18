@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\RelatedPackages\Database;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class DoctrineDbal extends ComposerDependency
 {

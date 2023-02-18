@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\RelatedPackages\Testing;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class Pest extends ComposerDependency
 {

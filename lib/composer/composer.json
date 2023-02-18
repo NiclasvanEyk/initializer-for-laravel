@@ -1,0 +1,35 @@
+{
+    "name": "initializer-for-laravel/composer",
+    "type": "project",
+    "description": "A quickstart generator for Laravel projects.",
+    "keywords": ["laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "ext-zip": "*",
+        "laravel/framework": "^9.0",
+        "composer/composer": "^2.2"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "InitializerForLaravel\\Composer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InitializerForLaravel\\Composer\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
 use Composer\Filter\PlatformRequirementFilter\IgnoreAllPlatformRequirementFilter;
 use Composer\Package\Version\VersionSelector;

@@ -1,7 +1,8 @@
 <?php
 
-namespace Domains\Composer;
+namespace InitializerForLaravel\Composer;
 
+use Exception;
 use Illuminate\Support\Arr;
 
 /**
@@ -39,7 +40,7 @@ final class ComposerJsonFile
         );
 
         if ($encoded === false) {
-            throw new \Exception('Error while encoding composer.json: '.json_last_error_msg());
+            throw new Exception('Error while encoding composer.json: '.json_last_error_msg());
         }
 
         return $encoded;

@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\RelatedPackages\Infrastructure\Flysystem;
 
-use Domains\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class S3Driver extends ComposerDependency
 {

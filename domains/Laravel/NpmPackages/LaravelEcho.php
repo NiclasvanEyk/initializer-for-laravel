@@ -2,7 +2,7 @@
 
 namespace Domains\Laravel\NpmPackages;
 
-use Domains\NodeJs\NpmDependency;
+use InitializerForLaravel\Packagist\NpmDependency;
 
 class LaravelEcho extends NpmDependency
 {
