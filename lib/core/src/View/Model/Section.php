@@ -8,7 +8,6 @@ class Section
         public readonly string $name,
         public readonly string $description,
         public readonly array $children,
-    )
-    {
+    ) {
     }
 }

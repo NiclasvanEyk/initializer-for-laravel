@@ -10,7 +10,7 @@ return [
     'sections' => [
         new Section(
             'Authentication',
-            <<<MARKDOWN
+            <<<'MARKDOWN'
             Depending on which starter kit you choose, it might make sense to
             install additional packages. If you are unsure whether you need them
             or not, have a look at the [authentication ecosystem overview](https://laravel.com/docs/authentication#ecosystem-overview)
@@ -38,7 +38,7 @@ return [
                     application in a matter of minutes.',
                     setup: [
                         Setup::migrateDatabase(),
-                        Setup::artisan("passport:install"),
+                        Setup::artisan('passport:install'),
                         // TODO: Add Trait to user model
                     ]
                 ),
@@ -51,10 +51,10 @@ return [
             ]
         ),
         new Section(
-            "File Storage",
-            "Laravel uses [Flysystem](https://flysystem.thephpleague.com) to
+            'File Storage',
+            'Laravel uses [Flysystem](https://flysystem.thephpleague.com) to
              abstract filesystem access to like your local `storage` folder,
-             remote (S)FTP servers or cloud buckets.",
+             remote (S)FTP servers or cloud buckets.',
             [
                 new Option(
                     Options::FlysystemFtp->value,
@@ -100,6 +100,6 @@ return [
                     composer: 'league/flysystem-path-prefixing "^3.0"'
                 ),
             ]
-        )
+        ),
     ],
 ];

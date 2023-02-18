@@ -10,9 +10,9 @@ use View\Tag;
 class Option
 {
     /**
-     * @param string[] $composer
-     * @param string[] $npm
-     * @param string|PostDownloadTask[] $setup
+     * @param  string[]  $composer
+     * @param  string[]  $npm
+     * @param  string|PostDownloadTask[]  $setup
      */
     public function __construct(
         public readonly string $id,
@@ -28,7 +28,7 @@ class Option
     }
 
     /**
-     * @param string|PostDownloadTask[] $setup
+     * @param  string|PostDownloadTask[]  $setup
      */
     public static function laravel(
         BackedEnum $option,
