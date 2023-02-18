@@ -2,9 +2,8 @@
 
 namespace Tests\Feature\Domains\ProjectTemplate;
 
-use Domains\Packagist\PackagistApiClient;
 use Domains\ProjectTemplate\DownloadedLaravelRelease;
-use Domains\ProjectTemplate\LaravelDownloader;
+use Domains\ProjectTemplate\LaravelReleases;
 use Domains\ProjectTemplate\TemplateStorage;
 use Illuminate\Support\Facades\Storage;
 use PhpZip\ZipFile;
@@ -22,7 +21,7 @@ class TemplateStorageTest extends TestCase
         static $release86 = null;
 
         if ($release86 === null) {
-            $downloader = $this->app->make(LaravelDownloader::class);
+            $downloader = $this->app->make(LaravelReleases::class);
             $release86 = $downloader->download(new Laravel862Package());
         }
 

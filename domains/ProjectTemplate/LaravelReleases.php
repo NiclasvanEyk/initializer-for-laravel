@@ -2,15 +2,15 @@
 
 namespace Domains\ProjectTemplate;
 
-use Domains\Packagist\Models\Package;
-use Domains\Packagist\PackagistApiClient;
 use Domains\Support\FileSystem\Path;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\PackagistApiClient;
 use PhpZip\ZipFile;
 
-class LaravelDownloader
+class LaravelReleases
 {
     public function __construct(
         private PackagistApiClient $packagistApiClient,
@@ -20,7 +20,7 @@ class LaravelDownloader
     /**
      * @return Package[]
      */
-    public function laravelReleases(): array
+    public function all(): array
     {
         return $this->packagistApiClient->packageReleases(
             'laravel',
@@ -28,9 +28,9 @@ class LaravelDownloader
         );
     }
 
-    public function latestRelease(): Package
+    public function latest(): Package
     {
-        return $this->laravelReleases()[0];
+        return $this->all()[0];
     }
 
     public function download(Package $package): DownloadedLaravelRelease

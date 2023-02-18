@@ -1,6 +1,6 @@
 <?php
 
-namespace Domains\Packagist\Models;
+namespace InitializerForLaravel\Packagist\Models;
 
 use Illuminate\Support\Arr;
 

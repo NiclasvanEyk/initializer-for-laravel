@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Domains\Packagist;
 
-use Domains\Packagist\PackagistApiClient;
+use InitializerForLaravel\Packagist\PackagistApiClient;
 use Tests\TestCase;
 
 /**
- * @covers \Domains\Packagist\PackagistApiClient
- * @covers \Domains\Packagist\Models\Package
- * @covers \Domains\Packagist\Models\PackageDist
+ * @covers \InitializerForLaravel\Packagist\PackagistApiClient
+ * @covers \InitializerForLaravel\Packagist\Models\Package
+ * @covers \InitializerForLaravel\Packagist\Models\PackageDist
  */
 class PackagistApiClientTest extends TestCase
 {

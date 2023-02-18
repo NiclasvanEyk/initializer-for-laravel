@@ -33,14 +33,14 @@ class TemplateStorage
 
     public function currentArchive(): ZipFile
     {
-        $path = $this->current(self::ARCHIVE_FILE_NAME);
+        $path = $this->pathToCurrent(self::ARCHIVE_FILE_NAME);
         $currentArchive = $this->filesystem->readStream($path) ?? throw new Exception("Current archive not available at '$path'!");
 
         return (new ZipFile())->openFromStream($currentArchive);
     }
 
     /** @codeCoverageIgnore */
-    private function current(string $path = ''): string
+    private function pathToCurrent(string $path = ''): string
     {
         if ($path === '') {
             return self::CURRENT_SYMLINK_NAME;
@@ -55,7 +55,7 @@ class TemplateStorage
 
         try {
             $currentVersion = $this->filesystem->get(
-                $this->current(self::VERSION_FILE_NAME)
+                $this->pathToCurrent(self::VERSION_FILE_NAME)
             );
         } catch (FileNotFoundException) {
         }
@@ -77,11 +77,11 @@ class TemplateStorage
     private function setCurrentRelease(DownloadedLaravelRelease $release): void
     {
         $version = $release->package->version;
-        $this->filesystem->delete($this->current());
+        $this->filesystem->delete($this->pathToCurrent());
 
         File::copyDirectory(
             $this->prefix($version),
-            $this->prefix($this->current())
+            $this->prefix($this->pathToCurrent())
         );
         Log::info("Current template version was set to $version!");
     }

@@ -2,7 +2,7 @@
 
 namespace Domains\ProjectTemplate;
 
-use Domains\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Models\Package;
 use PhpZip\ZipFile;
 
 /**

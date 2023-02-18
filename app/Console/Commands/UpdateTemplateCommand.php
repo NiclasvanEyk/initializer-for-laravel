@@ -1,9 +1,9 @@
 <?php
 
-namespace Domains\ProjectTemplate\Console\Commands;
+namespace App\Console\Commands;
 
-use Domains\ProjectTemplate\LaravelDownloader;
-use Domains\ProjectTemplate\TemplateStorage;
+use Domains\ProjectTemplate\LaravelReleases;
+use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use Illuminate\Console\Command;
 use Log;
 
@@ -13,21 +13,20 @@ class UpdateTemplateCommand extends Command
     protected $description = 'Downloads the latest release of Laravel if necessary.';
 
     public function handle(
-        LaravelDownloader $downloader,
+        LaravelReleases $downloader,
         TemplateStorage $templateStorage,
     ): void {
-        $latestRelease = $downloader->latestRelease();
+        $latestRelease = $downloader->latest();
 
-        if ($templateStorage->currentVersion() === $latestRelease->version) {
+        $storedVersion = $templateStorage->version();
+        if ($storedVersion && $storedVersion === $latestRelease->version) {
             $this->logAndInfo("$latestRelease->version is still the latest release!");
-
             return;
         }
 
         $this->logAndInfo("Downloading $latestRelease->version...");
-
-        $downloadedRelease = $downloader->download($latestRelease);
-        $templateStorage->updateCurrentRelease($downloadedRelease);
+        $release = $downloader->download($latestRelease);
+        $templateStorage->update($release->package->version, $release->archive);
 
         $this->logAndInfo("Finished downloading $latestRelease->version!");
     }

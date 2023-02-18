@@ -1,12 +1,11 @@
 <?php
 
-namespace Domains\Packagist;
+namespace InitializerForLaravel\Packagist;
 
-use Domains\Packagist\Models\Package;
 use Illuminate\Http\Client\Factory as HttpClientFactory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
+use InitializerForLaravel\Packagist\Models\Package;
 
 class PackagistApiClient
 {

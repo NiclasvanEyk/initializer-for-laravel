@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Domains\ProjectTemplate;
 
-use Domains\Packagist\Models\Package;
-use Domains\Packagist\Models\PackageDist;
+use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Models\PackageDist;
 
 class Laravel862Package extends Package
 {

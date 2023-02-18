@@ -2,40 +2,40 @@
 
 namespace Tests\Feature\Domains\ProjectTemplate;
 
-use Domains\ProjectTemplate\LaravelDownloader;
+use Domains\ProjectTemplate\LaravelReleases;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass \Domains\ProjectTemplate\LaravelDownloader
+ * @coversDefaultClass \Domains\ProjectTemplate\LaravelReleases
  */
 class LaravelDownloaderTest extends TestCase
 {
-    private LaravelDownloader $downloader;
+    private LaravelReleases $downloader;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->downloader = $this->app->make(LaravelDownloader::class);
+        $this->downloader = $this->app->make(LaravelReleases::class);
     }
 
     /**
      * @test
-     * @covers ::laravelReleases
+     * @covers ::all
      */
     public function it_can_fetch_all_release_information(): void
     {
-        $releases = $this->downloader->laravelReleases();
+        $releases = $this->downloader->all();
         $this->assertNotNull($releases);
         $this->assertTrue(count($releases) > 50);
     }
 
     /**
      * @test
-     * @covers ::latestRelease
+     * @covers ::latest
      */
     public function it_can_fetch_the_latest_release_information(): void
     {
-        $this->assertNotNull($this->downloader->latestRelease());
+        $this->assertNotNull($this->downloader->latest());
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Domains\ProjectTemplate\Console\Commands;
 
 use Domains\ProjectTemplate\Console\Commands\UpdateTemplateCommand;
-use Domains\ProjectTemplate\LaravelDownloader;
+use Domains\ProjectTemplate\LaravelReleases;
 use Domains\ProjectTemplate\TemplateStorage;
 use Illuminate\Support\Facades\Storage;
 use Tests\Feature\Domains\ProjectTemplate\Laravel862Package;
@@ -19,8 +19,8 @@ class UpdateTemplateCommandTest extends TestCase
         parent::setUp();
 
         Storage::fake();
-        $this->app->singleton(LaravelDownloader::class, fn () => $this
-            ->spy(LaravelDownloader::class)
+        $this->app->singleton(LaravelReleases::class, fn () => $this
+            ->spy(LaravelReleases::class)
             ->shouldReceive('latestRelease')
             ->andReturn(new Laravel862Package())
             ->getMock()
