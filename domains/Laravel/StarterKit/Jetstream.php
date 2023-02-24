@@ -10,6 +10,7 @@ class Jetstream extends StarterKit
         public JetstreamFrontend $frontend,
         public bool $usesPest,
         public bool $usesTeams,
+        public bool $usesDarkMode,
     ) {
         parent::__construct(StarterKit::JETSTREAM);
     }
@@ -19,6 +20,7 @@ class Jetstream extends StarterKit
         return new \Domains\Laravel\ComposerPackages\Packages\Jetstream(
             usesTeams: $this->usesTeams,
             usesPest: $this->usesPest,
+            usesDarkMode: $this->usesDarkMode,
             frontend: $this->frontend,
         );
     }

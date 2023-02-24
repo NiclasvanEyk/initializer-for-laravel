@@ -31,6 +31,7 @@ abstract class StarterKit
                     $request->get(P::BREEZE_FRONTEND, BreezeFrontend::BLADE)
                 ),
                 usesPest: $request->get(P::USES_PEST, false),
+                usesDarkMode: $request->get(P::USES_BREEZE_DARK_MODE, false),
             ),
             StarterKit::JETSTREAM => new Jetstream(
                 frontend: new JetstreamFrontend(
@@ -38,6 +39,7 @@ abstract class StarterKit
                 ),
                 usesPest: $request->get(P::USES_PEST, false),
                 usesTeams: $request->get(P::USES_JETSTREAM_TEAMS, false),
+                usesDarkMode: $request->get(P::USES_JETSTREAM_DARK_MODE, false),
             ),
             default => new Laravel(),
         };

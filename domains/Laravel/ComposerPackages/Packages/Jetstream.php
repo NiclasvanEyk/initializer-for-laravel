@@ -15,6 +15,7 @@ class Jetstream extends FirstPartyPackage implements ProvidesInstallationInstruc
     public function __construct(
         private bool $usesTeams = false,
         private bool $usesPest = false,
+        private bool $usesDarkMode = false,
         ?JetstreamFrontend $frontend = null,
     ) {
         $this->frontend = $frontend ?? new JetstreamFrontend(JetstreamFrontend::LIVEWIRE);
@@ -48,6 +49,10 @@ class Jetstream extends FirstPartyPackage implements ProvidesInstallationInstruc
 
                 if ($this->usesPest) {
                     $command .= ' --pest';
+                }
+
+                if ($this->usesDarkMode) {
+                    $command .= ' --dark';
                 }
 
                 $command .= " $this->frontend";

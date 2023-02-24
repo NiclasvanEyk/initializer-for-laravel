@@ -34,7 +34,9 @@ class CreateProjectRequestParameter
     const STARTER = 'starter';
     const USES_JETSTREAM_TEAMS = self::USES_PREFIX.'jetstream-teams';
     const JETSTREAM_FRONTEND = 'jetstream-frontend';
+    const USES_JETSTREAM_DARK_MODE = self::USES_PREFIX. 'jetstream-dark-mode';
     const BREEZE_FRONTEND = 'breeze-frontend';
+    const USES_BREEZE_DARK_MODE = self::USES_PREFIX . 'breeze-dark-mode';
     const USES_FORTIFY = self::USES_PREFIX.'fortify';
     const USES_PASSPORT = self::USES_PREFIX.'passport';
     const USES_SOCIALITE = self::USES_PREFIX.'socialite';

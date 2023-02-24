@@ -1,5 +1,6 @@
+@php use Domains\Laravel\StarterKit\StarterKit; @endphp
 <x-starter-kit::option
-    id="{{\Domains\Laravel\StarterKit\StarterKit::BREEZE}}"
+    id="{{StarterKit::BREEZE}}"
     heading="{{$breeze->name()}}"
     href="{{$breeze->href()}}"
     logo-src="/img/logos/starter/breeze.svg"
@@ -15,19 +16,41 @@
         <li class="px-2 py-3 sm:p-2">Password management</li>
         <li class="px-2 py-3 sm:p-2">Publishable assets</li>
         <li class="px-2 py-3 sm:p-2">
+            <label
+                for="{{$useDarkMode}}"
+                class="flex flex-row items-center w-full"
+            >
+                <input
+                    id="{{$useDarkMode}}" name="{{$useDarkMode}}"
+                    class="w-4 h-4 mr-2 transition border-gray-300 rounded focus:ring-yellow-500"
+                    x-bind:class="{{$activeAlpineCondition}}
+                        ? 'text-yellow-600'
+                        : 'text-gray-300 opacity-20'
+                    "
+                    type="checkbox"
+                />
+                Dark Mode Support
+                <x-optional class="ml-1"/>
+            </label>
+        </li>
+        <li class="px-2 py-3 sm:p-2">
             <x-inline-radio
                 id="{{$breezeFrontend}}-{{$blade}}" value="{{$blade}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $blade"
                 colored="{{$activeAlpineCondition}}"
                 color="yellow" class="inline-flex"
-            >Blade</x-inline-radio>,<x-inline-radio
+            >Blade
+            </x-inline-radio>
+            ,
+            <x-inline-radio
                 id="{{$breezeFrontend}}-{{$react}}" value="{{$react}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $react"
                 colored="{{$activeAlpineCondition}}"
                 color="yellow" class="mx-1 inline-flex"
-            >React</x-inline-radio>
+            >React
+            </x-inline-radio>
             or
             <x-inline-radio
                 id="{{$breezeFrontend}}-{{$vue}}" value="{{$vue}}"
@@ -35,18 +58,21 @@
                 :checked="$breezeFrontendChosen === $vue"
                 colored="{{$activeAlpineCondition}}"
                 color="yellow" class="mx-1 inline-flex"
-            >Vue</x-inline-radio>
+            >Vue
+            </x-inline-radio>
 
             frontend
         </li>
         <li class="px-2 py-3 sm:p-2">
-            Optional <x-inline-radio
+            Optional
+            <x-inline-radio
                 id="{{$breezeFrontend}}-{{$api}}" value="{{$api}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $api"
                 colored="{{$activeAlpineCondition}}"
                 color="yellow" class="mx-1 inline-flex"
-            >API</x-inline-radio>
+            >API
+            </x-inline-radio>
             stack without any frontend scaffolding
         </li>
     </ul>

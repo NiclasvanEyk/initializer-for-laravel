@@ -13,6 +13,7 @@ class Breeze extends Component
     public BreezePackage $breeze;
     public string $breezeParam = StarterKit::BREEZE;
     public string $breezeFrontend = P::BREEZE_FRONTEND;
+    public string $useDarkMode = P::USES_BREEZE_DARK_MODE;
     public string $breezeFrontendChosen;
     public string $blade = BreezeFrontend::BLADE;
     public string $react = BreezeFrontend::REACT;

@@ -1,5 +1,6 @@
+@php use Domains\Laravel\StarterKit\StarterKit; @endphp
 <x-starter-kit::option
-    id="{{\Domains\Laravel\StarterKit\StarterKit::JETSTREAM}}"
+    id="{{StarterKit::JETSTREAM}}"
     heading="{{ $jetstream->name() }}"
     href="{{ $jetstream->href() }}"
     logo-src="/img/logos/starter/jetstream.svg"
@@ -20,6 +21,24 @@
         <li class="px-2 py-3 sm:p-2">API support via Laravel Sanctum</li>
         <li class="px-2 py-3 sm:p-2">
             <label
+                for="{{$jetstreamDarkMode}}"
+                class="flex flex-row items-center w-full"
+            >
+                <input
+                    id="{{$jetstreamDarkMode}}" name="{{$jetstreamDarkMode}}"
+                    class="w-4 h-4 mr-2 transition border-gray-300 rounded focus:ring-indigo-500"
+                    x-bind:class="{{$activeAlpineCondition}}
+                        ? 'text-indigo-600'
+                        : 'text-gray-300 opacity-20'
+                    "
+                    type="checkbox"
+                />
+                Dark Mode Support
+                <x-optional class="ml-1"/>
+            </label>
+        </li>
+        <li class="px-2 py-3 sm:p-2">
+            <label
                 for="{{$jetstreamTeams}}"
                 class="flex flex-row items-center w-full"
             >
@@ -32,7 +51,8 @@
                     "
                     type="checkbox" @if($jetstreamTeamsChecked) checked @endif()
                 />
-                Team management <x-optional class="ml-1" />
+                Team management
+                <x-optional class="ml-1"/>
             </label>
         </li>
         <li class="flex flex-row items-center px-2 py-3 sm:p-2">

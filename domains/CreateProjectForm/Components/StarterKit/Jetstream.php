@@ -13,6 +13,8 @@ class Jetstream extends Component
     public JetstreamPackage $jetstream;
     public string $jetstreamParam = StarterKit::JETSTREAM;
     public string $jetstreamTeams = P::USES_JETSTREAM_TEAMS;
+
+    public string $jetstreamDarkMode = P::USES_JETSTREAM_DARK_MODE;
     public string $jetstreamFrontend = P::JETSTREAM_FRONTEND;
     public string $livewire = JetstreamFrontend::LIVEWIRE;
     public string $inertia = JetstreamFrontend::INERTIA;

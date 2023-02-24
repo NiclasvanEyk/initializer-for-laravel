@@ -13,6 +13,7 @@ class Breeze extends FirstPartyPackage implements ProvidesInstallationInstructio
     public function __construct(
         private BreezeFrontend $frontend,
         private bool $usesPest = false,
+        private bool $usesDarkMode = false,
     ) {
     }
 
@@ -39,6 +40,10 @@ class Breeze extends FirstPartyPackage implements ProvidesInstallationInstructio
 
                 if ($this->usesPest) {
                     $install .= ' --pest';
+                }
+
+                if ($this->usesDarkMode) {
+                    $install .= ' --dark';
                 }
 
                 $install .= " $this->frontend";

@@ -57,6 +57,7 @@ class CreateProjectRequest extends FormRequest
                 new ValidJetstreamFrontendOption(),
             ],
             P::USES_JETSTREAM_TEAMS => ['sometimes'],
+            P::USES_JETSTREAM_DARK_MODE => ['sometimes'],
             P::BREEZE_FRONTEND => [
                 'sometimes',
                 'string',
