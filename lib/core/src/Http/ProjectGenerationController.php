@@ -14,8 +14,7 @@ class ProjectGenerationController
         ConfigurationResolver $configurationResolver,
         Metadata $metadata,
         ProjectGenerator $generator,
-    )
-    {
+    ) {
         $configuration = $configurationResolver->resolveFrom($request);
         $archive = $generator->generate($configuration);
 
