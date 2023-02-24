@@ -4,6 +4,7 @@ use App\AppServiceProvider;
 use Domains\ConfigAdjustment\ConfigAdjustmentServiceProvider;
 use Domains\CreateProjectForm\CreateProjectFormServiceProvider;
 use Domains\InitializationScript\InitializationScriptServiceProvider;
+use Domains\ProjectTemplate\ProjectTemplateServiceProvider;
 use Domains\Readme\ReadmeServiceProvider;
 use Domains\Schedule\ScheduleServiceProvider;
 
@@ -180,6 +181,8 @@ return [
         ReadmeServiceProvider::class,
 //        \InitializerForLaravel\Composer\ComposerServiceProvider::class,
         ScheduleServiceProvider::class,
+        // TODO: Use composer.json[extra.laravel]
+        ProjectTemplateServiceProvider::class,
     ],
 
     /*

@@ -5,14 +5,21 @@
     "keywords": ["laravel"],
     "license": "MIT",
     "repositories": [
-        {"type": "path", "url": "./lib/core"}
+        {"type": "path", "url":  "./lib/composer"},
+        {"type": "path", "url":  "./lib/core"},
+        {"type": "path", "url":  "./lib/design-system"},
+        {"type": "path", "url":  "./lib/npm"},
+        {"type": "path", "url":  "./lib/packagist"},
+        {"type": "path", "url":  "./lib/template-storage"}
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-zip": "*",
         "composer/composer": "^2.5",
         "guzzlehttp/guzzle": "^7.5",
-        "initializer-for-laravel/core": "dev-feature/refactor-to-packages",
+        "initializer-for-laravel/core": "*",
+        "initializer-for-laravel/design-system":  "*",
+        "initializer-for-laravel/template-storage": "*",
         "laravel/framework": "^10.0",
         "laravel/installer": "^4.4",
         "laravel/tinker": "^2.8",
