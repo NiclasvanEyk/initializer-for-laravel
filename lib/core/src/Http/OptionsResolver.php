@@ -11,11 +11,10 @@ use Illuminate\Http\Request;
 class OptionsResolver
 {
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return T
      */
     public function resolve(Request $request): mixed
     {
-
     }
 }
