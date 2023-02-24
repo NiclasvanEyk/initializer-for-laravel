@@ -1,8 +1,8 @@
 <?php
 
-namespace InitializerForLaravel\Core\Setup;
+namespace App\Initializer;
 
-class CommonTasks
+class Setup
 {
     public static function artisan(string $command): string
     {

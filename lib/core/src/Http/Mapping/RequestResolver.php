@@ -23,9 +23,22 @@ readonly final class RequestResolver
 
         $requestValue = $this->request->get($name);
 
+
+        // Returning null when nothing was sent, but the parameter won't accept
+        // it most likely leads to errors. In this case we'll just supply the
+        // parameters' default value.
+        if ($requestValue === null && $parameter->allowsNull() && $parameter->isDefaultValueAvailable()) {
+            return $parameter->getDefaultValue();
+        }
+
+        // Enums are a bit special, so we'll handle them separately
         if (enum_exists($type->getName())) {
             /** @var class-string<BackedEnum> $enum */
             $enum = $type->getName();
+
+            if ($requestValue === null && $parameter->allowsNull()) {
+                return null;
+            }
 
             return $enum::from($requestValue);
         }

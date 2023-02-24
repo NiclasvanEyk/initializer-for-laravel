@@ -1,10 +1,8 @@
 <?php
 
 use App\View\Options;
-use InitializerForLaravel\Core\Setup\CommonTasks as Setup;
-use InitializerForLaravel\Core\View\Model\Option;
-use InitializerForLaravel\Core\View\Model\Paragraph;
-use InitializerForLaravel\Core\View\Model\Section;
+use App\Initializer\Setup;
+use InitializerForLaravel\Core\View\Model\{Option, Paragraph, Section};
 
 return [
     'sections' => [

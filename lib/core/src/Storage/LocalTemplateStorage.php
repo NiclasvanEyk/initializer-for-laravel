@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Log;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use PhpZip\ZipFile;
 
-class LocalTemplateStorage implements TemplateStorage
+readonly final class LocalTemplateStorage implements TemplateStorage
 {
     const ARCHIVE_FILE_NAME = 'template.zip';
     const VERSION_FILE_NAME = 'version';
     const CURRENT_SYMLINK_NAME = 'current';
 
-    public function __construct(public readonly string $base)
-    {}
+    public function __construct(public string $base) {}
 
     public function get(): ?ZipFile
     {

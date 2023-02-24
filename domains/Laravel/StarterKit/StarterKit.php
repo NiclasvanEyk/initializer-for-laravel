@@ -6,6 +6,7 @@ use Domains\CreateProjectForm\Http\Request\CreateProjectRequest;
 use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
 use Domains\Support\Enum\EmulatesEnum;
 use InitializerForLaravel\Composer\ComposerDependency;
+use InitializerForLaravel\Core\Http\Mapping\Choice;
 
 abstract class StarterKit
 {
@@ -15,7 +16,10 @@ abstract class StarterKit
     const BREEZE = 'breeze';
     const JETSTREAM = 'jetstream';
 
-    public function __construct(public string $name)
+    public function __construct(
+        #[Choice('starter-kit')]
+        public string $name
+    )
     {
     }
 

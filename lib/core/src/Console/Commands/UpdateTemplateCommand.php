@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace InitializerForLaravel\Core\Console\Commands;
 
-use Domains\ProjectTemplate\LaravelReleases;
+use InitializerForLaravel\Core\Contracts\TemplateDownloader;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use Illuminate\Console\Command;
 use Log;
@@ -10,10 +10,10 @@ use Log;
 class UpdateTemplateCommand extends Command
 {
     protected $signature = 'initializer:update-template';
-    protected $description = 'Downloads the latest release of Laravel if necessary.';
+    protected $description = 'Downloads the latest release of the project template if necessary.';
 
     public function handle(
-        LaravelReleases $downloader,
+        TemplateDownloader $downloader,
         TemplateStorage $templateStorage,
     ): void {
         $latestRelease = $downloader->latest();

@@ -30,7 +30,7 @@ readonly class Instantiator
      */
     public static function build(string $root, RequestResolver $request)
     {
-        $instance = new self($root, $request);
+        $instance = new self($request);
         $instance->resolveDependencies($root);
 
         return $instance->instantiate($root);
