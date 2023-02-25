@@ -7,8 +7,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
-use InitializerForLaravel\Core\View\Model\Section;
-use InitializerForLaravel\Core\View\Model\Option;
+use InitializerForLaravel\Core\Configuration\Section;
+use InitializerForLaravel\Core\Configuration\Option;
 
 class VerifyPackagesCoverage extends Command
 {

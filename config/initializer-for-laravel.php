@@ -2,20 +2,24 @@
 
 use App\View\Options;
 use App\Initializer\Setup;
-use InitializerForLaravel\Core\View\Model\{Option, Paragraph, Section};
+use App\Initializer\Configuration\Option;
+use InitializerForLaravel\Core\Configuration\{Choice, Paragraph, Section};
+use Illuminate\Support\Str;
+use InitializerForLaravel\Core\Sail\Service;
 
 return [
     'sections' => [
         new Section(
-            'Authentication',
-            <<<MARKDOWN
+            name: 'Authentication',
+            icon: 'TODO',
+            description: Str::markdown(<<<MARKDOWN
             Depending on which starter kit you choose, it might make sense to
             install additional packages. If you are unsure whether you need them
             or not, have a look at the [authentication ecosystem overview](https://laravel.com/docs/authentication#ecosystem-overview)
             section of the official documentation, which explains everything
             well.
-            MARKDOWN,
-            [
+            MARKDOWN),
+            children: [
                 Option::laravel(
                     Options::Fortify,
                     description: "
@@ -49,11 +53,13 @@ return [
             ]
         ),
         new Section(
-            "File Storage",
-            "Laravel uses [Flysystem](https://flysystem.thephpleague.com) to
-             abstract filesystem access to like your local `storage` folder,
-             remote (S)FTP servers or cloud buckets.",
-            [
+            name: "File Storage",
+            icon: 'TODO',
+            description: Str::markdown("Laravel uses
+            [Flysystem](https://flysystem.thephpleague.com) to abstract
+            filesystem access to like your local `storage` folder, remote (S)FTP
+            servers or cloud buckets."),
+            children: [
                 new Option(
                     Options::FlysystemFtp->value,
                     'FTP',
@@ -98,6 +104,35 @@ return [
                     composer: 'league/flysystem-path-prefixing "^3.0"'
                 ),
             ]
+        ),
+        new Section(
+            name: 'Cache',
+            icon: 'TODO',
+            description: <<<MARKDOWN
+
+            MARKDOWN,
+            children: [
+                new Choice(
+                    id: 'cache',
+                    name: 'Driver',
+                    link: '',
+                    options: [
+                        new Option(
+                            id: 'redis',
+                            name: 'Redis',
+                            description: '',
+                            link: 'https://redis.io',
+                            composer: 'predis/predis',
+                            service: Service::Redis,
+                        ),
+                        new Option(
+                            id: 'memcached',
+                            name: 'Memcached',
+                            description: 'High-performance, distributed memory object caching system.',
+                            service: Service::Memcached,
+                        ),
+                    ])
+            ],
         )
     ],
 ];

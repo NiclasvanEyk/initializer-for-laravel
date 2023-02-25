@@ -1,33 +1,34 @@
 <?php
 
-namespace InitializerForLaravel\Core\View\Model;
+namespace InitializerForLaravel\Core\Configuration;
 
 use BackedEnum;
 use Domains\PostDownload\PostDownloadTask;
 use InitializerForLaravel\Core\Sail\Service;
-use View\Tag;
 
-class Option
+readonly final class Option
 {
+    use SimpleDataClass;
+
     /**
-     * @param string[] $composer
-     * @param string[] $npm
+     * @param string[] $tags
+     * @param Dependency[] $dependencies
      * @param string|PostDownloadTask[] $setup
      */
     public function __construct(
-        public readonly string $id,
-        public readonly string $name,
-        public readonly string $description,
-        public readonly ?string $link = null,
-        public readonly array|string $composer = [],
-        public readonly array|string $npm = [],
-        public readonly ?Service $service = null,
-        public readonly bool $fromCommunity = false,
-        public readonly array $setup = [],
+        public string       $id,
+        public string       $name,
+        public string       $description,
+        public ?string      $link = null,
+        public array        $dependencies = [],
+        public array        $tags = [],
+        public array        $setup = [],
     ) {
     }
 
     /**
+     * Builds an option representing a first party laravel package.
+     *
      * @param string|PostDownloadTask[] $setup
      */
     public static function laravel(
@@ -43,7 +44,7 @@ class Option
             name: $option->name,
             description: $description,
             link: "https://laravel.com/docs/$package",
-            composer: "laravel/$package",
+            dependencies: [Dependency::composer("laravel/$package")],
             setup: $setup
         );
     }

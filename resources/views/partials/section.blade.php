@@ -1,4 +1,4 @@
-@php use InitializerForLaravel\Core\View\Model\Option;use InitializerForLaravel\Core\View\Model\Section; @endphp
+@php use InitializerForLaravel\Core\Configuration\Option;use InitializerForLaravel\Core\Configuration\Section; @endphp
 @php
     /** @var Section $section */
 @endphp
@@ -8,10 +8,10 @@
         @if($child instanceof Option)
             <x-option>
                 <x-form-control.checkbox
-                    id="{{ $child->id }}"
-                    href="{{ $child->link }}"
-                    {{-- TODO :checked="request(old(checked))" --}}
-                    heading="{{ $sftpDriver->name() }}"
+                        id="{{ $child->id }}"
+                        href="{{ $child->link }}"
+                        {{-- TODO :checked="request(old(checked))" --}}
+                        heading="{{ $sftpDriver->name() }}"
                 >
                     {{-- TODO: Markdown? --}}
                     {{ $child->description }}

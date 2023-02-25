@@ -3,7 +3,7 @@
 namespace InitilizerForLaravel\DesignSystem\Views\Components;
 
 use Illuminate\View\Component;
-use InitializerForLaravel\Core\View\Model\Section as ViewModel;
+use InitializerForLaravel\Core\Configuration\Section as ViewModel;
 
 class Section extends Component
 {
