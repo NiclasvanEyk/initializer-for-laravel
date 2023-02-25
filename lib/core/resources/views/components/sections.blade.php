@@ -1,5 +1,10 @@
 @php
-    use InitializerForLaravel\Core\Configuration\{Section,Choice,Option,Paragraph};
+    use InitializerForLaravel\Core\Configuration\{
+        Section,
+        Choice,
+        Option,
+        Paragraph
+    };
 
     /** @var Section[] $sections */
 @endphp
@@ -20,10 +25,14 @@
             @endif
 
             @if($child instanceof Choice)
-                {{ $child->includesNone }}
+                Choice {{ $child->name }}<br>
+                @foreach($child->options as $option)
+                    Option {{ $option->name }}<br>
+                @endforeach
             @endif
 
             @if($child instanceof Option)
+                Option {{ $child->name }}<br>
             @endif
         @endforeach
     </x-form-section>

@@ -3,7 +3,7 @@
 namespace InitializerForLaravel\Core\Contracts;
 
 use InitializerForLaravel\Packagist\DownloadedPackage;
-use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Package;
 
 interface TemplateDownloader
 {

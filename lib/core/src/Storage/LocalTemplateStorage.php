@@ -28,6 +28,10 @@ readonly final class LocalTemplateStorage implements TemplateStorage
     public function version(): ?string
     {
         $path = $this->pathToCurrent(self::VERSION_FILE_NAME);
+        if (!File::exists($path)) {
+            return null;
+        }
+
         $currentVersion = File::get($path);
         if (empty($currentVersion)) {
             return null;
@@ -69,8 +73,8 @@ readonly final class LocalTemplateStorage implements TemplateStorage
 
     private function store(string $version, ZipFile $archive): void
     {
-        File::deleteDirectory($version);
-        File::makeDirectory($version);
+        File::deleteDirectory($this->prefix($version));
+        File::makeDirectory($this->prefix($version), recursive: true);
 
         $this->createVersionFile($version);
 

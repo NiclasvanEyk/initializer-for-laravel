@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
-class ExceptionHandler extends Handler
+class Handler extends ExceptionHandler
 {
     public function register()
     {

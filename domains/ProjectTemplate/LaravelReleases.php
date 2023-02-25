@@ -6,7 +6,7 @@ use Domains\Support\FileSystem\Path;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Package;
 use InitializerForLaravel\Packagist\PackagistApiClient;
 use PhpZip\ZipFile;
 

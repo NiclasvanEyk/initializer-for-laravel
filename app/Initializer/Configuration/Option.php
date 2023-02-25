@@ -49,7 +49,7 @@ readonly final class Option
         string|Dependency $package,
         string $name,
         string $description,
-        ?string $id,
+        ?string $id = null,
         array  $options = [],
     ): ConfigurationOption {
         $id ??= $package instanceof Dependency

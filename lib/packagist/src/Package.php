@@ -1,8 +1,9 @@
 <?php
 
-namespace InitializerForLaravel\Packagist\Models;
+namespace InitializerForLaravel\Packagist;
 
 use Illuminate\Support\Arr;
+use InitializerForLaravel\Packagist\PackageDist;
 
 /** @psalm-immutable */
 class Package

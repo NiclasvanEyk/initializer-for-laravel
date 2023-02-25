@@ -1,5 +1,7 @@
 @php
-    use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel as Label;use InitializerForLaravel\Composer\PackageName;
+    use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
+    use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameterLabel as Label;
+    use InitializerForLaravel\Composer\PackageName;
 
     $vendorParameter = P::VENDOR;
     $vendor = old($vendorParameter, request($vendorParameter));

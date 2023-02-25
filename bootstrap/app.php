@@ -11,6 +11,7 @@
 |
 */
 
+use App\Exceptions\Handler;
 use App\Http\Kernel;
 
 $app = new Illuminate\Foundation\Application(
@@ -40,7 +41,7 @@ $app->singleton(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\ExceptionHandler::class
+    Handler::class
 );
 
 /*

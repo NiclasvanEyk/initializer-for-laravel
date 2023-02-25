@@ -2,7 +2,7 @@
 
 namespace InitializerForLaravel\Packagist;
 
-use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Package;
 use PhpZip\ZipFile;
 
 readonly class DownloadedPackage

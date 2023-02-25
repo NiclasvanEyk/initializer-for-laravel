@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Contracts\TemplateDownloader;
 use InitializerForLaravel\Packagist\DownloadedPackage;
-use InitializerForLaravel\Packagist\Models\Package;
+use InitializerForLaravel\Packagist\Package;
 use InitializerForLaravel\Packagist\PackagistApiClient;
 use PhpZip\ZipFile;
 
-class LaravelProjectDownloader implements TemplateDownloader
+class LaravelProjectTemplateDownloader implements TemplateDownloader
 {
     public function __construct(
         private PackagistApiClient $packagistApiClient,

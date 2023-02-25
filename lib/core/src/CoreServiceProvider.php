@@ -7,15 +7,12 @@ use Illuminate\Support\ServiceProvider;
 use InitializerForLaravel\Core\Console\Commands\UpdateTemplateCommand;
 use InitializerForLaravel\Core\Contracts\TemplateStorage as TemplateStorageContract;
 use InitializerForLaravel\Core\Storage\LocalTemplateStorage;
+use function config;
 
 class CoreServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind(
-            TemplateStorageContract::class,
-            fn () => new LocalTemplateStorage('initializer.storage.options.base'),
-        );
     }
 
     public function boot(): void
@@ -24,12 +21,36 @@ class CoreServiceProvider extends ServiceProvider
             $this->commands([UpdateTemplateCommand::class]);
         }
 
+        $this->mergeConfigFrom(__DIR__."/../config/initializer.php", "initializer");
+
         $this->setupViews();
+        $this->setupTemplateStorage();
     }
 
     private function setupViews(): void
     {
+        Blade::componentNamespace(
+            'InitializerForLaravel\\Core\\View\\Components',
+            'initializer'
+        );
+        Blade::anonymousComponentPath(
+            __DIR__.'/../resources/views/components',
+            'initializer'
+        );
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'initializer');
-        Blade::componentNamespace('InitializerForLaravel\\Core\\View\\Components', 'initializer');
+    }
+
+    private function setupTemplateStorage(): void
+    {
+        if (config('initializer.storage.driver') === LocalTemplateStorage::class) {
+            $this->app->bind(
+                TemplateStorageContract::class,
+                function () {
+                    return new LocalTemplateStorage(
+                        config('initializer.storage.options.base')
+                    );
+                }
+            );
+        }
     }
 }

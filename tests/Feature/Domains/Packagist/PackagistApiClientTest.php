@@ -7,8 +7,8 @@ use Tests\TestCase;
 
 /**
  * @covers \InitializerForLaravel\Packagist\PackagistApiClient
- * @covers \InitializerForLaravel\Packagist\Models\Package
- * @covers \InitializerForLaravel\Packagist\Models\PackageDist
+ * @covers \InitializerForLaravel\Packagist\Package
+ * @covers \InitializerForLaravel\Packagist\PackageDist
  */
 class PackagistApiClientTest extends TestCase
 {

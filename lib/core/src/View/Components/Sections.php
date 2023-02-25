@@ -13,6 +13,6 @@ final class Sections extends Component
 
     public function render(): View
     {
-        return view('x-initializer::sections');
+        return view('initializer::components.sections');
     }
 }

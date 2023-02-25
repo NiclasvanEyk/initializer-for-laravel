@@ -1,6 +1,6 @@
 <?php
 
-use App\SentryTracingSampler;
+use App\Exceptions\SentryTracingSampler;
 
 return [
 

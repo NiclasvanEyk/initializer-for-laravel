@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Exceptions;
 
 use Illuminate\Support\Facades\Route;
 use Sentry\Tracing\SamplingContext;
