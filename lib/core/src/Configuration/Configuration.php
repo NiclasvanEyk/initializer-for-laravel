@@ -7,8 +7,8 @@ use BackedEnum;
 class Configuration
 {
     /**
-     * @param array<int,string> $options
-     * @param array<string,BackedEnum> $choices
+     * @param  array<int,string>  $options
+     * @param  array<string,BackedEnum>  $choices
      */
     public function __construct(
         public readonly array $choices,

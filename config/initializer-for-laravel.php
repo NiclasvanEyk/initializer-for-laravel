@@ -1,10 +1,12 @@
 <?php
 
-use App\View\Options;
-use App\Initializer\Setup;
 use App\Initializer\Configuration\Option;
-use InitializerForLaravel\Core\Configuration\{Choice, Paragraph, Section};
+use App\Initializer\Setup;
+use App\View\Options;
 use Illuminate\Support\Str;
+use InitializerForLaravel\Core\Configuration\Choice;
+use InitializerForLaravel\Core\Configuration\Paragraph;
+use InitializerForLaravel\Core\Configuration\Section;
 use InitializerForLaravel\Core\Sail\Service;
 
 return [
@@ -12,7 +14,7 @@ return [
         new Section(
             name: 'Authentication',
             icon: 'TODO',
-            description: Str::markdown(<<<MARKDOWN
+            description: Str::markdown(<<<'MARKDOWN'
             Depending on which starter kit you choose, it might make sense to
             install additional packages. If you are unsure whether you need them
             or not, have a look at the [authentication ecosystem overview](https://laravel.com/docs/authentication#ecosystem-overview)
@@ -40,7 +42,7 @@ return [
                     application in a matter of minutes.',
                     setup: [
                         Setup::migrateDatabase(),
-                        Setup::artisan("passport:install"),
+                        Setup::artisan('passport:install'),
                         // TODO: Add Trait to user model
                     ]
                 ),
@@ -53,12 +55,12 @@ return [
             ]
         ),
         new Section(
-            name: "File Storage",
+            name: 'File Storage',
             icon: 'TODO',
-            description: Str::markdown("Laravel uses
+            description: Str::markdown('Laravel uses
             [Flysystem](https://flysystem.thephpleague.com) to abstract
             filesystem access to like your local `storage` folder, remote (S)FTP
-            servers or cloud buckets."),
+            servers or cloud buckets.'),
             children: [
                 new Option(
                     Options::FlysystemFtp->value,
@@ -108,7 +110,7 @@ return [
         new Section(
             name: 'Cache',
             icon: 'TODO',
-            description: <<<MARKDOWN
+            description: <<<'MARKDOWN'
 
             MARKDOWN,
             children: [
@@ -131,8 +133,8 @@ return [
                             description: 'High-performance, distributed memory object caching system.',
                             service: Service::Memcached,
                         ),
-                    ])
+                    ]),
             ],
-        )
+        ),
     ],
 ];

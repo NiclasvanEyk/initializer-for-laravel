@@ -7,8 +7,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
-use InitializerForLaravel\Core\Configuration\Section;
 use InitializerForLaravel\Core\Configuration\Option;
+use InitializerForLaravel\Core\Configuration\Section;
 
 class VerifyPackagesCoverage extends Command
 {
@@ -21,14 +21,14 @@ class VerifyPackagesCoverage extends Command
         $mentionedPackages = $this->mentionedPackages();
         $ignore = collect([
             // Only mentioned as an example of a custom flysystem driver
-            'spatie/flysystem-dropbox'
+            'spatie/flysystem-dropbox',
         ]);
 
         $missing = $mentionedPackages
             ->diff($ignore)
             ->diff($initializerPackages);
         $amount = $missing->count();
-        $plural = $amount > 1 ? "s" : "";
+        $plural = $amount > 1 ? 's' : '';
         $this->components->bulletList($missing->toArray());
         $this->components->error("Missing $amount package$plural!");
     }
@@ -41,14 +41,15 @@ class VerifyPackagesCoverage extends Command
             ->output();
 
         $lines = collect(explode("\n", $output));
+
         return $lines
-            ->map(fn(string $line) => json_decode($line, associative: true))
-            ->filter(fn($result) => isset($result['type']) && $result['type'] === 'content')
-            ->flatMap(fn(array $result) => $result['chunkMatches'])
-            ->map(fn(array $match) => trim($match['content']))
-            ->map(fn(string $match) => Str::after($match, 'composer require'))
-            ->flatMap(fn(string $match) => explode(' ', $match))
-            ->filter(fn(string $part) => Str::contains($part, '/'))
+            ->map(fn (string $line) => json_decode($line, associative: true))
+            ->filter(fn ($result) => isset($result['type']) && $result['type'] === 'content')
+            ->flatMap(fn (array $result) => $result['chunkMatches'])
+            ->map(fn (array $match) => trim($match['content']))
+            ->map(fn (string $match) => Str::after($match, 'composer require'))
+            ->flatMap(fn (string $match) => explode(' ', $match))
+            ->filter(fn (string $part) => Str::contains($part, '/'))
             ->unique()
             ->sort()
             ->values();
@@ -60,8 +61,8 @@ class VerifyPackagesCoverage extends Command
             ->flatMap(fn (Section $section) => $section->children)
             ->filter(fn ($child) => $child instanceof Option)
             ->flatMap(fn (Option $option) => Arr::wrap($option->composer))
-            ->flatMap(fn(string $packageString) => explode(' ', $packageString))
-            ->filter(fn(string $part) => Str::contains($part, '/'))
+            ->flatMap(fn (string $packageString) => explode(' ', $packageString))
+            ->filter(fn (string $part) => Str::contains($part, '/'))
             ->unique()
             ->sort()
             ->values()
