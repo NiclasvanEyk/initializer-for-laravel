@@ -8,8 +8,9 @@ class Mapper
 {
     /**
      * @template T
-     * @param Request $request
-     * @param class-string<T> $target
+     *
+     * @param  Request  $request
+     * @param  class-string<T>  $target
      * @return T
      */
     public function map(Request $request, string $target)
