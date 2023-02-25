@@ -1,9 +1,13 @@
 <?php
 
+use App\Initializer\Configuration\ComposerPackage;
 use App\View\Options;
 use App\Initializer\Setup;
 use App\Initializer\Configuration\Option;
-use InitializerForLaravel\Core\Configuration\{Choice, Paragraph, Section};
+use InitializerForLaravel\Core\Configuration\{Choice,
+    Dependency,
+    Paragraph,
+    Section};
 use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Sail\Service;
 
@@ -55,34 +59,35 @@ return [
         new Section(
             name: "File Storage",
             icon: 'TODO',
-            description: Str::markdown("Laravel uses
-            [Flysystem](https://flysystem.thephpleague.com) to abstract
-            filesystem access to like your local `storage` folder, remote (S)FTP
-            servers or cloud buckets."),
+            description: Str::markdown(<<<MARKDOWN
+            Laravel uses [Flysystem](https://flysystem.thephpleague.com) to
+            abstract filesystem access to like your local `storage` folder,
+            remote (S)FTP servers or cloud buckets.
+            MARKDOWN),
             children: [
-                new Option(
-                    Options::FlysystemFtp->value,
-                    'FTP',
-                    '',
-                    composer: 'league/flysystem-ftp "^3.0"'
+                Option::composer(
+                    package: "league/flysystem-ftp",
+                    name: "FTP",
+                    description: "",
+                    options: ['version' => "^3.0"]
                 ),
-                new Option(
-                    Options::FlysystemSftp->value,
-                    'SFTP',
-                    '',
-                    composer: 'league/flysystem-sftp-v3 "^3.0"'
+                Option::composer(
+                    package: 'league/flysystem-sftp-v3',
+                    name: 'SFTP',
+                    description: '',
+                    options: ['version' => '^3.0']
                 ),
-                new Option(
-                    Options::FlysystemReadonly->value,
-                    'Readonly',
-                    '',
-                    composer: 'league/flysystem-read-only "^3.0"'
+                Option::composer(
+                    package: 'league/flysystem-read-only',
+                    name: 'Readonly',
+                    description: '',
+                    options: ['version' => '^3.0']
                 ),
-                new Option(
-                    Options::FlysystemScoped->value,
-                    'Scoped',
-                    '',
-                    composer: 'league/flysystem-path-prefixing "^3.0"'
+                Option::composer(
+                    package: 'league/flysystem-path-prefixing',
+                    name: 'Scoped',
+                    description: '',
+                    options: ['version' => '^3.0']
                 ),
                 new Paragraph("
                     of the box. Choose the ones you need from the options below. To
@@ -91,48 +96,51 @@ return [
                     you don't need to configure cloud storage for your local development
                     needs.
                 "),
-                new Option(
-                    Options::FlysystemSftp->value,
-                    'AWS S3',
-                    '',
-                    composer: 'league/flysystem-aws-s3-v3 "^3.0"'
+                Option::composer(
+                    package: 'league/flysystem-aws-s3-v3',
+                    name: 'AWS',
+                    description: '',
+                    options: ['version' => '^3.0']
                 ),
-                new Option(
-                    Options::MinIO->value,
-                    'MinIO',
-                    '',
-                    composer: 'league/flysystem-path-prefixing "^3.0"'
+                Option::sail(
+                    service: Service::MinIO,
+                    description: '',
+                    link: ''
                 ),
             ]
         ),
         new Section(
             name: 'Cache',
             icon: 'TODO',
-            description: <<<MARKDOWN
-
-            MARKDOWN,
+            description: Str::markdown(<<<MARKDOWN
+            TODO
+            MARKDOWN),
             children: [
                 new Choice(
                     id: 'cache',
                     name: 'Driver',
-                    link: '',
+                    link: '', // TODO
+                    default: Service::Redis,
                     options: [
-                        new Option(
-                            id: 'redis',
-                            name: 'Redis',
+                        Option::sail(
+                            service: Service::Redis,
                             description: '',
                             link: 'https://redis.io',
-                            composer: 'predis/predis',
-                            service: Service::Redis,
+                            composer: [Dependency::composer('predis/predis')],
                         ),
-                        new Option(
-                            id: 'memcached',
-                            name: 'Memcached',
-                            description: 'High-performance, distributed memory object caching system.',
+                        Option::sail(
                             service: Service::Memcached,
+                            description: 'High-performance, distributed memory object caching system.',
+                            link: '', // TODO
                         ),
+                        Option::composer(
+                            id: 'dynamodb',
+                            name: "DynamoDB",
+                            description: "", // TODO
+                            package: ComposerPackage::awsSdk(),
+                        )
                     ])
             ],
-        )
+        ),
     ],
 ];

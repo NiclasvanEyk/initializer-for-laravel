@@ -2,9 +2,13 @@
 
 namespace InitializerForLaravel\Core\Configuration;
 
+use BackedEnum;
+
 readonly final class Choice
 {
     use SimpleDataClass;
+
+    const NONE = 'none';
 
     /**
      * @param non-empty-array<int,Option> $options
@@ -13,8 +17,9 @@ readonly final class Choice
         public string $id,
         public string $name,
         public string $link,
+        public string|BackedEnum $default,
         public array $options,
-        public bool $includesNone = false,
+        public bool $includesNone = true,
     ) {
     }
 }
