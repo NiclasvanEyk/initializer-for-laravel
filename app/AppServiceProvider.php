@@ -15,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Route::get('next', function () {
-
         });
     }
 }
