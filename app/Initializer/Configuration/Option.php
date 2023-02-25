@@ -53,8 +53,8 @@ readonly final class Option
         array  $options = [],
     ): ConfigurationOption {
         $id ??= $package instanceof Dependency
-            ? explode('/', $package->id)[0]
-            : explode('/', $package)[0];
+            ? explode('/', $package->id)[1]
+            : explode('/', $package)[1];
 
         return new ConfigurationOption(
             id: $id,

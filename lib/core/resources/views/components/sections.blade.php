@@ -32,7 +32,16 @@
             @endif
 
             @if($child instanceof Option)
-                Option {{ $child->name }}<br>
+                <x-form-control.checkbox
+                    :id="$child->id"
+                    :heading="$child->name"
+                    :href="$child->link"
+                >
+                    {!! $child->description !!}
+                    <x-slot name="tags">
+                        {{-- TODO --}}
+                    </x-slot>
+                </x-form-control.checkbox>
             @endif
         @endforeach
     </x-form-section>

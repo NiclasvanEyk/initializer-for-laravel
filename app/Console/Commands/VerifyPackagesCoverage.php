@@ -7,6 +7,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
+use InitializerForLaravel\Core\Configuration\Choice;
+use InitializerForLaravel\Core\Configuration\Dependency;
 use InitializerForLaravel\Core\Configuration\Section;
 use InitializerForLaravel\Core\Configuration\Option;
 
@@ -18,19 +20,41 @@ class VerifyPackagesCoverage extends Command
     public function handle()
     {
         $initializerPackages = $this->initializerPackages();
-        $mentionedPackages = $this->mentionedPackages();
-        $ignore = collect([
+        $mentionedPackages = $this->mentionedPackages()->diff([
             // Only mentioned as an example of a custom flysystem driver
             'spatie/flysystem-dropbox'
         ]);
 
         $missing = $mentionedPackages
-            ->diff($ignore)
             ->diff($initializerPackages);
         $amount = $missing->count();
-        $plural = $amount > 1 ? "s" : "";
-        $this->components->bulletList($missing->toArray());
-        $this->components->error("Missing $amount package$plural!");
+
+        [$laravelPackages, $other] = $mentionedPackages->partition(fn(string $package) => Str::startsWith($package, "laravel/"));
+        $this->info("First Party");
+        $this->printPackageList($laravelPackages, $initializerPackages);
+        $this->newLine();
+
+        $this->info('Other');
+        $this->printPackageList($other, $initializerPackages);
+        $this->newLine();
+
+        if ($amount > 0) {
+            $plural = $amount > 1 ? 's' : '';
+            $this->components->error("Missing $amount package$plural!");
+        } else {
+            $this->components->info("All packages mentioned!");
+        }
+    }
+
+    private function printPackageList(Collection $search, Collection $mentioned): void
+    {
+        foreach ($search as $package) {
+            if ($mentioned->contains($package)) {
+                $this->line("✅ $package");
+            } else {
+                $this->line("❌ $package");
+            }
+        }
     }
 
     private function mentionedPackages(): Collection
@@ -58,13 +82,17 @@ class VerifyPackagesCoverage extends Command
     {
         return collect(config('initializer-for-laravel')['sections'])
             ->flatMap(fn (Section $section) => $section->children)
-            ->filter(fn ($child) => $child instanceof Option)
-            ->flatMap(fn (Option $option) => Arr::wrap($option->composer))
-            ->flatMap(fn(string $packageString) => explode(' ', $packageString))
-            ->filter(fn(string $part) => Str::contains($part, '/'))
+            ->filter(fn ($child) => $child instanceof Option || $child instanceof Choice)
+            ->flatMap(function (Option|Choice $subject) {
+                return $subject instanceof Option
+                    ? [$subject]
+                    : $subject->options;
+            })
+            ->flatMap(fn (Option $option) => $option->dependencies)
+            ->filter(fn (Dependency $dependency) => $dependency->packageManager === Dependency::COMPOSER)
+            ->map(fn (Dependency $dependency) => $dependency->id)
             ->unique()
             ->sort()
-            ->values()
-            ->dump();
+            ->values();
     }
 }
