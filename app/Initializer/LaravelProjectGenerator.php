@@ -10,7 +10,6 @@ class LaravelProjectGenerator implements ProjectGenerator
 {
     public function generate(Configuration $configuration): ZipFile
     {
-
     }
 
     private function sailServices()

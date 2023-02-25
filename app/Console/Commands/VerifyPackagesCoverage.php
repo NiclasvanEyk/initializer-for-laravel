@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Configuration\Choice;
 use InitializerForLaravel\Core\Configuration\Dependency;
-use InitializerForLaravel\Core\Configuration\Section;
 use InitializerForLaravel\Core\Configuration\Option;
+use InitializerForLaravel\Core\Configuration\Section;
 
 class VerifyPackagesCoverage extends Command
 {
@@ -22,15 +22,15 @@ class VerifyPackagesCoverage extends Command
         $initializerPackages = $this->initializerPackages();
         $mentionedPackages = $this->mentionedPackages()->diff([
             // Only mentioned as an example of a custom flysystem driver
-            'spatie/flysystem-dropbox'
+            'spatie/flysystem-dropbox',
         ]);
 
         $missing = $mentionedPackages
             ->diff($initializerPackages);
         $amount = $missing->count();
 
-        [$laravelPackages, $other] = $mentionedPackages->partition(fn(string $package) => Str::startsWith($package, "laravel/"));
-        $this->info("First Party");
+        [$laravelPackages, $other] = $mentionedPackages->partition(fn (string $package) => Str::startsWith($package, 'laravel/'));
+        $this->info('First Party');
         $this->printPackageList($laravelPackages, $initializerPackages);
         $this->newLine();
 
@@ -42,7 +42,7 @@ class VerifyPackagesCoverage extends Command
             $plural = $amount > 1 ? 's' : '';
             $this->components->error("Missing $amount package$plural!");
         } else {
-            $this->components->info("All packages mentioned!");
+            $this->components->info('All packages mentioned!');
         }
     }
 
@@ -65,14 +65,15 @@ class VerifyPackagesCoverage extends Command
             ->output();
 
         $lines = collect(explode("\n", $output));
+
         return $lines
-            ->map(fn(string $line) => json_decode($line, associative: true))
-            ->filter(fn($result) => isset($result['type']) && $result['type'] === 'content')
-            ->flatMap(fn(array $result) => $result['chunkMatches'])
-            ->map(fn(array $match) => trim($match['content']))
-            ->map(fn(string $match) => Str::after($match, 'composer require'))
-            ->flatMap(fn(string $match) => explode(' ', $match))
-            ->filter(fn(string $part) => Str::contains($part, '/'))
+            ->map(fn (string $line) => json_decode($line, associative: true))
+            ->filter(fn ($result) => isset($result['type']) && $result['type'] === 'content')
+            ->flatMap(fn (array $result) => $result['chunkMatches'])
+            ->map(fn (array $match) => trim($match['content']))
+            ->map(fn (string $match) => Str::after($match, 'composer require'))
+            ->flatMap(fn (string $match) => explode(' ', $match))
+            ->filter(fn (string $part) => Str::contains($part, '/'))
             ->unique()
             ->sort()
             ->values();
