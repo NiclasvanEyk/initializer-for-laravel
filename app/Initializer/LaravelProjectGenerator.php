@@ -4,17 +4,38 @@ namespace App\Initializer;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
 use InitializerForLaravel\Core\Contracts\ProjectGenerator;
-use PhpZip\ZipFile;
+use InitializerForLaravel\Core\Contracts\TemplateStorage;
+use InitializerForLaravel\Core\Project\Project;
 
-class LaravelProjectGenerator implements ProjectGenerator
+readonly final class LaravelProjectGenerator implements ProjectGenerator
 {
-    public function generate(Configuration $configuration): ZipFile
+    public function __construct(private TemplateStorage $templateStorage)
+    {
+    }
+
+    public function generate(Configuration $configuration): Project
+    {
+        $project = Project::from($this->templateStorage);
+
+        $this->adjustComposerJson();
+        $this->addScriptsTo($project);
+        $this->adjustConfiguration($project);
+
+        return $project;
+    }
+
+    private function addScriptsTo(Project $project): void
     {
 
     }
 
-    private function sailServices()
+    private function adjustConfiguration(Project $project)
     {
-        $sections = config('initializer-for-laravel.sections');
+
+    }
+
+    private function adjustComposerJson(): void
+    {
+
     }
 }

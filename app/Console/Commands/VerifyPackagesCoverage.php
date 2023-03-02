@@ -11,46 +11,57 @@ use InitializerForLaravel\Core\Configuration\Choice;
 use InitializerForLaravel\Core\Configuration\Dependency;
 use InitializerForLaravel\Core\Configuration\Section;
 use InitializerForLaravel\Core\Configuration\Option;
+use function array_key_exists;
 
 class VerifyPackagesCoverage extends Command
 {
     protected $name = 'initializer:package-coverage';
-    protected $description = 'Verifies, that all `composer require`able packages described in the docs are choosable.';
+    protected $description = 'Verifies that all `composer require`able packages described in the docs are choosable.';
 
     public function handle()
     {
+
         $initializerPackages = $this->initializerPackages();
-        $mentionedPackages = $this->mentionedPackages()->diff([
-            // Only mentioned as an example of a custom flysystem driver
-            'spatie/flysystem-dropbox'
-        ]);
+        $mentionedPackages = $this->mentionedPackages();
+        $ignored = [
+            'spatie/flysystem-dropbox' => 'Only mentioned as an example of a custom flysystem driver',
+            'laravel/homestead' => 'Should be used globally, rather than per project',
+            'laravel/sanctum' => 'Is included by default',
+            'laravel/pint' => 'Is included by default',
+        ];
 
-        $missing = $mentionedPackages
-            ->diff($initializerPackages);
+        $missing = $mentionedPackages->diff($ignored)->diff($initializerPackages);
         $amount = $missing->count();
+        [$laravelPackages, $other] = $mentionedPackages->partition(
+            fn(string $package) => Str::startsWith($package, "laravel/")
+        );
 
-        [$laravelPackages, $other] = $mentionedPackages->partition(fn(string $package) => Str::startsWith($package, "laravel/"));
         $this->info("First Party");
-        $this->printPackageList($laravelPackages, $initializerPackages);
+        $this->printPackageList($laravelPackages, $initializerPackages, $ignored);
         $this->newLine();
 
         $this->info('Other');
-        $this->printPackageList($other, $initializerPackages);
+        $this->printPackageList($other, $initializerPackages, $ignored);
         $this->newLine();
 
         if ($amount > 0) {
             $plural = $amount > 1 ? 's' : '';
             $this->components->error("Missing $amount package$plural!");
+            return self::FAILURE;
         } else {
             $this->components->info("All packages mentioned!");
+            return self::SUCCESS;
         }
     }
 
-    private function printPackageList(Collection $search, Collection $mentioned): void
+    private function printPackageList(Collection $search, Collection $mentioned, array $ignored): void
     {
         foreach ($search as $package) {
             if ($mentioned->contains($package)) {
                 $this->line("✅ $package");
+            } else if (array_key_exists($package, $ignored)) {
+                $reason = $ignored[$package];
+                $this->line("<fg=gray>  $package ($reason)</>");
             } else {
                 $this->line("❌ $package");
             }

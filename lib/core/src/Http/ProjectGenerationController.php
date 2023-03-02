@@ -4,21 +4,23 @@ namespace InitializerForLaravel\Core\Http;
 
 use Domains\CreateProjectForm\Sections\Metadata;
 use Illuminate\Http\Request;
-use InitializerForLaravel\Core\Configuration\ConfigurationResolver;
+use InitializerForLaravel\Core\Configuration\Configurator;
 use InitializerForLaravel\Core\Contracts\ProjectGenerator;
+use InitializerForLaravel\Core\Project\Project;
 
-class ProjectGenerationController
+readonly class ProjectGenerationController
 {
-    public function __invoke(
-        Request $request,
-        ConfigurationResolver $configurationResolver,
-        Metadata $metadata,
-        ProjectGenerator $generator,
-    )
-    {
-        $configuration = $configurationResolver->resolveFrom($request);
-        $archive = $generator->generate($configuration);
+    public function __construct(
+        private Configurator $configurator,
+        private ProjectGenerator $generator,
+    ) {
+    }
 
-        return $archive->outputAsSymfonyResponse("$metadata->projectName.zip");
+    public function __invoke(Request $request, Metadata $metadata): Project
+    {
+        $configuration = $this->configurator->buildFrom($request);
+        $project = $this->generator->generate($configuration);
+
+        return $project;
     }
 }

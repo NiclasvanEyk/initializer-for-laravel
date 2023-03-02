@@ -3,9 +3,9 @@
 namespace InitializerForLaravel\Core\Contracts;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
-use PhpZip\ZipFile;
+use InitializerForLaravel\Core\Project\Project;
 
 interface ProjectGenerator
 {
-    public function generate(Configuration $configuration): ZipFile;
+    public function generate(Configuration $configuration): Project;
 }
