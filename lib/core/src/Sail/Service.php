@@ -3,7 +3,7 @@
 namespace InitializerForLaravel\Core\Sail;
 
 /**
- * TODO: Move this into i-f-l/laravel
+ * TODO: Move this into i-f-l/laravel.
  */
 enum Service: string
 {

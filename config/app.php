@@ -176,11 +176,11 @@ return [
          * Domain Service Providers...
          */
         CreateProjectFormServiceProvider::class,
-//        \Domains\ProjectTemplate\ProjectTemplateServiceProvider::class,
+        //        \Domains\ProjectTemplate\ProjectTemplateServiceProvider::class,
         ConfigAdjustmentServiceProvider::class,
         InitializationScriptServiceProvider::class,
         ReadmeServiceProvider::class,
-//        \InitializerForLaravel\Composer\ComposerServiceProvider::class,
+        //        \InitializerForLaravel\Composer\ComposerServiceProvider::class,
         ScheduleServiceProvider::class,
         ProjectTemplateServiceProvider::class,
         // TODO: Use composer.json[extra.laravel]
