@@ -2,11 +2,11 @@
 
 namespace InitializerForLaravel\Core\Console\Commands;
 
+use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Contracts\TemplateRetriever;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
-use Illuminate\Console\Command;
 use InitializerForLaravel\Core\Exception\NoTemplateDownloaderAvailableException;
 use Log;
 use function resolve;
@@ -33,6 +33,7 @@ class UpdateTemplateCommand extends Command
         $storedVersion = $templateStorage->version();
         if ($storedVersion && $storedVersion === $latestRelease->version) {
             $this->logAndInfo("$latestRelease->version is still the latest release!");
+
             return;
         }
 

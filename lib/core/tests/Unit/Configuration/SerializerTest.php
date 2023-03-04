@@ -19,7 +19,7 @@ final class SerializerTest extends TestCase
         ], ['pest', 'pennant', 'ably']);
 
         self::assertQueryStringEquals(
-            "database=postgres&starter=breeze&include=ably,pennant,pest",
+            'database=postgres&starter=breeze&include=ably,pennant,pest',
             $this->queryString($configuration)
         );
     }
