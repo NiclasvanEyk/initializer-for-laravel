@@ -7,9 +7,9 @@ use Domains\CreateProjectForm\Sections\Metadata;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
 use Illuminate\Support\Collection;
 use InitializerForLaravel\Composer\ComposerJsonFile;
-use InitializerForLaravel\Composer\PackageVersionToInstallResolver;
-use InitializerForLaravel\Composer\PackageWithResolvedVersion;
-use InitializerForLaravel\Composer\VersionSelectorFactory;
+use InitializerForLaravel\Composer\Installation\PackageVersionToInstallResolver;
+use InitializerForLaravel\Composer\Installation\PackageWithResolvedVersion;
+use InitializerForLaravel\Composer\Installation\VersionSelectorFactory;
 
 /**
  * Responsible for making adjustments to the <pre>composer.json</pre> file.

@@ -4,7 +4,7 @@ namespace InitializerForLaravel\Core\Console\Commands;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Str;
-use InitializerForLaravel\Core\Contracts\TemplateDownloader;
+use InitializerForLaravel\Core\Contracts\TemplateRetriever;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use Illuminate\Console\Command;
 use InitializerForLaravel\Core\Exception\NoTemplateDownloaderAvailableException;
@@ -19,9 +19,9 @@ class UpdateTemplateCommand extends Command
     public function handle(TemplateStorage $templateStorage): void
     {
         try {
-            $downloader = app(TemplateDownloader::class);
+            $downloader = app(TemplateRetriever::class);
         } catch (BindingResolutionException $exception) {
-            if (Str::contains($exception->getMessage(), TemplateDownloader::class)) {
+            if (Str::contains($exception->getMessage(), TemplateRetriever::class)) {
                 throw new NoTemplateDownloaderAvailableException(previous: $exception);
             }
 

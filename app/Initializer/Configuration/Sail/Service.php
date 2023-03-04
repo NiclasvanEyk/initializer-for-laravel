@@ -1,6 +1,6 @@
 <?php
 
-namespace InitializerForLaravel\Core\Sail;
+namespace App\Initializer\Configuration\Sail;
 
 /**
  * TODO: Move this into i-f-l/laravel

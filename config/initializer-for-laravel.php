@@ -9,7 +9,7 @@ use InitializerForLaravel\Core\Configuration\{Choice,
     Paragraph,
     Section};
 use Illuminate\Support\Str;
-use InitializerForLaravel\Core\Sail\Service;
+use App\Initializer\Configuration\Sail\Service;
 
 return [
     'sections' => [

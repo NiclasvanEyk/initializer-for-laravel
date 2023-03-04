@@ -6,7 +6,7 @@ use BackedEnum;
 use Domains\PostDownload\PostDownloadTask;
 use InitializerForLaravel\Core\Configuration\Dependency;
 use InitializerForLaravel\Core\Configuration\Option as ConfigurationOption;
-use InitializerForLaravel\Core\Sail\Service;
+use App\Initializer\Configuration\Sail\Service;
 use InitializerForLaravel\Core\View\Tag;
 use function explode;
 use function strtolower;

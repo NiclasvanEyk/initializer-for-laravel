@@ -1,8 +1,9 @@
 <?php
 
-namespace InitializerForLaravel\Composer;
+namespace InitializerForLaravel\Composer\Installation;
 
 use Exception;
+use InitializerForLaravel\Composer\ComposerDependency;
 
 class NoInstallationCandidateFoundException extends Exception
 {

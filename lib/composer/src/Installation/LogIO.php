@@ -1,6 +1,6 @@
 <?php
 
-namespace InitializerForLaravel\Composer;
+namespace InitializerForLaravel\Composer\Installation;
 
 use Composer\IO\NullIO;
 use Illuminate\Support\Facades\Log;

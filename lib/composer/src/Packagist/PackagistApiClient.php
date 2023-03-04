@@ -1,6 +1,6 @@
 <?php
 
-namespace InitializerForLaravel\Packagist;
+namespace InitializerForLaravel\Composer\Packagist;
 
 use Illuminate\Http\Client\Factory as HttpClientFactory;
 use Illuminate\Http\Client\PendingRequest;

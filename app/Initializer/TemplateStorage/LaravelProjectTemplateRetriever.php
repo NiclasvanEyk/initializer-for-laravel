@@ -6,13 +6,13 @@ use Domains\Support\FileSystem\Path;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use InitializerForLaravel\Core\Contracts\TemplateDownloader;
+use InitializerForLaravel\Core\Contracts\TemplateRetriever;
 use InitializerForLaravel\Packagist\DownloadedPackage;
 use InitializerForLaravel\Packagist\Package;
 use InitializerForLaravel\Packagist\PackagistApiClient;
 use PhpZip\ZipFile;
 
-class LaravelProjectTemplateDownloader implements TemplateDownloader
+class LaravelProjectTemplateRetriever implements TemplateRetriever
 {
     public function __construct(
         private PackagistApiClient $packagistApiClient,

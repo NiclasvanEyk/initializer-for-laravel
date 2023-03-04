@@ -3,7 +3,7 @@
 namespace App\Initializer\Configuration;
 
 use InitializerForLaravel\Core\Configuration\Dependency;
-use InitializerForLaravel\Core\Sail\Service;
+use App\Initializer\Configuration\Sail\Service;
 
 readonly final class Sail
 {

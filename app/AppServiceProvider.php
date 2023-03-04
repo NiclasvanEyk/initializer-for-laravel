@@ -3,16 +3,16 @@
 namespace App;
 
 use App\Http\IndexController;
-use App\Initializer\TemplateStorage\LaravelProjectTemplateDownloader;
+use App\Initializer\TemplateStorage\LaravelProjectTemplateRetriever;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use InitializerForLaravel\Core\Contracts\TemplateDownloader;
+use InitializerForLaravel\Core\Contracts\TemplateRetriever;
 
 class AppServiceProvider extends ServiceProvider
 {
     public $bindings = [
-        TemplateDownloader::class => LaravelProjectTemplateDownloader::class,
+        TemplateRetriever::class => LaravelProjectTemplateRetriever::class,
     ];
 
     public function boot(): void

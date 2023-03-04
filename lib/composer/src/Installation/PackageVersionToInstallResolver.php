@@ -1,10 +1,13 @@
 <?php
 
-namespace InitializerForLaravel\Composer;
+namespace InitializerForLaravel\Composer\Installation;
 
 use Composer\Filter\PlatformRequirementFilter\IgnoreAllPlatformRequirementFilter;
 use Composer\Package\Version\VersionSelector;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\Installation\NoInstallationCandidateFoundException;
+use InitializerForLaravel\Composer\Installation\PackageWithResolvedVersion;
 
 /**
  * Determines the current versions of composer packages should be installed.

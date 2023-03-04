@@ -6,9 +6,9 @@ use Composer\Package\Version\VersionSelector;
 use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
 use Domains\Laravel\RelatedPackages\Infrastructure\AwsSdk;
 use InitializerForLaravel\Composer\InlineComposerDependency;
-use InitializerForLaravel\Composer\NoInstallationCandidateFoundException;
-use InitializerForLaravel\Composer\PackageVersionToInstallResolver;
-use InitializerForLaravel\Composer\VersionSelectorFactory;
+use InitializerForLaravel\Composer\Installation\NoInstallationCandidateFoundException;
+use InitializerForLaravel\Composer\Installation\PackageVersionToInstallResolver;
+use InitializerForLaravel\Composer\Installation\VersionSelectorFactory;
 use Mockery\MockInterface;
 use Tests\TestCase;
 

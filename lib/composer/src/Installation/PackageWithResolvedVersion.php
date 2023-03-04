@@ -1,6 +1,8 @@
 <?php
 
-namespace InitializerForLaravel\Composer;
+namespace InitializerForLaravel\Composer\Installation;
+
+use InitializerForLaravel\Composer\ComposerDependency;
 
 /** @psalm-immutable */
 class PackageWithResolvedVersion

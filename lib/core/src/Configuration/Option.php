@@ -4,7 +4,7 @@ namespace InitializerForLaravel\Core\Configuration;
 
 use BackedEnum;
 use Domains\PostDownload\PostDownloadTask;
-use InitializerForLaravel\Core\Sail\Service;
+use App\Initializer\Configuration\Sail\Service;
 
 readonly final class Option
 {

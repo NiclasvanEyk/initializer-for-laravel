@@ -1,6 +1,6 @@
 <?php
 
-namespace InitializerForLaravel\Packagist;
+namespace InitializerForLaravel\Composer\Packagist;
 
 use InitializerForLaravel\Packagist\Package;
 use PhpZip\ZipFile;
