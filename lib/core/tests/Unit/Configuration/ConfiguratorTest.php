@@ -20,7 +20,7 @@ final class ConfiguratorTest extends TestCase
             options: [
                 new OptionDefinition('livewire'),
                 new OptionDefinition('passport'),
-                new OptionDefinition('pint', includedByDefault: true)
+                new OptionDefinition('pint', includedByDefault: true),
             ],
             choices: [
                 new ChoiceDefinition('starter', StarterKit::class, StarterKit::Laravel),

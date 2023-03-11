@@ -6,7 +6,7 @@ return [
     'storage' => [
         'driver' => LocalTemplateStorage::class,
         'options' => [
-            'base' => storage_path('initializer-template')
+            'base' => storage_path('initializer-template'),
         ],
     ],
 ];
