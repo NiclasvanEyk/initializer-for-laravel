@@ -10,5 +10,6 @@ use PhpZip\ZipFile;
 interface TemplateRetriever
 {
     public function latest(): Template;
+
     public function fetch(Template $template): ZipFile;
 }

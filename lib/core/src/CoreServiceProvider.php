@@ -2,12 +2,12 @@
 
 namespace InitializerForLaravel\Core;
 
+use function config;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use InitializerForLaravel\Core\Console\Commands\UpdateTemplateCommand;
 use InitializerForLaravel\Core\Contracts\TemplateStorage as TemplateStorageContract;
 use InitializerForLaravel\Core\Storage\LocalTemplateStorage;
-use function config;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,7 @@ class CoreServiceProvider extends ServiceProvider
             $this->commands([UpdateTemplateCommand::class]);
         }
 
-        $this->mergeConfigFrom(__DIR__."/../config/initializer.php", "initializer");
+        $this->mergeConfigFrom(__DIR__.'/../config/initializer.php', 'initializer');
 
         $this->setupViews();
         $this->setupTemplateStorage();

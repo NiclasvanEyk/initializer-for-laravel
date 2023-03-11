@@ -19,8 +19,7 @@ abstract class StarterKit
     public function __construct(
         #[Choice('starter-kit')]
         public string $name
-    )
-    {
+    ) {
     }
 
     abstract public function composerPackage(): ?ComposerDependency;

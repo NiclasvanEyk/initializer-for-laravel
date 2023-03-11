@@ -8,6 +8,6 @@ class MissingTemplate extends Exception
 {
     public function __construct()
     {
-        parent::__construct("No project template available!");
+        parent::__construct('No project template available!');
     }
 }
