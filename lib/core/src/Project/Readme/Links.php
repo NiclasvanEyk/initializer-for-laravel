@@ -8,7 +8,7 @@ namespace InitializerForLaravel\Core\Project\Readme;
 final class Links
 {
     /**
-     * @param Link[] $entries
+     * @param  Link[]  $entries
      */
     public function __construct(public array $entries = [])
     {
@@ -17,6 +17,7 @@ final class Links
     public function add(string $description, string $url): self
     {
         $this->entries[] = new Link($description, $url);
+
         return $this;
     }
 }
