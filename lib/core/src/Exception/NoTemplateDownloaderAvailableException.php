@@ -3,6 +3,8 @@
 namespace InitializerForLaravel\Core\Exception;
 
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Contracts\TemplateRetriever;
 use Throwable;
 
@@ -17,5 +19,16 @@ final class NoTemplateDownloaderAvailableException extends Exception
             $code,
             $previous
         );
+    }
+
+    /**
+     * @throws NoTemplateDownloaderAvailableException
+     */
+    public static function throwWhenApplicable(
+        BindingResolutionException $exception
+    ): void {
+        if (Str::contains($exception->getMessage(), TemplateRetriever::class)) {
+            throw new self(previous: $exception);
+        }
     }
 }

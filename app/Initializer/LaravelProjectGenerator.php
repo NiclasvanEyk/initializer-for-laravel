@@ -2,40 +2,39 @@
 
 namespace App\Initializer;
 
+use App\Initializer\ProjectAdjustments\AddSailServices;
+use App\Initializer\ProjectAdjustments\SetDotEnvExampleParameters;
+use InitializerForLaravel\Composer\Initializer\Actions\SetPackageMetadata;
 use InitializerForLaravel\Core\Configuration\Configuration;
 use InitializerForLaravel\Core\Contracts\ProjectGenerator;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
+use InitializerForLaravel\Core\Exception\MissingTemplate;
+use InitializerForLaravel\Core\Project\AdjustmentPipelineBuilder;
 use InitializerForLaravel\Core\Project\Project;
 
 readonly final class LaravelProjectGenerator implements ProjectGenerator
 {
-    public function __construct(private TemplateStorage $templateStorage)
-    {
+    public function __construct(
+        private TemplateStorage $templateStorage,
+        private AdjustmentPipelineBuilder $adjustments,
+    ) {
     }
 
+    /**
+     * @throws MissingTemplate
+     */
     public function generate(Configuration $configuration): Project
     {
-        $project = Project::from($this->templateStorage);
+        $name = "TODO";
+        $project = Project::from($this->templateStorage, name: $name);
 
-        $this->adjustComposerJson();
-        $this->addScriptsTo($project);
-        $this->adjustConfiguration($project);
-
-        return $project;
-    }
-
-    private function addScriptsTo(Project $project): void
-    {
-
-    }
-
-    private function adjustConfiguration(Project $project)
-    {
-
-    }
-
-    private function adjustComposerJson(): void
-    {
-
+        return $this
+            ->adjustments
+            ->apply([
+                SetPackageMetadata::class,
+                SetDotEnvExampleParameters::class,
+                AddSailServices::class,
+            ])
+            ->to($project, $configuration);
     }
 }

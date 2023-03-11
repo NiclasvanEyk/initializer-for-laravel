@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use InitializerForLaravel\Core\Contracts\TemplateRetriever;
+use InitializerForLaravel\Core\Storage\Template;
 use InitializerForLaravel\Packagist\DownloadedPackage;
 use InitializerForLaravel\Packagist\Package;
 use InitializerForLaravel\Packagist\PackagistApiClient;
@@ -30,29 +31,29 @@ class LaravelProjectTemplateRetriever implements TemplateRetriever
         );
     }
 
-    public function latest(): Package
+    public function latest(): Template
     {
-        return $this->all()[0];
+        $latestPackage = $this->all()[0];
+
+        return new Template(
+            url: $latestPackage->url,
+            version: $latestPackage->version,
+        );
     }
 
-    public function download(Package $package): DownloadedPackage
+    public function fetch(Template $template): ZipFile
     {
-        Log::info("Downloading $package->version from {$package->dist->url}...");
+        Log::info("Downloading $template->version from $template->url...");
 
-        $response = $this->packagistApiClient->downloadPackageDist($package)->body();
+        $response = $this->packagistApiClient->downloadPackageDist($template)->body();
 
         // The archives contain a folder called `laravel-laravel-somehash`,
         // so we need to extract and re-zip the contents of that folder
         $downloadedArchive = (new ZipFile())->openFromString($response);
 
-        $release = new DownloadedPackage(
-            package: $package,
-            archive: $this->normalizedArchive($downloadedArchive),
-        );
+        Log::info("$template->version successfully downloaded!");
 
-        Log::info("$package->version successfully downloaded!");
-
-        return $release;
+        return $this->normalizedArchive($downloadedArchive);
     }
 
     /** @codeCoverageIgnore */

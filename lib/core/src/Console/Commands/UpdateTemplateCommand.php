@@ -9,7 +9,6 @@ use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use Illuminate\Console\Command;
 use InitializerForLaravel\Core\Exception\NoTemplateDownloaderAvailableException;
 use Log;
-use function resolve;
 
 class UpdateTemplateCommand extends Command
 {
@@ -18,17 +17,9 @@ class UpdateTemplateCommand extends Command
 
     public function handle(TemplateStorage $templateStorage): void
     {
-        try {
-            $downloader = app(TemplateRetriever::class);
-        } catch (BindingResolutionException $exception) {
-            if (Str::contains($exception->getMessage(), TemplateRetriever::class)) {
-                throw new NoTemplateDownloaderAvailableException(previous: $exception);
-            }
+        $retriever = $this->resolveTemplateRetriever();
 
-            throw $exception;
-        }
-
-        $latestRelease = $downloader->latest();
+        $latestRelease = $retriever->latest();
 
         $storedVersion = $templateStorage->version();
         if ($storedVersion && $storedVersion === $latestRelease->version) {
@@ -37,8 +28,8 @@ class UpdateTemplateCommand extends Command
         }
 
         $this->logAndInfo("Downloading $latestRelease->version...");
-        $release = $downloader->download($latestRelease);
-        $templateStorage->update($release->package->version, $release->archive);
+        $archive = $retriever->fetch($latestRelease);
+        $templateStorage->update($latestRelease->version, $archive);
 
         $this->logAndInfo("Finished downloading $latestRelease->version!");
     }
@@ -47,5 +38,21 @@ class UpdateTemplateCommand extends Command
     {
         $this->info($message);
         Log::info($message);
+    }
+
+    /**
+     * @throws BindingResolutionException
+     * @throws NoTemplateDownloaderAvailableException
+     */
+    private function resolveTemplateRetriever(): TemplateRetriever
+    {
+        try {
+            $downloader = app(TemplateRetriever::class);
+        } catch (BindingResolutionException $exception) {
+            NoTemplateDownloaderAvailableException::throwWhenApplicable($exception);
+
+            throw $exception;
+        }
+        return $downloader;
     }
 }
