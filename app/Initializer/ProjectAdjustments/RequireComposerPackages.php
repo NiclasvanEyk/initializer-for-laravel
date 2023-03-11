@@ -4,7 +4,7 @@ namespace App\Initializer\ProjectAdjustments;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
 use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
-use InitializerForLaravel\Core\Project\Project;
+use InitializerForLaravel\Core\Project;
 
 readonly final class RequireComposerPackages implements ProjectAdjustment
 {

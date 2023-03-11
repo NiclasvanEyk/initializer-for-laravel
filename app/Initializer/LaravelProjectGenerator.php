@@ -10,7 +10,7 @@ use InitializerForLaravel\Core\Contracts\ProjectGenerator;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use InitializerForLaravel\Core\Exception\MissingTemplate;
 use InitializerForLaravel\Core\Project\AdjustmentPipelineBuilder;
-use InitializerForLaravel\Core\Project\Project;
+use InitializerForLaravel\Core\Project;
 
 readonly final class LaravelProjectGenerator implements ProjectGenerator
 {

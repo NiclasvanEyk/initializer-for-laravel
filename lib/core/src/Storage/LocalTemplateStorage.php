@@ -11,7 +11,7 @@ use PhpZip\ZipFile;
  * Stores and retrieves a versioned ZIP-file containing a project template.
  *
  * See {@link \InitializerForLaravel\Core\Console\Commands\UpdateTemplateCommand}
- * or {@link \InitializerForLaravel\Core\Project\Project::from()} for example
+ * or {@link \InitializerForLaravel\Core\Project::from()} for example
  * usages.
  */
 readonly final class LocalTemplateStorage implements TemplateStorage

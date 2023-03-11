@@ -1,16 +1,20 @@
 <?php
 
-namespace InitializerForLaravel\Core\Project;
+namespace InitializerForLaravel\Core;
 
 use Illuminate\Contracts\Support\Responsable;
 use InitializerForLaravel\Core\Contracts\TemplateStorage;
 use InitializerForLaravel\Core\Exception\MissingTemplate;
+use InitializerForLaravel\Core\Project\Readme;
 use PhpZip\ZipFile;
 
 readonly final class Project implements Responsable
 {
+    public Readme $readme;
+
     public function __construct(public string $name, public ZipFile $archive)
     {
+        $this->readme = new Readme($this);
     }
 
     public static function from(TemplateStorage $storage, string $name): self

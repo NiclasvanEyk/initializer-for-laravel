@@ -3,7 +3,7 @@
 namespace InitializerForLaravel\Core\Contracts;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
-use InitializerForLaravel\Core\Project\Project;
+use InitializerForLaravel\Core\Project;
 
 interface ProjectAdjustment
 {

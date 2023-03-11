@@ -1,15 +1,17 @@
 <?php
 
-namespace InitializerForLaravel\Composer\Initializer\Actions;
+namespace App\Initializer\ProjectAdjustments;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
 use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
 use InitializerForLaravel\Core\Project;
 
-readonly final class SetPackageMetadata implements ProjectAdjustment
+readonly final class FillReadme implements ProjectAdjustment
 {
     public function apply(Project $project, Configuration $configuration): void
     {
-        // TODO: Implement apply() method.
+        if ($configuration->has('mailpit')) {
+            $project->readme->links->add('Mailpit', 'http://localhost:5432');
+        }
     }
 }

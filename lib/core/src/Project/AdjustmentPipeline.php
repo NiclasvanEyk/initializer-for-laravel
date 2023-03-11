@@ -4,6 +4,7 @@ namespace InitializerForLaravel\Core\Project;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
 use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
+use InitializerForLaravel\Core\Project;
 
 readonly final class AdjustmentPipeline
 {

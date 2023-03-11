@@ -6,7 +6,7 @@ use Domains\CreateProjectForm\Sections\Metadata;
 use Illuminate\Http\Request;
 use InitializerForLaravel\Core\Configuration\Configurator;
 use InitializerForLaravel\Core\Contracts\ProjectGenerator;
-use InitializerForLaravel\Core\Project\Project;
+use InitializerForLaravel\Core\Project;
 
 readonly class ProjectGenerationController
 {
