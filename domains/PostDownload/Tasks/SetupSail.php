@@ -2,13 +2,13 @@
 
 namespace Domains\PostDownload\Tasks;
 
-use Domains\Laravel\Sail\DatabaseOption;
 use Domains\Laravel\Sail\SailConfigurationOption;
 use Domains\PostDownload\PostDownloadTask;
 use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\VerbosePostDownloadTask;
 use Domains\SourceCodeManipulation\Perl\Perl;
 use Illuminate\Support\Collection;
+use InitializerForLaravel\Composer\PhpVersion;
 use function implode;
 
 class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
@@ -19,7 +19,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
      */
     public function __construct(
         private array $sailServices,
-        private string $phpVersion,
+        private PhpVersion $phpVersion,
     ) {
     }
 
@@ -52,7 +52,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
 
     private function phpContainer(): string
     {
-        return "initializerforlaravel/sail-php-$this->phpVersion:latest";
+        return "initializerforlaravel/sail-php-{$this->phpVersion->value}:latest";
     }
 
     private function enumerateSailServices(): string
@@ -73,13 +73,13 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
             Perl::replace(
                 file: 'docker-compose.yml',
                 pattern: '\.\/vendor\/laravel\/sail\/runtimes\/\d\.\d',
-                replacement: ".\/vendor\/laravel\/sail\/runtimes\/$this->phpVersion",
+                replacement: ".\/vendor\/laravel\/sail\/runtimes\/{$this->phpVersion->value}",
             ),
             // and adjust the image name to match the PHP version
             Perl::replace(
                 file: 'docker-compose.yml',
                 pattern: 'sail-\d\.\d\/app',
-                replacement: "sail-$this->phpVersion\/app",
+                replacement: "sail-{$this->phpVersion->value}\/app",
             ),
         ]);
     }

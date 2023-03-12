@@ -9,7 +9,7 @@ use InitializerForLaravel\Composer\Initializer\ComposerPackageMetadata;
 use InitializerForLaravel\Composer\Initializer\ComposerProject;
 use InitializerForLaravel\Core\Project;
 
-readonly final class SetPackageMetadata implements ProjectAdjustment
+readonly final class FillComposerMetadata implements ProjectAdjustment
 {
     public function __construct(private ComposerPackageMetadata $metadata)
     {

@@ -7,7 +7,7 @@ use Composer\Package\Version\VersionSelector;
 use Illuminate\Support\Collection;
 use InitializerForLaravel\Composer\ComposerDependency;
 use InitializerForLaravel\Composer\Installation\NoInstallationCandidateFoundException;
-use InitializerForLaravel\Composer\Installation\PackageWithResolvedVersion;
+use InitializerForLaravel\Composer\Installation\ResolvedPackageVersion;
 
 /**
  * Determines the current versions of composer packages should be installed.
@@ -25,25 +25,29 @@ class PackageVersionToInstallResolver
     }
 
     /**
-     * @param  Collection<int, ComposerDependency>  $packages
-     * @return Collection<int, PackageWithResolvedVersion>
+     * @param  Collection<int, InstallationInstructions>  $packages
+     * @return Collection<int, ResolvedPackageVersion>
      */
     public function resolve(Collection $packages): Collection
     {
-        return $packages->map(function (ComposerDependency $package) {
+        return $packages->map(function (InstallationInstructions $install) {
             $candidate = $this->versionSelector->findBestCandidate(
-                packageName: $package->packageId(),
-                targetPackageVersion: $package->versionConstraint(),
+                packageName: $install->package,
+                targetPackageVersion: $install->versionConstraint,
                 platformRequirementFilter: new IgnoreAllPlatformRequirementFilter(),
             );
 
             if ($candidate === false) {
-                throw new NoInstallationCandidateFoundException($package);
+                throw new NoInstallationCandidateFoundException($install);
             }
 
             $version = $this->versionSelector->findRecommendedRequireVersion($candidate);
 
-            return new PackageWithResolvedVersion($package, $version);
+            return new ResolvedPackageVersion(
+                $install->package,
+                $version,
+                $install->isDevDependency,
+            );
         });
     }
 }

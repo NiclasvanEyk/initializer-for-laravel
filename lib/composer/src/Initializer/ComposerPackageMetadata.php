@@ -2,7 +2,7 @@
 
 namespace InitializerForLaravel\Composer\Initializer;
 
-use Domains\CreateProjectForm\Sections\Metadata\PhpVersion;
+use InitializerForLaravel\Composer\PhpVersion;
 
 readonly final class ComposerPackageMetadata
 {
@@ -10,7 +10,7 @@ readonly final class ComposerPackageMetadata
         public string $vendorName,
         public string $projectName,
         public string $description = '',
-        public string $phpVersion = PhpVersion::v8_1,
+        public PhpVersion $phpVersion = PhpVersion::v8_1,
     ) {
     }
 

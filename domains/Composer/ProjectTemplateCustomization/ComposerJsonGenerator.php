@@ -8,7 +8,7 @@ use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResol
 use Illuminate\Support\Collection;
 use InitializerForLaravel\Composer\ComposerJsonFile;
 use InitializerForLaravel\Composer\Installation\PackageVersionToInstallResolver;
-use InitializerForLaravel\Composer\Installation\PackageWithResolvedVersion;
+use InitializerForLaravel\Composer\Installation\ResolvedPackageVersion;
 use InitializerForLaravel\Composer\Installation\VersionSelectorFactory;
 
 /**
@@ -68,7 +68,7 @@ class ComposerJsonGenerator
 
     /**
      * @param  CreateProjectForm  $form
-     * @return Collection<int, PackageWithResolvedVersion>
+     * @return Collection<int, ResolvedPackageVersion>
      */
     protected function resolvePackagesWithVersion(
         CreateProjectForm $form,
