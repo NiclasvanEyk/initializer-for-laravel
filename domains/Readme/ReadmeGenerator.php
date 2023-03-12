@@ -2,7 +2,6 @@
 
 namespace Domains\Readme;
 
-use InitializerForLaravel\Core\Project;
 use function collect;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\InitializationScript\InitializationScriptGenerator;
@@ -12,6 +11,7 @@ use Domains\PostDownload\PostDownloadTaskGroupCreator;
 use Domains\PostDownload\PostInitializationLinkResolver;
 use Domains\Readme\Support\Str;
 use Illuminate\Contracts\View\Factory;
+use InitializerForLaravel\Core\Project;
 use function route;
 
 /**

@@ -18,8 +18,8 @@ final class Project implements Responsable
 
     public function __construct(
         public readonly ZipFile $archive,
-        public string $name = "Unknown",
-        public string $description = ""
+        public string $name = 'Unknown',
+        public string $description = ''
     ) {
         $this->readme = new Readme($this);
         $this->scripts = new ProjectScripts();
@@ -28,7 +28,7 @@ final class Project implements Responsable
     public static function from(TemplateStorage $storage): self
     {
         $archive = $storage->get();
-        if (!$archive) {
+        if (! $archive) {
             throw new MissingTemplate();
         }
 
