@@ -8,8 +8,8 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\VerbosePostDownloadTask;
 use Domains\SourceCodeManipulation\Perl\Perl;
 use Illuminate\Support\Collection;
-use InitializerForLaravel\Composer\PhpVersion;
 use function implode;
+use InitializerForLaravel\Composer\PhpVersion;
 
 class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
 {
@@ -57,7 +57,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
 
     private function enumerateSailServices(): string
     {
-        return implode(",", $this->sailServices);
+        return implode(',', $this->sailServices);
     }
 
     private function composerInstallCommand(): string
