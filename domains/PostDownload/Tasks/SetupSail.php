@@ -57,7 +57,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
 
     private function enumerateSailServices(): string
     {
-        return implode(",", $this->sailServices);
+        return implode(',', $this->sailServices);
     }
 
     private function composerInstallCommand(): string
