@@ -2,6 +2,7 @@
 
 namespace Domains\Readme;
 
+use InitializerForLaravel\Core\Project;
 use function collect;
 use Domains\CreateProjectForm\CreateProjectForm;
 use Domains\InitializationScript\InitializationScriptGenerator;
@@ -29,13 +30,11 @@ class ReadmeGenerator
     ) {
     }
 
-    public function render(CreateProjectForm $form): string
+    public function render(Project $project): string
     {
-        $meta = $form->metadata;
-
         return $this->view->make($this->template, [
-            'title' => $meta->fullName(),
-            'description' => $meta->description,
+            'title' => $project->name,
+            'description' => $project->description,
             'todos' => $this->renderTodos(
                 $this->postDownloadTaskGroupCreator->fromForm($form),
             ),

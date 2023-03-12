@@ -74,9 +74,9 @@ final class ComposerJsonFile
         return $this;
     }
 
-    public function setPhpVersion(string $version): static
+    public function setPhpVersion(PhpVersion $version): static
     {
-        Arr::set($this->contents, 'require.php', "^$version");
+        Arr::set($this->contents, 'require.php', "^$version->value");
 
         return $this;
     }

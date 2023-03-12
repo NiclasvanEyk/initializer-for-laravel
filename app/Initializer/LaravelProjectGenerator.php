@@ -29,7 +29,7 @@ readonly final class LaravelProjectGenerator implements ProjectGenerator
     public function generate(Configuration $configuration): Project
     {
         $name = "TODO";
-        $project = Project::from($this->templateStorage, name: $name);
+        $project = Project::from($this->templateStorage);
 
         $included = $configuration->evaluate(LaravelConfiguration::sections());
         $included = collect($included)->keyBy('id')->all();
