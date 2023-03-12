@@ -5,14 +5,35 @@ namespace App\Initializer\Configuration;
 use BackedEnum;
 use Domains\PostDownload\PostDownloadTask;
 use InitializerForLaravel\Core\Configuration\Dependency;
-use InitializerForLaravel\Core\Configuration\Option as ConfigurationOption;
 use App\Initializer\Configuration\Sail\Service;
+use InitializerForLaravel\Core\Configuration\SimpleDataClass;
+use InitializerForLaravel\Core\Project\Readme\Link;
 use InitializerForLaravel\Core\View\Tag;
 use function explode;
 use function strtolower;
 
 readonly final class Option
 {
+    use SimpleDataClass;
+
+    /**
+     * @param Dependency[] $dependencies
+     * @param string[] $tags
+     * @param array $setup
+     * @param Link|null $readmeLink
+     */
+    public function __construct(
+        public string       $id,
+        public string       $name,
+        public string       $description,
+        public ?string      $link = null,
+        public array        $dependencies = [],
+        public array        $tags = [],
+        public array        $setup = [],
+        public ?Link        $readmeLink = null,
+    ) {
+    }
+
     /**
      * Builds an option representing a first party laravel package.
      *
@@ -23,7 +44,8 @@ readonly final class Option
         string $description,
         ?Dependency $sail = null,
         array $setup = [],
-    ): ConfigurationOption
+        ?Link $readmeLink = null
+    ): self
     {
         $package = strtolower($option->name);
         $dependencies = [
@@ -34,14 +56,15 @@ readonly final class Option
             $dependencies[] = $sail;
         }
 
-        return new ConfigurationOption(
+        return new self(
             $option->value,
             // Usually the Laravel services use single-word names
             name: $option->name,
             description: $description,
             link: "https://laravel.com/docs/$package",
             dependencies: $dependencies,
-            setup: $setup
+            setup: $setup,
+            readmeLink: $readmeLink
         );
     }
 
@@ -51,12 +74,12 @@ readonly final class Option
         string $description,
         ?string $id = null,
         array  $options = [],
-    ): ConfigurationOption {
+    ): self {
         $id ??= $package instanceof Dependency
             ? explode('/', $package->id)[1]
             : explode('/', $package)[1];
 
-        return new ConfigurationOption(
+        return new self(
             id: $id,
             name: $name,
             description: $description,
@@ -75,7 +98,7 @@ readonly final class Option
         ?string $name = null,
         bool $isMaintainedByCommunity = false,
         array $composer = [],
-    ): ConfigurationOption
+    ): self
     {
         $name ??= $service->name;
 
@@ -89,7 +112,7 @@ readonly final class Option
             $dependencies[] = $package;
         }
 
-        return new ConfigurationOption(
+        return new self(
             id: $service->value,
             name: $name,
             description: $description,

@@ -3,7 +3,7 @@
 namespace App\Initializer\ProjectAdjustments;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
-use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
+use App\Initializer\ProjectAdjustment;
 use InitializerForLaravel\Core\Project;
 
 readonly final class FillReadme implements ProjectAdjustment

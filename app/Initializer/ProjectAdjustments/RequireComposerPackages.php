@@ -2,14 +2,20 @@
 
 namespace App\Initializer\ProjectAdjustments;
 
-use InitializerForLaravel\Core\Configuration\Configuration;
-use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
-use InitializerForLaravel\Core\Project;
+use App\Initializer\Configuration\Option;
+use InitializerForLaravel\Composer\ComposerDependency;
+use InitializerForLaravel\Composer\Initializer\Actions\RequireComposerPackages as Base;
+use InitializerForLaravel\Core\Configuration\Dependency;
+use function collect;
 
-readonly final class RequireComposerPackages implements ProjectAdjustment
+readonly final class RequireComposerPackages extends Base
 {
-    public function apply(Project $project, Configuration $configuration): void
+    function packagesToInstall(array $options): array
     {
-        // TODO: Implement apply() method.
+        return collect($options)
+            ->flatMap(fn (Option $option) => $option->dependencies)
+            ->filter(fn (Dependency $dependency) => $dependency->packageManager === Dependency::COMPOSER)
+            ->map(fn (Dependency $dependency) => new ComposerDependency())
+            ->all();
     }
 }

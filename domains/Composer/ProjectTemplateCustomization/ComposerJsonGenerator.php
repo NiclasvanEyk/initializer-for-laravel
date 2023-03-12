@@ -26,7 +26,7 @@ class ComposerJsonGenerator
         CreateProjectForm $form,
         ComposerJsonFile $composerJson,
     ): string {
-        $composerJson = $this->syncMetaData($form->metadata, $composerJson);
+        $composerJson = $this->syncMetaData($form->metadata, $composerJson); // ✅ Already covered by new code
         $composerJson = $this->requirePackages($form, $composerJson);
         $composerJson = $this->removeUnnecessaryScripts($composerJson);
 

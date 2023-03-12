@@ -2,6 +2,8 @@
 
 namespace InitializerForLaravel\Core\Configuration;
 
+use InitializerForLaravel\Core\Contracts\Option;
+
 readonly final class Section
 {
     use SimpleDataClass;

@@ -9,6 +9,7 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 use Domains\PostDownload\VerbosePostDownloadTask;
 use Domains\SourceCodeManipulation\Perl\Perl;
 use Illuminate\Support\Collection;
+use function implode;
 
 class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostDownloadTask
 {
@@ -17,7 +18,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
      * @param  string  $phpVersion
      */
     public function __construct(
-        private Collection $sailServices,
+        private array $sailServices,
         private string $phpVersion,
     ) {
     }
@@ -54,15 +55,9 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
         return "initializerforlaravel/sail-php-$this->phpVersion:latest";
     }
 
-    private function sailServices(): string
+    private function enumerateSailServices(): string
     {
-        return $this->sailServices
-            ->map(function (SailConfigurationOption|DatabaseOption $option) {
-                return $option instanceof DatabaseOption
-                    ? $option->sailId()
-                    : $option->id();
-            })
-            ->join(',');
+        return implode(",", $this->sailServices);
     }
 
     private function composerInstallCommand(): string
@@ -73,7 +68,7 @@ class SetupSail implements PostDownloadTaskGroup, PostDownloadTask, VerbosePostD
             "php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"",
             'php artisan key:generate --ansi',
             // We explicitly select only the chosen sail services
-            "php artisan sail:install --with={$this->sailServices()}",
+            "php artisan sail:install --with={$this->enumerateSailServices()}",
             // We also adjust the runtime here based on the chosen PHP version
             Perl::replace(
                 file: 'docker-compose.yml',

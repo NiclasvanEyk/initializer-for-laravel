@@ -13,4 +13,5 @@ enum Options: string
     case MinIO = 'minio';
     case Passport = 'passport';
     case Socialite = 'socialite';
+    case Horizon = 'horizon';
 }

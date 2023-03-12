@@ -8,8 +8,6 @@ namespace InitializerForLaravel\Core\Configuration;
  * Requires the using class to be instantiable simply by passing its properties
  * through the constructor. Works best with simple (readonly) classes, where all
  * properties are defined through constructor property promotion.
- *
- * @internal
  */
 trait SimpleDataClass
 {

@@ -1,9 +1,10 @@
 <?php
 
-namespace InitializerForLaravel\Core\Project;
+namespace App\Initializer;
 
+use App\Initializer\AdjustmentPipeline;
 use Illuminate\Contracts\Container\Container;
-use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
+use App\Initializer\ProjectAdjustment;
 use function array_map;
 
 readonly final class AdjustmentPipelineBuilder

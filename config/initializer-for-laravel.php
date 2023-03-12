@@ -10,6 +10,7 @@ use InitializerForLaravel\Core\Configuration\Choice;
 use InitializerForLaravel\Core\Configuration\Dependency;
 use InitializerForLaravel\Core\Configuration\Paragraph;
 use InitializerForLaravel\Core\Configuration\Section;
+use InitializerForLaravel\Core\Project\Readme\Link;
 
 return [
     'sections' => [
@@ -139,7 +140,14 @@ return [
                             description: '', // TODO
                             package: ComposerPackage::awsSdk(),
                         ),
-                    ]),
+                    ]
+                ),
+                new Paragraph(""),
+                Option::laravel(
+                    Options::Horizon,
+                    description: "",
+                    readmeLink: new Link("", "") // TODO
+                )
             ],
         ),
     ],

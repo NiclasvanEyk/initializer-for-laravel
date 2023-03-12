@@ -3,6 +3,7 @@
 namespace InitializerForLaravel\Core\Configuration;
 
 use BackedEnum;
+use InitializerForLaravel\Core\Contracts\Option;
 
 readonly final class Choice
 {

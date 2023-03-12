@@ -1,9 +1,9 @@
 <?php
 
-namespace InitializerForLaravel\Core\Project;
+namespace App\Initializer;
 
 use InitializerForLaravel\Core\Configuration\Configuration;
-use InitializerForLaravel\Core\Contracts\ProjectAdjustment;
+use App\Initializer\ProjectAdjustment;
 use InitializerForLaravel\Core\Project;
 
 readonly final class AdjustmentPipeline
@@ -15,10 +15,10 @@ readonly final class AdjustmentPipeline
     {
     }
 
-    public function to(Project $project, Configuration $configuration): Project
+    public function to(Project $project, array $options): Project
     {
         foreach ($this->adjustments as $adjustment) {
-            $adjustment->apply($project, $configuration);
+            $adjustment->apply($project, $options);
         }
 
         return $project;

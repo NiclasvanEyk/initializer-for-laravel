@@ -1,4 +1,7 @@
-@php use InitializerForLaravel\Core\Configuration\Option;use InitializerForLaravel\Core\Configuration\Section; @endphp
+@php
+    use InitializerForLaravel\Core\Contracts\Option;
+    use InitializerForLaravel\Core\Configuration\Section;
+@endphp
 @php
     /** @var Section $section */
 @endphp
@@ -8,21 +11,16 @@
         @if($child instanceof Option)
             <x-option>
                 <x-form-control.checkbox
-                        id="{{ $child->id }}"
-                        href="{{ $child->link }}"
+                        id="{{ $child->id() }}"
+                        href="{{ $child->link() }}"
                         {{-- TODO :checked="request(old(checked))" --}}
                         heading="{{ $sftpDriver->name() }}"
                 >
-                    {{-- TODO: Markdown? --}}
-                    {{ $child->description }}
+                    {!! $child->description !!}
 
-                    @if($child->fromCommunity)
-                        <x-tag.community/>
-                    @endif
-
-                    @if($child->service)
-                        <x-tag.sail/>
-                    @endif
+                    @foreach($child->tags() as $tag)
+                        <x-tag type="{{ $tag }}" />
+                    @endforeach
                 </x-form-control.checkbox>
             </x-option>
         @endif

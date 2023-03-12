@@ -1,16 +1,18 @@
-@php use InitializerForLaravel\Composer\ComposerDependency; @endphp
+@php
+    use InitializerForLaravel\Core\Contracts\Option;
+@endphp
 @props(['id', 'option'])
 @php
-    /** @var ComposerDependency $option */
+    /** @var Option $option */
 
     $id = $option->id();
 @endphp
 
 <x-form-control.checkbox
-        :id="$id"
-        :heading="$option->name()"
-        :href="$option->href()"
-        {{ $attributes }}
+    :id="$id"
+    :heading="$option->name()"
+    :href="$option->link()"
+    {{ $attributes }}
 >
     {!! $option->description() !!}
 

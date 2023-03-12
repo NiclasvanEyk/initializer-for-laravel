@@ -2,11 +2,11 @@
 
 namespace InitializerForLaravel\Core\Configuration;
 
-use BackedEnum;
 use Domains\PostDownload\PostDownloadTask;
-use App\Initializer\Configuration\Sail\Service;
+use InitializerForLaravel\Core\Contracts\Option as OptionContract;
+use InitializerForLaravel\Core\Project\Readme\Link;
 
-readonly final class Option
+readonly final class Option implements OptionContract
 {
     use SimpleDataClass;
 
@@ -14,38 +14,39 @@ readonly final class Option
      * @param string[] $tags
      * @param Dependency[] $dependencies
      * @param string|PostDownloadTask[] $setup
+     * @param ?Link $readmeLink
      */
     public function __construct(
         public string       $id,
         public string       $name,
         public string       $description,
         public ?string      $link = null,
-        public array        $dependencies = [],
         public array        $tags = [],
-        public array        $setup = [],
     ) {
     }
 
-    /**
-     * Builds an option representing a first party laravel package.
-     *
-     * @param string|PostDownloadTask[] $setup
-     */
-    public static function laravel(
-        BackedEnum $option,
-        string $description,
-        array $setup = [],
-    ): self {
-        $package = strtolower($option->name);
+    public function id(): string
+    {
+        return $this->id;
+    }
 
-        return new self(
-            $option->value,
-            // Usually the Laravel services use single-word names
-            name: $option->name,
-            description: $description,
-            link: "https://laravel.com/docs/$package",
-            dependencies: [Dependency::composer("laravel/$package")],
-            setup: $setup
-        );
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function description(): string
+    {
+        return $this->description;
+    }
+
+    public function link(): ?string
+    {
+        return $this->link;
+    }
+
+    public function tags(): array
+    {
+        return $this->tags;
     }
 }
