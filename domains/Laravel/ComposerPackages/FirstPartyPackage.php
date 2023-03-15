@@ -2,9 +2,10 @@
 
 namespace Domains\Laravel\ComposerPackages;
 
-use function class_basename;
 use Domains\Composer\ComposerDependency;
 use Illuminate\Support\Str;
+
+use function class_basename;
 
 abstract class FirstPartyPackage extends ComposerDependency
 {
