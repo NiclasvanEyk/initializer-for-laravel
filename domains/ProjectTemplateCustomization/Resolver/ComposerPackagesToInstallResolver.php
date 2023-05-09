@@ -264,6 +264,6 @@ class ComposerPackagesToInstallResolver
             BroadcastingChannelOption::NONE => [],
         };
 
-        return $channelPackages !== null ? $channelPackages : [];
+        return $channelPackages;
     }
 }
