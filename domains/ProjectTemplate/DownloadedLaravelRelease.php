@@ -7,6 +7,7 @@ use PhpZip\ZipFile;
 
 /**
  * @psalm-immutable
+ *
  * @codeCoverageIgnore
  */
 class DownloadedLaravelRelease

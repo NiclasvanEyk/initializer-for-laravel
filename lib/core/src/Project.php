@@ -9,6 +9,7 @@ use InitializerForLaravel\Core\Project\ProjectRenderer;
 use InitializerForLaravel\Core\Project\Readme;
 use InitializerForLaravel\Core\Scripts\ProjectScripts;
 use PhpZip\ZipFile;
+
 use function resolve;
 
 final class Project implements Responsable
@@ -18,8 +19,8 @@ final class Project implements Responsable
 
     public function __construct(
         public readonly ZipFile $archive,
-        public string $name = "Unknown",
-        public string $description = ""
+        public string $name = 'Unknown',
+        public string $description = ''
     ) {
         $this->readme = new Readme($this);
         $this->scripts = new ProjectScripts();
@@ -28,7 +29,7 @@ final class Project implements Responsable
     public static function from(TemplateStorage $storage): self
     {
         $archive = $storage->get();
-        if (!$archive) {
+        if (! $archive) {
             throw new MissingTemplate();
         }
 

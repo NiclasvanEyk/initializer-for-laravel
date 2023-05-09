@@ -2,12 +2,13 @@
 
 namespace InitializerForLaravel\Core;
 
-use function config;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use InitializerForLaravel\Core\Console\Commands\UpdateTemplateCommand;
 use InitializerForLaravel\Core\Contracts\TemplateStorage as TemplateStorageContract;
 use InitializerForLaravel\Core\Storage\LocalTemplateStorage;
+
+use function config;
 
 class CoreServiceProvider extends ServiceProvider
 {

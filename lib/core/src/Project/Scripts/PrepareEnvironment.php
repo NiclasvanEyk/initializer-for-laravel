@@ -13,7 +13,7 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 final class PrepareEnvironment
 {
     /**
-     * @param PostDownloadTaskGroup[] $tasks
+     * @param  PostDownloadTaskGroup[]  $tasks
      */
     public function __construct(public array $tasks = [])
     {

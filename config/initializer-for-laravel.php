@@ -142,12 +142,12 @@ return [
                         ),
                     ]
                 ),
-                new Paragraph(""),
+                new Paragraph(''),
                 Option::laravel(
                     Options::Horizon,
-                    description: "",
-                    readmeLink: new Link("", "") // TODO
-                )
+                    description: '',
+                    readmeLink: new Link('', '') // TODO
+                ),
             ],
         ),
     ],
