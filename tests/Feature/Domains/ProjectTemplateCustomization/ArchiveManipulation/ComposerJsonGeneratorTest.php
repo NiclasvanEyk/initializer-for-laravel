@@ -11,7 +11,6 @@ use Tests\TestCase;
 
 /**
  * @coversDefaultClass \Domains\Composer\ProjectTemplateCustomization\ComposerJsonGenerator
- * @covers ComposerJsonGenerator::render()
  */
 class ComposerJsonGeneratorTest extends TestCase
 {
