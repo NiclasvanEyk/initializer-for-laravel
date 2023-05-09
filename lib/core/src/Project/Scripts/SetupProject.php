@@ -7,7 +7,7 @@ use Domains\PostDownload\PostDownloadTaskGroup;
 final class SetupProject
 {
     /**
-     * @param PostDownloadTaskGroup[] $tasks
+     * @param  PostDownloadTaskGroup[]  $tasks
      */
     public function __construct(public array $tasks = [])
     {

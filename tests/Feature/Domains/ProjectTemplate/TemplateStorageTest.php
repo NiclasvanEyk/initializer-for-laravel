@@ -39,6 +39,7 @@ class TemplateStorageTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::exists
      */
     public function it_does_not_exist_by_default(): void
@@ -48,6 +49,7 @@ class TemplateStorageTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::exists
      */
     public function it_does_exist_once_something_was_downloaded(): void
@@ -58,6 +60,7 @@ class TemplateStorageTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::currentVersion
      */
     public function it_does_not_throw_when_no_version_exists_and_currentVersion_is_called(): void
@@ -67,6 +70,7 @@ class TemplateStorageTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::currentVersion
      * @covers ::updateCurrentRelease
      */
@@ -78,6 +82,7 @@ class TemplateStorageTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::currentArchive
      */
     public function it_can_return_the_latest_downloaded_archive(): void

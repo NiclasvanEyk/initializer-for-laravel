@@ -7,6 +7,7 @@ use InitializerForLaravel\Core\Configuration\Serializer;
 use InitializerForLaravel\Core\Tests\Support\Database;
 use InitializerForLaravel\Core\Tests\Support\StarterKit;
 use PHPUnit\Framework\TestCase;
+
 use function urldecode;
 
 final class SerializerTest extends TestCase

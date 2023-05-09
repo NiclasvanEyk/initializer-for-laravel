@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use function array_key_exists;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -12,6 +11,8 @@ use InitializerForLaravel\Core\Configuration\Choice;
 use InitializerForLaravel\Core\Configuration\Dependency;
 use InitializerForLaravel\Core\Configuration\Option;
 use InitializerForLaravel\Core\Configuration\Section;
+
+use function array_key_exists;
 
 class VerifyPackagesCoverage extends Command
 {

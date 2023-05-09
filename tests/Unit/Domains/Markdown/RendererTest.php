@@ -19,6 +19,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::h1
+     *
      * @test
      */
     public function it_renders_h1(): void
@@ -28,6 +29,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::h2
+     *
      * @test
      */
     public function it_renders_h2(): void
@@ -37,6 +39,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::h3
+     *
      * @test
      */
     public function it_renders_h3(): void
@@ -46,6 +49,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::link
+     *
      * @test
      */
     public function it_renders_links(): void
@@ -58,6 +62,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::bold
+     *
      * @test
      */
     public function it_renders_bold_text(): void
@@ -67,6 +72,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::code
+     *
      * @test
      */
     public function it_renders_inline_code(): void
@@ -76,6 +82,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::codeBlock
+     *
      * @test
      */
     public function it_renders_code_blocks(): void
@@ -94,6 +101,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::listItem
+     *
      * @test
      */
     public function it_renders_list_items(): void
@@ -103,6 +111,7 @@ class RendererTest extends TestCase
 
     /**
      * @covers ::list
+     *
      * @test
      */
     public function it_renders_lists(): void
