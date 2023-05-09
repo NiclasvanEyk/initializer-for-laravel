@@ -8,7 +8,7 @@
             <img src="{{$logoSrc}}" alt="{{$logoAlt}}" class="max-h-[48px] w-auto" />
         </a>
 
-        <span class="ml-3 text-4xl">{{$heading}}</span>
+        <span class="ml-3 tracking-tight text-4xl">{{$heading}}</span>
     </header>
 
     <div class="flex flex-col items-center flex-1 w-full px-4 my-2 dark:text-gray-100">
