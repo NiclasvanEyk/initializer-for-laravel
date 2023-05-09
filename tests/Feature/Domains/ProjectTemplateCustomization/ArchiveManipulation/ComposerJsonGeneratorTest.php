@@ -16,12 +16,13 @@ class ComposerJsonGeneratorTest extends TestCase
 {
     /**
      * @test
+     *
      * @covers ::syncMetaData
      */
     public function it_syncs_metadata_fields(): void
     {
         $form = CreateProjectFormFixtures::allOptionsEnabled(
-        metadata: new Metadata(
+            metadata: new Metadata(
                 vendorName: 'test',
                 projectName: 'test-project',
                 description: 'foo-bar',
@@ -51,6 +52,7 @@ class ComposerJsonGeneratorTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::requirePackages
      */
     public function it_resolves_package_versions(): void
@@ -69,6 +71,7 @@ class ComposerJsonGeneratorTest extends TestCase
 
     /**
      * @test
+     *
      * @covers ::removeUnnecessaryScripts
      */
     public function it_removes_unnecessary_scripts(): void
