@@ -25,9 +25,6 @@ primary_region = "ams"
 [experimental]
   auto_rollback = true
 
-[deploy]
-  release_command = "php /var/www/html/artisan migrate --force && php /var/www/html/artisan initializer:update-template && php /var/www/html/artisan google-fonts:fetch"
-
 [[services]]
   http_checks = []
   internal_port = 8080
