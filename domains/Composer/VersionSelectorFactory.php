@@ -35,9 +35,7 @@ class VersionSelectorFactory
     {
         // Composer needs this to work correctly, but it is sometimes not
         // available in containers.
-        if (! getenv('HOME')) {
-            putenv('HOME='.storage_path('app'));
-        }
+        putenv('HOME='.storage_path('app'));
 
         return new CompositeRepository(array_merge(
             [new PlatformRepository()],
