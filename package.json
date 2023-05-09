@@ -17,8 +17,28 @@
         "tailwindcss": "^3.0.19"
     },
     "devDependencies": {
+        "@shufo/prettier-plugin-blade": "^1.8.12",
         "autoprefixer": "^10.4.2",
         "laravel-mix": "^6.0.41",
-        "postcss": "^8.4.6"
+        "postcss": "^8.4.6",
+        "prettier": "^2.8.7"
+    },
+    "prettier": {
+        "plugins": [
+            "@shufo/prettier-plugin-blade"
+        ],
+        "overrides": [
+            {
+                "files": [
+                    "*.blade.php"
+                ],
+                "options": {
+                    "parser": "blade",
+                    "tabWidth": 4,
+                    "sortTailwindcssClasses": true,
+                    "wrapAttributes": "force"
+                }
+            }
+        ]
     }
 }

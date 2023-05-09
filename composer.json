@@ -1,75 +1,86 @@
 {
-    "name": "niclasvaneyk/initializer-for-laravel",
-    "type": "project",
-    "description": "A quickstart generator for Laravel projects.",
-    "keywords": ["laravel"],
-    "license": "MIT",
-    "repositories": [
-        {"type": "path", "url":  "./lib/composer"},
-        {"type": "path", "url":  "./lib/core"},
-        {"type": "path", "url":  "./lib/npm"},
-        {"type": "path", "url":  "./lib/packagist"},
-        {"type": "path", "url":  "./lib/template-storage"}
+  "name": "niclasvaneyk/initializer-for-laravel",
+  "type": "project",
+  "description": "A quickstart generator for Laravel projects.",
+  "keywords": [
+    "laravel"
+  ],
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./lib/composer"
+    },
+    {
+      "type": "path",
+      "url": "./lib/core"
+    },
+    {
+      "type": "path",
+      "url": "./lib/npm"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-zip": "*",
+    "composer/composer": "^2.5",
+    "guzzlehttp/guzzle": "^7.5",
+    "initializer-for-laravel/core": "*",
+    "initializer-for-laravel/composer": "*",
+    "laravel/framework": "^10.0",
+    "laravel/installer": "^4.4",
+    "laravel/tinker": "^2.8",
+    "nelexa/zip": "^4.0",
+    "sentry/sentry-laravel": "^3.2",
+    "spatie/laravel-google-fonts": "^1.2"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.6",
+    "fakerphp/faker": "^1.9",
+    "laravel/pint": "^1.6",
+    "laravel/sail": "^1.12",
+    "mockery/mockery": "^1.4",
+    "nunomaduro/collision": "^7.0",
+    "nunomaduro/larastan": "^2.0",
+    "phpunit/phpunit": "^10.0",
+    "spatie/laravel-ignition": "^2.0"
+  },
+  "autoload": {
+    "files": [
+      "app/helpers.php"
     ],
-    "require": {
-        "php": "^8.2",
-        "ext-zip": "*",
-        "composer/composer": "^2.5",
-        "guzzlehttp/guzzle": "^7.5",
-        "initializer-for-laravel/core": "*",
-        "initializer-for-laravel/composer":  "*",
-        "initializer-for-laravel/packagist":  "*",
-        "laravel/framework": "^10.0",
-        "laravel/installer": "^4.4",
-        "laravel/tinker": "^2.8",
-        "nelexa/zip": "^4.0",
-        "sentry/sentry-laravel": "^3.2",
-        "spatie/laravel-google-fonts": "^1.2"
-    },
-    "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6",
-        "spatie/laravel-ignition": "^2.0",
-        "fakerphp/faker": "^1.9",
-        "laravel/sail": "^1.12",
-        "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.0",
-        "phpunit/phpunit": "^10.0"
-    },
-    "autoload": {
-        "files": [ "app/helpers.php" ],
-        "psr-4": {
-            "App\\": "app/",
-            "Domains\\": "domains/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "psr-4": {
+      "App\\": "app/",
+      "Domains\\": "domains/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

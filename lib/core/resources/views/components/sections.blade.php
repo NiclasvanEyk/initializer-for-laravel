@@ -25,14 +25,25 @@
             @endif
 
             @if($child instanceof Choice)
-                Choice {{ $child->name }}<br>
-                @foreach($child->options as $option)
-                    Option {{ $option->name }}<br>
-                @endforeach
+                <x-form-control.group :heading="$child->name">
+                    @foreach($child->options as $option)
+                        <x-radio-option
+                            :id="$option->id"
+                            :label="$option->name"
+            :href="$option->link"
+            model="foo"
+                        >
+                            {!! $option->description !!}
+                            <x-slot name="tags">
+                                {{-- TODO --}}
+                            </x-slot>
+                        </x-radio-option>
+                    @endforeach
+                </x-form-control.group>
             @endif
 
             @if($child instanceof Option)
-                <x-form-control.checkbox
+                <x-initializer::option
                     :id="$child->id"
                     :heading="$child->name"
                     :href="$child->link"
@@ -41,7 +52,7 @@
                     <x-slot name="tags">
                         {{-- TODO --}}
                     </x-slot>
-                </x-form-control.checkbox>
+                </x-initializer::option>
             @endif
         @endforeach
     </x-form-section>

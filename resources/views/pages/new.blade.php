@@ -18,6 +18,17 @@
                 :sections="config('initializer-for-laravel.sections')"
             />
 
+                <x-initializer::option
+                    id="test"
+                    heading="Ein Test"
+                    href="https://google.com"
+                >
+                Eine Beschreibung
+                    <x-slot name="tags">
+                        {{-- TODO --}}
+                    </x-slot>
+                </x-initializer::option>
+
             <div class="prose dark:prose-invert max-w-none">
                 <h2 class="!text-xl">Almost there</h2>
 

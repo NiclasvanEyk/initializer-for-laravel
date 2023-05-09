@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7af999719449131b6a8e9383f402c64",
+    "content-hash": "8a90e92a422ef27933d66a1e99a3470a",
     "packages": [
         {
             "name": "brick/math",
@@ -1803,47 +1803,6 @@
             },
             "license": [
                 "MIT"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "initializer-for-laravel/packagist",
-            "version": "dev-feature/refactor-to-packages",
-            "dist": {
-                "type": "path",
-                "url": "./lib/packagist",
-                "reference": "e24593f693578281ac7605d906d1b201648533c7"
-            },
-            "require": {
-                "ext-zip": "*",
-                "guzzlehttp/guzzle": "^7.0.1",
-                "laravel/framework": "^10.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "nunomaduro/collision": "^6.0",
-                "nunomaduro/larastan": "^2.0",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "InitializerForLaravel\\Packagist\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "InitializerForLaravel\\Packagist\\Tests\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A quickstart generator for Laravel projects.",
-            "keywords": [
-                "laravel"
             ],
             "transport-options": {
                 "relative": true
@@ -8396,6 +8355,72 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "laravel/pint",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "e48e3fadd7863d6b7d03464f5c4f211a828b890f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/e48e3fadd7863d6b7d03464f5c4f211a828b890f",
+                "reference": "e48e3fadd7863d6b7d03464f5c4f211a828b890f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-tokenizer": "*",
+                "ext-xml": "*",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14.4",
+                "illuminate/view": "^10.0.0",
+                "laravel-zero/framework": "^10.0.0",
+                "mockery/mockery": "^1.5.1",
+                "nunomaduro/larastan": "^2.4.0",
+                "nunomaduro/termwind": "^1.15.1",
+                "pestphp/pest": "^1.22.4"
+            },
+            "bin": [
+                "builds/pint"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Database\\Seeders\\": "database/seeders/",
+                    "Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "An opinionated code formatter for PHP.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "format",
+                "formatter",
+                "lint",
+                "linter",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/pint/issues",
+                "source": "https://github.com/laravel/pint"
+            },
+            "time": "2023-02-21T15:44:57+00:00"
         },
         {
             "name": "laravel/sail",

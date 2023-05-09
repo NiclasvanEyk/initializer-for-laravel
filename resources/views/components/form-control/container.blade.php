@@ -8,10 +8,10 @@
 ])
 
 <label {{ $attributes->merge([
+    'for' => $id,
     'class' => 'flex items-start p-3 w-full overflow-hidden transition group' . (
         $flush ? '' : ' rounded border'
     ),
-    'for' => $id,
     'x-bind:class' => "$activeCondition
         ? 'bg-red-100 dark:bg-red-800 dark:bg-opacity-30 bg-opacity-50'
         : 'bg-white dark:bg-gray-900'",
