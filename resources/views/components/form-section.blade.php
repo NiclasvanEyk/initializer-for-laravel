@@ -7,7 +7,7 @@
 <section>
     <div class="mb-4">
         <h2
-            class="text-2xl font-bold leading-6 flex flex-row items-center
+            class="text-2xl tracking-tight font-semibold leading-6 flex flex-row items-center
             text-gray-900 dark:text-gray-100 mb-2"
             id="{{$id}}"
         >

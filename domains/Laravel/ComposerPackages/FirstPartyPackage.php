@@ -2,9 +2,10 @@
 
 namespace Domains\Laravel\ComposerPackages;
 
-use function class_basename;
 use Domains\Composer\ComposerDependency;
 use Illuminate\Support\Str;
+
+use function class_basename;
 
 abstract class FirstPartyPackage extends ComposerDependency
 {
@@ -16,7 +17,6 @@ abstract class FirstPartyPackage extends ComposerDependency
     public function packageId(): string
     {
         $package = defined('static::REPOSITORY_KEY')
-            // @phpstan-ignore-next-line
             ? static::REPOSITORY_KEY
             : $this->packageName();
 
