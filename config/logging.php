@@ -68,6 +68,9 @@ return [
             'with' => [
                 'stream' => 'php://stdout',
             ],
+            'formatter_with' => [
+                'includeStacktraces' => true,
+            ],
         ],
 
         'syslog' => [
