@@ -267,7 +267,6 @@ class ComposerPackagesToInstallResolver
                 // Soketi is an NPM package and is handled elsewhere
             BroadcastingChannelOption::SOKETI,
             BroadcastingChannelOption::NONE => [],
-            default => null,
         };
 
         return $channelPackages !== null ? $channelPackages : [];
