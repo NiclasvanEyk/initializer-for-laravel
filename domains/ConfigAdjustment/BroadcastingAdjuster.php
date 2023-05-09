@@ -23,8 +23,8 @@ class BroadcastingAdjuster
 
             case Broadcasting\BroadcastingChannelOption::LARAVEL_WEBSOCKETS:
             case Broadcasting\BroadcastingChannelOption::SOKETI:
-            // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher#pusher-configuration
-            // See https://docs.soketi.app/getting-started/backend-configuration/laravel-broadcasting
+                // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher#pusher-configuration
+                // See https://docs.soketi.app/getting-started/backend-configuration/laravel-broadcasting
                 $this->replaceEnvExample($archive, [
                     "                'cluster' => env('PUSHER_APP_CLUSTER')," => "                'cluster' => env('PUSHER_APP_CLUSTER'),"."\n".
                     "                'port' => 6001,"."\n",
