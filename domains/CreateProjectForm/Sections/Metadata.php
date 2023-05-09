@@ -11,6 +11,7 @@ class Metadata
      * @param  string  $projectName
      * @param  string  $description
      * @param  string  $phpVersion
+     *
      * @psalm-param PhpVersion::* $phpVersion
      */
     public function __construct(

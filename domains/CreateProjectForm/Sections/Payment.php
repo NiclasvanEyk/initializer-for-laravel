@@ -17,6 +17,7 @@ class Payment
 
     /**
      * @param  string|null  $option
+     *
      * @psalm-param CashierDriverOption::* $option
      *
      * @return CashierDriver|null
