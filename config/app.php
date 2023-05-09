@@ -172,7 +172,6 @@ return [
         \Domains\InitializationScript\InitializationScriptServiceProvider::class,
         \Domains\Readme\ReadmeServiceProvider::class,
         \Domains\Composer\ComposerServiceProvider::class,
-        \Domains\Schedule\ScheduleServiceProvider::class,
         \Domains\DockerImages\DockerImagesServiceProvider::class,
     ],
 
