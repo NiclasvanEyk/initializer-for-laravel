@@ -18,6 +18,7 @@ primary_region = "ams"
 
 [env]
   APP_ENV = "production"
+  APP_URL = "https://laravel.initializer.dev"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
