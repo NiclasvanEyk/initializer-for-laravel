@@ -16,6 +16,8 @@ LABEL fly_launch_runtime="laravel"
 # copy application code, skipping files based on .dockerignore
 COPY . /var/www/html
 
+ENV COMPOSER_HOME="/var/www/html"
+
 RUN composer install --optimize-autoloader --no-dev \
     && mkdir -p storage/logs \
     && php artisan optimize:clear \
