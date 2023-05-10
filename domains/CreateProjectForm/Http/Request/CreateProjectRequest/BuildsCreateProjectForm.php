@@ -54,7 +54,7 @@ trait BuildsCreateProjectForm
             ),
             database: new Database(
                 database: $sailServiceRepository->resolve(
-                        $this->database,
+                    $this->database,
                 ) ?? throw new Exception("Database $this->database could not be resolved"),
                 useDbal: $this->has(P::USES_DBAL)
             ),

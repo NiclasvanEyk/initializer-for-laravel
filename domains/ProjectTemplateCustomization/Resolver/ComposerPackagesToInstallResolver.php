@@ -264,7 +264,7 @@ class ComposerPackagesToInstallResolver
                 // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher
                 new Pusher(),
             ],
-                // Soketi is an NPM package and is handled elsewhere
+            // Soketi is an NPM package and is handled elsewhere
             BroadcastingChannelOption::SOKETI,
             BroadcastingChannelOption::NONE => [],
             default => null,

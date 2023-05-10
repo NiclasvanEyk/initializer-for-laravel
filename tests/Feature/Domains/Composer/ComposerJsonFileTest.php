@@ -34,6 +34,7 @@ class ComposerJsonFileTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_read_and_return_file_contents
      */
     public function it_can_change_the_name(): void
@@ -53,6 +54,7 @@ class ComposerJsonFileTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_read_and_return_file_contents
      */
     public function it_adds_dependencies_to_existing_require_array(): void
@@ -79,6 +81,7 @@ class ComposerJsonFileTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_read_and_return_file_contents
      */
     public function it_creates_the_require_array_when_none_exists(): void
@@ -97,6 +100,7 @@ class ComposerJsonFileTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_read_and_return_file_contents
      */
     public function it_adds_dependencies_to_existing_require_dev_array(): void
@@ -121,6 +125,7 @@ class ComposerJsonFileTest extends TestCase
 
     /**
      * @test
+     *
      * @depends it_can_read_and_return_file_contents
      */
     public function it_creates_the_require_dev_array_when_none_exists(): void
