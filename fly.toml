@@ -9,7 +9,10 @@ kill_timeout = 5
 primary_region = "ams"
 [processes]
   app = ""
-  cron = "cron -f"
+
+[mounts]
+source="template_storage"
+destination="/var/www/html/storage/laravel-releases"
 
 [build]
   [build.args]
@@ -27,7 +30,6 @@ primary_region = "ams"
   auto_rollback = true
 
 [[services]]
-  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
@@ -51,3 +53,13 @@ primary_region = "ams"
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+  [[services.http_checks]]
+    interval = 10000
+    grace_period = "5s"
+    method = "get"
+    path = "/health"
+    protocol = "https"
+    restart_limit = 0
+    timeout = 2000
+    tls_skip_verify = false
+    [services.http_checks.headers]
