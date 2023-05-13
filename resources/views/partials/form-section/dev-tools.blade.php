@@ -40,7 +40,7 @@
     <x-first-party-package.option :id="$telescopeParameter" :checked="$usesTelescope" :package="$telescope" />
     <x-first-party-package.option :id="$envoyParameter" :checked="$usesEnvoy" :package="$envoy" />
     <x-form-control.checkbox :id="$devcontainerParameter" heading="Devcontainers"
-        href="https://code.visualstudio.com/docs/devcontainers/containers">
+        href="https://code.visualstudio.com/docs/devcontainers/containers" :checked="$usesDevcontainer">
         Enables your IDE to run <i class="text-italic">inside</i> your local development containers using the <x-link
             href="https://containers.dev">Development Containers standard</x-link>.
     </x-form-control.checkbox>
