@@ -10,10 +10,6 @@ primary_region = "ams"
 [processes]
   app = ""
 
-[mounts]
-source="template_storage"
-destination="/var/www/html/storage/laravel-releases"
-
 [build]
   [build.args]
     NODE_VERSION = "18"
