@@ -35,7 +35,7 @@ use Exception;
  */
 trait BuildsCreateProjectForm
 {
-    public function buildForm() : CreateProjectForm
+    public function buildForm(): CreateProjectForm
     {
         $sailServiceRepository = $this->sailServiceRepository();
 
@@ -107,7 +107,7 @@ trait BuildsCreateProjectForm
         );
     }
 
-    private function sailServiceRepository() : SailServiceRepository
+    private function sailServiceRepository(): SailServiceRepository
     {
         return resolve(SailServiceRepository::class);
     }
