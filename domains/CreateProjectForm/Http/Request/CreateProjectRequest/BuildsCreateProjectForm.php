@@ -89,6 +89,7 @@ trait BuildsCreateProjectForm
             developmentTools: new DevelopmentTools(
                 usesTelescope: $this->has(P::USES_TELESCOPE),
                 usesEnvoy: $this->has(P::USES_ENVOY),
+                usesDevcontainer: $this->has(P::USES_DEVCONTAINER),
             ),
             testing: new Testing(
                 usesDusk: $this->has(P::USES_DUSK),

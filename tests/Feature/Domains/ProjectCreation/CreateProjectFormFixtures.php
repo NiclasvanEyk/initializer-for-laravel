@@ -158,6 +158,7 @@ class CreateProjectFormFixtures
         return new DevelopmentTools(
             usesTelescope: true,
             usesEnvoy: true,
+            usesDevcontainer: true,
         );
     }
 

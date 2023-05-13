@@ -11,6 +11,7 @@ use Domains\PostDownload\Tasks\SetupFrontend;
 use Domains\PostDownload\Tasks\SetupPackages;
 use Domains\PostDownload\Tasks\SetupSail;
 use Domains\PostDownload\Tasks\StartSail;
+use Domains\PostDownload\Tasks\InstallDevcontainer;
 use Domains\ProjectTemplateCustomization\Resolver\ComposerPackagesToInstallResolver;
 use Domains\ProjectTemplateCustomization\Resolver\NpmPackagesToInstallResolver;
 use Domains\ProjectTemplateCustomization\Resolver\SailServiceResolver;
@@ -51,6 +52,7 @@ class PostDownloadTaskGroupCreator
             new AdjustPermissions(),
             // start the sail container
             new StartSail($sail),
+            new InstallDevcontainer($artisan),
             // run package:install for all that actually need them
             ...(new SetupPackages($artisan, $dependencies))->tasks(),
             // migrate the db (might be unnecessary, but just to be sure)
