@@ -1,15 +1,19 @@
 @php
     use Domains\CreateProjectForm\Http\Request\CreateProjectRequest\CreateProjectRequestParameter as P;
     use Domains\Laravel\ComposerPackages\Packages;
-
+    
     $telescope = new Packages\Telescope();
     $telescopeParameter = P::USES_TELESCOPE;
     $usesTelescope = checkbox_checked($telescopeParameter);
-
+    
     $envoy = new Packages\Envoy();
     $envoyParameter = P::USES_ENVOY;
     $usesEnvoy = checkbox_checked($envoyParameter);
-
+    
+    $pennant = new Packages\Pennant();
+    $pennantParameter = P::USES_PENNANT;
+    $usesPennant = checkbox_checked($pennantParameter);
+    
     $devcontainerParameter = P::USES_DEVCONTAINER;
     $usesDevcontainer = checkbox_checked($devcontainerParameter);
 @endphp
@@ -39,6 +43,8 @@
 
     <x-first-party-package.option :id="$telescopeParameter" :checked="$usesTelescope" :package="$telescope" />
     <x-first-party-package.option :id="$envoyParameter" :checked="$usesEnvoy" :package="$envoy" />
+    <x-first-party-package.option :id="$pennantParameter" :checked="$usesPennant" :package="$pennant" />
+
     <x-form-control.checkbox :id="$devcontainerParameter" heading="Devcontainers"
         href="https://code.visualstudio.com/docs/devcontainers/containers" :checked="$usesDevcontainer">
         Enables your IDE to run <i class="text-italic">inside</i> your local development containers using the <x-link

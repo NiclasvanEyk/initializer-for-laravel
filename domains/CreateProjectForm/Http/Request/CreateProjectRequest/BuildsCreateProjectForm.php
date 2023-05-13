@@ -35,7 +35,7 @@ use Exception;
  */
 trait BuildsCreateProjectForm
 {
-    public function buildForm(): CreateProjectForm
+    public function buildForm() : CreateProjectForm
     {
         $sailServiceRepository = $this->sailServiceRepository();
 
@@ -89,6 +89,7 @@ trait BuildsCreateProjectForm
             developmentTools: new DevelopmentTools(
                 usesTelescope: $this->has(P::USES_TELESCOPE),
                 usesEnvoy: $this->has(P::USES_ENVOY),
+                usesPennant: $this->has(P::USES_PENNANT),
                 usesDevcontainer: $this->has(P::USES_DEVCONTAINER),
             ),
             testing: new Testing(
@@ -106,7 +107,7 @@ trait BuildsCreateProjectForm
         );
     }
 
-    private function sailServiceRepository(): SailServiceRepository
+    private function sailServiceRepository() : SailServiceRepository
     {
         return resolve(SailServiceRepository::class);
     }

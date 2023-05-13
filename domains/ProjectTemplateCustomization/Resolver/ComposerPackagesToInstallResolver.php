@@ -30,6 +30,7 @@ use Domains\Laravel\ComposerPackages\Packages\Envoy;
 use Domains\Laravel\ComposerPackages\Packages\Fortify;
 use Domains\Laravel\ComposerPackages\Packages\Horizon;
 use Domains\Laravel\ComposerPackages\Packages\Passport;
+use Domains\Laravel\ComposerPackages\Packages\Pennant;
 use Domains\Laravel\ComposerPackages\Packages\Scout;
 use Domains\Laravel\ComposerPackages\Packages\Socialite;
 use Domains\Laravel\ComposerPackages\Packages\Telescope;
@@ -177,6 +178,10 @@ class ComposerPackagesToInstallResolver
             $packages[] = new Telescope();
         }
 
+        if ($developmentTools->usesPennant) {
+            $packages[] = new Pennant();
+        }
+
         return $packages;
     }
 
@@ -259,7 +264,7 @@ class ComposerPackagesToInstallResolver
                 // See https://beyondco.de/docs/laravel-websockets/basic-usage/pusher
                 new Pusher(),
             ],
-            // Soketi is an NPM package and is handled elsewhere
+                // Soketi is an NPM package and is handled elsewhere
             BroadcastingChannelOption::SOKETI,
             BroadcastingChannelOption::NONE => [],
         };
