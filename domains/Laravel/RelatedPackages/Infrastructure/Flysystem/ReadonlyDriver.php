@@ -4,31 +4,31 @@ namespace Domains\Laravel\RelatedPackages\Infrastructure\Flysystem;
 
 use Domains\Composer\ComposerDependency;
 
-class SftpDriver extends ComposerDependency
+class ReadonlyDriver extends ComposerDependency
 {
     public function id() : string
     {
-        return 'flysystem-sftp';
+        return 'flysystem-readonly';
     }
 
     public function packageId() : string
     {
-        return 'league/flysystem-sftp-v3';
+        return 'league/flysystem-read-only';
     }
 
     public function name() : string
     {
-        return 'SFTP';
+        return 'Read-Only';
     }
 
     public function description() : string
     {
-        return '';
+        return 'Allows you to create filesystem disks that do not allow write operations.';
     }
 
     public function href() : ?string
     {
-        return 'https://laravel.com/docs/filesystem#sftp-driver-configuration';
+        return 'https://laravel.com/docs/filesystem#scoped-and-read-only-filesystems';
     }
 
     public function versionConstraint() : ?string

@@ -35,7 +35,7 @@ use Exception;
  */
 trait BuildsCreateProjectForm
 {
-    public function buildForm(): CreateProjectForm
+    public function buildForm() : CreateProjectForm
     {
         $sailServiceRepository = $this->sailServiceRepository();
 
@@ -103,11 +103,14 @@ trait BuildsCreateProjectForm
                 usesMinIO: $this->has(P::USES_MINIO),
                 usesSftp: $this->has(P::USES_FLYSYSTEM_SFTP_DRIVER),
                 usesS3: $this->has(P::USES_FLYSYSTEM_S3_DRIVER),
+                usesFtp: $this->has(P::USES_FLYSYSTEM_FTP_DRIVER),
+                usesReadonly: $this->has(P::USES_FLYSYSTEM_READONLY_DRIVER),
+                usesScoped: $this->has(P::USES_FLYSYSTEM_SCOPED_DRIVER),
             ),
         );
     }
 
-    private function sailServiceRepository(): SailServiceRepository
+    private function sailServiceRepository() : SailServiceRepository
     {
         return resolve(SailServiceRepository::class);
     }

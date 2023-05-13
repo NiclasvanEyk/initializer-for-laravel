@@ -34,48 +34,48 @@ use Domains\Laravel\StarterKit\StarterKit;
 class CreateProjectFormFixtures
 {
     /** array<string, string|int> */
-    public static function allParameters(): array
+    public static function allParameters() : array
     {
         return [
-            /** @see Metadata */
+                /** @see Metadata */
             P::VENDOR => 'foo',
             P::PROJECT => 'bar',
             P::PHP => PhpVersion::v8_2,
             P::DESCRIPTION => '',
 
-            /** @see Authentication */
+                /** @see Authentication */
             P::STARTER => StarterKit::BREEZE,
             P::BREEZE_FRONTEND => BreezeFrontend::BLADE,
             P::USES_FORTIFY => true,
             P::USES_PASSPORT => true,
             P::USES_SOCIALITE => true,
 
-            /** @see Database */
+                /** @see Database */
             P::DATABASE => DatabaseOption::default(),
 
-            /** @see Cache */
+                /** @see Cache */
             P::CACHE_DRIVER => CacheOption::default(),
 
-            /** @see Search */
+                /** @see Search */
             P::SCOUT_DRIVER => ScoutDriver::default()->value,
 
-            /** @see Queue */
+                /** @see Queue */
             P::QUEUE_DRIVER => QueueDriverOption::default(),
             P::USES_HORIZON => true,
 
-            /** @see DevelopmentTools */
+                /** @see DevelopmentTools */
             P::USES_TELESCOPE => true,
             P::USES_MAILHOG => true,
             P::USES_ENVOY => true,
 
-            /** @see Testing */
+                /** @see Testing */
             P::USES_DUSK => true,
             P::USES_PEST => true,
 
-            /** @see Payment */
+                /** @see Payment */
             P::CASHIER_DRIVER => CashierDriverOption::STRIPE,
 
-            /** @see Storage */
+                /** @see Storage */
             P::USES_MINIO => true,
             P::USES_FLYSYSTEM_S3_DRIVER => true,
             P::USES_FLYSYSTEM_SFTP_DRIVER => true,
@@ -96,7 +96,7 @@ class CreateProjectFormFixtures
         ?Notifications $notifications = null,
         ?Broadcasting $broadcasting = null,
         ?Mail $mail = null,
-    ): CreateProjectForm {
+    ) : CreateProjectForm {
         return new CreateProjectForm(
             metadata: $metadata ?? self::metadata(),
             authentication: $authentication ?? self::authentication(),
@@ -114,7 +114,7 @@ class CreateProjectFormFixtures
         );
     }
 
-    public static function metadata(): Metadata
+    public static function metadata() : Metadata
     {
         return new Metadata(
             vendorName: 'foo',
@@ -123,7 +123,7 @@ class CreateProjectFormFixtures
         );
     }
 
-    public static function authentication(): Authentication
+    public static function authentication() : Authentication
     {
         return new Authentication(
             starterKit: new Laravel(),
@@ -133,27 +133,27 @@ class CreateProjectFormFixtures
         );
     }
 
-    public static function database(): Database
+    public static function database() : Database
     {
         return new Database(database: new MySQLDatabase(), useDbal: true);
     }
 
-    public static function cache(): Cache
+    public static function cache() : Cache
     {
         return new Cache(driver: new RedisCacheDriver());
     }
 
-    public static function queue(): Queue
+    public static function queue() : Queue
     {
         return new Queue(driver: new RedisQueueDriver(), usesHorizon: true);
     }
 
-    public static function search(): Search
+    public static function search() : Search
     {
         return new Search(driver: ScoutDriver::MEILISEARCH);
     }
 
-    public static function developmentTools(): DevelopmentTools
+    public static function developmentTools() : DevelopmentTools
     {
         return new DevelopmentTools(
             usesTelescope: true,
@@ -163,36 +163,39 @@ class CreateProjectFormFixtures
         );
     }
 
-    public static function testing(): Testing
+    public static function testing() : Testing
     {
         return new Testing(usesDusk: true, usesPest: true);
     }
 
-    public static function payment(): Payment
+    public static function payment() : Payment
     {
         return new Payment(driver: new CashierStripeDriver);
     }
 
-    public static function storage(): Storage
+    public static function storage() : Storage
     {
         return new Storage(
             usesMinIO: true,
             usesSftp: true,
             usesS3: true,
+            usesFtp: true,
+            usesScoped: true,
+            usesReadonly: true,
         );
     }
 
-    public static function notifications(): Notifications
+    public static function notifications() : Notifications
     {
         return new Notifications(Notifications\NotificationChannelOptions::cases());
     }
 
-    public static function mail(): Mail
+    public static function mail() : Mail
     {
         return new Mail(driver: Mail\MailDriverOption::MAILGUN, usesMailhog: true);
     }
 
-    public static function broadcasting(): Broadcasting
+    public static function broadcasting() : Broadcasting
     {
         return new Broadcasting(Broadcasting\BroadcastingChannelOption::PUSHER);
     }
