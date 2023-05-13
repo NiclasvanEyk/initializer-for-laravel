@@ -41,6 +41,7 @@
         <x-icons.code />
     </x-slot>
 
+    <x-first-party-package.option :id="$telescopeParameter" :checked="$usesTelescope" :package="$telescope" />
     <x-first-party-package.option :id="$envoyParameter" :checked="$usesEnvoy" :package="$envoy" />
     <x-first-party-package.option :id="$pennantParameter" :checked="$usesPennant" :package="$pennant" />
 
