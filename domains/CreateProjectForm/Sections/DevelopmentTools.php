@@ -8,6 +8,7 @@ class DevelopmentTools
         public bool $usesTelescope,
         public bool $usesEnvoy,
         public bool $usesPennant,
+        public bool $usesDevcontainer,
     ) {
     }
 }

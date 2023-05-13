@@ -35,7 +35,7 @@ use Exception;
  */
 trait BuildsCreateProjectForm
 {
-    public function buildForm(): CreateProjectForm
+    public function buildForm() : CreateProjectForm
     {
         $sailServiceRepository = $this->sailServiceRepository();
 
@@ -54,7 +54,7 @@ trait BuildsCreateProjectForm
             ),
             database: new Database(
                 database: $sailServiceRepository->resolve(
-                        $this->database,
+                    $this->database,
                 ) ?? throw new Exception("Database $this->database could not be resolved"),
                 useDbal: $this->has(P::USES_DBAL)
             ),
@@ -90,6 +90,7 @@ trait BuildsCreateProjectForm
                 usesTelescope: $this->has(P::USES_TELESCOPE),
                 usesEnvoy: $this->has(P::USES_ENVOY),
                 usesPennant: $this->has(P::USES_PENNANT),
+                usesDevcontainer: $this->has(P::USES_DEVCONTAINER),
             ),
             testing: new Testing(
                 usesDusk: $this->has(P::USES_DUSK),
@@ -106,7 +107,7 @@ trait BuildsCreateProjectForm
         );
     }
 
-    private function sailServiceRepository(): SailServiceRepository
+    private function sailServiceRepository() : SailServiceRepository
     {
         return resolve(SailServiceRepository::class);
     }
