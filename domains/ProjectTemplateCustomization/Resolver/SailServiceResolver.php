@@ -3,6 +3,7 @@
 namespace Domains\ProjectTemplateCustomization\Resolver;
 
 use Domains\CreateProjectForm\CreateProjectForm;
+use Domains\CreateProjectForm\Sections\Broadcasting\BroadcastingChannelOption;
 use Domains\CreateProjectForm\Sections\Cache\MemcacheDCacheDriver;
 use Domains\CreateProjectForm\Sections\Cache\RedisCacheDriver;
 use Domains\CreateProjectForm\Sections\Queue\RedisQueueDriver;
@@ -13,6 +14,7 @@ use Domains\Laravel\Sail\Memcached;
 use Domains\Laravel\Sail\MinIO;
 use Domains\Laravel\Sail\Redis;
 use Domains\Laravel\Sail\SailConfigurationOption;
+use Domains\Laravel\Sail\Soketi;
 use Illuminate\Support\Collection;
 
 class SailServiceResolver
@@ -20,7 +22,7 @@ class SailServiceResolver
     /**
      * @return Collection<int, SailConfigurationOption>
      */
-    public function resolveFor(CreateProjectForm $form): Collection
+    public function resolveFor(CreateProjectForm $form) : Collection
     {
         /** @var array<int, SailConfigurationOption> $services */
         $services = [$form->database->database];
@@ -45,6 +47,10 @@ class SailServiceResolver
 
         if ($form->storage->usesMinIO) {
             $services[] = new MinIO();
+        }
+
+        if ($form->broadcasting->channel === BroadcastingChannelOption::SOKETI) {
+            $services[] = new Soketi();
         }
 
         return (new Collection($services))
