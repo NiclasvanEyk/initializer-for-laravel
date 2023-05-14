@@ -33,8 +33,7 @@
             Laravel integrates uses
             <x-link href="https://flysystem.thephpleague.com">Flysystem</x-link>
             to abstract away any filesystem, like your storage folder,
-            remote FTP servers or cloud storage like Amazon S3 or DigitalOcean
-            Spaces.
+            remote FTP servers or cloud storage like Amazon S3.
         </p>
 
         <p>

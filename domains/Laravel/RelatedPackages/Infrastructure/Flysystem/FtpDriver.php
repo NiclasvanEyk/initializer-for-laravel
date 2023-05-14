@@ -23,7 +23,7 @@ class FtpDriver extends ComposerDependency
 
     public function description() : string
     {
-        return '';
+        return 'Allows you to manage files using the File Transfer Protocol.';
     }
 
     public function href() : ?string

@@ -13,14 +13,16 @@ class ConfigAdjustmentArchiveManipulator implements ArchiveManipulator
         private DatabaseAdjuster $database,
         private BroadcastingAdjuster $broadcasting,
         private SearchAdjuster $search,
+        private FlysystemAdjuster $flysystem,
     ) {
     }
 
-    public function manipulate(ZipFile $archive, CreateProjectForm $form): void
+    public function manipulate(ZipFile $archive, CreateProjectForm $form) : void
     {
         $this->database->adjustDefaults($archive, $form->database->database);
         $this->cache->adjustDefaults($archive, $form->cache->driver);
         $this->broadcasting->adjustDefaults($archive, $form->broadcasting);
         $this->search->adjustDefaults($archive, $form->search);
+        $this->flysystem->adjustDefaults($archive, $form->storage);
     }
 }
