@@ -27,7 +27,7 @@
 
 <body class="antialiased dark:bg-gray-900" x-data="theme">
     <div class="relative flex flex-col justify-center min-h-screen py-4 bg-white subtle-background-pattern items-top sm:pt-0 dark:bg-gray-900 dark:text-gray-100"
-        x-bind="themeRootElement">
+        x-bind="themeProvider">
         <div class="flex flex-col flex-1 w-full max-w-6xl px-4 mx-auto" {{ $attributes }}>
             <x-layout.header />
 

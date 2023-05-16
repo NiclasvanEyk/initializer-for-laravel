@@ -69,17 +69,6 @@
             <x-nav.link route="about">
                 About
             </x-nav.link>
-
-            {{--   This is maybe useful for v2 or v1.2     --}}
-            {{--            <button --}}
-            {{--                type="submit" --}}
-            {{--                formaction="{{$permalinkAction}}" --}}
-            {{--                form="create-project-form" --}}
-            {{--                class="px-4 py-2 transition duration-200 border rounded-md hover:bg-gray-100" --}}
-            {{--                title="Create a link to the current configuration, so it can be used as a preset for future projects (e.g. you want to always use Postgres instead of the default MySQL)" --}}
-            {{--            > --}}
-            {{--                Permalink --}}
-            {{--            </button> --}}
         @endif
     </nav>
 </div>

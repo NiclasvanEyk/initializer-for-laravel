@@ -1,4 +1,4 @@
-<x-layout.default x-data="theme" x-bind="themeRootElement">
+<x-layout.default x-data="theme" x-cloak x-bind="themeRootElement">
     <main>
         <x-validation.errors :errors="$errors"></x-validation.errors>
 
