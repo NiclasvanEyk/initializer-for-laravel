@@ -1,8 +1,8 @@
 @props(['id', 'label', 'model', 'name' => null, 'isEmptyOption' => false, 'inline' => false, 'href' => null, 'none' => false, 'tags' => null, 'value' => null])
 
 @php
-    $focusClasses = $isEmptyOption ? 'focus:ring-gray-400 text-gray-400' : 'focus:ring-red-500 text-red-600';
-    $backgroundClasses = $isEmptyOption ? 'bg-gray-100 dark:bg-gray-900' : 'dark:bg-red-800 dark:bg-opacity-30 bg-red-100 bg-opacity-50';
+    $focusClasses = $isEmptyOption ? 'focus:ring-gray-400 text-gray-400' : 'focus:ring-primary-500 text-primary-600';
+    $backgroundClasses = $isEmptyOption ? 'bg-gray-100 dark:bg-gray-900' : 'dark:bg-primary-800 dark:bg-opacity-30 bg-primary-100 bg-opacity-50';
     $value = $isEmptyOption ? 'none' : $value;
     $value ??= $id;
 @endphp
@@ -20,7 +20,7 @@
             <div @if ($isEmptyOption) class="text-gray-500" @endif
                 class="flex flex-row items-center w-full font-semibold dark:text-gray-100">
                 @if ($href !== null)
-                    <a href="{{ $href }}" class="hover:text-red-500 hover:underline" target="_blank">
+                    <a href="{{ $href }}" class="hover:text-primary-500 hover:underline" target="_blank">
                 @endif
                 {{ $label }}
                 @if ($href !== null)
