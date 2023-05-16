@@ -1,13 +1,8 @@
-<x-layout.default>
+<x-layout.default x-data="theme" x-bind="themeRootElement">
     <main>
         <x-validation.errors :errors="$errors"></x-validation.errors>
 
-        <form
-            id="create-project-form"
-            method="post"
-            action="/create-project"
-            class="space-y-20"
-        >
+        <form id="create-project-form" method="post" action="/create-project" class="space-y-20">
             @include('partials.form-section.project-metadata')
 
             @include('partials.form-section.starter-kit')
@@ -24,7 +19,7 @@
 
             @include('partials.form-section.mail')
 
-{{--            @include('partials.form-section.notifications')--}}
+            {{--            @include('partials.form-section.notifications') --}}
 
             @include('partials.form-section.broadcasting')
 
@@ -58,7 +53,8 @@
                 </p>
             </div>
 
-            <div class="flex flex-col items-center justify-center w-full space-y-6 sm:space-x-6 sm:space-y-0 sm:flex-row">
+            <div
+                class="flex flex-col items-center justify-center w-full space-y-6 sm:space-x-6 sm:space-y-0 sm:flex-row">
                 <x-button.big type="submit">
                     <x-icons.download /> Generate
                 </x-button.big>
