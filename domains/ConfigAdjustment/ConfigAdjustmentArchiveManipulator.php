@@ -17,7 +17,7 @@ class ConfigAdjustmentArchiveManipulator implements ArchiveManipulator
     ) {
     }
 
-    public function manipulate(ZipFile $archive, CreateProjectForm $form) : void
+    public function manipulate(ZipFile $archive, CreateProjectForm $form): void
     {
         $this->database->adjustDefaults($archive, $form->database->database);
         $this->cache->adjustDefaults($archive, $form->cache->driver);
