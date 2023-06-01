@@ -18,7 +18,7 @@ trait MakesArchiveAdjustments
      * @throws ZipEntryNotFoundException
      * @throws ZipException
      */
-    protected function replaceInFile(ZipFile $archive, string $file, array $replacements) : void
+    protected function replaceInFile(ZipFile $archive, string $file, array $replacements): void
     {
         $contents = $archive->getEntryContents($file);
         $replacedContents = Str::replace(
@@ -38,20 +38,20 @@ trait MakesArchiveAdjustments
      * @throws ZipEntryNotFoundException
      * @throws ZipException
      */
-    protected function replaceEnvExample(ZipFile $archive, array $replacements) : void
+    protected function replaceEnvExample(ZipFile $archive, array $replacements): void
     {
         $this->replaceInFile($archive, '.env.example', $replacements);
     }
 
-    protected function appendToFile(ZipFile $archive, string $file, string $append) : void
+    protected function appendToFile(ZipFile $archive, string $file, string $append): void
     {
         $originalContents = $archive->getEntryContents($file);
 
-        $archive->addFromString($file, $originalContents . $append);
+        $archive->addFromString($file, $originalContents.$append);
     }
 
-    protected function addEnvExampleBlock(ZipFile $archive, string $block) : void
+    protected function addEnvExampleBlock(ZipFile $archive, string $block): void
     {
-        $this->appendToFile($archive, ".env.example", "\n$block\n");
+        $this->appendToFile($archive, '.env.example', "\n$block\n");
     }
 }

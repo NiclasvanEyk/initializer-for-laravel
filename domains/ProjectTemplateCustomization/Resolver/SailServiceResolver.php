@@ -22,7 +22,7 @@ class SailServiceResolver
     /**
      * @return Collection<int, SailConfigurationOption>
      */
-    public function resolveFor(CreateProjectForm $form) : Collection
+    public function resolveFor(CreateProjectForm $form): Collection
     {
         /** @var array<int, SailConfigurationOption> $services */
         $services = [$form->database->database];
