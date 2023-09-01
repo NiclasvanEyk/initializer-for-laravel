@@ -20,16 +20,16 @@ class FlysystemAdjuster
     public function adjustDefaults(
         ZipFile $archive,
         Storage $storage,
-    ) : void {
-        $contents = $archive->getEntryContents("config/filesystems.php");
+    ): void {
+        $contents = $archive->getEntryContents('config/filesystems.php');
 
         $adjusted = $this->adjustContents($contents, $storage);
         $this->adjustEnvExample($archive, $storage);
 
-        $archive->addFromString("config/filesystems.php", $adjusted);
+        $archive->addFromString('config/filesystems.php', $adjusted);
     }
 
-    private function adjustEnvExample(ZipFile $archive, Storage $storage) : void
+    private function adjustEnvExample(ZipFile $archive, Storage $storage): void
     {
         if ($storage->usesFtp) {
             $this->addEnvExampleBlock($archive, <<<'ENV'
@@ -50,7 +50,7 @@ class FlysystemAdjuster
         }
     }
 
-    public function adjustContents(string $contents, Storage $storage) : string
+    public function adjustContents(string $contents, Storage $storage): string
     {
         if ($storage->usesFtp) {
             $contents = $this->prependFilesystemConfig($contents, $this->defaultFtpConfig());
@@ -63,14 +63,14 @@ class FlysystemAdjuster
         return $contents;
     }
 
-    private function prependFilesystemConfig(string $config, string $entry) : string
+    private function prependFilesystemConfig(string $config, string $entry): string
     {
         $marker = "        's3' => [";
 
         return Str::replace($marker, "$entry\n\n$marker", $config);
     }
 
-    private function defaultFtpConfig() : string
+    private function defaultFtpConfig(): string
     {
         $c = <<<'CONFIG'
                 'ftp' => [
@@ -91,7 +91,7 @@ class FlysystemAdjuster
         return $c;
     }
 
-    private function defaultSftpConfig() : string
+    private function defaultSftpConfig(): string
     {
         $c = <<<'CONFIG'
                 'sftp' => [
