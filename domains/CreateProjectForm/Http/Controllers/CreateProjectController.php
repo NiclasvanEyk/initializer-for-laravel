@@ -54,7 +54,7 @@ class CreateProjectController
             }
 
             info("Don't check again for 24 hours...");
-            Cache::set('template-requires-check', false, ttl: now()->addDays(1));
+            Cache::set('template-requires-check', false, ttl: 60 * 60 * 24);
         });
     }
 }
