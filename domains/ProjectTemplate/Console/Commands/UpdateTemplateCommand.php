@@ -2,8 +2,7 @@
 
 namespace Domains\ProjectTemplate\Console\Commands;
 
-use Domains\ProjectTemplate\LaravelDownloader;
-use Domains\ProjectTemplate\TemplateStorage;
+use Domains\ProjectTemplate\ProjectTemplateService;
 use Illuminate\Console\Command;
 use Log;
 
@@ -12,27 +11,21 @@ class UpdateTemplateCommand extends Command
     protected $signature = 'initializer:update-template';
     protected $description = 'Downloads the latest release of Laravel if necessary.';
 
-    public function handle(
-        LaravelDownloader $downloader,
-        TemplateStorage $templateStorage,
-    ): void {
-        $latestRelease = $downloader->latestRelease();
-
-        if ($templateStorage->currentVersion() === $latestRelease->version) {
-            $this->logAndInfo("$latestRelease->version is still the latest release!");
+    public function handle(ProjectTemplateService $template) : void
+    {
+        if (! $template->canBeUpdated()) {
+            $this->logAndInfo("Local template storage does not need to be updated");
 
             return;
         }
 
-        $this->logAndInfo("Downloading $latestRelease->version...");
+        $this->logAndInfo("Downloading latest release...");
+        $template->update();
 
-        $downloadedRelease = $downloader->download($latestRelease);
-        $templateStorage->updateCurrentRelease($downloadedRelease);
-
-        $this->logAndInfo("Finished downloading $latestRelease->version!");
+        $this->logAndInfo("Template was updated to the latest release!");
     }
 
-    private function logAndInfo(string $message): void
+    private function logAndInfo(string $message) : void
     {
         $this->info($message);
         Log::info($message);
