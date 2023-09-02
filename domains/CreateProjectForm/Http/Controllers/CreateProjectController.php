@@ -20,7 +20,7 @@ class CreateProjectController
     ) {
     }
 
-    public function __invoke(CreateProjectRequest $request) : Response
+    public function __invoke(CreateProjectRequest $request): Response
     {
         $this->maybeUpdateTemplate();
 
@@ -30,26 +30,27 @@ class CreateProjectController
         $this->recordStatistics($request);
 
         $name = $form->metadata->projectName;
+
         return $archive->outputAsSymfonyResponse("$name.zip");
     }
 
-    private function recordStatistics(CreateProjectRequest $request) : void
+    private function recordStatistics(CreateProjectRequest $request): void
     {
         $this->app->terminating(function () use ($request) {
             rescue(fn () => $this->statistics->record($request));
         });
     }
 
-    private function maybeUpdateTemplate() : void
+    private function maybeUpdateTemplate(): void
     {
         $this->app->terminating(function () {
             if (Cache::get('template-requires-check') === false) {
                 return;
             }
 
-            info("Checking if template needs an update triggered by a CreateProjectRequest...");
+            info('Checking if template needs an update triggered by a CreateProjectRequest...');
             if ($this->templateStorage->canBeUpdated()) {
-                info("Updating template triggered by a CreateProjectRequest...");
+                info('Updating template triggered by a CreateProjectRequest...');
                 $this->templateStorage->update();
             }
 
