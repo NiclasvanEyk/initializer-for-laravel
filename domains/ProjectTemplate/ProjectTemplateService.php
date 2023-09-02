@@ -10,7 +10,7 @@ class ProjectTemplateService
     ) {
     }
 
-    public function canBeUpdated() : bool
+    public function canBeUpdated(): bool
     {
         $latestRelease = $this->downloader->latestRelease();
         $currentVersion = $this->storage->currentVersion();
@@ -18,7 +18,7 @@ class ProjectTemplateService
         return $latestRelease->version !== $currentVersion;
     }
 
-    public function update() : void
+    public function update(): void
     {
         $latestRelease = $this->downloader->latestRelease();
         $downloadedRelease = $this->downloader->download($latestRelease);
