@@ -44,9 +44,9 @@ class UpdateTemplateCommandTest extends TestCase
 
         $this
             ->artisan(UpdateTemplateCommand::class)
-            ->expectsOutput('Downloading v8.6.2...')
-            ->expectsOutput('Finished downloading v8.6.2!')
-            ->doesntExpectOutput('v8.6.2 is still the latest release!')
+            ->expectsOutput('Downloading latest release...')
+            ->expectsOutput('Template was updated to the latest release!')
+            ->doesntExpectOutput('Local template storage does not need to be updated')
             ->assertExitCode(0);
     }
 
@@ -57,9 +57,9 @@ class UpdateTemplateCommandTest extends TestCase
 
         $this
             ->artisan(UpdateTemplateCommand::class)
-            ->doesntExpectOutput('Downloading v8.6.2...')
-            ->doesntExpectOutput('Finished downloading v8.6.2!')
-            ->expectsOutput('v8.6.2 is still the latest release!')
+            ->doesntExpectOutput('Downloading latest release...')
+            ->doesntExpectOutput('Template was updated to the latest release!')
+            ->expectsOutput('Local template storage does not need to be updated')
             ->assertExitCode(0);
     }
 }
