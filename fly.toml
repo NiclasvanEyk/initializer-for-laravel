@@ -1,14 +1,15 @@
-# fly.toml app configuration file generated for initializer-for-laravel on 2023-05-09T20:45:51+02:00
+# fly.toml app configuration file generated for initializer-for-laravel on 2023-09-11T17:42:51+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "initializer-for-laravel"
-kill_signal = "SIGINT"
-kill_timeout = 5
 primary_region = "ams"
-[processes]
-  app = ""
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
 
 [build]
   [build.args]
@@ -21,41 +22,30 @@ primary_region = "ams"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  PRIMARY_REGION = "ams"
 
-[experimental]
-  auto_rollback = true
+[processes]
+  app = ""
 
 [[services]]
+  protocol = "tcp"
   internal_port = 8080
   processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
     interval = "15s"
-    restart_limit = 0
     timeout = "2s"
-  # [[services.http_checks]]
-  #   interval = 10000
-  #   grace_period = "5s"
-  #   method = "get"
-  #   path = "/health"
-  #   protocol = "https"
-  #   restart_limit = 0
-  #   timeout = 2000
-  #   tls_skip_verify = false
-  #   [services.http_checks.headers]
+    grace_period = "1s"
