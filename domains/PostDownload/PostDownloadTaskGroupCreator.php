@@ -52,12 +52,15 @@ class PostDownloadTaskGroupCreator
             new AdjustPermissions(),
             // start the sail container
             new StartSail($sail),
-            new InstallDevcontainer($artisan),
             // run package:install for all that actually need them
             ...(new SetupPackages($artisan, $dependencies))->tasks(),
             // migrate the db (might be unnecessary, but just to be sure)
             new MigrateDatabase($artisan),
         ];
+
+        if ($form->developmentTools->usesDevcontainer) {
+            $tasks[] = new InstallDevcontainer($artisan);
+        }
 
         if ($this->hasFrontend($form)) {
             $packages = $this->npmPackages->resolveFor($form);
@@ -73,6 +76,6 @@ class PostDownloadTaskGroupCreator
         $usesBreezeApiStack = $starterKit instanceof Breeze
             && $starterKit->frontend->name === BreezeFrontend::API;
 
-        return ! $usesBreezeApiStack;
+        return !$usesBreezeApiStack;
     }
 }
