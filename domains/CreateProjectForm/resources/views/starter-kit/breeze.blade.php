@@ -21,7 +21,13 @@
                 :checked="$breezeFrontendChosen === $blade"
                 colored="{{$activeAlpineCondition}}"
                 color="yellow" class="inline-flex"
-            >Blade</x-inline-radio>,<x-inline-radio
+            >Blade</x-inline-radio>, <x-inline-radio
+                id="{{$breezeFrontend}}-{{$livewire}}" value="{{$livewire}}"
+                name="{{$breezeFrontend}}"
+                :checked="$breezeFrontendChosen === $livewire"
+                colored="{{$activeAlpineCondition}}"
+                color="yellow" class="inline-flex"
+            >Livewire</x-inline-radio>, <x-inline-radio
                 id="{{$breezeFrontend}}-{{$react}}" value="{{$react}}"
                 name="{{$breezeFrontend}}"
                 :checked="$breezeFrontendChosen === $react"

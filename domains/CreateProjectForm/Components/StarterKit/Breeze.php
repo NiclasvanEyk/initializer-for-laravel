@@ -15,6 +15,7 @@ class Breeze extends Component
     public string $breezeFrontend = P::BREEZE_FRONTEND;
     public string $breezeFrontendChosen;
     public string $blade = BreezeFrontend::BLADE;
+    public string $livewire = BreezeFrontend::LIVEWIRE;
     public string $react = BreezeFrontend::REACT;
     public string $vue = BreezeFrontend::VUE;
     public string $api = BreezeFrontend::API;

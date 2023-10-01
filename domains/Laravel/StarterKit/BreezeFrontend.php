@@ -9,6 +9,7 @@ class BreezeFrontend
     use EmulatesEnum;
 
     const BLADE = 'blade';
+    const LIVEWIRE = 'livewire';
     const REACT = 'react';
     const VUE = 'vue';
     const API = 'api';
