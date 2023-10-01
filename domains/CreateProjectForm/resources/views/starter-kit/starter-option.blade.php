@@ -2,6 +2,7 @@
     for="{{$id}}"
     class="flex flex-col items-center justify-center flex-1 overflow-hidden transition bg-white border rounded-md shadow "
     x-bind:class="{{$model}} === '{{$id}}' ? '{{$backgroundSelectedStyles}} shadow-md' : 'dark:bg-gray-900'"
+    x-on:click="{{$model}} = '{{$id}}'"
 >
     <header class="flex flex-row items-center justify-center w-full p-4 dark:bg-opacity-0 dark:text-gray-100">
         <a href="{{$href}}" target="_blank">
