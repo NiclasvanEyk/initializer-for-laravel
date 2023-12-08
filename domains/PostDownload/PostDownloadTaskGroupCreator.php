@@ -76,6 +76,6 @@ class PostDownloadTaskGroupCreator
         $usesBreezeApiStack = $starterKit instanceof Breeze
             && $starterKit->frontend->name === BreezeFrontend::API;
 
-        return !$usesBreezeApiStack;
+        return ! $usesBreezeApiStack;
     }
 }
