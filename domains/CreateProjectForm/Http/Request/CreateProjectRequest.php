@@ -92,6 +92,7 @@ class CreateProjectRequest extends FormRequest
             /** @see DevelopmentTools */
             P::USES_TELESCOPE => ['sometimes'],
             P::USES_ENVOY => ['sometimes'],
+            P::USES_PAIL => ['sometimes'],
 
             /** @see Testing */
             P::USES_DUSK => ['sometimes'],

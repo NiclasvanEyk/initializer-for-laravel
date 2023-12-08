@@ -56,6 +56,7 @@ class CreateProjectRequestParameter
     const USES_TELESCOPE = self::USES_PREFIX.'telescope';
     const USES_MAILHOG = self::USES_PREFIX.'mailhog';
     const USES_ENVOY = self::USES_PREFIX.'envoy';
+    const USES_PAIL = self::USES_PREFIX.'pail';
     const USES_PENNANT = self::USES_PREFIX.'pennant';
     const USES_DEVCONTAINER = self::USES_PREFIX.'devcontainer';
 

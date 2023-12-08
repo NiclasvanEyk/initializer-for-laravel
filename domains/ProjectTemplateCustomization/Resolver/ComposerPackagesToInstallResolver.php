@@ -29,6 +29,7 @@ use Domains\Laravel\ComposerPackages\Packages\Dusk;
 use Domains\Laravel\ComposerPackages\Packages\Envoy;
 use Domains\Laravel\ComposerPackages\Packages\Fortify;
 use Domains\Laravel\ComposerPackages\Packages\Horizon;
+use Domains\Laravel\ComposerPackages\Packages\Pail;
 use Domains\Laravel\ComposerPackages\Packages\Passport;
 use Domains\Laravel\ComposerPackages\Packages\Pennant;
 use Domains\Laravel\ComposerPackages\Packages\Scout;
@@ -183,6 +184,10 @@ class ComposerPackagesToInstallResolver
 
         if ($developmentTools->usesPennant) {
             $packages[] = new Pennant();
+        }
+
+        if ($developmentTools->usesPail) {
+            $packages[] = new Pail();
         }
 
         return $packages;

@@ -90,6 +90,7 @@ trait BuildsCreateProjectForm
                 usesTelescope: $this->has(P::USES_TELESCOPE),
                 usesEnvoy: $this->has(P::USES_ENVOY),
                 usesPennant: $this->has(P::USES_PENNANT),
+                usesPail: $this->has(P::USES_PAIL),
                 usesDevcontainer: $this->has(P::USES_DEVCONTAINER),
             ),
             testing: new Testing(
