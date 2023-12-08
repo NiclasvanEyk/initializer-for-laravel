@@ -39,12 +39,12 @@ class CreateProjectRequest extends FormRequest
             P::VENDOR => [
                 'required',
                 'string',
-                'regex:/'.PackageName::VENDOR_REGEX.'/',
+                'regex:/' . PackageName::VENDOR_REGEX . '/',
             ],
             P::PROJECT => [
                 'required',
                 'string',
-                'regex:/'.PackageName::PACKAGE_REGEX.'/',
+                'regex:/' . PackageName::PACKAGE_REGEX . '/',
             ],
             P::PHP => ['sometimes', 'string', new ValidPhpVersionOption()],
             P::DESCRIPTION => ['nullable', 'sometimes', 'string'],
@@ -92,6 +92,7 @@ class CreateProjectRequest extends FormRequest
             /** @see DevelopmentTools */
             P::USES_TELESCOPE => ['sometimes'],
             P::USES_ENVOY => ['sometimes'],
+            P::USES_PAIL => ['sometimes'],
 
             /** @see Testing */
             P::USES_DUSK => ['sometimes'],

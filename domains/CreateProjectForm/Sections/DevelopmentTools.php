@@ -9,6 +9,7 @@ class DevelopmentTools
         public bool $usesEnvoy,
         public bool $usesPennant,
         public bool $usesDevcontainer,
+        public bool $usesPail,
     ) {
     }
 }

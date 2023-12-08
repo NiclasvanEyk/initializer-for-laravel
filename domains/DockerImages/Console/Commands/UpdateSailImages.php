@@ -25,7 +25,7 @@ class UpdateSailImages extends Command
 
         foreach (File::directories($runtimesPath) as $runtimePath) {
             $runtime = basename($runtimePath);
-            if (in_array($runtime, ['7.4'])) {
+            if (in_array($runtime, ['7.4', '8.0'])) {
                 $this->info("Skipping '$runtime'...");
                 continue;
             }

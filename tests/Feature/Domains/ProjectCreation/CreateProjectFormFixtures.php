@@ -119,7 +119,8 @@ class CreateProjectFormFixtures
         return new Metadata(
             vendorName: 'foo',
             projectName: 'bar',
-            description: '', phpVersion: Metadata\PhpVersion::latest(),
+            description: '',
+            phpVersion: Metadata\PhpVersion::latest(),
         );
     }
 
@@ -159,6 +160,7 @@ class CreateProjectFormFixtures
             usesTelescope: true,
             usesEnvoy: true,
             usesPennant: true,
+            usesPail: true,
             usesDevcontainer: true,
         );
     }
