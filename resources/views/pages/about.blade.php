@@ -1,9 +1,8 @@
-@php /** @var \Domains\Statistics\StatisticsSummary $statistics */ @endphp
+@php
+    /** @var \Domains\Statistics\StatisticsSummary $statistics */
+@endphp
 <x-layout.default>
-    <article
-        class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-invert"
-        style="max-width: min(65ch, 100%);"
-    >
+    <article class="flex-1 max-w-full mx-auto mb-10 prose dark:prose-invert" style="max-width: min(65ch, 100%);">
         <h1>About</h1>
 
         <nav class="flex flex-row items-center justify-between py-4">
@@ -22,13 +21,15 @@
             script will install all components into your application.
         </p>
 
-        <p class="text-4xl mt-10 text-center tracking-tight font-extrabold text-gray-900 dark:text-gray-200 sm:text-5xl md:text-6xl mb-0">
-            <span class="text-red-500">{{ $statistics->total }}</span>
+        <p
+            class="text-4xl mt-10 text-center tracking-tight font-extrabold text-gray-900 dark:text-gray-200 sm:text-5xl md:text-6xl mb-0">
+            <span class="text-primary-500">{{ $statistics->total }}</span>
             <span class="text-3xl align-middle">projects initialized 🚀</span>
         </p>
-        <p class="text-xs text-center">Last checked: {{ $statistics->lastCheckedAt->shortRelativeToNowDiffForHumans() }}</p>
+        <p class="text-xs text-center">Last checked: {{ $statistics->lastCheckedAt->shortRelativeToNowDiffForHumans() }}
+        </p>
 
-        {{--------------------------------------------------------------------}}
+        {{-- ---------------------------------------------------------------- --}}
 
         <h2 id="prerequisites">Prerequisites</h2>
 
@@ -46,7 +47,8 @@
         <p>
             To make the setup as easy as possible, we use
             <x-link href="https://laravel.com/docs/sail">Laravel Sail</x-link>
-            and its services. The blue <x-tags.sail :tooltip="false" /> tag
+            and its services. The blue
+            <x-tags.sail :tooltip="false" /> tag
             indicates that an option has a corresponding software component,
             which would normally need to be manually installed on your system.
             By using the power of containers, we are able to automatically
@@ -58,7 +60,7 @@
             container.
         </p>
 
-        {{--------------------------------------------------------------------}}
+        {{-- ---------------------------------------------------------------- --}}
 
         <h2 id="motivation">Motivation</h2>
 
@@ -87,7 +89,7 @@
             detailed documentation.
         </p>
 
-        {{--------------------------------------------------------------------}}
+        {{-- ---------------------------------------------------------------- --}}
 
         <h2 id="credits">Credits & Inspiration</h2>
 
