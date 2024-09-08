@@ -43,7 +43,7 @@ class User extends Authenticatable implements FilamentUser, VerifiesEmails
     public function canAccessPanel(Panel $panel): bool
     {
         return match ($panel->getId()) {
-            'user' => true,
+            'user'  => true,
             default => $this->email === 'niclas.eyk@gmail.com',
         };
     }
