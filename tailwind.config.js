@@ -1,26 +1,21 @@
-import colors from "tailwindcss/colors";
-import defaultTheme from "tailwindcss/defaultTheme";
-import forms from "@tailwindcss/forms";
-import typography from "@tailwindcss/typography";
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 
-module.exports = {
-    mode: "jit",
-    content: ["./resources/**/*.{blade.php,js,vue}", "./domains/**/*.php"],
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+
     theme: {
         extend: {
-            colors: {
-                ...defaultTheme.colors,
-                gray: {
-                    ...colors.gray,
-                    // Less blue-ish colors for dark mode
-                    800: "rgba(23,25,35)",
-                    900: "#12141c",
-                },
-            },
             fontFamily: {
-                sans: ["Inter", ...defaultTheme.fontFamily.sans],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-    plugins: [forms, typography],
+
+    plugins: [forms],
 };
