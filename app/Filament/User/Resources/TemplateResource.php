@@ -44,8 +44,8 @@ class TemplateResource extends Resource
                             ->default('private')
                             ->columnSpanFull()
                             ->descriptions([
-                                'public' => 'Public templates can be shared, but files are accessible to everyone',
-                                'private' => 'Only you can use this template, it cannot be shared'
+                                'public'  => 'Public templates can be shared, but files are accessible to everyone',
+                                'private' => 'Only you can use this template, it cannot be shared',
                             ])
                             ->required(),
                         Forms\Components\MarkdownEditor::make('description')
@@ -76,7 +76,7 @@ class TemplateResource extends Resource
                             ->prefix(url('?preset&'))
                             ->placeholder('database=postgres&cache=redis&...')
                             ->columnSpanFull(),
-                    ])
+                    ]),
             ]);
     }
 
@@ -111,9 +111,9 @@ class TemplateResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTemplates::route('/'),
+            'index'  => Pages\ListTemplates::route('/'),
             'create' => Pages\CreateTemplate::route('/create'),
-            'edit' => Pages\EditTemplate::route('/{record}/edit'),
+            'edit'   => Pages\EditTemplate::route('/{record}/edit'),
         ];
     }
 }

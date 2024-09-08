@@ -16,7 +16,7 @@ class DeleteApiTokenTest extends TestCase
 
     public function test_api_tokens_can_be_deleted(): void
     {
-        if (! Features::hasApiFeatures()) {
+        if (!Features::hasApiFeatures()) {
             $this->markTestSkipped('API support is not enabled.');
 
             return;
@@ -25,8 +25,8 @@ class DeleteApiTokenTest extends TestCase
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
         $token = $user->tokens()->create([
-            'name' => 'Test Token',
-            'token' => Str::random(40),
+            'name'      => 'Test Token',
+            'token'     => Str::random(40),
             'abilities' => ['create', 'read'],
         ]);
 
